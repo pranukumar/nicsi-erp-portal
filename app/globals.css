@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* DSCI Design Tokens */
+:root {
+  --dsci-primary: #003A8C;
+  --dsci-primary-light: #0052CC;
+  --dsci-accent: #F58220;
+  --dsci-bg: #F4F7FB;
+  --dsci-text: #1F2937;
+}
+
+body {
+  background-color: var(--dsci-bg);
+  color: var(--dsci-text);
+}
+
+@keyframes important-links-rtl-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.important-links-track {
+  animation: important-links-rtl-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.important-links-marquee:hover .important-links-track {
+  animation-play-state: paused;
+}
