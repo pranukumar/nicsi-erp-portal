@@ -481,11 +481,6 @@ export default function Header() {
             height={75}
             className="h-12 w-auto md:h-16"
           />
-          <div className="hidden border-l border-gray-200 pl-4 lg:block">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0052CC]">Digital Governance Platform</p>
-            <p className="mt-1 text-sm font-bold text-[#0F172A]">NICSI ERP PORTAL</p>
-            <p className="text-xs text-gray-600">National Informatics Centre Services Inc.</p>
-          </div>
         </div>
 
         <nav className="hidden md:flex items-center gap-5 text-[13px] font-semibold uppercase tracking-wide text-gray-700">

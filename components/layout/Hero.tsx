@@ -135,13 +135,15 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center px-6">
         <div className="max-w-3xl">
-          <p
-            className={`text-sm font-semibold tracking-[0.2em] text-blue-200 transition-all duration-700 ${
+          <div
+            className={`transition-all duration-700 ${
               progress < 20 ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
             }`}
           >
-            NICSI ERP PORTAL
-          </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">Digital Governance Platform</p>
+            <p className="mt-1 text-sm font-bold tracking-[0.08em] text-white">NICSI ERP PORTAL</p>
+            <p className="mt-1 text-xs text-blue-100">National Informatics Centre Services Inc.</p>
+          </div>
           <h1
             className={`mt-4 text-4xl font-bold leading-tight transition-all duration-700 md:text-5xl ${
               progress < 28 ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
