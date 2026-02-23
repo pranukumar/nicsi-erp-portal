@@ -1,4 +1,4 @@
-import { getHeadquarterPersonnelList } from "@/services/headquarterPersonnel";
+import { getStatePersonnelList } from "@/services/statePersonnel";
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -9,19 +9,19 @@ export async function GET(request: NextRequest) {
   const limit = Math.min(25, Math.max(5, Number(request.nextUrl.searchParams.get("limit") ?? "10") || 10));
 
   try {
-    const result = await getHeadquarterPersonnelList({ page, limit, query: q });
+    const result = await getStatePersonnelList({ page, limit, query: q });
     return NextResponse.json({
       rows: result.rows,
       total: result.total,
-      managingDirector: result.managingDirector ?? null,
       page,
       limit,
       query: q,
     });
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Failed to fetch personnel data." },
+      { error: error instanceof Error ? error.message : "Failed to fetch state personnel data." },
       { status: 500 },
     );
   }
 }
+

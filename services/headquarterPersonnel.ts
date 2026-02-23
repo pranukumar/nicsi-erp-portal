@@ -14,6 +14,7 @@ export type HeadquarterPersonnel = {
 export type PersonnelListResult = {
   rows: HeadquarterPersonnel[];
   total: number;
+  managingDirector?: HeadquarterPersonnel;
 };
 
 const fallbackRows: HeadquarterPersonnel[] = [
@@ -44,8 +45,11 @@ export async function getHeadquarterPersonnelList(options: {
 }): Promise<PersonnelListResult> {
   const { page, limit, query } = options;
   const pool = getPool();
+  const isSearchMode = Boolean(query.trim());
 
   if (!pool) {
+    const managingDirector = fallbackRows.find((row) => row.designation.toLowerCase().includes("managing director"));
+
     const filtered = fallbackRows.filter((row) => {
       const q = query.toLowerCase();
       if (!q) return true;
@@ -56,27 +60,68 @@ export async function getHeadquarterPersonnelList(options: {
         row.phoneNumber.toLowerCase().includes(q)
       );
     });
-    const ordered = [...filtered].sort((a, b) => a.serialNo - b.serialNo);
+    const ordered = [...filtered]
+      .filter((row) => (managingDirector ? row.id !== managingDirector.id : true))
+      .sort((a, b) => a.serialNo - b.serialNo);
     const start = (page - 1) * limit;
     return {
       rows: ordered.slice(start, start + limit),
       total: ordered.length,
+      managingDirector,
+    };
+  }
+
+  let managingDirector: HeadquarterPersonnel | undefined;
+  let excludeId: number | null = null;
+
+  const managingDirectorResult = await pool.query<{
+    id: number;
+    serial_no: number;
+    name: string;
+    designation: string;
+    phone_number: string;
+    extension_ip: string;
+    email: string;
+    created_at: string;
+  }>(
+    `
+      SELECT id, serial_no, name, designation, phone_number, extension_ip, email, created_at
+      FROM headquarter_personnel
+      WHERE is_active = true AND designation ILIKE '%Managing Director%'
+      ORDER BY sort_order ASC, id ASC
+      LIMIT 1
+    `,
+  );
+
+  const mdRow = managingDirectorResult.rows[0];
+  if (mdRow) {
+    excludeId = mdRow.id;
+    managingDirector = {
+      id: mdRow.id,
+      serialNo: mdRow.serial_no,
+      name: mdRow.name,
+      designation: mdRow.designation,
+      phoneNumber: mdRow.phone_number,
+      extensionIp: mdRow.extension_ip,
+      email: mdRow.email,
+      createdAt: mdRow.created_at,
     };
   }
 
   const searchTerm = `%${query.trim()}%`;
-  const whereClause = query.trim()
-    ? `WHERE is_active = true AND (name ILIKE $1 OR designation ILIKE $1 OR phone_number ILIKE $1 OR email ILIKE $1)`
-    : "WHERE is_active = true";
-  const countParams = query.trim() ? [searchTerm] : [];
-  const dataParams = query.trim()
-    ? [searchTerm, limit, (page - 1) * limit]
-    : [limit, (page - 1) * limit];
+  const whereClause = isSearchMode
+    ? `WHERE is_active = true AND id <> $1 AND (name ILIKE $2 OR designation ILIKE $2 OR phone_number ILIKE $2 OR email ILIKE $2)`
+    : `WHERE is_active = true ${excludeId !== null ? "AND id <> $1" : ""}`;
+  const countParams = isSearchMode
+    ? [excludeId ?? -1, searchTerm]
+    : (excludeId !== null ? [excludeId] : []);
+  const dataParams = isSearchMode
+    ? [excludeId ?? -1, searchTerm, limit, (page - 1) * limit]
+    : (excludeId !== null
+      ? [excludeId, limit, (page - 1) * limit]
+      : [limit, (page - 1) * limit]);
 
-  const countResult = await pool.query<{ total: string }>(
-    `SELECT COUNT(*)::text as total FROM headquarter_personnel ${whereClause}`,
-    countParams,
-  );
+  const countResult = await pool.query<{ total: string }>(`SELECT COUNT(*)::text as total FROM headquarter_personnel ${whereClause}`, countParams);
 
   const rowsResult = await pool.query<{
     id: number;
@@ -93,8 +138,8 @@ export async function getHeadquarterPersonnelList(options: {
       FROM headquarter_personnel
       ${whereClause}
       ORDER BY sort_order ASC, id ASC
-      LIMIT $${query.trim() ? "2" : "1"}
-      OFFSET $${query.trim() ? "3" : "2"}
+      LIMIT $${isSearchMode ? "3" : (excludeId !== null ? "2" : "1")}
+      OFFSET $${isSearchMode ? "4" : (excludeId !== null ? "3" : "2")}
     `,
     dataParams,
   );
@@ -111,5 +156,6 @@ export async function getHeadquarterPersonnelList(options: {
       createdAt: row.created_at,
     })),
     total: Number(countResult.rows[0]?.total ?? 0),
+    managingDirector,
   };
 }

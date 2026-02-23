@@ -2,28 +2,25 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import type { HeadquarterPersonnel } from "@/services/headquarterPersonnel";
+import type { StatePersonnel } from "@/services/statePersonnel";
 
 type Props = {
-  initialRows: HeadquarterPersonnel[];
+  initialRows: StatePersonnel[];
   initialTotal: number;
-  initialManagingDirector?: HeadquarterPersonnel;
   initialPage: number;
   limit: number;
   initialQuery: string;
 };
 
-export default function HeadquarterPersonnelTable({
+export default function StatePersonnelTable({
   initialRows,
   initialTotal,
-  initialManagingDirector,
   initialPage,
   limit,
   initialQuery,
 }: Props) {
   const [rows, setRows] = useState(initialRows);
   const [total, setTotal] = useState(initialTotal);
-  const [managingDirector, setManagingDirector] = useState<HeadquarterPersonnel | undefined>(initialManagingDirector);
   const [page, setPage] = useState(initialPage);
   const [query, setQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
@@ -53,7 +50,7 @@ export default function HeadquarterPersonnelTable({
           search.set("q", debouncedQuery);
         }
 
-        const response = await fetch(`/api/headquarters-personnel?${search.toString()}`, {
+        const response = await fetch(`/api/state-personnel?${search.toString()}`, {
           signal: controller.signal,
         });
         if (!response.ok) {
@@ -61,16 +58,14 @@ export default function HeadquarterPersonnelTable({
         }
 
         const data = (await response.json()) as {
-          rows: HeadquarterPersonnel[];
+          rows: StatePersonnel[];
           total: number;
-          managingDirector?: HeadquarterPersonnel | null;
         };
         setRows(data.rows);
         setTotal(data.total);
-        setManagingDirector(data.managingDirector ?? undefined);
       } catch (error) {
         if ((error as Error).name !== "AbortError") {
-          console.error("Failed to fetch personnel rows:", error);
+          console.error("Failed to fetch state personnel rows:", error);
         }
       } finally {
         setLoading(false);
@@ -97,7 +92,7 @@ export default function HeadquarterPersonnelTable({
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by name, designation, phone or email"
+            placeholder="Search by state, name, designation, phone, email"
             className="rounded-md border border-gray-300 px-3 py-2 text-sm"
           />
           <button
@@ -110,18 +105,6 @@ export default function HeadquarterPersonnelTable({
         </div>
       </div>
 
-      {managingDirector && (
-        <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50/40 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Managing Director</p>
-          <div className="mt-1 grid gap-1 text-sm text-gray-800 md:grid-cols-4">
-            <p><span className="font-semibold">Name:</span> {managingDirector.name}</p>
-            <p><span className="font-semibold">Designation:</span> {managingDirector.designation}</p>
-            <p><span className="font-semibold">Phone:</span> {managingDirector.phoneNumber}</p>
-            <p><span className="font-semibold">Email:</span> {managingDirector.email}</p>
-          </div>
-        </div>
-      )}
-
       <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200 bg-white">
         <table className="min-w-full text-left text-sm">
           <thead className="bg-gray-50 text-gray-700">
@@ -130,14 +113,15 @@ export default function HeadquarterPersonnelTable({
               <th className="px-4 py-3">Name</th>
               <th className="px-4 py-3">Designation</th>
               <th className="px-4 py-3">Phone Number</th>
-              <th className="px-4 py-3">Ext./IP</th>
               <th className="px-4 py-3">Email</th>
+              <th className="px-4 py-3">State Name</th>
+              <th className="px-4 py-3">Additional Assigned State/UT</th>
             </tr>
           </thead>
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td className="px-4 py-6 text-center text-gray-500" colSpan={6}>
+                <td className="px-4 py-6 text-center text-gray-500" colSpan={7}>
                   {loading ? "Loading..." : "No records found."}
                 </td>
               </tr>
@@ -148,8 +132,9 @@ export default function HeadquarterPersonnelTable({
                   <td className="px-4 py-3">{row.name}</td>
                   <td className="px-4 py-3">{row.designation}</td>
                   <td className="px-4 py-3">{row.phoneNumber}</td>
-                  <td className="px-4 py-3">{row.extensionIp}</td>
                   <td className="px-4 py-3">{row.email}</td>
+                  <td className="px-4 py-3">{row.stateName}</td>
+                  <td className="px-4 py-3">{row.additionalAssignedStateUt}</td>
                 </tr>
               ))
             )}
@@ -187,3 +172,4 @@ export default function HeadquarterPersonnelTable({
     </>
   );
 }
+

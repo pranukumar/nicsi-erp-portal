@@ -32,6 +32,7 @@ export default async function HeadquartersPersonnelPage({ searchParams }: PagePr
         <HeadquarterPersonnelTable
           initialRows={result.rows}
           initialTotal={result.total}
+          initialManagingDirector={result.managingDirector}
           initialPage={page}
           limit={limit}
           initialQuery={query}

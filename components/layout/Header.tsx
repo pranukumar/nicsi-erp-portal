@@ -94,6 +94,24 @@ const menuGroups = [
         icon: GanttChartSquare,
       },
       {
+        label: "State Projects",
+        href: "/state-projects",
+        description: "State-specific e-Governance implementation projects.",
+        icon: GanttChartSquare,
+      },
+      {
+        label: "MeitY Projects",
+        href: "/meity-projects",
+        description: "Projects aligned to MeitY programs and initiatives.",
+        icon: GanttChartSquare,
+      },
+      {
+        label: "PBD Projects",
+        href: "/pbd-projects",
+        description: "Projects under PBD and related delivery segments.",
+        icon: GanttChartSquare,
+      },
+      {
         label: "International Projects",
         href: "/international-projects",
         description: "Overseas projects and international engagement initiatives.",
