@@ -51,19 +51,7 @@ export default function Page() {
               </article>
             ))}
           </div>
-        </div>
-
-        <p className="mt-4 text-sm">
-          Official reference:{" "}
-          <Link
-            href="https://nicsi.nic.in/projects"
-            target="_blank"
-            rel="noreferrer"
-            className="font-semibold text-[#003A8C]"
-          >
-            NICSI Projects
-          </Link>
-        </p>
+        </div> 
       </section>
     </main>
   );
