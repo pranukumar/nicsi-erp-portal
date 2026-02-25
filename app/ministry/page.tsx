@@ -1,7 +1,16 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
 
-const ministers = [
+type Minister = {
+  name: string;
+  role: string;
+  image: string;
+  imageSize?: "small" | "default";
+  phone: string[];
+  email: string;
+};
+
+const ministers: Minister[] = [
   {
     name: "Shri Ashwini Vaishnaw",
     role: "Hon'ble Minister of Railways, Information and Broadcasting, and Electronics and Information Technology",
@@ -17,7 +26,7 @@ const ministers = [
     phone: ["+91-11-24368757 (Office)", "+91-11-24368758 (Office)", "+91-11-24360958 (Fax)"],
     email: "mos-eit[at]gov[dot]in",
   },
-] as const;
+];
 
 export default function MinistryPage() {
   return (
