@@ -318,3 +318,31 @@ WHERE NOT EXISTS (SELECT 1 FROM headquarter_personnel WHERE serial_no = 18 AND n
 UPDATE headquarter_personnel
 SET sort_order = serial_no
 WHERE sort_order = 999;
+
+CREATE TABLE IF NOT EXISTS empanelled_vendors (
+  id SERIAL PRIMARY KEY,
+  vendor_address TEXT,
+  agreement_empanelment TEXT,
+  contact_email_id TEXT,
+  contact_person_name TEXT,
+  description TEXT,
+  effective_from TEXT,
+  empanelment_category TEXT,
+  empanelment_no TEXT,
+  empanelment_scope_type TEXT,
+  valid_up_to TEXT,
+  vendor_category TEXT,
+  vendor_name TEXT NOT NULL,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  sort_order INT NOT NULL DEFAULT 999,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_vendor_category ON empanelled_vendors(vendor_category);
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_empanelment_category ON empanelled_vendors(empanelment_category);
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_agreement ON empanelled_vendors(agreement_empanelment);
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_scope_type ON empanelled_vendors(empanelment_scope_type);
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_sort_order ON empanelled_vendors(sort_order);
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_active ON empanelled_vendors(is_active);
+CREATE INDEX IF NOT EXISTS idx_empanelled_vendors_vendor_name ON empanelled_vendors(vendor_name);

@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get("q")?.trim() ?? "";
   const page = Math.max(1, Number(request.nextUrl.searchParams.get("page") ?? "1") || 1);
-  const limit = Math.min(25, Math.max(5, Number(request.nextUrl.searchParams.get("limit") ?? "10") || 10));
+  const limit = Math.min(500, Math.max(5, Number(request.nextUrl.searchParams.get("limit") ?? "500") || 500));
 
   try {
     const result = await getHeadquarterPersonnelList({ page, limit, query: q });

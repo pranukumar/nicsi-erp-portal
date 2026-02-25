@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import type { HeadquarterPersonnel } from "@/services/headquarterPersonnel";
 
@@ -8,8 +8,6 @@ type Props = {
   initialRows: HeadquarterPersonnel[];
   initialTotal: number;
   initialManagingDirector?: HeadquarterPersonnel;
-  initialPage: number;
-  limit: number;
   initialQuery: string;
 };
 
@@ -17,14 +15,11 @@ export default function HeadquarterPersonnelTable({
   initialRows,
   initialTotal,
   initialManagingDirector,
-  initialPage,
-  limit,
   initialQuery,
 }: Props) {
   const [rows, setRows] = useState(initialRows);
   const [total, setTotal] = useState(initialTotal);
   const [managingDirector, setManagingDirector] = useState<HeadquarterPersonnel | undefined>(initialManagingDirector);
-  const [page, setPage] = useState(initialPage);
   const [query, setQuery] = useState(initialQuery);
   const [debouncedQuery, setDebouncedQuery] = useState(initialQuery);
   const [loading, setLoading] = useState(false);
@@ -37,18 +32,14 @@ export default function HeadquarterPersonnelTable({
   }, [query]);
 
   useEffect(() => {
-    setPage(1);
-  }, [debouncedQuery]);
-
-  useEffect(() => {
     const controller = new AbortController();
 
     const fetchRows = async () => {
       setLoading(true);
       try {
         const search = new URLSearchParams();
-        search.set("page", String(page));
-        search.set("limit", String(limit));
+        search.set("page", "1");
+        search.set("limit", "500");
         if (debouncedQuery) {
           search.set("q", debouncedQuery);
         }
@@ -79,51 +70,56 @@ export default function HeadquarterPersonnelTable({
 
     fetchRows();
     return () => controller.abort();
-  }, [debouncedQuery, page, limit]);
-
-  const totalPages = useMemo(() => Math.max(1, Math.ceil(total / limit)), [total, limit]);
-
-  useEffect(() => {
-    if (page > totalPages) {
-      setPage(totalPages);
-    }
-  }, [page, totalPages]);
+  }, [debouncedQuery]);
 
   return (
     <>
-      <div className="rounded-lg border border-gray-200 bg-white p-5">
-        <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-center">
-          <input
-            type="text"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by name, designation, phone or email"
-            className="rounded-md border border-gray-300 px-3 py-2 text-sm"
-          />
-          <button
-            type="button"
-            onClick={() => setDebouncedQuery(query.trim())}
-            className="justify-self-end rounded-md bg-[#003A8C] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#0052CC]"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-
       {managingDirector && (
-        <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50/40 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Managing Director</p>
-          <div className="mt-1 grid gap-1 text-sm text-gray-800 md:grid-cols-4">
-            <p><span className="font-semibold">Name:</span> {managingDirector.name}</p>
-            <p><span className="font-semibold">Designation:</span> {managingDirector.designation}</p>
-            <p><span className="font-semibold">Phone:</span> {managingDirector.phoneNumber}</p>
-            <p><span className="font-semibold">Email:</span> {managingDirector.email}</p>
+        <div className="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-white p-4 shadow-sm md:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold tracking-wide text-[#0052CC]">Managing Director</p>
+              <h3 className="mt-1 text-lg font-bold text-[#0A2A72]">{managingDirector.name}</h3>
+              <p className="text-sm text-gray-700">{managingDirector.designation}</p>
+            </div>
+            <span className="rounded-full border border-blue-200 bg-white px-3 py-1 text-xs font-semibold text-[#003A8C]">
+              HQ Leadership
+            </span>
+          </div>
+          <div className="mt-4 grid gap-2 text-sm text-gray-800 sm:grid-cols-2">
+            <p className="rounded-md border border-blue-100 bg-white px-3 py-2">
+              <span className="font-semibold text-[#0F172A]">Phone:</span> {managingDirector.phoneNumber}
+            </p>
+            <p className="rounded-md border border-blue-100 bg-white px-3 py-2">
+              <span className="font-semibold text-[#0F172A]">Email:</span> {managingDirector.email}
+            </p>
           </div>
         </div>
       )}
 
+      <div className="mt-4 flex justify-end">
+        <div className="w-full rounded-lg border border-gray-200 bg-white p-3 md:w-[28rem]">
+          <div className="grid gap-2 md:grid-cols-[1fr_auto] md:items-center">
+            <input
+              type="text"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search by name, designation, phone or email"
+              className="rounded-md border border-gray-300 px-3 py-2 text-sm"
+            />
+            <button
+              type="button"
+              onClick={() => setDebouncedQuery(query.trim())}
+              className="justify-self-end rounded-md bg-[#003A8C] px-3 py-1.5 text-xs font-semibold text-white hover:bg-[#0052CC]"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200 bg-white">
-        <table className="min-w-full text-left text-sm">
+        <table className="nic-table min-w-full text-left text-sm">
           <thead className="bg-gray-50 text-gray-700">
             <tr>
               <th className="px-4 py-3">S.No.</th>
@@ -144,7 +140,7 @@ export default function HeadquarterPersonnelTable({
             ) : (
               rows.map((row, index) => (
                 <tr key={row.id} className="border-t">
-                  <td className="px-4 py-3">{(page - 1) * limit + index + 1}</td>
+                  <td className="px-4 py-3">{index + 1}</td>
                   <td className="px-4 py-3">{row.name}</td>
                   <td className="px-4 py-3">{row.designation}</td>
                   <td className="px-4 py-3">{row.phoneNumber}</td>
@@ -157,32 +153,8 @@ export default function HeadquarterPersonnelTable({
         </table>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm text-gray-600">
-          Showing page {page} of {totalPages} ({total} total records)
-        </p>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-            disabled={page <= 1}
-            className={`rounded-md border px-3 py-1.5 text-sm ${
-              page <= 1 ? "cursor-not-allowed text-gray-400" : "text-[#003A8C] hover:bg-blue-50"
-            }`}
-          >
-            Previous
-          </button>
-          <button
-            type="button"
-            onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
-            disabled={page >= totalPages}
-            className={`rounded-md border px-3 py-1.5 text-sm ${
-              page >= totalPages ? "cursor-not-allowed text-gray-400" : "text-[#003A8C] hover:bg-blue-50"
-            }`}
-          >
-            Next
-          </button>
-        </div>
+      <div className="mt-4">
+        <p className="text-sm text-gray-600">Total records: {total}</p>
       </div>
     </>
   );

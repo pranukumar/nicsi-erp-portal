@@ -14,6 +14,16 @@ body {
   color: var(--dsci-text);
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Keep text in standard case across the website even if uppercase utility is present. */
+.uppercase {
+  text-transform: none !important;
+}
+
 @keyframes important-links-rtl-scroll {
   from {
     transform: translateX(0);
@@ -30,4 +40,32 @@ body {
 
 .important-links-marquee:hover .important-links-track {
   animation-play-state: paused;
+}
+
+/* Standard crisp table styling used across personnel and profile pages. */
+.nic-table thead {
+  background: #e9f1ff !important;
+}
+
+.nic-table thead th {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid #cfe0ff !important;
+}
+
+.nic-table tbody tr {
+  transition: background-color 0.18s ease;
+}
+
+.nic-table tbody tr:nth-child(even) td {
+  background: #f8fbff !important;
+}
+
+.nic-table tbody tr:hover td {
+  background: #dce9ff !important;
+}
+
+.nic-table tbody td {
+  color: #111827 !important;
+  border-top: 1px solid #e5edf9 !important;
 }

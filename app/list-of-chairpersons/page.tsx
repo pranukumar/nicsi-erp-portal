@@ -47,7 +47,7 @@ export default function ListOfChairpersonsPage() {
         <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">NICSI Chairpersons</h2>
           <div className="mt-4 overflow-x-auto rounded-lg border border-gray-200">
-            <table className="min-w-full text-left text-sm">
+            <table className="nic-table min-w-full text-left text-sm">
               <thead className="bg-gray-50 text-gray-700">
                 <tr>
                   <th className="px-4 py-3">Sr. No.</th>

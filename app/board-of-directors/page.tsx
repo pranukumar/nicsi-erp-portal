@@ -121,7 +121,7 @@ export default function BoardOfDirectorsPage() {
           <h2 className="text-xl font-bold text-[#0F172A]">NICSI Board of Directors</h2>
 
           <div className="mt-4 overflow-x-auto rounded-lg border border-gray-200">
-            <table className="min-w-full text-left text-sm">
+            <table className="nic-table min-w-full text-left text-sm">
               <thead className="bg-gray-50 text-gray-700">
                 <tr>
                   <th className="px-4 py-3">Sr.No.</th>
@@ -150,7 +150,7 @@ export default function BoardOfDirectorsPage() {
           <h3 className="text-lg font-bold text-[#0F172A]">NICSI Shareholder Name</h3>
 
           <div className="mt-4 overflow-x-auto rounded-lg border border-gray-200">
-            <table className="min-w-full text-left text-sm">
+            <table className="nic-table min-w-full text-left text-sm">
               <thead className="bg-gray-50 text-gray-700">
                 <tr>
                   <th className="px-4 py-3">Sr.No.</th>

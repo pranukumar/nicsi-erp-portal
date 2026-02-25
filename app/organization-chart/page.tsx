@@ -20,25 +20,6 @@ type StateUnit = {
   note?: string;
 };
 
-const ministers: Person[] = [
-  {
-    role: "Hon'ble Cabinet Minister (MeitY)",
-    name: "Shri Ashwini Vaishnaw",
-    designation: "Minister of Electronics & Information Technology",
-    phone: "011-24369191 / 011-24362626",
-    email: "moeit[at]gov[dot]in",
-    photo: "/images/cabinate_minister.jpg",
-  },
-  {
-    role: "Hon'ble Minister of State (MeitY)",
-    name: "Shri Jitin Prasada",
-    designation: "Minister of State, Electronics & Information Technology",
-    phone: "011-24368757 / 011-24368758",
-    email: "mos-eit[at]gov[dot]in",
-    photo: "/images/jitin-prasada.png",
-  },
-];
-
 const leadership = {
   chairperson: {
     role: "Chairperson, NICSI",
@@ -59,14 +40,12 @@ const leadership = {
 };
 
 const imageSizeMap = {
-  "Hon'ble Cabinet Minister (MeitY)": { frame: "h-32 w-24" },
-  "Hon'ble Minister of State (MeitY)": { frame: "h-28 w-22" },
   "Chairperson, NICSI": { frame: "h-24 w-20" },
   "Managing Director, NICSI": { frame: "h-24 w-20" },
 } as const;
 
 const hqHierarchy: Person[] = [
-  { role: "FA", name: "Shri Jitender Kumar", designation: "Chief General Manager", phone: "01122900582", email: "kundalji[at]nic[dot]in" },
+  { role: "Financial Advisor", name: "Shri Jitender Kumar", designation: "Chief General Manager", phone: "01122900582", email: "kundalji[at]nic[dot]in" },
   { role: "HoD Admin", name: "Shri Naveen Agrawal", designation: "Chief General Manager", phone: "01122900547", email: "srgm-na[at]nicsi[dot]nic[dot]in" },
   { role: "HoD HR", name: "Md. Ziya Ur Rehman Badar", designation: "Sr. General Manager", phone: "01122900553", email: "mzr[dot]badar[at]nic[dot]in" },
    { role: "HoD GeM & Tender", name: "Shri Ramdatt Upadhyay", designation: "General Manager", phone: "01122900512", email: "upadhyay[dot]rd[at]nic[dot]in" },
@@ -74,32 +53,34 @@ const hqHierarchy: Person[] = [
   { role: "HoD CoE/ PBD & IT", name: "Shri Prasanna Pandey", designation: "General Manager", phone: "01122900517", email: "kumar[dot]jyoti[at]nic[dot]in" },
    
   { role: "HoD Accounts", name: "Shri Bhupendra Kumar Sharma", designation: "General Manager", phone: "01122900510", email: "bks[at]nic[dot]in" },
-   { role: "PIO", name: "Shri Ajay Kumar Gupta", designation: "General Manager", phone: "01122900556", email: "ajayg[at]nic[dot]in"},
+   { role: "Public Information Officer", name: "Shri Ajay Kumar Gupta", designation: "General Manager", phone: "01122900556", email: "ajayg[at]nic[dot]in"},
   { role: "Public Grievance Officer", name: "Shri Vikas Dixit", designation: "Manager", phone: "01122900503", email: "vikas[dot]dixit[at]nic[dot]in"},
   
    ];
 
 const domainExperts: Person[] = [
-  { role: "Domain Expert - Data Analytics", name: "VACANT", designation: "Domain Expert", note: "Final details to be confirmed" },
-  { role: "Domain Expert - Cyber Security", name: "VACANT", designation: "Domain Expert", note: "Final details to be confirmed" },
-  { role: "Domain Expert - Procurement", name: "VACANT", designation: "Domain Expert", note: "Final details to be confirmed" },
+  { role: "CHRO – Chief Human Resources Officer", name: " ", designation: " "  },
+  { role: "CTO – Chief Technology Officer", name: " ", designation: " " },
+  { role: "CLO – Chief Legal Officer", name: " ", designation: " "  },
+  { role: "CFO – Chief Financial Officer", name: " ", designation: " "  },
+  { role: "CPO – Chief Procurement Officer", name: " ", designation: " "  },
 ];
 
 const consultants: Person[] = [
-  { role: "Consultant (Program)", name: "VACANT", designation: "Consultant", note: "Company Secretary/Consultant details to be finalized" },
-  { role: "Consultant (Technology)", name: "VACANT", designation: "Consultant", note: "Company Secretary role currently under restructuring" },
+  { role: "Consultant (Program)", name: " ", designation: " ", note: " " },
+  { role: "Consultant (Technology)", name: " ", designation: " ", note: " " },
 ];
 
 const stateUnits: StateUnit[] = [
-  { stateUt: "Andhra Pradesh", officer: "VACANT", designation: "VACANT" },
+  { stateUt: "Andhra Pradesh", officer: "Shri A. Maruthi Kumar", designation: "General Manager", phone: "04023221904", email: "kumar[dot]maruthi[at]nic[dot]in" },
   { stateUt: "Arunachal Pradesh", officer: "VACANT", designation: "VACANT" },
   { stateUt: "Assam", officer: "VACANT", designation: "VACANT" },
   { stateUt: "Bihar", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Chhattisgarh", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Goa", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Gujarat", officer: "Post Vacant", designation: "-", note: "Gandhinagar" },
-  { stateUt: "Haryana", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Himachal Pradesh", officer: "VACANT", designation: "VACANT" },
+  { stateUt: "Chhattisgarh", officer: "Shri Swadesh Kumar Shrivastava", designation: "General Manager", phone: "07552554600", email: "swadesh[dot]sh[at]nic[dot]in" },
+  { stateUt: "Goa", officer: "Shri Y. Siva Sankara Reddy", designation: "General Manager", phone: "08022863218", email: "yss[dot]reddy[at]nic[dot]gov[dot]in" },
+  { stateUt: "Gujarat", officer: "Shri Manoj Prakash", designation: "Deputy General Manager", phone: "09829434526", email: "manoj[dot]prakash[at]gov[dot]in" },
+  { stateUt: "Haryana", officer: "Shri Tarminder Singh", designation: "General Manager", phone: "01722740708", email: "gm17-nicsi[at]nic[dot]in" },
+  { stateUt: "Himachal Pradesh", officer: "Shri Sudhir Kumar Sharma", designation: "General Manager", phone: "09419220325", email: "sudhir[dot]sharma[at]nic[dot]in" },
   { stateUt: "Jharkhand", officer: "VACANT", designation: "VACANT" },
   { stateUt: "Karnataka", officer: "Shri Y. Siva Sankara Reddy", designation: "General Manager", phone: "08022863218", email: "yss[dot]reddy[at]nic[dot]gov[dot]in", note: "Bangalore" },
   { stateUt: "Kerala", officer: "Shri Manu Mohan B", designation: "Dy. General Manager", phone: "04712729894", email: "manu[at]nic[dot]in", note: "Thiruvananthapuram" },
@@ -117,16 +98,16 @@ const stateUnits: StateUnit[] = [
   { stateUt: "Telangana", officer: "Shri A. Maruthi Kumar", designation: "General Manager", phone: "04023221904", email: "kumar[dot]maruthi[at]nic[dot]in", note: "Hyderabad" },
   { stateUt: "Tripura", officer: "VACANT", designation: "VACANT" },
   { stateUt: "Uttar Pradesh", officer: "Shri Deep Kumar", designation: "General Manager", phone: "05222239087", email: "gm-nicsi[at]nic[dot]in", note: "Lucknow" },
-  { stateUt: "Uttarakhand", officer: "VACANT", designation: "VACANT" },
+  { stateUt: "Uttarakhand", officer: "Shri Deep Kumar", designation: "General Manager", phone: "05222239087", email: "gm-nicsi[at]nic[dot]in"  },
   { stateUt: "West Bengal", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Andaman and Nicobar Islands", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Chandigarh", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Dadra and Nagar Haveli and Daman and Diu", officer: "VACANT", designation: "VACANT" },
+  { stateUt: "Andaman and Nicobar Islands", officer: "Shri V. Sivaramakrishnan", designation: "Sr. General Manager", phone: "04425672555", email: "siva[dot]tn[at]nic[dot]in"  },
+  { stateUt: "Chandigarh", officer: "Shri Tarminder Singh", designation: "General Manager", phone: "01722740708", email: "gm17-nicsi[at]nic[dot]in" },
+  { stateUt: "Dadra and Nagar Haveli & Daman & Diu", officer: "Shri Gangaram Devaba Kumbhar", designation: "Manager", phone: "09096138063", email: "gd[dot]kumbhar[at]nic[dot]in"  },
   { stateUt: "Delhi", officer: "VACANT", designation: "VACANT" },
   { stateUt: "Jammu and Kashmir", officer: "Shri Sudhir Kumar Sharma", designation: "General Manager", phone: "09419220325", email: "sudhir[dot]sharma[at]nic[dot]in", note: "Srinagar" },
-  { stateUt: "Ladakh", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Lakshadweep", officer: "VACANT", designation: "VACANT" },
-  { stateUt: "Puducherry", officer: "VACANT", designation: "VACANT" },
+  { stateUt: "Ladakh", officer: "Shri Sudhir Kumar Sharma", designation: "General Manager", phone: "09419220325", email: "sudhir[dot]sharma[at]nic[dot]in" },
+  { stateUt: "Lakshadweep", officer: "Shri Manu Mohan B", designation: "Dy. General Manager", phone: "04712729894", email: "manu[at]nic[dot]in"  },
+  { stateUt: "Puducherry", officer: "Shri V. Sivaramakrishnan", designation: "Sr. General Manager", phone: "04425672555", email: "siva[dot]tn[at]nic[dot]in" },
 ];
 
 function TopNode({ person }: { person: Person }) {
@@ -181,17 +162,6 @@ export default function OrganizationChartPage() {
           <h3 className="mt-2 text-2xl font-bold text-[#0F172A] md:text-3xl">NICSI Organization Hierarchy</h3>
 
           <div className="mt-6 space-y-5">
-            <div>
-              <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Our Ministers</p>
-              <div className="grid gap-3 md:grid-cols-2">
-                {ministers.map((minister) => (
-                  <TopNode key={minister.role} person={minister} />
-                ))}
-              </div>
-            </div>
-
-            <div className="mx-auto h-6 w-px bg-blue-300" />
-
             <div className="grid items-start gap-3 md:grid-cols-[1fr_minmax(0,28rem)_minmax(0,16rem)]">
               <div className="hidden md:block" />
               <div className="mx-auto w-full max-w-md">

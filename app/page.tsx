@@ -7,11 +7,16 @@ import {
   Building2,
   CalendarDays,
   Cloud,
+  Facebook,
   FileText,
   Globe2,
+  Instagram,
   Languages,
+  Linkedin,
   Megaphone,
   Server,
+  Twitter,
+  Youtube,
 } from "lucide-react";
 
 const iconMap = {
@@ -76,6 +81,14 @@ const dataCentres = [
   { name: "Hyderabad Data Centre", details: "Established: 2010 | Tier-III | Area: 10,000 sq ft | Capacity: 154 Racks" },
   { name: "Pune Data Centre", details: "Established: 2010 | Tier-III | Area: 10,000 sq ft | Capacity: 171 Racks" },
 ];
+
+const socialMedia = [
+  { platform: "X", handle: "@GoI_MeitY", href: "https://x.com/GoI_MeitY", icon: Twitter },
+  { platform: "Facebook", handle: "GoI.MeitY", href: "https://www.facebook.com/GoI.MeitY", icon: Facebook },
+  { platform: "Instagram", handle: "@goi_meity", href: "https://www.instagram.com/goi_meity/", icon: Instagram },
+  { platform: "YouTube", handle: "GoI MeitY", href: "https://www.youtube.com/@GoI_MeitY", icon: Youtube },
+  { platform: "LinkedIn", handle: "Ministry of Electronics and IT", href: "https://www.linkedin.com/company/ministry-of-electronics-and-information-technology/", icon: Linkedin },
+] as const;
 
 const importantLinks = [
   { title: "Gov.in", href: "https://www.india.gov.in/", logo: "/logos/india_gov.in_logo.png" },
@@ -252,6 +265,33 @@ export default async function Home() {
                 <p className="mt-1 text-sm text-gray-600">{dc.details}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-14">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Social Media</p>
+          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Connect with official channels</h2>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {socialMedia.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.platform}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <span className="inline-flex rounded-lg bg-blue-50 p-2 text-[#003A8C]">
+                    <Icon size={18} />
+                  </span>
+                  <p className="mt-3 font-semibold text-[#0F172A]">{item.platform}</p>
+                  <p className="mt-1 text-sm text-gray-600">{item.handle}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

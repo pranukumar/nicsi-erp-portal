@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
@@ -31,13 +32,19 @@ import {
 const menuGroups = [
   {
     label: "Profile",
-    description: "Corporate profile, leadership structure, and organizational information.",
+    description: "About NICSI, Ministry, organization chart, personnel directories, work allocation, and leadership records.",
     items: [
       {
         label: "About NICSI",
         href: "/about",
         description: "Overview of NICSI mandate, mission, and role.",
         icon: Building2,
+      },
+      {
+        label: "Ministry",
+        href: "/ministry",
+        description: "Ministerial information for MeitY leadership.",
+        icon: Users,
       },
       {
         label: "Organization Chart",
@@ -124,16 +131,46 @@ const menuGroups = [
     description: "Government cloud, hosting, and infrastructure service offerings.",
     items: [
       {
-        label: "NICSI Cloud",
+        label: "NICSI Cloud Services",
         href: "/nicsi-cloud",
-        description: "NICSI managed cloud infrastructure and support services.",
+        description: "Secure, scalable and managed cloud services for government entities.",
         icon: CloudCog,
       },
       {
-        label: "NGC Cloud",
+        label: "NGC Platform",
         href: "/ngc-cloud",
-        description: "National Government Cloud related onboarding and offerings.",
+        description: "National Government Cloud onboarding and service access platform.",
         icon: ServerCog,
+      },
+    ],
+  },
+  {
+    label: "NICSI Centre of Excellence",
+    description: "Innovation, standards, enablement and specialized domain capability initiatives.",
+    items: [
+      {
+        label: "NICSI Centre of Excellence",
+        href: "/centre-of-excellence",
+        description: "Domain-led excellence initiatives for digital governance outcomes.",
+        icon: Building2,
+      },
+    ],
+  },
+  {
+    label: "Empanelled Vendors",
+    description: "Approved implementation partners and solution delivery ecosystem.",
+    items: [
+      {
+        label: "Empanelled Vendors (Smart)",
+        href: "/empanelled-vendors",
+        description: "Intent-based smart search and related vendor recommendations.",
+        icon: Network,
+      },
+      {
+        label: "Empanelled Vendors (Classic)",
+        href: "/empanelled-vendors-classic",
+        description: "Standard category and text filter based vendor listing.",
+        icon: Network,
       },
     ],
   },
@@ -290,12 +327,6 @@ const menuGroups = [
   },
 ];
 
-const fallbackAnnouncements = [
-  { text: "Corrigendum issued for cloud infrastructure tender batch Q1-2026.", href: "/tenders" },
-  { text: "Updated vendor document checklist published under circulars.", href: "/circulars" },
-  { text: "Career opportunities open for project and security operations teams.", href: "/career" },
-];
-
 const utilityLinks = [
   { label: "Sitemap", href: "/about" },
   { label: "RTI", href: "/circulars" },
@@ -318,12 +349,11 @@ type MegaMenuGroup = {
 };
 
 export default function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [announcements, setAnnouncements] = useState(fallbackAnnouncements);
-  const [announcementIndex, setAnnouncementIndex] = useState(0);
-  const [announcementPaused, setAnnouncementPaused] = useState(false);
   const [openGroupIndex, setOpenGroupIndex] = useState<number | null>(null);
+  const [mobileOpenGroupIndex, setMobileOpenGroupIndex] = useState<number | null>(null);
   const groupButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const groupItemRefs = useRef<Array<Array<HTMLAnchorElement | null>>>([]);
 
@@ -334,64 +364,12 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    let ignore = false;
-
-    const loadAnnouncements = async () => {
-      try {
-        const response = await fetch("/api/announcements");
-        if (!response.ok) {
-          return;
-        }
-
-        const data = (await response.json()) as { announcements?: Array<{ text: string; href: string }> };
-        if (!ignore && data.announcements && data.announcements.length > 0) {
-          setAnnouncements(data.announcements);
-        }
-      } catch {
-        // Keep fallback content silently.
-      }
-    };
-
-    loadAnnouncements();
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (announcementPaused) {
+    if (open) {
+      setMobileOpenGroupIndex(0);
       return;
     }
-
-    if (!announcements.length) {
-      return;
-    }
-
-    const intervalId = window.setInterval(() => {
-      setAnnouncementIndex((prev) => (prev + 1) % announcements.length);
-    }, 4500);
-
-    return () => window.clearInterval(intervalId);
-  }, [announcementPaused, announcements]);
-
-  const goToPrevAnnouncement = () => {
-    if (!announcements.length) {
-      return;
-    }
-    setAnnouncementIndex((prev) => (prev - 1 + announcements.length) % announcements.length);
-  };
-
-  const goToNextAnnouncement = () => {
-    if (!announcements.length) {
-      return;
-    }
-    setAnnouncementIndex((prev) => (prev + 1) % announcements.length);
-  };
-
-  const safeAnnouncementIndex = announcements.length > 0
-    ? announcementIndex % announcements.length
-    : 0;
+    setMobileOpenGroupIndex(null);
+  }, [open]);
 
   const focusGroupButton = (index: number) => {
     groupButtonRefs.current[index]?.focus();
@@ -418,7 +396,9 @@ export default function Header() {
         <span className="inline-flex items-center gap-1 leading-none">
           <Image src="/icons/india-flag.svg" alt="India Flag" width={20} height={14} className="h-4 w-5 rounded-[1px]" />
           Government of India
-          <Image src="/logos/digital-india.png" alt="Digital India" width={84} height={20} className="h-5 w-auto" />
+          <span className="inline-flex items-center rounded-sm bg-white px-1 py-0.5">
+            <Image src="/logos/digital-india.png" alt="Digital India" width={96} height={24} className="h-5 w-auto" />
+          </span>
           <Image
             src="/logos/swachh-bharat.png"
             alt="Swachh Bharat"
@@ -439,69 +419,27 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-3 border-b bg-[#F4F7FB] px-4 py-2 text-sm md:px-6">
-        <div className="flex min-w-0 items-center gap-2">
-          <span className="rounded bg-[#003A8C] px-2 py-0.5 text-[11px] font-semibold tracking-wide text-white">
-            NOTICE
-          </span>
-          {announcements.length > 0 && (
-            <Link
-              href={announcements[safeAnnouncementIndex]?.href ?? "/circulars"}
-              className="truncate text-gray-700 transition hover:text-[#003A8C]"
-            >
-              {announcements[safeAnnouncementIndex]?.text}
-            </Link>
-          )}
-        </div>
-        <div className="flex shrink-0 items-center gap-1">
-          <button
-            type="button"
-            onClick={goToPrevAnnouncement}
-            aria-label="Previous notice"
-            className="rounded border border-gray-300 bg-white px-2 py-1 text-xs text-gray-700 hover:bg-gray-100"
-          >
-            Prev
-          </button>
-          <button
-            type="button"
-            onClick={goToNextAnnouncement}
-            aria-label="Next notice"
-            className="rounded border border-gray-300 bg-white px-2 py-1 text-xs text-gray-700 hover:bg-gray-100"
-          >
-            Next
-          </button>
-          <button
-            type="button"
-            onClick={() => setAnnouncementPaused((prev) => !prev)}
-            aria-label={announcementPaused ? "Resume notice autoplay" : "Pause notice autoplay"}
-            className="rounded border border-gray-300 bg-white px-2 py-1 text-xs font-medium text-[#003A8C] hover:bg-gray-100"
-          >
-            {announcementPaused ? "Resume" : "Pause"}
-          </button>
-        </div>
-      </div>
-
       {/* Main Header */}
-      <div className="px-6 py-4 flex justify-between items-center border-b border-blue-100">
+      <div className="relative flex items-center border-b border-blue-100 px-4 py-4 pr-14 md:pr-6 md:px-6">
 
-        <div className="flex items-center gap-4">
+        <div className="min-w-0 shrink-0 flex items-center gap-2 md:gap-4">
           <Image
             src="/logos/ashoka.png"
             alt="Ashoka"
             width={64}
             height={64}
-            className="h-14 w-auto md:h-16"
+            className="h-12 w-auto md:h-16"
           />
           <Image
             src="/logos/NICSI-logo.png"
             alt="NICSI"
             width={210}
             height={75}
-            className="h-12 w-auto md:h-16"
+            className="h-10 w-auto max-w-[170px] md:h-16 md:max-w-none"
           />
         </div>
 
-        <nav className="hidden md:flex items-center gap-5 text-[13px] font-semibold uppercase tracking-wide text-gray-700">
+        <nav className="ml-auto hidden items-center justify-end gap-4 text-[13px] font-semibold tracking-normal text-gray-700 md:flex">
           <NavLink href="/" ariaLabel="Home">
             <House size={16} />
           </NavLink>
@@ -509,7 +447,6 @@ export default function Header() {
             <MenuGroup
               key={group.label}
               groupIndex={groupIndex}
-              totalGroups={menuGroups.length}
               label={group.label}
               description={group.description}
               items={group.items}
@@ -591,35 +528,75 @@ export default function Header() {
           ))}
           <Link
             href="/login"
-            className="bg-[#003A8C] text-white px-5 py-2 rounded-md hover:bg-[#0052CC] transition"
+            className="rounded-md bg-[#003A8C] px-5 py-2 text-white transition hover:bg-[#0052CC]"
           >
             Login
           </Link>
         </nav>
 
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
+        <button
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-md border border-gray-200 bg-white p-1.5 text-gray-700 md:static md:ml-auto md:translate-y-0 md:hidden"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-white border-t px-6 py-4 space-y-3">
-          <Link href="/" className="block font-medium" aria-label="Home">
-            <House size={18} />
+        <div className="md:hidden max-h-[calc(100vh-8.5rem)] overflow-y-auto border-t bg-white px-4 py-4">
+          <Link
+            href="/"
+            className="mb-3 flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 font-semibold text-[#003A8C]"
+            aria-label="Home"
+            onClick={() => setOpen(false)}
+          >
+            <House size={16} />
+            Home
           </Link>
-          {menuGroups.map((group) => (
-            <div key={group.label}>
-              <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">{group.label}</p>
-              <div className="mt-1 space-y-1">
-                {group.items.map((item) => (
-                  <Link key={item.label} href={item.href} className="block text-sm text-gray-700">
-                    {item.label}
-                  </Link>
-                ))}
+          {menuGroups.map((group, groupIndex) => (
+            <div key={group.label} className="mb-2 rounded-md border border-gray-200">
+              <button
+                type="button"
+                onClick={() => setMobileOpenGroupIndex((prev) => (prev === groupIndex ? null : groupIndex))}
+                className="flex w-full items-center justify-between px-3 py-2 text-left text-sm font-semibold text-gray-800"
+              >
+                <span>{group.label}</span>
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform ${
+                    mobileOpenGroupIndex === groupIndex ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              <div className={`border-t border-gray-100 px-3 py-2 ${mobileOpenGroupIndex === groupIndex ? "block" : "hidden"}`}>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className={`inline-flex min-h-9 items-center rounded-full border px-3 py-1.5 text-sm font-medium leading-5 transition ${
+                        pathname === item.href
+                          ? "border-[#003A8C] bg-[#003A8C] text-white"
+                          : "border-blue-200 bg-white text-[#1F2937] hover:bg-blue-50 hover:text-[#003A8C]"
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
-          <Link href="/login" className="block font-medium text-[#003A8C]">Login</Link>
+          <Link
+            href="/login"
+            className="mt-2 block rounded-md bg-[#003A8C] px-3 py-2 text-center text-sm font-semibold text-white"
+            onClick={() => setOpen(false)}
+          >
+            Login
+          </Link>
         </div>
       )}
     </header>
@@ -641,7 +618,6 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
 
 function MenuGroup({
   groupIndex,
-  totalGroups,
   label,
   description,
   items,
@@ -654,7 +630,6 @@ function MenuGroup({
   onItemKeyDown,
 }: {
   groupIndex: number;
-  totalGroups: number;
   label: string;
   description: string;
   items: Array<{
@@ -672,15 +647,47 @@ function MenuGroup({
   onTriggerKeyDown: (event: ReactKeyboardEvent<HTMLButtonElement>) => void;
   onItemKeyDown: (itemIndex: number, event: ReactKeyboardEvent<HTMLAnchorElement>) => void;
 }) {
-  const panelPositionClass =
-    groupIndex >= totalGroups - 2
-      ? "right-0"
-      : groupIndex === 0
-        ? "left-0"
-        : "left-1/2 -translate-x-1/2";
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const [panelLeft, setPanelLeft] = useState(0);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const updatePanelPosition = () => {
+      const container = containerRef.current;
+      const panel = panelRef.current;
+      if (!container || !panel) {
+        return;
+      }
+
+      const containerRect = container.getBoundingClientRect();
+      const panelWidth = panel.offsetWidth;
+      const viewportPadding = 8;
+      const minViewportLeft = viewportPadding;
+      const maxViewportLeft = Math.max(viewportPadding, window.innerWidth - panelWidth - viewportPadding);
+      const centeredViewportLeft = containerRect.left + (containerRect.width / 2) - (panelWidth / 2);
+      const clampedViewportLeft = Math.min(Math.max(centeredViewportLeft, minViewportLeft), maxViewportLeft);
+      const nextPanelLeft = clampedViewportLeft - containerRect.left;
+      setPanelLeft(nextPanelLeft);
+    };
+
+    const rafId = window.requestAnimationFrame(updatePanelPosition);
+    window.addEventListener("resize", updatePanelPosition);
+    window.addEventListener("scroll", updatePanelPosition, true);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", updatePanelPosition);
+      window.removeEventListener("scroll", updatePanelPosition, true);
+    };
+  }, [isOpen]);
 
   return (
     <div
+      ref={containerRef}
       className="relative py-1"
       onMouseEnter={onOpen}
       onMouseLeave={onClose}
@@ -706,49 +713,51 @@ function MenuGroup({
         <ChevronDown size={14} className="mt-[1px]" />
         <span className={`absolute left-0 -bottom-1 h-[2px] bg-[#F58220] transition-all ${isOpen ? "w-full" : "w-0"}`}></span>
       </button>
-      <div
-        id={`mega-panel-${groupIndex}`}
-        role="menu"
-        aria-labelledby={`mega-trigger-${groupIndex}`}
-        className={`absolute top-9 z-50 w-[min(46rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-4 shadow-2xl transition-all ${panelPositionClass} ${
-          isOpen ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-      >
-        <div className="grid gap-4 lg:grid-cols-[220px_1fr]">
-          <div className="rounded-lg bg-[#F4F7FB] p-4">
-            <p className="text-sm font-semibold text-[#003A8C]">{label}</p>
-            <p className="mt-2 text-xs leading-5 text-gray-600">{description}</p>
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {items.map((item, itemIndex) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  ref={(element) => setGroupItemRef(itemIndex, element)}
-                  role="menuitem"
-                  target={item.external ? "_blank" : undefined}
-                  rel={item.external ? "noreferrer" : undefined}
-                  className="rounded-lg border border-transparent p-3 transition hover:border-blue-100 hover:bg-blue-50/60"
-                  onKeyDown={(event) => onItemKeyDown(itemIndex, event)}
-                  onClick={onClose}
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="rounded-md bg-white p-2 text-[#003A8C] shadow-sm ring-1 ring-gray-200">
-                      <Icon size={16} />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-semibold text-gray-800">{item.label}</span>
-                      <span className="mt-1 block text-xs leading-5 text-gray-600">{item.description}</span>
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+      {isOpen && (
+        <div
+          ref={panelRef}
+          id={`mega-panel-${groupIndex}`}
+          role="menu"
+          aria-labelledby={`mega-trigger-${groupIndex}`}
+          style={{ left: `${panelLeft}px` }}
+          className="absolute top-full z-50 w-[min(52rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-4 shadow-2xl"
+        >
+          <div className="grid gap-3 lg:grid-cols-[200px_1fr]">
+            <div className="rounded-lg bg-[#F4F7FB] p-4">
+              <p className="text-sm font-semibold text-[#003A8C]">{label}</p>
+              <p className="mt-2 text-xs leading-5 text-gray-600">{description}</p>
+            </div>
+            <div className={`grid gap-2 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+              {items.map((item, itemIndex) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    ref={(element) => setGroupItemRef(itemIndex, element)}
+                    role="menuitem"
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                    className="rounded-lg border border-transparent p-3 transition hover:border-blue-100 hover:bg-blue-50/60"
+                    onKeyDown={(event) => onItemKeyDown(itemIndex, event)}
+                    onClick={onClose}
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="rounded-md bg-white p-2 text-[#003A8C] shadow-sm ring-1 ring-gray-200">
+                        <Icon size={16} />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-gray-800">{item.label}</span>
+                        <span className="mt-1 block text-xs leading-5 text-gray-600">{item.description}</span>
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

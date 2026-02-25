@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
-import { Bus, Droplets, Landmark, LocateFixed, ScanFace, ShieldAlert } from "lucide-react";
+import { Bus, Landmark, LocateFixed, ScanFace } from "lucide-react";
 import PageTitle from "../../components/layout/PageTitle";
 
 export default function Page() {
@@ -42,20 +42,12 @@ export default function Page() {
 
   const otherProjects = [
     {
-      name: "eNagar Sewa",
+      name: "eNagar Setu",
       subtitle: "Property Tax Collection",
       description:
         "Digital service platform to streamline municipal tax collection across urban local bodies.",
       accent: "text-[#0A2A72]",
       icon: Landmark,
-    },
-    {
-      name: "Jal Nigam",
-      subtitle: "Water Bill Collection",
-      description:
-        "Web-based utility billing system for online payment of water charges, new connection applications, and grievance redressal.",
-      accent: "text-[#1D4ED8]",
-      icon: Droplets,
     },
     {
       name: "Vehicle Location & Tracking System",
@@ -73,14 +65,6 @@ export default function Page() {
       accent: "text-[#1E40AF]",
       icon: ScanFace,
     },
-    {
-      name: "Cyber Solution",
-      subtitle: "Anti-Phishing",
-      description:
-        "Cybersecurity awareness tool to strengthen an organization's defense against phishing attacks.",
-      accent: "text-[#6D28D9]",
-      icon: ShieldAlert,
-    },
   ] as const satisfies readonly (Omit<Solution, "tagline"> & { subtitle: string })[];
 
   return (
@@ -93,7 +77,7 @@ export default function Page() {
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {featuredSolutions.map((solution) => (
-              <article key={solution.name} className="rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
+              <article key={solution.name} className="flex h-full flex-col rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
                 <div className="mb-3 flex h-14 items-center justify-start">
                   {solution.logo ? (
                     <div className="flex h-14 w-40 items-center rounded-md border border-gray-100 bg-white p-2">
@@ -105,22 +89,22 @@ export default function Page() {
                     </span>
                   ) : null}
                 </div>
-                <p className={`text-2xl font-bold ${solution.accent}`}>{solution.name}</p>
+                <p className={`min-h-[3.5rem] text-2xl font-bold ${solution.accent}`}>{solution.name}</p>
                 <p className="mt-1 text-sm font-semibold text-gray-600">{solution.tagline}</p>
                 <p className="mt-3 text-sm leading-6 text-gray-700">{solution.description}</p>
               </article>
             ))}
           </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {otherProjects.map((project) => (
-              <article key={project.name} className="rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
+              <article key={project.name} className="flex h-full flex-col rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
                 {project.icon && (
                   <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md border border-blue-200 bg-[#F8FAFF] text-[#0A2A72]">
                     <project.icon size={20} />
                   </span>
                 )}
-                <p className={`text-2xl font-bold leading-tight ${project.accent}`}>{project.name}</p>
+                <p className={`min-h-[3.5rem] text-2xl font-bold leading-tight ${project.accent}`}>{project.name}</p>
                 <p className="mt-1 text-sm font-semibold text-gray-600">{project.subtitle}</p>
                 <p className="mt-3 text-sm leading-6 text-gray-700">{project.description}</p>
               </article>
