@@ -102,10 +102,36 @@ const whatsNew = [
 ];
 
 const dataCentres = [
-  { name: "National Data Centre Shastri Park", details: "Established: 2011 | Tier-III | Area: 30,000 sq ft | Capacity: 462 Racks" },
-  { name: "Laxmi Nagar Data Centre Delhi", details: "Established: 2008 | Tier-II (Tier-III under process) | Area: 16,000 sq ft | Capacity: 62 Racks" },
-  { name: "Hyderabad Data Centre", details: "Established: 2010 | Tier-III | Area: 10,000 sq ft | Capacity: 154 Racks" },
-  { name: "Pune Data Centre", details: "Established: 2010 | Tier-III | Area: 10,000 sq ft | Capacity: 171 Racks" },
+  {
+    name: "NDC Bhubaneswar",
+    description:
+      "Established in 2018, the National Data Centre at Bhubaneswar has a built-up area of 40,000 sq. ft. and houses 271 racks. Designed and implemented in accordance with Tier-III standards for high availability and reliability.",
+    services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
+  },
+  {
+    name: "NDC Hyderabad",
+    description:
+      "Established in 2018, the National Data Centre at Hyderabad has a built-up area of 14,000 sq. ft. and accommodates 221 racks. The facility complies with Tier-III standards for high availability and operational reliability.",
+    services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
+  },
+  {
+    name: "NDC Delhi",
+    description:
+      "Established in 2011, the National Data Centre at Delhi has a built-up area of 30,000 sq. ft. and houses 475 racks. The facility is designed in compliance with Tier-III standards, ensuring high availability and operational resilience.",
+    services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
+  },
+  {
+    name: "NDC Pune",
+    description:
+      "Established in 2010, the National Data Centre at Pune has a built-up area of 10,000 sq. ft. and accommodates 175 racks. The facility adheres to Tier-III standards, ensuring reliable and continuous operations.",
+    services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
+  },
+  {
+    name: "NDC Guwahati",
+    description:
+      "Established in 2026, the National Data Centre at Guwahati has a built-up area of 43,000 sq. ft. and currently accommodates 200 racks. The facility is designed in accordance with Tier-III standards, ensuring high availability, redundancy and operational reliability.",
+    services: [],
+  },
 ];
 
 const socialMedia = [
@@ -316,13 +342,31 @@ export default async function Home() {
       <section className="bg-white px-6 py-14">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Data Centre Services</p>
-          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Multi-location infrastructure support</h2>
+          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">National Data Centres (NDCs) – NICSI</h2>
+          <p className="mt-3 text-sm leading-7 text-gray-700">
+            NICSI operates multiple National Data Centres (NDCs) across India to provide secure, scalable and highly available hosting,
+            colocation and cloud services to Government and public sector organizations. All facilities are designed in compliance with
+            Tier-III standards, ensuring redundancy, high uptime and operational resilience.
+          </p>
           <div className="mt-7 grid gap-4 md:grid-cols-2">
             {dataCentres.map((dc) => (
               <article key={dc.name} className="rounded-xl border border-gray-200 p-6">
                 <span className="inline-flex rounded-lg bg-blue-50 p-2 text-[#003A8C]"><Server size={18} /></span>
                 <h3 className="mt-3 text-lg font-semibold text-[#0F172A]">{dc.name}</h3>
-                <p className="mt-1 text-sm text-gray-600">{dc.details}</p>
+                <p className="mt-1 text-sm leading-6 text-gray-700">{dc.description}</p>
+                {dc.services.length > 0 ? (
+                  <div className="mt-3">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Services</p>
+                    <ul className="mt-1 space-y-1 text-sm text-gray-700">
+                      {dc.services.map((service) => (
+                        <li key={service} className="flex items-start gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0052CC]" />
+                          <span>{service}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
