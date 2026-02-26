@@ -1,8 +1,15 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
 
+interface Project {
+  title: string;
+  logo: string;
+  description: string;
+  website?: string;
+}
+
 export default function Page() {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "Enhancement of National Informatics Centre (NIC) - National Cloud Services",
       logo: "/logos/meity-projects/national-cloud.png",
@@ -107,7 +114,7 @@ export default function Page() {
       description: "Official MeitY website engineering, delivery and lifecycle support.",
       website: "https://www.meity.gov.in/",
     },
-  ] as const;
+  ];
 
   return (
     <main className="pb-12">
