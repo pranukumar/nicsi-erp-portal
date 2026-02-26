@@ -252,49 +252,19 @@ const menuGroups = [
       },
     ],
   },
-  {
-    label: "Quick Links",
-    description: "Direct access to key portals and statutory information pages.",
-    items: [
-      {
-        label: "NIC Official Website",
-        href: "https://www.nic.gov.in/",
-        description: "National Informatics Centre official portal.",
-        icon: Network,
-        external: true,
-      },
-      {
-        label: "RTI",
-        href: "/rti",
-        description: "Right to Information details and disclosures.",
-        icon: FileCheck2,
-      },
-      {
-        label: "CSR",
-        href: "/csr",
-        description: "Corporate Social Responsibility initiatives.",
-        icon: Building2,
-      },
-      {
-        label: "GST Particulars",
-        href: "/gst-particulars",
-        description: "GST registration and related particulars.",
-        icon: FileBadge2,
-      },
-      {
-        label: "Contact",
-        href: "/contact",
-        description: "Official contact points and office details.",
-        icon: Users,
-      },
-    ],
-  },
 ];
 
 const topStripOpportunitiesItems = [
-  { label: "Career", href: "/career", icon: BriefcaseBusiness },
-  { label: "Internship", href: "/internship", icon: UserCheck2 },
-  { label: "Capacity Building Training", href: "/capacity-building-training", icon: CalendarDays },
+  { label: "Career", href: "/career", icon: BriefcaseBusiness, external: false },
+  { label: "Internship", href: "/internship", icon: UserCheck2, external: false },
+  { label: "Capacity Building Training", href: "/capacity-building-training", icon: CalendarDays, external: false },
+];
+const topStripQuickLinksItems = [
+  { label: "NIC Official Website", href: "https://www.nic.gov.in/", icon: Network, external: true },
+  { label: "RTI", href: "/rti", icon: FileCheck2 },
+  { label: "CSR", href: "/csr", icon: Building2 },
+  { label: "GST Particulars", href: "/gst-particulars", icon: FileBadge2 },
+  { label: "Contact", href: "/contact", icon: Users },
 ];
 
 const utilityLinks = [
@@ -303,6 +273,11 @@ const utilityLinks = [
     label: "Opportunities",
     href: "/career",
     items: topStripOpportunitiesItems,
+  },
+  {
+    label: "Quick Links",
+    href: "/contact",
+    items: topStripQuickLinksItems,
   },
   { label: "Contact", href: "/contact" },
 ];
@@ -390,7 +365,13 @@ export default function Header() {
                 </Link>
                 <div className="invisible absolute right-0 top-full z-50 mt-2 w-60 rounded-md border border-blue-100 bg-white p-1 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   {item.items.map((subItem) => (
-                    <Link key={subItem.label} href={subItem.href} className="block rounded px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-blue-50 hover:text-[#003A8C]">
+                    <Link
+                      key={subItem.label}
+                      href={subItem.href}
+                      target={subItem.external ? "_blank" : undefined}
+                      rel={subItem.external ? "noreferrer" : undefined}
+                      className="block rounded px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-blue-50 hover:text-[#003A8C]"
+                    >
                       <span className="flex items-center gap-2">
                         {subItem.icon ? <subItem.icon size={14} className="text-[#003A8C]" /> : null}
                         <span>{subItem.label}</span>
