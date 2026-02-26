@@ -41,12 +41,6 @@ const menuGroups = [
         icon: Building2,
       },
       {
-        label: "Ministry",
-        href: "/ministry",
-        description: "Ministerial information for MeitY leadership.",
-        icon: Users,
-      },
-      {
         label: "Organization Chart",
         href: "/organization-chart",
         description: "Official organizational hierarchy and reporting structure.",

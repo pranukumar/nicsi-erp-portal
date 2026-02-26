@@ -114,8 +114,8 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-8">
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0052CC]">About NICSI</p>
-          <h2 className="mt-2 text-2xl font-bold text-[#0F172A] md:text-3xl">National Informatics Centre Services Inc.</h2>
+          {/* <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">About NICSI</p> */}
+          <h2 className="mt-2 text-xl font-bold text-[#0F172A] md:text-2xl">National Informatics Centre Services Inc.</h2>
           <p className="mt-4 leading-7 text-gray-700">
             National Informatics Centre Services Inc. (NICSI) was established in 1995 as a Section 8 company under the
             Companies Act, 2013, erstwhile Section 25 company, under National Informatics Centre, Ministry
@@ -130,13 +130,34 @@ export default function AboutPage() {
             delivered through purchase of products and services from high quality vendors,
             empanelled with NICSI/GeM.
           </p>
-          
+          <div className="mt-6 rounded-xl border border-blue-100 bg-[#F8FAFF] p-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Geographical Reach</p>
+            <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Ministries Covered</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+              </div>
+              <div className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Departments Covered</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+              </div>
+              <div className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">PSUs Covered</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+              </div>
+              <div className="rounded-lg border border-gray-200 bg-white p-4">
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Projects Delivered (Exact)</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+              </div>
+            </div>
+            
+          </div>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-6 pb-8 lg:grid-cols-2">
         <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Vision</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Vision</p>
           <p className="mt-3 rounded-lg bg-blue-50 p-4 text-sm italic leading-6 text-[#0F172A]">
             &quot;Achieve leadership position in the technology enablement of India and other developing countries thereby contributing
             effectively to accelerate socioeconomic growth&quot;
@@ -149,7 +170,7 @@ export default function AboutPage() {
         </article>
 
         <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Mission</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Mission</p>
           <p className="mt-3 rounded-lg bg-blue-50 p-4 text-sm italic leading-6 text-[#0F172A]">
             &quot;To promote and provide transparent value added Information and Communication Technology procurement services and
             business solutions at competitive prices with a focus on socioeconomic development&quot;
@@ -164,7 +185,7 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-6xl px-6 pb-8">
         <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0052CC]">NICSI Operating Model</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">NICSI Operating Model</p>
           <h3 className="mt-1 text-2xl font-bold text-[#0F172A]">Demand to Delivery Model</h3>
           <p className="mt-3 text-sm leading-7 text-gray-700">
             A service request-led model where NICSI translates Government and PSU requirements into governed execution through
@@ -173,14 +194,14 @@ export default function AboutPage() {
 
           <div className="mt-6 grid gap-3 md:grid-cols-2">
             <div className="rounded-lg border border-blue-200 bg-white p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">NIC Backbone</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">NIC Backbone</p>
               <div className="mt-2 flex min-h-16 items-center justify-center rounded-md bg-[#F7FAFF] p-2">
                 <Image src="/logos/NIC_Logo.png" alt="NIC Logo" width={160} height={60} className="h-10 w-auto object-contain" />
               </div>
               <p className="mt-2 text-sm text-gray-700">Software architecture, core infra, and technical standards alignment.</p>
             </div>
             <div className="rounded-lg border border-blue-200 bg-white p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">NICSI Orchestration</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">NICSI Orchestration</p>
               <div className="mt-2 flex min-h-16 items-center justify-center rounded-md bg-[#F7FAFF] p-2">
                 <Image src="/logos/NICSI-logo.png" alt="NICSI Logo" width={220} height={60} className="h-11 w-auto object-contain" />
               </div>
@@ -189,7 +210,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-5 rounded-xl border border-gray-200 bg-[#F8FAFF] p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0052CC]">How It Works</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">How It Works</p>
             <div className="mt-3 grid gap-3 lg:grid-cols-3">
               {operatingStages.map((stage, index) => (
                 <article key={stage.step} className="relative rounded-lg border border-blue-100 bg-white p-4">
@@ -205,7 +226,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-4 rounded-xl border border-purple-200 bg-[#FBF8FF] p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#5B3FA6]">Key Services Offered</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#5B3FA6]">Key Services Offered</p>
             <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
               {keyServices.map((service) => (
                 <div key={service} className="rounded-lg border border-purple-100 bg-white p-3 text-sm font-semibold text-[#0F172A]">
@@ -217,7 +238,7 @@ export default function AboutPage() {
 
           <div className="mt-4 grid gap-3 lg:grid-cols-[1.4fr_1fr]">
             <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Operating Units</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Operating Units</p>
               <div className="mt-3 grid gap-3 md:grid-cols-2">
                 <div className="rounded-lg border border-blue-200 bg-white p-3 text-sm font-semibold text-[#0F172A]">
                   Product Business Division & IT
@@ -228,7 +249,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">Outcome Focus</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-600">Outcome Focus</p>
               <p className="mt-2 text-sm font-semibold leading-6 text-[#0F172A]">
                 Business model, pricing, licensing, promotional activities, and adoption of emerging technologies.
               </p>
@@ -251,7 +272,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-4 rounded-xl border border-dashed border-amber-300 bg-amber-50/60 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-700">Service Catalogue Delivered</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-700">Service Catalogue Delivered</p>
             <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {serviceCatalogue.map((service) => (
                 <div key={service} className="rounded-md border border-amber-200 bg-white px-3 py-2 text-sm font-medium text-[#0F172A]">
@@ -262,8 +283,8 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Value Proposition</p>
-          <h3 className="mt-1 text-2xl font-bold text-[#0F172A]">NICSI Advantage</h3>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Value Proposition</p>
+
           <div className="mt-5 grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
             {advantageCards.map((card) => (
               <article key={card.title} className="flex h-full flex-col rounded-xl border border-blue-100 bg-[#F8FAFF] p-4">
@@ -284,20 +305,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-10">
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Related Profile Pages</p>
-          <div className="mt-5 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
-            <Link href="/organization-chart" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">Organization Chart</Link>
-            <Link href="/headquarters-personnel" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">Headquarters Personnel</Link>
-            <Link href="/state-personnel" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">State Personnel</Link>
-            <Link href="/work-allocation" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">Work Allocation</Link>
-            <Link href="/board-of-directors" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">Board of Directors</Link>
-            <Link href="/list-of-chairpersons" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">List of Chairpersons</Link>
-            <Link href="/list-of-managing-directors" className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] hover:bg-blue-50">List of Managing Directors</Link>
-          </div>
-        </div>
-      </section>
+       
     </main>
   );
 }
+
+

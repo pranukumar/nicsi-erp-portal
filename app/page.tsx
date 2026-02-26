@@ -11,7 +11,6 @@ import {
   FileText,
   Globe2,
   Instagram,
-  Languages,
   Linkedin,
   Megaphone,
   Server,
@@ -41,6 +40,33 @@ const quickServices = [
   { label: "Contact Office", href: "/contact" },
   { label: "Vendor Login", href: "/login" },
   { label: "Empanelment", href: "/empanelled-vendors" },
+];
+
+type Minister = {
+  name: string;
+  role: string;
+  image: string;
+  imageSize?: "small" | "default";
+  phone: string[];
+  email: string;
+};
+
+const ministers: Minister[] = [
+  {
+    name: "Shri Ashwini Vaishnaw",
+    role: "Hon'ble Minister of Railways, Information and Broadcasting, and Electronics and Information Technology",
+    image: "/images/ministry/ashwini-vaishnaw.jpg",
+    phone: ["+91-11-24369191 (Office)", "+91-11-24362626 (Office)", "+91-11-24366070 (Fax)"],
+    email: "moeit[at]gov[dot]in",
+  },
+  {
+    name: "Shri Jitin Prasada",
+    role: "Hon'ble Minister of State in the Ministry of Commerce and Industry, and Electronics and Information Technology",
+    image: "/images/ministry/jitin-prasada.png",
+    imageSize: "small",
+    phone: ["+91-11-24368757 (Office)", "+91-11-24368758 (Office)", "+91-11-24360958 (Fax)"],
+    email: "mos-eit[at]gov[dot]in",
+  },
 ];
 
 const trustIndicators = [
@@ -110,16 +136,50 @@ export default async function Home() {
       <Hero />
       <AccessibilityToolbar />
 
+      <section id="ministry" className="bg-white px-6 pb-14 pt-12 scroll-mt-28">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Ministry</p>
+          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Ministry Leadership</h2>
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+            {ministers.map((minister) => (
+              <article key={minister.name} className="rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
+                <div className="flex gap-4">
+                  <div
+                    className={`shrink-0 overflow-hidden rounded-lg border border-blue-100 bg-white ${
+                      minister.imageSize === "small" ? "h-32 w-24" : "h-36 w-28"
+                    }`}
+                  >
+                    <Image src={minister.image} alt={minister.name} width={240} height={320} className="h-full w-full object-cover object-top" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-bold text-[#0A2A72]">{minister.name}</h3>
+                    <p className="mt-1 text-sm leading-6 text-gray-700">{minister.role}</p>
+                    <div className="mt-3 text-sm">
+                      <p className="font-semibold text-[#0F172A]">Telephone</p>
+                      <ul className="mt-1 space-y-1">
+                        {minister.phone.map((number) => (
+                          <li key={number}>{number}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="mt-3 text-sm">
+                      <p className="font-semibold text-[#0F172A]">Email</p>
+                      <p>{minister.email}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="px-6 pt-8">
         <div className="mx-auto max-w-6xl rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Citizen Quick Services</p>
-              <h2 className="mt-1 text-2xl font-bold text-[#0F172A] md:text-3xl">Access frequently used government service links</h2>
-            </div>
-            <div className="rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-medium text-[#003A8C]">
-              <Languages size={16} className="mr-1 inline-block" />
-              Language: EN (HI Coming Soon)
+              <h2 className="mt-1 text-xl font-bold text-[#0F172A] md:text-2xl">Access frequently used government service links</h2>
             </div>
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -320,4 +380,5 @@ export default async function Home() {
     </div>
   );
 }
+
 

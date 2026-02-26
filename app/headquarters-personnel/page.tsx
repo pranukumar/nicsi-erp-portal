@@ -2,22 +2,13 @@ import HeadquarterPersonnelTable from "@/components/headquarters/HeadquarterPers
 import PageTitle from "../../components/layout/PageTitle";
 import { getHeadquarterPersonnelList } from "@/services/headquarterPersonnel";
 
-type PageProps = {
-  searchParams: Promise<{
-    q?: string;
-  }>;
-};
-
 const ALL_ROWS_LIMIT = 500;
 
-export default async function HeadquartersPersonnelPage({ searchParams }: PageProps) {
-  const params = await searchParams;
-  const query = (params.q ?? "").trim();
-
+export default async function HeadquartersPersonnelPage() {
   const result = await getHeadquarterPersonnelList({
     page: 1,
     limit: ALL_ROWS_LIMIT,
-    query,
+    query: "",
   });
 
   return (
@@ -29,7 +20,6 @@ export default async function HeadquartersPersonnelPage({ searchParams }: PagePr
           initialRows={result.rows}
           initialTotal={result.total}
           initialManagingDirector={result.managingDirector}
-          initialQuery={query}
         />
       </section>
     </main>

@@ -7,123 +7,135 @@ import PageTitle from "../../components/layout/PageTitle";
 
 const featuredProjects = [
   {
-    title: "National Knowledge Network",
+    title: "National Knowledge Network (NKN)",
     logo: "/logos/national-platforms/nkn.png",
     description:
-      "Secure and resilient multi-gigabit network interconnecting major education and research institutions across India.",
+      "A resilient and secure national backbone network interconnecting knowledge and research institutions across India.",
     highlights: [
-      "2.5/10G to 40/100Gbps backbone capability",
-      "Nationwide high-speed connectivity for knowledge institutions",
+      "Reliable high-speed connectivity",
+      "Secure national academic backbone",
+      "Nationwide interlinking of research institutions",
     ],
   },
   {
-    title: "eVisa",
+    title: "e-Visa",
     logo: "/logos/national-platforms/e-visa-logo.png",
     description:
-      "Integrated visa and immigration workflow for faster processing and better tracking of foreign visitors.",
+      "A digitally integrated visa platform enabling faster processing with integration across passport, migration, and security systems.",
     highlights: [
-      "Unified workflow from issuance to registration checkpoints",
-      "Automated alerts for overstay and compliance monitoring",
+      "Integrated with e-Passport and e-Migration",
+      "Linked with criminal tracking and security agencies",
+      "Supports data-driven decision-making at national borders",
     ],
   },
   {
     title: "e-Procurement",
     logo: "/logos/national-platforms/e-procurement.png",
     description:
-      "GePNIC enables end-to-end online government tendering and procurement lifecycle management.",
+      "A unified procurement platform for public institutions covering goods, services, tenders, and auctions.",
     highlights: [
-      "Online bid submission and tender schedule management",
-      "Reusable framework for goods and services procurement",
+      "Covers Goods & Services, global tenders, and auctions",
+      "Used by CPSEs, Central Govt, States/UTs, and Defence bodies",
+      "Improves transparency, compliance, and efficiency",
     ],
   },
   {
     title: "e-Passport",
     logo: "/logos/national-platforms/passport-seve-logo.png",
     description:
-      "ICAO-compliant e-passport solution with digitally signed chip data for trusted travel identity.",
+      "ICAO-compliant e-Passport ecosystem with secure chip data and end-to-end implementation support.",
     highlights: [
-      "Digitally signed secure e-packet generation",
-      "Integrated PKI, hardware and commissioning support",
+      "Digitally signed chip contents and PKI infrastructure setup",
+      "Hardware and software supply, installation and commissioning",
+      "Approximately 78+ lakh e-passports issued nationwide",
     ],
   },
   {
     title: "Smart PDS",
     logo: "/logos/national-platforms/smart-pds-logo.png",
     description:
-      "Digital strengthening of Public Distribution System for transparent and efficient food grain delivery.",
+      "Digitally strengthened Public Distribution System for efficient and transparent food access at scale.",
     highlights: [
-      "Improved beneficiary targeting and delivery monitoring",
-      "Supports policy goals for food security at scale",
+      "Supports affordable food access",
+      "Contributes to nationwide food security",
+      "Improves transparency in supply chain governance",
     ],
   },
   {
     title: "e-Office",
     logo: "/logos/national-platforms/e-office.png",
     description:
-      "Unified digital office platform for transparent, paperless and accountable government operations.",
+      "Paperless governance platform improving speed, transparency, and accountability in government workflows.",
     highlights: [
-      "Standardized process automation across departments",
-      "Reusable architecture for central, state and district offices",
+      "Enhances responsiveness and operational efficiency",
+      "Improves transparency in office processes",
+      "Implemented across Central Govt and about 70% State Govts",
     ],
   },
   {
     title: "Government Cloud",
     logo: "/logos/national-platforms/dm-logo.png",
     description:
-      "Secure cloud hosting and managed infrastructure for government portals, services and applications.",
+      "India's sovereign cloud initiative enabling secure, scalable, and cost-effective government infrastructure.",
     highlights: [
-      "Scalable hosting for mission-critical digital services",
-      "Optimized utilization with strong security controls",
+      "Optimizes ICT expenditure",
+      "Accelerates e-Gov application deployment",
+      "Improves infrastructure utilization efficiency",
     ],
   },
   {
     title: "Secure eMail & Messaging",
     logo: "/logos/national-platforms/secure-email-logo.png",
     description:
-      "High-volume government communication platform for secure email, SMS, voice and messaging workflows.",
+      "High-volume national messaging gateway supporting secure communication across government applications.",
     highlights: [
-      "Supports large-scale transactional and alert messaging",
-      "Integration-ready gateway for diverse government systems",
+      "300+ crore messages per month",
+      "Supports SMS, Voice, and WhatsApp integration",
+      "Used by diverse government systems",
     ],
   },
   {
     title: "e-Transport",
     logo: "/logos/national-platforms/e-transport-logo.png",
     description:
-      "Mission-mode transport digitization with Vahan, Sarathi and related services across States/UTs.",
+      "Nationwide transport digitization initiative modernizing RTO services and reducing manual visits.",
     highlights: [
-      "Improves RTO efficiency and public service delivery",
-      "Supports enforcement and compliance digitalization",
+      "Includes Sarthi, Vahan, and eParivahan",
+      "Enables online service facilitation",
+      "Reduces physical footfall at transport offices",
     ],
   },
   {
-    title: "e-Courts",
+    title: "e-Courts Mission Mode Project",
     logo: "/logos/national-platforms/e-court-logo.png",
     description:
-      "Pan-India judicial digital infrastructure for case services, cloud enablement and court process modernization.",
+      "PAN-India judicial modernization initiative covering digital systems, infrastructure, and cloud enablement.",
     highlights: [
-      "Coverage from Supreme Court to district courts and tribunals",
-      "Manpower, infrastructure and managed service support model",
+      "Software development and court process modernization",
+      "Infrastructure, connectivity, and cloud services",
+      "Covers Supreme Court, High Courts, District Courts, and Tribunals",
     ],
   },
   {
-    title: "Pragati VC",
-    logo: "/logos/national-projects/pragati.png",
+    title: "Digital Public Infrastructure (DPI)",
+    logo: "/logos/NICSI-logo.png",
     description:
-      "Technology-enabled governance review platform for timely monitoring and decision support at the highest level.",
+      "Open and interoperable digital ecosystem enabling scalable citizen services and inclusive innovation.",
     highlights: [
-      "Structured review of key projects and implementation status",
-      "Improved inter-ministerial coordination and follow-up",
+      "Includes UMANG, Aadhaar, DigiLocker, UPI, eHospital, and GeM",
+      "Strengthens financial inclusion",
+      "Enables seamless citizen services and innovation-led digital economy",
     ],
   },
   {
-    title: "eTaal 3.0",
-    logo: "/logos/national-projects/etaal.png",
+    title: "PBD & Implementation",
+    logo: "/logos/NICSI-logo.png",
     description:
-      "Real-time analytics dashboard capturing e-transaction trends across departments and public digital services.",
+      "Strategic execution model for converting ideas into scalable digital products and implementation outcomes.",
     highlights: [
-      "National view of digital service transaction metrics",
-      "Supports evidence-based planning and service governance",
+      "Productization and business exploration",
+      "Pricing and licensing framework development",
+      "Industry alliance and implementation support",
     ],
   },
 ] as const;
@@ -241,17 +253,12 @@ export default function Page() {
     return () => window.clearInterval(timer);
   }, [paused]);
 
-  const goPrev = () => setActiveIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
-  const goNext = () => setActiveIndex((prev) => (prev + 1) % featuredProjects.length);
-
   return (
     <main className="pb-12">
       <PageTitle title="National Projects" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
         <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0F172A]">National Projects</h2>
-          <p className="mt-2 text-sm text-gray-600">Detailed view of 12 national projects</p>
-
+          <h2 className="text-xl font-bold text-[#0F172A]">Key National Projects</h2>
           <div
             className="mt-5 overflow-hidden rounded-xl border border-blue-100 bg-[#FCFDFF] shadow-sm"
             onMouseEnter={() => setPaused(true)}
@@ -268,7 +275,6 @@ export default function Page() {
                       <Image src={project.logo} alt={project.title} width={520} height={280} className="h-full w-full object-contain" />
                     </div>
                     <div className="p-6">
-                      <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Project {index + 1} of 12</p>
                       <h3 className="mt-1 text-2xl font-bold text-[#0F172A]">{project.title}</h3>
                       <p className="mt-3 text-sm leading-7 text-gray-700">{project.description}</p>
                       <ul className="mt-3 space-y-1 text-sm text-gray-700">
@@ -285,32 +291,13 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="flex items-center justify-between border-t border-blue-100 bg-white px-4 py-3">
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={goPrev}
-                  className="rounded-md border border-blue-200 px-3 py-1.5 text-sm font-semibold text-[#003A8C] hover:bg-blue-50"
-                >
-                  Prev
-                </button>
-                <button
-                  type="button"
-                  onClick={goNext}
-                  className="rounded-md border border-blue-200 px-3 py-1.5 text-sm font-semibold text-[#003A8C] hover:bg-blue-50"
-                >
-                  Next
-                </button>
-              </div>
+            <div className="flex items-center justify-center border-t border-blue-100 bg-white px-4 py-3">
               <div className="flex items-center gap-2">
                 {featuredProjects.map((project, index) => (
-                  <button
+                  <span
                     key={`${project.title}-dot`}
-                    type="button"
-                    onClick={() => setActiveIndex(index)}
-                    aria-label={`Go to ${project.title}`}
                     className={`h-2.5 w-2.5 rounded-full transition ${
-                      activeIndex === index ? "bg-[#003A8C]" : "bg-blue-200 hover:bg-blue-300"
+                      activeIndex === index ? "bg-[#003A8C]" : "bg-blue-200"
                     }`}
                   />
                 ))}
@@ -321,36 +308,23 @@ export default function Page() {
 
         <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">Other Key Projects</h2>
-          <p className="mt-2 text-sm text-gray-600">Hover any card to view summary and open project website.</p>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {otherProjects.map((project) => (
-              <article key={project.name} className="group relative overflow-hidden rounded-xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+              <article key={project.name} className="rounded-xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                 <div className="flex h-28 items-center justify-center rounded-lg border border-blue-50 bg-[#FCFDFF] p-3">
                   <Image src={project.logo} alt={project.name} width={240} height={110} className="h-full w-full object-contain" />
                 </div>
-
-                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-[#0A2A72]/95 via-[#0A2A72]/70 to-transparent p-3 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
-                  <p
-                    className="text-xs text-white/95"
-                    style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {project.description}
-                  </p>
-                  <Link
-                    href={project.website}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-2 inline-flex w-fit rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-[#0A2A72]"
-                  >
-                    Visit site
-                  </Link>
-                </div>
+                <h3 className="mt-3 text-sm font-semibold text-[#0F172A]">{project.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-gray-700">{project.description}</p>
+                <Link
+                  href={project.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex w-fit rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
+                >
+                  Visit site
+                </Link>
               </article>
             ))}
           </div>

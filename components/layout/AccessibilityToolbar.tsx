@@ -58,6 +58,9 @@ export default function AccessibilityToolbar() {
       <button type="button" onClick={resetAll} className="rounded bg-[#003A8C] px-3 py-1 text-white hover:bg-[#0052CC]">
         Reset
       </button>
+      <span className="ml-auto rounded-md border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-[#003A8C]">
+        Language: EN (HI Coming Soon)
+      </span>
     </div>
   );
 }

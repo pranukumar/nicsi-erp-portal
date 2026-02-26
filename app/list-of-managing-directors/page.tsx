@@ -69,17 +69,7 @@ export default function ListOfManagingDirectorsPage() {
             </table>
           </div>
         </div>
-        <p className="mt-4 text-sm">
-          Official source:{" "}
-          <Link
-            className="font-semibold text-[#003A8C]"
-            href="https://nicsi.nic.in/listOfMd"
-            target="_blank"
-            rel="noreferrer"
-          >
-            NICSI List of Managing Directors
-          </Link>
-        </p>
+        
       </section>
     </main>
   );
