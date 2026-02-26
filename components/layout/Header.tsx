@@ -194,19 +194,13 @@ const menuGroups = [
   },
   {
     label: "Resources",
-    description: "Circulars, SOPs, forms, and public reference documents.",
+    description: "SOPs, forms, and public reference documents.",
     items: [
       {
         label: "NICSI SOP",
         href: "/nicsi-sop",
         description: "Standard operating procedures and process guidance.",
         icon: Download,
-      },
-      {
-        label: "Circular & Notices",
-        href: "/circulars",
-        description: "Official circulars, notices, and public updates.",
-        icon: FileCheck2,
       },
       {
         label: "Forms",
@@ -265,30 +259,6 @@ const menuGroups = [
     ],
   },
   {
-    label: "Opportunities",
-    description: "Recruitment, internship, and capacity building opportunities.",
-    items: [
-      {
-        label: "Career",
-        href: "/career",
-        description: "Current openings and recruitment notices.",
-        icon: BriefcaseBusiness,
-      },
-      {
-        label: "Internship",
-        href: "/internship",
-        description: "Internship programs for students and young professionals.",
-        icon: UserCheck2,
-      },
-      {
-        label: "Capacity Building Training",
-        href: "/capacity-building-training",
-        description: "Training initiatives for digital governance capability development.",
-        icon: CalendarDays,
-      },
-    ],
-  },
-  {
     label: "Quick Links",
     description: "Direct access to key portals and statutory information pages.",
     items: [
@@ -327,10 +297,19 @@ const menuGroups = [
   },
 ];
 
+const topStripOpportunitiesItems = [
+  { label: "Career", href: "/career", icon: BriefcaseBusiness },
+  { label: "Internship", href: "/internship", icon: UserCheck2 },
+  { label: "Capacity Building Training", href: "/capacity-building-training", icon: CalendarDays },
+];
+
 const utilityLinks = [
   { label: "Sitemap", href: "/about" },
-  { label: "RTI", href: "/circulars" },
-  { label: "CSR", href: "/csr" },
+  {
+    label: "Opportunities",
+    href: "/career",
+    items: topStripOpportunitiesItems,
+  },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -408,11 +387,30 @@ export default function Header() {
           />
         </span>
         <div className="hidden items-center gap-4 md:flex">
-          {utilityLinks.map((item) => (
-            <Link key={item.label} href={item.href} className="text-white/90 transition hover:text-white">
-              {item.label}
-            </Link>
-          ))}
+          {utilityLinks.map((item) =>
+            item.items?.length ? (
+              <div key={item.label} className="group relative">
+                <Link href={item.href} className="inline-flex items-center gap-1 text-white/90 transition hover:text-white">
+                  <span>{item.label}</span>
+                  <ChevronDown size={12} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+                </Link>
+                <div className="invisible absolute right-0 top-full z-50 mt-2 w-60 rounded-md border border-blue-100 bg-white p-1 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  {item.items.map((subItem) => (
+                    <Link key={subItem.label} href={subItem.href} className="block rounded px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-blue-50 hover:text-[#003A8C]">
+                      <span className="flex items-center gap-2">
+                        {subItem.icon ? <subItem.icon size={14} className="text-[#003A8C]" /> : null}
+                        <span>{subItem.label}</span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <Link key={item.label} href={item.href} className="text-white/90 transition hover:text-white">
+                {item.label}
+              </Link>
+            ),
+          )}
           <span className="text-white/80">Secure ERP Access Portal</span>
         </div>
         <span className="md:hidden">ERP Portal</span>
@@ -448,7 +446,6 @@ export default function Header() {
               key={group.label}
               groupIndex={groupIndex}
               label={group.label}
-              description={group.description}
               items={group.items}
               isOpen={openGroupIndex === groupIndex}
               setGroupButtonRef={(element) => {
@@ -619,7 +616,6 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
 function MenuGroup({
   groupIndex,
   label,
-  description,
   items,
   isOpen,
   setGroupButtonRef,
@@ -631,7 +627,6 @@ function MenuGroup({
 }: {
   groupIndex: number;
   label: string;
-  description: string;
   items: Array<{
     label: string;
     href: string;
@@ -722,39 +717,30 @@ function MenuGroup({
           style={{ left: `${panelLeft}px` }}
           className="absolute top-full z-50 w-[min(52rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-4 shadow-2xl"
         >
-          <div className="grid gap-3 lg:grid-cols-[200px_1fr]">
-            <div className="rounded-lg bg-[#F4F7FB] p-4">
-              <p className="text-sm font-semibold text-[#003A8C]">{label}</p>
-              <p className="mt-2 text-xs leading-5 text-gray-600">{description}</p>
-            </div>
-            <div className={`grid gap-2 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
-              {items.map((item, itemIndex) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    ref={(element) => setGroupItemRef(itemIndex, element)}
-                    role="menuitem"
-                    target={item.external ? "_blank" : undefined}
-                    rel={item.external ? "noreferrer" : undefined}
-                    className="rounded-lg border border-transparent p-3 transition hover:border-blue-100 hover:bg-blue-50/60"
-                    onKeyDown={(event) => onItemKeyDown(itemIndex, event)}
-                    onClick={onClose}
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="rounded-md bg-white p-2 text-[#003A8C] shadow-sm ring-1 ring-gray-200">
-                        <Icon size={16} />
-                      </span>
-                      <span>
-                        <span className="block text-sm font-semibold text-gray-800">{item.label}</span>
-                        <span className="mt-1 block text-xs leading-5 text-gray-600">{item.description}</span>
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+          <div className={`grid gap-3 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+            {items.map((item, itemIndex) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  ref={(element) => setGroupItemRef(itemIndex, element)}
+                  role="menuitem"
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="rounded-xl border border-gray-100 bg-white p-3.5 transition hover:border-blue-200 hover:bg-blue-50/40"
+                  onKeyDown={(event) => onItemKeyDown(itemIndex, event)}
+                  onClick={onClose}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-md bg-[#F4F7FB] p-2 text-[#003A8C] ring-1 ring-blue-100">
+                      <Icon size={16} />
+                    </span>
+                    <span className="block text-sm font-semibold leading-5 text-gray-800">{item.label}</span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}

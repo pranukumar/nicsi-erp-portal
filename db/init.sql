@@ -70,11 +70,11 @@ WHERE NOT EXISTS (SELECT 1 FROM header_announcements WHERE notice_text = 'Corrig
 
 INSERT INTO header_announcements (notice_text, href, display_order, is_active)
 SELECT
-  'Updated vendor document checklist published under circulars.',
-  '/circulars',
+  'Updated vendor document checklist published in forms section.',
+  '/forms',
   2,
   TRUE
-WHERE NOT EXISTS (SELECT 1 FROM header_announcements WHERE notice_text = 'Updated vendor document checklist published under circulars.');
+WHERE NOT EXISTS (SELECT 1 FROM header_announcements WHERE notice_text = 'Updated vendor document checklist published in forms section.');
 
 INSERT INTO header_announcements (notice_text, href, display_order, is_active)
 SELECT
@@ -158,8 +158,8 @@ SELECT 'quick', 'Contact', '/contact', 6, TRUE
 WHERE NOT EXISTS (SELECT 1 FROM footer_links WHERE section_key = 'quick' AND label = 'Contact');
 
 INSERT INTO footer_links (section_key, label, href, display_order, is_active)
-SELECT 'resource', 'Circulars', '/circulars', 1, TRUE
-WHERE NOT EXISTS (SELECT 1 FROM footer_links WHERE section_key = 'resource' AND label = 'Circulars');
+SELECT 'resource', 'Forms', '/forms', 1, TRUE
+WHERE NOT EXISTS (SELECT 1 FROM footer_links WHERE section_key = 'resource' AND label = 'Forms');
 
 INSERT INTO footer_links (section_key, label, href, display_order, is_active)
 SELECT 'resource', 'Empanelled Vendors', '/empanelled-vendors', 2, TRUE

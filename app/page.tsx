@@ -35,8 +35,8 @@ const latestTenders = [
 ];
 
 const quickServices = [
-  { label: "RTI", href: "/circulars" },
-  { label: "Circulars", href: "/circulars" },
+  { label: "RTI", href: "/rti" },
+  { label: "Forms", href: "/forms" },
   { label: "Resources", href: "/tenders" },
   { label: "Contact Office", href: "/contact" },
   { label: "Vendor Login", href: "/login" },
@@ -54,7 +54,7 @@ const mediaCards = [
   {
     title: "Press Update: Digital Procurement Modernization",
     description: "Program updates on process transparency, monitoring, and stakeholder participation.",
-    href: "/circulars",
+    href: "/press-releases",
   },
   {
     title: "Media Note: Expanded Service Delivery Capacity",

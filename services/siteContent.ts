@@ -24,7 +24,7 @@ export type FooterContent = {
 
 const fallbackAnnouncements: Announcement[] = [
   { text: "Corrigendum issued for cloud infrastructure tender batch Q1-2026.", href: "/tenders" },
-  { text: "Updated vendor document checklist published under circulars.", href: "/circulars" },
+  { text: "Updated vendor document checklist published in forms section.", href: "/forms" },
   { text: "Career opportunities open for project and security operations teams.", href: "/career" },
 ];
 
@@ -45,7 +45,7 @@ const fallbackFooterContent: FooterContent = {
     { label: "Contact", href: "/contact" },
   ],
   resourceLinks: [
-    { label: "Circulars", href: "/circulars" },
+    { label: "Forms", href: "/forms" },
     { label: "Empanelled Vendors", href: "/empanelled-vendors" },
     { label: "Portal Login", href: "/login" },
   ],
