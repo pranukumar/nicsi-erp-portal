@@ -6,15 +6,18 @@ export default function Page() {
     <main className="pb-12">
       <PageTitle title="Active Tenders" />
       <section className="mx-auto max-w-5xl px-6 py-8 text-gray-700">
-        <p>
-          This page is aligned to NICSI menu structure for Active Tenders and can be expanded with department-approved content.
-        </p>
-        <p className="mt-3 text-sm">
-          Official reference:{" "}
-          <Link href="https://nicsi.nic.in/tenders" target="_blank" className="font-semibold text-[#003A8C]">
-            NICSI Tenders
-          </Link>
-        </p>
+        <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-bold text-[#0F172A]">NICSI Active Tenders</h2>
+          <p className="mt-3">
+            This page is aligned to NICSI menu structure for Active Tenders and can be expanded with department-approved content.
+          </p>
+          <p className="mt-3 text-sm">
+            Official reference:{" "}
+            <Link href="https://nicsi.nic.in/tenders" target="_blank" className="font-semibold text-[#003A8C]">
+              NICSI Tenders
+            </Link>
+          </p>
+        </div>
       </section>
     </main>
   );
