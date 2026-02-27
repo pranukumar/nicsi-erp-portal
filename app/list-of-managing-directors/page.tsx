@@ -45,8 +45,7 @@ export default function ListOfManagingDirectorsPage() {
       <PageTitle title="List of Managing Directors" />
       <section className="mx-auto max-w-5xl px-6 py-8 text-gray-700">
         <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0F172A]">NICSI Managing Directors</h2>
-          <div className="mt-4 overflow-x-auto rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="nic-table min-w-full text-left text-sm">
               <thead className="bg-gray-50 text-gray-700">
                 <tr>
@@ -62,7 +61,7 @@ export default function ListOfManagingDirectorsPage() {
                     <td className="px-4 py-3">{index + 1}</td>
                     <td className="px-4 py-3 font-semibold text-[#0F172A]">{row.name}</td>
                     <td className="px-4 py-3">{row.from}</td>
-                    <td className="px-4 py-3">{row.to || "At Present"}</td>
+                    <td className="px-4 py-3">{row.to || "Till Date"}</td>
                   </tr>
                 ))}
               </tbody>

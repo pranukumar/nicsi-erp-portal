@@ -158,8 +158,7 @@ export default function OrganizationChartPage() {
       <PageTitle title="Organization Chart" />
       <section className="mx-auto max-w-6xl px-6 py-8">
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-xl font-bold text-[#0F172A]">NICSI Organization Hierarchy</h2>
-          <div className="mt-4 space-y-5">
+          <div className="space-y-5">
             <div className="grid items-start gap-3 md:grid-cols-[1fr_minmax(0,28rem)_minmax(0,16rem)]">
               <div className="hidden md:block" />
               <div className="mx-auto w-full max-w-md">

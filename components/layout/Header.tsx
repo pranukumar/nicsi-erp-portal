@@ -22,7 +22,6 @@ import {
   Megaphone,
   Menu,
   Network,
-  ServerCog,
   UserCheck2,
   Users,
   Video,
@@ -129,12 +128,6 @@ const menuGroups = [
         href: "/nicsi-cloud",
         description: "Secure, scalable and managed cloud services for government entities.",
         icon: CloudCog,
-      },
-      {
-        label: "NGC Platform",
-        href: "/ngc-cloud",
-        description: "National Government Cloud onboarding and service access platform.",
-        icon: ServerCog,
       },
     ],
   },
@@ -268,7 +261,7 @@ const topStripQuickLinksItems = [
 ];
 
 const utilityLinks = [
-  { label: "Sitemap", href: "/about" },
+  { label: "Sitemap", href: "/sitemap" },
   {
     label: "Opportunities",
     href: "/career",
@@ -412,7 +405,7 @@ export default function Header() {
           />
         </div>
 
-        <nav className="ml-auto hidden items-center justify-end gap-4 text-[13px] font-semibold tracking-normal text-gray-700 md:flex">
+        <nav className="ml-auto hidden items-center justify-end gap-2 text-sm font-semibold tracking-normal text-gray-700 md:flex">
           <NavLink href="/" ariaLabel="Home">
             <House size={16} />
           </NavLink>
@@ -421,6 +414,7 @@ export default function Header() {
               key={group.label}
               groupIndex={groupIndex}
               label={group.label}
+              description={group.description}
               items={group.items}
               isOpen={openGroupIndex === groupIndex}
               setGroupButtonRef={(element) => {
@@ -528,34 +522,35 @@ export default function Header() {
             Home
           </Link>
           {menuGroups.map((group, groupIndex) => (
-            <div key={group.label} className="mb-2 rounded-md border border-gray-200">
+            <div key={group.label} className="mb-2 overflow-hidden rounded-lg border border-gray-200 bg-white">
               <button
                 type="button"
                 onClick={() => setMobileOpenGroupIndex((prev) => (prev === groupIndex ? null : groupIndex))}
-                className="flex w-full items-center justify-between px-3 py-2 text-left text-sm font-semibold text-gray-800"
+                className="flex w-full items-center justify-between bg-[#F8FAFF] px-3 py-2.5 text-left text-sm font-semibold text-gray-800"
               >
                 <span>{group.label}</span>
                 <ChevronDown
-                  size={14}
-                  className={`transition-transform ${
+                  size={15}
+                  className={`transition-transform duration-200 ${
                     mobileOpenGroupIndex === groupIndex ? "rotate-180" : ""
                   }`}
                 />
               </button>
               <div className={`border-t border-gray-100 px-3 py-2 ${mobileOpenGroupIndex === groupIndex ? "block" : "hidden"}`}>
-                <div className="flex flex-wrap gap-2">
+                <div className="space-y-2">
                   {group.items.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={`inline-flex min-h-9 items-center rounded-full border px-3 py-1.5 text-sm font-medium leading-5 transition ${
+                      className={`flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium leading-5 transition ${
                         pathname === item.href
                           ? "border-[#003A8C] bg-[#003A8C] text-white"
-                          : "border-blue-200 bg-white text-[#1F2937] hover:bg-blue-50 hover:text-[#003A8C]"
+                          : "border-blue-100 bg-white text-[#1F2937] hover:bg-blue-50 hover:text-[#003A8C]"
                       }`}
                       onClick={() => setOpen(false)}
                     >
-                      {item.label}
+                      <item.icon size={15} className={pathname === item.href ? "text-white" : "text-[#003A8C]"} />
+                      <span>{item.label}</span>
                     </Link>
                   ))}
                 </div>
@@ -591,6 +586,7 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
 function MenuGroup({
   groupIndex,
   label,
+  description,
   items,
   isOpen,
   setGroupButtonRef,
@@ -602,6 +598,7 @@ function MenuGroup({
 }: {
   groupIndex: number;
   label: string;
+  description: string;
   items: Array<{
     label: string;
     href: string;
@@ -671,7 +668,9 @@ function MenuGroup({
         ref={setGroupButtonRef}
         id={`mega-trigger-${groupIndex}`}
         type="button"
-        className="relative flex items-center gap-1 text-gray-700 transition hover:text-[#003A8C]"
+        className={`relative flex items-center gap-1 rounded-md px-2.5 py-1.5 transition ${
+          isOpen ? "bg-blue-50 text-[#003A8C]" : "text-gray-700 hover:bg-blue-50/70 hover:text-[#003A8C]"
+        }`}
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-controls={`mega-panel-${groupIndex}`}
@@ -680,7 +679,7 @@ function MenuGroup({
         onKeyDown={onTriggerKeyDown}
       >
         <span>{label}</span>
-        <ChevronDown size={14} className="mt-[1px]" />
+        <ChevronDown size={14} className={`mt-[1px] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
         <span className={`absolute left-0 -bottom-1 h-[2px] bg-[#F58220] transition-all ${isOpen ? "w-full" : "w-0"}`}></span>
       </button>
       {isOpen && (
@@ -690,7 +689,7 @@ function MenuGroup({
           role="menu"
           aria-labelledby={`mega-trigger-${groupIndex}`}
           style={{ left: `${panelLeft}px` }}
-          className="absolute top-full z-50 w-[min(52rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-4 shadow-2xl"
+          className="absolute top-full z-50 w-[min(54rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-4 shadow-2xl"
         >
           <div className={`grid gap-3 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
             {items.map((item, itemIndex) => {

@@ -78,8 +78,7 @@ export default function Page() {
     <main className="pb-12">
       <PageTitle title="PBD Projects" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
-        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-xl font-bold text-[#0F172A]">PBD Projects</h2>
+        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8"> 
           <p className="mt-2 text-sm text-gray-600">Featured PBD Solutions</p>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">

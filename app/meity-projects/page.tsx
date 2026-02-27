@@ -121,9 +121,7 @@ export default function Page() {
       <PageTitle title="MeitY Projects" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-xl font-bold text-[#0F172A]">Key MeitY Projects</h2>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project) => (
               <article key={project.title} className="flex h-full flex-col rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
                 <div className="flex h-16 w-44 items-center rounded-md border border-gray-100 bg-white p-2">

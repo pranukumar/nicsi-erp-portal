@@ -2,22 +2,13 @@ import StatePersonnelTable from "@/components/state/StatePersonnelTable";
 import PageTitle from "../../components/layout/PageTitle";
 import { getStatePersonnelList } from "@/services/statePersonnel";
 
-type PageProps = {
-  searchParams: Promise<{
-    q?: string;
-  }>;
-};
-
 const ALL_ROWS_LIMIT = 500;
 
-export default async function StatePersonnelPage({ searchParams }: PageProps) {
-  const params = await searchParams;
-  const query = (params.q ?? "").trim();
-
+export default async function StatePersonnelPage() {
   const result = await getStatePersonnelList({
     page: 1,
     limit: ALL_ROWS_LIMIT,
-    query,
+    query: "",
   });
 
   return (
@@ -28,7 +19,6 @@ export default async function StatePersonnelPage({ searchParams }: PageProps) {
         <StatePersonnelTable
           initialRows={result.rows}
           initialTotal={result.total}
-          initialQuery={query}
         />
       </section>
     </main>
