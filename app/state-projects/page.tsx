@@ -1,7 +1,6 @@
 import Link from "next/link";
 import PageTitle from "../../components/layout/PageTitle";
 import IndiaStateUtTileMap, { type StateCount } from "@/components/state-projects/IndiaStateUtTileMap";
-import StateProjectDataEntryPanel from "@/components/state-projects/StateProjectDataEntryPanel";
 import { getStateProjectCounts } from "@/services/stateProjects";
 
 const stateUtCounts: StateCount[] = [
@@ -125,13 +124,6 @@ export default async function Page() {
             </Link>
           </div>
 
-          <StateProjectDataEntryPanel
-            states={populatedCounts.map((item) => ({
-              code: item.code,
-              name: item.name,
-              type: item.type,
-            }))}
-          />
         </div>
       </section>
     </main>
