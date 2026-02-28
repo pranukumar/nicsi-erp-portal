@@ -16,6 +16,10 @@ export type InternshipApplicationInput = {
   durationWeeks: number;
   statementOfPurpose: string;
   nocAvailable: boolean;
+  passportPhotoDataUrl?: string;
+  passportPhotoName?: string;
+  academicProofDataUrl?: string;
+  academicProofName?: string;
 };
 
 export type InternshipApplicationContext = {
@@ -102,7 +106,8 @@ function validatePreferredMonthWindow(value: string): boolean {
   const now = new Date();
   const currentMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
   const minMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 2, 1));
-  const maxMonth = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 6, 1));
+  const decemberThisYear = new Date(Date.UTC(now.getUTCFullYear(), 11, 1));
+  const maxMonth = minMonth > decemberThisYear ? minMonth : decemberThisYear;
 
   if (preferred < currentMonth) {
     return false;
@@ -112,6 +117,15 @@ function validatePreferredMonthWindow(value: string): boolean {
 
 function requiredLength(value: string, min: number, max: number): boolean {
   return value.length >= min && value.length <= max;
+}
+
+function isValidBase64DataUrl(value: string, allowedMimeTypes: readonly string[]): boolean {
+  const match = value.match(/^data:([^;]+);base64,([A-Za-z0-9+/=]+)$/);
+  if (!match) {
+    return false;
+  }
+  const mimeType = match[1]?.toLowerCase() ?? "";
+  return allowedMimeTypes.includes(mimeType);
 }
 
 function calculateAge(dobIso: string): number | null {
@@ -125,6 +139,15 @@ function calculateAge(dobIso: string): number | null {
     age -= 1;
   }
   return age;
+}
+
+function isFutureDob(dobIso: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dobIso)) return false;
+  const dob = new Date(`${dobIso}T00:00:00Z`);
+  if (Number.isNaN(dob.getTime())) return false;
+  const now = new Date();
+  const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return dob.getTime() > todayUtc;
 }
 
 const allowedGenders = new Set(["Male", "Female", "Other", "Prefer not to say"]);
@@ -167,6 +190,10 @@ export function validateInternshipApplication(input: InternshipApplicationInput)
   const domain = sanitize(input.internshipDomain);
   const preferredStartMonth = sanitize(input.preferredStartMonth);
   const sop = sanitize(input.statementOfPurpose);
+  const passportPhotoName = input.passportPhotoName ? sanitize(input.passportPhotoName) : "";
+  const passportPhotoDataUrl = input.passportPhotoDataUrl ? input.passportPhotoDataUrl.trim() : "";
+  const academicProofName = input.academicProofName ? sanitize(input.academicProofName) : "";
+  const academicProofDataUrl = input.academicProofDataUrl ? input.academicProofDataUrl.trim() : "";
 
   if (!fullName || !requiredLength(fullName, 3, 100) || !/^[A-Za-z][A-Za-z\s.'-]{2,99}$/.test(fullName)) {
     return "Full name is invalid. Use alphabets only (3-100 characters).";
@@ -175,8 +202,11 @@ export function validateInternshipApplication(input: InternshipApplicationInput)
   if (age === null) {
     return "Date of Birth is required in valid format.";
   }
+  if (isFutureDob(dateOfBirth)) {
+    return "Date of Birth cannot be a future date.";
+  }
   if (age < 16 || age > 45) {
-    return "Age must be between 16 and 45 years for internship application.";
+    return "Only candidates aged 16 to 45 years can apply.";
   }
   if (!gender || !allowedGenders.has(gender)) {
     return "Please select a valid gender.";
@@ -206,13 +236,38 @@ export function validateInternshipApplication(input: InternshipApplicationInput)
     return "Please select a valid internship domain.";
   }
   if (!preferredStartMonth || !validatePreferredMonthWindow(preferredStartMonth)) {
-    return "Preferred start month is invalid. Allowed range: 2 to 6 months in advance.";
+    return "Preferred start month is invalid. Allowed range: from 2 months ahead up to December.";
   }
   if (!Number.isInteger(input.durationWeeks) || input.durationWeeks < 6 || input.durationWeeks > 24) {
     return "Duration must be between 6 and 24 weeks.";
   }
   if (!sop || !requiredLength(sop, 100, 2000) || hasUnsafeChars(sop)) {
     return "Statement of purpose must be 100-2000 characters and must not contain invalid symbols.";
+  }
+  if (passportPhotoName && (!requiredLength(passportPhotoName, 3, 160) || hasUnsafeChars(passportPhotoName))) {
+    return "Passport photo file name is invalid.";
+  }
+  if (
+    passportPhotoDataUrl &&
+    (!isValidBase64DataUrl(passportPhotoDataUrl, ["image/jpeg", "image/png", "image/webp"]) ||
+      passportPhotoDataUrl.length > 3_000_000)
+  ) {
+    return "Passport photo file is invalid or too large.";
+  }
+  if (academicProofName && (!requiredLength(academicProofName, 3, 160) || hasUnsafeChars(academicProofName))) {
+    return "Academic proof file name is invalid.";
+  }
+  if (
+    academicProofDataUrl &&
+    (!isValidBase64DataUrl(academicProofDataUrl, [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "application/pdf",
+    ]) ||
+      academicProofDataUrl.length > 7_500_000)
+  ) {
+    return "Academic proof file is invalid or too large.";
   }
   if (!input.nocAvailable) return "NOC confirmation is required.";
   return null;
@@ -238,6 +293,10 @@ async function ensureSchema() {
       duration_weeks INTEGER NOT NULL,
       statement_of_purpose TEXT NOT NULL,
       noc_available BOOLEAN NOT NULL,
+      passport_photo_name TEXT,
+      passport_photo_data_url TEXT,
+      academic_proof_name TEXT,
+      academic_proof_data_url TEXT,
       ip_address TEXT,
       user_agent TEXT,
       submitted_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -248,6 +307,10 @@ async function ensureSchema() {
   await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS gender TEXT`);
   await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS address_line TEXT`);
   await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS pin_code TEXT`);
+  await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS passport_photo_name TEXT`);
+  await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS passport_photo_data_url TEXT`);
+  await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS academic_proof_name TEXT`);
+  await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS academic_proof_data_url TEXT`);
   await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS ip_address TEXT`);
   await pool.query(`ALTER TABLE internship_applications ADD COLUMN IF NOT EXISTS user_agent TEXT`);
 
@@ -323,10 +386,14 @@ export async function createInternshipApplication(
         duration_weeks,
         statement_of_purpose,
         noc_available,
+        passport_photo_name,
+        passport_photo_data_url,
+        academic_proof_name,
+        academic_proof_data_url,
         ip_address,
         user_agent
       )
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21)
       RETURNING id
     `,
     [
@@ -345,6 +412,10 @@ export async function createInternshipApplication(
       input.durationWeeks,
       sanitize(input.statementOfPurpose),
       input.nocAvailable,
+      input.passportPhotoName ? sanitize(input.passportPhotoName) : null,
+      input.passportPhotoDataUrl ? input.passportPhotoDataUrl.trim() : null,
+      input.academicProofName ? sanitize(input.academicProofName) : null,
+      input.academicProofDataUrl ? input.academicProofDataUrl.trim() : null,
       context.ipAddress ? sanitize(context.ipAddress) : null,
       context.userAgent ? sanitize(context.userAgent).slice(0, 500) : null,
     ],

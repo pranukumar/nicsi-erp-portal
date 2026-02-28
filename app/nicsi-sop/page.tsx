@@ -1,157 +1,165 @@
 import PageTitle from "../../components/layout/PageTitle";
-import Link from "next/link";
+import { CheckCircle2, FileText, Scale, ShieldCheck } from "lucide-react";
+
+const sopSteps = [
+  {
+    title: "Empanelment Procedure",
+    trigger: "Before any assignment",
+    action:
+      "NICSI follows an open and transparent empanelment process for consulting agencies in line with General Financial Rules (GFR).",
+    output: "Only duly empanelled agencies become eligible for consideration.",
+  },
+  {
+    title: "Information to User Department",
+    trigger: "On receipt of a User Department request",
+    action:
+      "NICSI informs the User Department about available empanelled agencies and the GFR-compliant selection approach.",
+    output: "User Department gets complete process visibility before selection.",
+  },
+  {
+    title: "Specific Agency Requested",
+    trigger: "When department nominates a specific agency in writing",
+    action:
+      "NICSI may assign work to the named agency as requested by the department.",
+    output:
+      "Financial/procurement compliance responsibility remains with the concerned User Department.",
+  },
+  {
+    title: "No Specific Agency Indicated",
+    trigger: "When no agency is explicitly nominated",
+    action:
+      "Work allocation is based on recommendations of a committee constituted by the User Department, with mandatory representation of the department.",
+    output: "Recommendation-led, committee-driven agency selection.",
+  },
+  {
+    title: "Presentation and Evaluation",
+    trigger: "During selection stage",
+    action:
+      "Relevant empanelled agencies are invited for presentation and evaluated objectively as per committee process.",
+    output: "Most suitable agency is recommended for assignment.",
+  },
+  {
+    title: "User Department Participation",
+    trigger: "Across all stages",
+    action:
+      "Full involvement of the User Department is mandatory through evaluation, recommendation, and finalization.",
+    output: "Department ownership and accountability are ensured end-to-end.",
+  },
+] as const;
+
+const scopeItems = [
+  "ICT Solutions",
+  "Procurement of Hardware and Software",
+  "Networking and Integration",
+  "Consulting Services",
+  "Web Services and Training",
+  "Technical Manpower Support Services",
+  "Roll-out and Deployment Services",
+  "Data Centre Services",
+  "Turnkey Projects",
+] as const;
 
 export default function Page() {
   return (
-    <main className="pb-16 bg-gray-50">
+    <main className="pb-14">
       <PageTitle title="Standard Operating Procedure (SOP)" />
 
-      <section className="mx-auto max-w-5xl px-6 py-10 bg-white shadow-sm rounded-xl text-gray-800 leading-relaxed">
-
-        {/* Reference Info */}
-        <div className="text-sm text-gray-600 mb-6 border-b pb-4">
-          <p><strong>Ref No.:</strong> 120th BM/NICSI-CS/26112021</p>
-          <p><strong>Date:</strong> 24.12.2021</p>
-        </div>
-
-        {/* Background */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#003A8C] mb-3">
-            1. Background
-          </h2>
-          <p>
-            The Board of Directors in its 120th meeting held on 26th November 2021
-            approved the following process for assignment of work to empanelled
-            Consulting Agencies.
-          </p>
-        </div>
-
-        {/* SOP Process */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#003A8C] mb-4">
-            2. Approved SOP Process
-          </h2>
-
-          <ol className="list-decimal pl-6 space-y-5">
-
-            <li>
-              <strong>Empanelment Procedure:</strong>
-              <p className="mt-2">
-                NICSI shall follow an open and transparent procedure for
-                empanelment of consulting agencies as per provisions of the
-                General Financial Rules (GFRs).
-              </p>
-            </li>
-
-            <li>
-              <strong>Information to User Department:</strong>
-              <p className="mt-2">
-                Upon receipt of request from a User Department, NICSI shall
-                inform the department about empanelled consulting agencies
-                and the GFR compliant procedure followed.
-              </p>
-            </li>
-
-            <li>
-              <strong>Specific Agency Requested:</strong>
-              <p className="mt-2">
-                If the User Department clearly specifies a particular agency
-                in writing, NICSI may assign the work to that agency.
-                Responsibility for adherence to relevant financial and
-                procurement rules shall rest with the concerned User Department.
-              </p>
-            </li>
-
-            <li>
-              <strong>No Specific Agency Indicated:</strong>
-              <p className="mt-2">
-                Work shall be awarded based on recommendations of a Committee
-                constituted by the User Department. The Committee shall be
-                chaired by a representative of the User Department. If chaired
-                by any NIC/NICSI officer, it must include a representative from
-                the User Department.
-              </p>
-            </li>
-
-            <li>
-              <strong>Presentation & Evaluation:</strong>
-              <p className="mt-2">
-                All empanelled consulting agencies shall be invited to present
-                their proposals. Evaluation shall be objective and the most
-                suitable agency may be assigned the work by NICSI based on
-                Committee recommendation.
-              </p>
-            </li>
-
-            <li>
-              <strong>User Department Participation:</strong>
-              <p className="mt-2">
-                Full participation and involvement of the User Department
-                is mandatory in the agency selection process.
-              </p>
-            </li>
-
-          </ol>
-        </div>
-
-        {/* Strategic Alliances */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#003A8C] mb-3">
-            3. Strategic Alliances (96th Board Meeting – 18 March 2016)
-          </h2>
-          <p>
-            If a User Department expresses inability to select one out of
-            multiple channel partners (in addition to mandatory PAC provision),
-            the Channel Partner(s) shall be selected by OEM(s) for each transaction.
-          </p>
-        </div>
-
-        {/* Scope */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-[#003A8C] mb-4">
-            4. Scope of Applicability
-          </h2>
-
-          <ul className="grid md:grid-cols-2 gap-y-2 list-disc pl-6">
-            <li>ICT Solutions</li>
-            <li>Procurement of Hardware & Software</li>
-            <li>Networking & Integration</li>
-            <li>Consulting Services</li>
-            <li>Web Services & Training</li>
-            <li>Technical Manpower Support Services</li>
-            <li>Roll-out & Deployment Services</li>
-            <li>Data Centre Services</li>
-            <li>Turnkey Projects</li>
-          </ul>
-        </div>
-
-        {/* Approval */}
-        <div className="border-t pt-6">
-          <h2 className="text-lg font-semibold text-[#003A8C] mb-3">
-            5. Approval
-          </h2>
-          <p>
-            This SOP is issued with the approval of the Competent Authority.
-          </p>
-
-          <div className="mt-4 font-medium">
-            Company Secretary <br />
-            National Informatics Centre Services Inc. (NICSI)
+      <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
+        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
+          <div className="grid gap-4 rounded-xl border border-blue-100 bg-[#F8FAFF] p-4 md:grid-cols-2">
+            <div className="rounded-lg border border-blue-100 bg-white p-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Reference Number</p>
+              <p className="mt-1 text-sm font-semibold text-[#0F172A]">120th BM/NICSI-CS/26112021</p>
+            </div>
+            <div className="rounded-lg border border-blue-100 bg-white p-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Issue Date</p>
+              <p className="mt-1 text-sm font-semibold text-[#0F172A]">24 December 2021</p>
+            </div>
           </div>
-        </div>
 
-        {/* Official Link */}
-        <div className="mt-10 text-sm text-gray-600 border-t pt-4">
-          Official Website:{" "}
-          <Link
-            href="https://nicsi.nic.in/"
-            target="_blank"
-            className="font-semibold text-[#003A8C] hover:underline"
-          >
-            https://nicsi.nic.in/
-          </Link>
-        </div>
+          <div className="mt-6 rounded-xl border border-blue-100 bg-white p-5">
+            <div className="flex items-center gap-2">
+              <FileText size={18} className="text-[#003A8C]" />
+              <h2 className="text-xl font-bold text-[#0F172A]">Background</h2>
+            </div>
+            <p className="mt-3 text-sm leading-7 text-gray-700">
+              The Board of Directors, in its 120th meeting held on 26 November 2021, approved the process for assignment of
+              work to empanelled consulting agencies.
+            </p>
+          </div>
 
+          <div className="mt-6">
+            <div className="mb-3 flex items-center gap-2">
+              <Scale size={18} className="text-[#003A8C]" />
+              <h2 className="text-xl font-bold text-[#0F172A]">Approved SOP Process</h2>
+            </div>
+            <div className="grid gap-3">
+              {sopSteps.map((step, index) => (
+                <article key={step.title} className="rounded-xl border border-blue-100 bg-white shadow-sm">
+                  <div className="rounded-t-xl border-b border-blue-100 bg-[#F8FAFF] px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-[#003A8C] px-2 text-xs font-bold text-white">
+                        {index + 1}
+                      </span>
+                      <h3 className="text-base font-semibold text-[#0F172A]">{step.title}</h3>
+                    </div>
+                  </div>
+                  <div className="grid gap-3 p-4 md:grid-cols-3">
+                    <div className="rounded-lg border border-blue-100 bg-[#FCFDFF] px-3 py-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-[#0052CC]">When</p>
+                      <p className="mt-1 text-sm leading-6 text-gray-700">{step.trigger}</p>
+                    </div>
+                    <div className="rounded-lg border border-blue-100 bg-[#FCFDFF] px-3 py-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-[#0052CC]">What NICSI Does</p>
+                      <p className="mt-1 text-sm leading-6 text-gray-700">{step.action}</p>
+                    </div>
+                    <div className="rounded-lg border border-blue-100 bg-[#FCFDFF] px-3 py-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-[#0052CC]">Result for Department</p>
+                      <p className="mt-1 text-sm leading-6 text-gray-700">{step.output}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-xl border border-blue-100 bg-white p-5">
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={18} className="text-[#003A8C]" />
+              <h2 className="text-xl font-bold text-[#0F172A]">Strategic Alliances</h2>
+            </div>
+            <p className="mt-2 text-sm font-semibold text-[#0F172A]">96th Board Meeting - 18 March 2016</p>
+            <p className="mt-2 text-sm leading-7 text-gray-700">
+              Where a User Department is unable to select one partner among multiple channel partners (besides mandatory PAC
+              provisions), the channel partner(s) may be selected by OEM(s) for each transaction.
+            </p>
+          </div>
+
+          <div className="mt-6 rounded-xl border border-blue-100 bg-white p-5">
+            <h2 className="text-xl font-bold text-[#0F172A]">Scope of Applicability</h2>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {scopeItems.map((item) => (
+                <div key={item} className="flex items-start gap-2 rounded-lg border border-blue-100 bg-[#FCFDFF] px-3 py-2">
+                  <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-[#0052CC]" />
+                  <p className="text-sm text-gray-700">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-xl border border-blue-100 bg-[#F8FAFF] p-5">
+            <h2 className="text-xl font-bold text-[#0F172A]">Approval</h2>
+            <p className="mt-2 text-sm leading-7 text-gray-700">
+              This SOP is issued with the approval of the Competent Authority.
+            </p>
+            <p className="mt-3 text-sm font-semibold text-[#0F172A]">
+              Company Secretary
+              <br />
+              National Informatics Centre Services Inc. (NICSI)
+            </p>
+          </div>
+
+        </div>
       </section>
     </main>
   );

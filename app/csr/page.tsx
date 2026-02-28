@@ -31,7 +31,7 @@ export default function Page() {
           </h2>
           <div className="mt-3 h-[2px] w-28 bg-[#003A8C]" />
 
-          <p className="mt-5 text-justify leading-7 text-gray-700">
+          <p className="mt-5 text-left leading-7 text-gray-700">
             The Corporate Social Responsibility (CSR) was introduced as section 135 in the Companies Act, 2013. With
             time, the importance of CSR is not just limited to compliance of this section. CSR is now more about
             giving back to the environment and society through corporate efforts. Companies are doing their best to
@@ -63,7 +63,7 @@ export default function Page() {
                 Download PDF
               </a>
             </div>
-            <p className="mt-3 text-justify leading-7 text-gray-700">
+            <p className="mt-3 text-left leading-7 text-gray-700">
               The Ministry of Corporate Affairs, Government of India has notified Section 135 of the Companies Act,
               2013 along with the Companies (Corporate Social Responsibility Policy) Rules, 2014 with effect from 1st
               April, 2014 for certain companies who fulfill the criteria as mentioned under Sub Section 1 of Section

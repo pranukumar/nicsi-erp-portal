@@ -66,13 +66,13 @@ export default function AboutPage() {
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           {/* <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">About NICSI</p> */}
           <h2 className="mt-2 text-xl font-bold text-[#0F172A] md:text-2xl">National Informatics Centre Services Inc.</h2>
-          <p className="mt-4 text-justify leading-7 text-gray-700">
+          <p className="mt-4 text-left leading-7 text-gray-700">
             National Informatics Centre Services Inc. (NICSI), established in 1995, is a Section 8 company under the Companies Act, 
             2013 (formerly a Section 25 company) under National Informatics Centre (NIC), Ministry of Electronics & Information 
             Technology (MeitY), Government of India for providing and procuring IT solutions for multiple e-governance projects undertaken 
             by NIC, MeitY, Governments and Government Organizations (like Public Sector Undertakings).
           </p>
-          <p className="mt-4 text-justify leading-7 text-gray-700">
+          <p className="mt-4 text-left leading-7 text-gray-700">
             With a turnover of more than Rs.3100 crores (FY-2024-25), NICSI has emerged as a 
             leading government-focused IT organization in the last 30 years. NICSI has successfully 
             executed more than 30,000 projects in India and other developing nations by providing state 
@@ -108,7 +108,7 @@ export default function AboutPage() {
       <section className="mx-auto grid max-w-6xl gap-6 px-6 pb-8 lg:grid-cols-2">
         <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Vision</p>
-          <p className="mt-3 rounded-lg bg-blue-50 p-4 text-justify text-sm italic leading-6 text-[#0F172A]">
+          <p className="mt-3 rounded-lg bg-blue-50 p-4 text-left text-sm italic leading-6 text-[#0F172A]">
             &quot;Achieve leadership position in the technology enablement of India and other developing countries thereby contributing
             effectively to accelerate socioeconomic growth&quot;
           </p>
@@ -121,7 +121,7 @@ export default function AboutPage() {
 
         <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Mission</p>
-          <p className="mt-3 rounded-lg bg-blue-50 p-4 text-justify text-sm italic leading-6 text-[#0F172A]">
+          <p className="mt-3 rounded-lg bg-blue-50 p-4 text-left text-sm italic leading-6 text-[#0F172A]">
             &quot;To promote and provide transparent value-added Information and Communication 
             Technology procurement services and business solutions at competitive prices with a 
             focus on socioeconomic development&quot;

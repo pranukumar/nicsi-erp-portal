@@ -1,0 +1,69 @@
+export type AwardEvidence = {
+  label: string;
+  href: string;
+  status: "available" | "pending";
+  type: "document";
+};
+
+export type AwardRecognitionItem = {
+  id: number;
+  title: string;
+  year: string;
+  description: string;
+  source: string;
+  evidence: AwardEvidence;
+};
+
+export type AwardsRecognitionContent = {
+  lastUpdated: string;
+  items: AwardRecognitionItem[];
+};
+
+const awardsRecognitionContent: AwardsRecognitionContent = {
+  lastUpdated: "February 27, 2026",
+  items: [
+    {
+      id: 1,
+      title: "Digital Governance Excellence Recognition",
+      year: "2025",
+      description: "Recognized for impactful ICT enablement and service delivery support for government programs.",
+      source: "NICSI Annual Report references",
+      evidence: {
+        label: "Annual Report 2023-24",
+        href: "/pdfs/reports/Annual_Report_2023-24.pdf",
+        status: "available",
+        type: "document",
+      },
+    },
+    {
+      id: 2,
+      title: "Public Sector ICT Implementation Appreciation",
+      year: "2024",
+      description: "Appreciation for efficient project execution and technology advisory support across departments.",
+      source: "NICSI Annual Report references",
+      evidence: {
+        label: "Annual Report 2022-23",
+        href: "/pdfs/reports/Annual_Report_2022-23.pdf",
+        status: "available",
+        type: "document",
+      },
+    },
+    {
+      id: 3,
+      title: "e-Governance Program Contribution Acknowledgement",
+      year: "2023",
+      description: "Acknowledged for contribution to digital transformation initiatives in the public sector.",
+      source: "NICSI Annual Report references",
+      evidence: {
+        label: "Approval note / citation upload pending",
+        href: "#",
+        status: "pending",
+        type: "document",
+      },
+    },
+  ],
+};
+
+export async function getAwardsRecognitionContent(): Promise<AwardsRecognitionContent> {
+  return awardsRecognitionContent;
+}

@@ -1,25 +1,76 @@
 @import "tailwindcss";
 
-/* DSCI Design Tokens */
+/* NICSI Revamp Theme Tokens */
 :root {
-  --dsci-primary: #003A8C;
-  --dsci-primary-light: #0052CC;
-  --dsci-accent: #F58220;
-  --dsci-bg: #F4F7FB;
-  --dsci-text: #1F2937;
+  --nicsi-primary: #0a2e73;
+  --nicsi-primary-strong: #0f4bb8;
+  --nicsi-cyan: #12b8ff;
+  --nicsi-accent: #ff9f2f;
+  --nicsi-bg: #f2f6ff;
+  --nicsi-surface: #ffffff;
+  --nicsi-text: #14213d;
+  --nicsi-muted: #4a5d85;
+  --nicsi-border: #cfe0ff;
+
+  /* Backward-compatible aliases for older components still using DSCI tokens */
+  --dsci-primary: var(--nicsi-primary);
+  --dsci-primary-light: var(--nicsi-primary-strong);
+  --dsci-accent: var(--nicsi-accent);
+  --dsci-bg: var(--nicsi-bg);
+  --dsci-text: var(--nicsi-text);
 }
 
 body {
-  background-color: var(--dsci-bg);
-  color: var(--dsci-text);
-  font-family: "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  color: var(--nicsi-text);
+  font-family: "Poppins", "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
+  font-size: 15.5px;
+  line-height: 1.65;
+  background:
+    radial-gradient(circle at 12% -10%, rgba(18, 184, 255, 0.2), transparent 34%),
+    radial-gradient(circle at 82% -18%, rgba(15, 75, 184, 0.24), transparent 36%),
+    linear-gradient(180deg, #eef5ff 0%, #f6f9ff 38%, #f2f6ff 100%);
+  background-size: 120% 120%, 120% 120%, 100% 100%;
+  animation: nicsi-bg-drift 24s ease-in-out infinite alternate;
 }
 
 html,
 body {
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.nicsi-theme {
+  min-height: 100vh;
+}
+
+.nicsi-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(12, 62, 145, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 62, 145, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+  animation: nicsi-grid-float 26s linear infinite;
+}
+
+.nicsi-theme::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+  background:
+    radial-gradient(40rem 30rem at 18% 22%, rgba(18, 184, 255, 0.18), transparent 62%),
+    radial-gradient(34rem 28rem at 78% 16%, rgba(10, 46, 115, 0.2), transparent 64%);
+  animation: nicsi-aura-drift 30s ease-in-out infinite alternate;
 }
 
 /* Keep text in standard case across the website even if uppercase utility is present. */
@@ -47,13 +98,13 @@ body {
 
 /* Standard crisp table styling used across personnel and profile pages. */
 .nic-table thead {
-  background: #e9f1ff !important;
+  background: #e6f1ff !important;
 }
 
 .nic-table thead th {
-  color: #0f172a !important;
+  color: #10284d !important;
   font-weight: 700 !important;
-  border-bottom: 1px solid #cfe0ff !important;
+  border-bottom: 1px solid #bfd7ff !important;
 }
 
 .nic-table tbody tr {
@@ -61,14 +112,343 @@ body {
 }
 
 .nic-table tbody tr:nth-child(even) td {
-  background: #f8fbff !important;
+  background: #f5f9ff !important;
 }
 
 .nic-table tbody tr:hover td {
-  background: #dce9ff !important;
+  background: #d9e9ff !important;
 }
 
 .nic-table tbody td {
-  color: #111827 !important;
-  border-top: 1px solid #e5edf9 !important;
+  color: #10213f !important;
+  border-top: 1px solid #dbe7fb !important;
+}
+
+/* Reusable elevated card treatment used by most page sections */
+.border.border-blue-100.bg-white,
+.rounded-2xl.border.border-blue-100.bg-white,
+.rounded-xl.border.border-blue-100.bg-white {
+  border-color: var(--nicsi-border) !important;
+  box-shadow:
+    0 10px 28px rgba(10, 46, 115, 0.07),
+    0 2px 8px rgba(18, 184, 255, 0.08);
+}
+
+a {
+  text-underline-offset: 2px;
+}
+
+.text-justify-safe {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+.skip-link {
+  position: fixed;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 9999;
+  transform: translateY(-140%);
+  border-radius: 0.5rem;
+  border: 1px solid #9cc6ff;
+  background: #ffffff;
+  color: #0a2e73;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 8px 18px rgba(10, 46, 115, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 2px solid #12b8ff;
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(18, 184, 255, 0.25);
+  color: #0a1f3d;
+}
+
+@keyframes nicsi-bg-drift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 0 0;
+  }
+  100% {
+    background-position: 10% 8%, 88% 12%, 0 0;
+  }
+}
+
+@keyframes nicsi-grid-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(6px, 4px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes nicsi-fade-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.nicsi-reveal {
+  animation: nicsi-fade-up 0.72s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.nicsi-stagger > * {
+  animation: nicsi-fade-up 0.72s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.nicsi-stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.nicsi-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.nicsi-stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.nicsi-stagger > *:nth-child(4) { animation-delay: 0.22s; }
+.nicsi-stagger > *:nth-child(5) { animation-delay: 0.28s; }
+.nicsi-stagger > *:nth-child(6) { animation-delay: 0.34s; }
+
+.nicsi-hover-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.nicsi-hover-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 16px 30px rgba(10, 46, 115, 0.14),
+    0 4px 14px rgba(18, 184, 255, 0.14);
+  border-color: rgba(18, 184, 255, 0.45) !important;
+}
+
+.nicsi-page-aura {
+  overflow: hidden;
+}
+
+.nicsi-aura-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(56px);
+  opacity: 0.18;
+  animation: nicsi-orb-float 18s ease-in-out infinite alternate;
+}
+
+.nicsi-aura-orb-left {
+  left: -120px;
+  top: 380px;
+  height: 320px;
+  width: 320px;
+  background: #12b8ff;
+}
+
+.nicsi-aura-orb-right {
+  right: -120px;
+  top: 640px;
+  height: 360px;
+  width: 360px;
+  background: #0f4bb8;
+  animation-delay: 0.8s;
+}
+
+@keyframes nicsi-orb-float {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-28px) scale(1.06); }
+}
+
+@keyframes nicsi-chatbot-float {
+  0% { transform: translateY(0px) scale(1) rotate(0deg); }
+  35% { transform: translateY(-6px) scale(1.02) rotate(-2deg); }
+  70% { transform: translateY(-2px) scale(1.01) rotate(2deg); }
+  100% { transform: translateY(0px) scale(1) rotate(0deg); }
+}
+
+@keyframes nicsi-chatbot-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(18, 184, 255, 0.42); }
+  100% { box-shadow: 0 0 0 14px rgba(18, 184, 255, 0); }
+}
+
+.nicsi-chatbot-fab {
+  animation: nicsi-chatbot-float 2.1s ease-in-out infinite;
+  position: relative;
+}
+
+.nicsi-chatbot-fab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: nicsi-chatbot-pulse 2.2s ease-out infinite;
+}
+
+.nicsi-chatbot-icon {
+  animation: nicsi-chatbot-float 1.9s ease-in-out infinite;
+}
+
+@keyframes nicsi-chatbot-tooltip-pulse {
+  0%, 100% { opacity: 0.75; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+
+.nicsi-chatbot-tooltip {
+  animation: nicsi-chatbot-tooltip-pulse 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.nicsi-motion-backdrop {
+  isolation: isolate;
+  --mx: 0;
+  --my: 0;
+}
+
+html.a11y-readable-font body {
+  font-family: Arial, "Noto Sans", "Segoe UI", sans-serif !important;
+}
+
+html.a11y-link-highlight a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+html.a11y-text-spacing body p,
+html.a11y-text-spacing body li,
+html.a11y-text-spacing body span {
+  line-height: 1.9 !important;
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+}
+
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.nicsi-wave-layer {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  height: 34rem;
+  border-radius: 9999px;
+  filter: blur(30px);
+  opacity: 0.34;
+  mix-blend-mode: multiply;
+  animation: nicsi-wave-drift 14s ease-in-out infinite alternate;
+}
+
+.nicsi-wave-layer-1 {
+  top: 6rem;
+  background: radial-gradient(circle at 30% 50%, rgba(18, 184, 255, 0.68), transparent 58%);
+}
+
+.nicsi-wave-layer-2 {
+  top: 28rem;
+  background: radial-gradient(circle at 70% 45%, rgba(15, 75, 184, 0.62), transparent 60%);
+  animation-delay: 0.5s;
+}
+
+.nicsi-motif-wrap {
+  position: absolute;
+  transform: translate3d(
+    calc(var(--mx) * var(--pf, 1) * 14px),
+    calc(var(--my) * var(--pf, 1) * 12px),
+    0
+  );
+  transition: transform 0.25s linear;
+}
+
+.nicsi-motif {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(12, 62, 145, 0.22);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(238, 246, 255, 0.78));
+  color: #0a2e73;
+  border-radius: 9999px;
+  padding: 0.35rem 0.55rem 0.35rem 0.35rem;
+  box-shadow: 0 10px 24px rgba(10, 46, 115, 0.12);
+  backdrop-filter: blur(4px);
+  animation: nicsi-motif-float 9s ease-in-out infinite alternate;
+}
+
+.nicsi-motif-label {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.nicsi-motif-1 { top: 7.5rem; left: 6%; }
+.nicsi-motif-2 { top: 12rem; right: 8%; }
+.nicsi-motif-3 { top: 27rem; left: 10%; }
+.nicsi-motif-4 { top: 33rem; right: 10%; }
+.nicsi-motif-5 { top: 50rem; left: 42%; }
+
+@keyframes nicsi-wave-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-3.4%, -2.2%, 0) scale(1.08); }
+}
+
+@keyframes nicsi-motif-float {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(12px, -14px, 0) rotate(2deg); }
+  100% { transform: translate3d(-8px, 10px, 0) rotate(-1.6deg); }
+}
+
+@keyframes nicsi-aura-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-14px, 10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .nicsi-motif-wrap {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .nicsi-motif-2,
+  .nicsi-motif-4,
+  .nicsi-motif-5 {
+    display: none;
+  }
 }

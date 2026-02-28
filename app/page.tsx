@@ -1,5 +1,5 @@
-import AccessibilityToolbar from "@/components/layout/AccessibilityToolbar";
 import Hero from "@/components/layout/Hero";
+import NicsiMotionBackdrop from "@/components/layout/NicsiMotionBackdrop";
 import { getHomeTracks } from "@/services/homeContent";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,15 +7,13 @@ import {
   Building2,
   CalendarDays,
   Cloud,
-  Facebook,
   FileText,
   Globe2,
-  Instagram,
-  Linkedin,
+  LayoutGrid,
+  MapPin,
   Megaphone,
   Server,
-  Twitter,
-  Youtube,
+  ShieldCheck,
 } from "lucide-react";
 
 const iconMap = {
@@ -72,8 +70,35 @@ const ministers: Minister[] = [
 const trustIndicators = [
   { title: "ISO-aligned Processes", subtitle: "Service governance and operational controls" },
   { title: "99.9% Platform Uptime", subtitle: "Business continuity focused delivery" },
-  { title: "30+ Departments", subtitle: "Cross-organization service integration" },
+  { title: "Multiple Ministries & Departments", subtitle: "Cross-organization service integration" },
   { title: "SLA-driven Operations", subtitle: "Measured response and resolution timelines" },
+];
+
+const nicsiShowcase = [
+  {
+    value: "Pan-India Reach",
+    title: "Government delivery backbone",
+    detail: "Supporting ministries, departments, and public institutions with secure and scalable digital execution.",
+    href: "/national-projects",
+  },
+  {
+    value: "Cloud + Data Centre",
+    title: "Mission-critical infrastructure",
+    detail: "Reliable hosting, platform services, and operational resilience aligned for public-sector workloads.",
+    href: "/nicsi-cloud",
+  },
+  {
+    value: "Procurement + PMU",
+    title: "Execution with accountability",
+    detail: "Transparent procurement and lifecycle management from planning to implementation and support.",
+    href: "/active-tenders",
+  },
+  {
+    value: "Citizen-first Focus",
+    title: "Outcome-driven digital programs",
+    detail: "Technology interventions designed for service quality, compliance, and measurable governance outcomes.",
+    href: "/about",
+  },
 ];
 
 const mediaCards = [
@@ -104,71 +129,75 @@ const whatsNew = [
 const dataCentres = [
   {
     name: "NDC Bhubaneswar",
-    description:
-      "Established in 2018, the National Data Centre at Bhubaneswar has a built-up area of 40,000 sq. ft. and houses 271 racks. Designed and implemented in accordance with Tier-III standards for high availability and reliability.",
+    location: "Bhubaneswar",
+    establishedYear: 2018,
+    areaSqFt: 40000,
+    racks: 271,
+    tier: "Tier-III",
+    description: "Designed for high availability and reliable delivery of government digital workloads.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
   {
     name: "NDC Hyderabad",
-    description:
-      "Established in 2018, the National Data Centre at Hyderabad has a built-up area of 14,000 sq. ft. and accommodates 221 racks. The facility complies with Tier-III standards for high availability and operational reliability.",
+    location: "Hyderabad",
+    establishedYear: 2018,
+    areaSqFt: 14000,
+    racks: 221,
+    tier: "Tier-III",
+    description: "Supports secure hosting with operational reliability aligned to national service delivery needs.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
   {
     name: "NDC Delhi",
-    description:
-      "Established in 2011, the National Data Centre at Delhi has a built-up area of 30,000 sq. ft. and houses 475 racks. The facility is designed in compliance with Tier-III standards, ensuring high availability and operational resilience.",
+    location: "Delhi",
+    establishedYear: 2011,
+    areaSqFt: 30000,
+    racks: 475,
+    tier: "Tier-III",
+    description: "Core hub for resilient infrastructure and mission-critical government application hosting.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
   {
     name: "NDC Pune",
-    description:
-      "Established in 2010, the National Data Centre at Pune has a built-up area of 10,000 sq. ft. and accommodates 175 racks. The facility adheres to Tier-III standards, ensuring reliable and continuous operations.",
+    location: "Pune",
+    establishedYear: 2010,
+    areaSqFt: 10000,
+    racks: 175,
+    tier: "Tier-III",
+    description: "Built for continuous operations with redundancy and dependable infrastructure services.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
   {
     name: "NDC Guwahati",
-    description:
-      "Established in 2026, the National Data Centre at Guwahati has a built-up area of 43,000 sq. ft. and currently accommodates 200 racks. The facility is designed in accordance with Tier-III standards, ensuring high availability, redundancy and operational reliability.",
+    location: "Guwahati",
+    establishedYear: 2026,
+    areaSqFt: 43000,
+    racks: 200,
+    tier: "Tier-III",
+    description: "Expands regional resilience and strengthens availability for North-East focused digital services.",
     services: [],
   },
 ];
-
-const socialMedia = [
-  { platform: "X", handle: "@GoI_MeitY", href: "https://x.com/GoI_MeitY", icon: Twitter },
-  { platform: "Facebook", handle: "GoI.MeitY", href: "https://www.facebook.com/GoI.MeitY", icon: Facebook },
-  { platform: "Instagram", handle: "@goi_meity", href: "https://www.instagram.com/goi_meity/", icon: Instagram },
-  { platform: "YouTube", handle: "GoI MeitY", href: "https://www.youtube.com/@GoI_MeitY", icon: Youtube },
-  { platform: "LinkedIn", handle: "Ministry of Electronics and IT", href: "https://www.linkedin.com/company/ministry-of-electronics-and-information-technology/", icon: Linkedin },
-] as const;
-
-const importantLinks = [
-  { title: "Gov.in", href: "https://www.india.gov.in/", logo: "/logos/india_gov.in_logo.png" },
-  { title: "MeitY", href: "https://www.meity.gov.in/", logo: "/logos/meity_logo.png" },
-  { title: "Digital India", href: "https://www.digitalindia.gov.in/", logo: "/logos/digital-india.png" },
-  { title: "NKN", href: "https://nkn.gov.in/", logo: "/logos/nkn_logo.png" },
-  { title: "NIC", href: "https://www.nic.in/", logo: "/logos/NIC_Logo.png" },
-  { title: "MyGov", href: "https://www.mygov.in/", logo: "/logos/mygov-logo.jpg" },
-  { title: "Swachh Bharat", href: "https://swachhbharatmission.gov.in/", logo: "/logos/swachh-bharat.png" },
-];
-
-const scrollingImportantLinks = [...importantLinks, ...importantLinks];
 
 export default async function Home() {
   const keyTracks = await getHomeTracks();
 
   return (
-    <div className="bg-[var(--dsci-bg)] pb-8">
+    <div className="relative overflow-hidden bg-[var(--nicsi-bg)] pb-8">
+      <NicsiMotionBackdrop />
+      <div className="nicsi-page-aura pointer-events-none absolute inset-0 -z-0">
+        <div className="nicsi-aura-orb nicsi-aura-orb-left" />
+        <div className="nicsi-aura-orb nicsi-aura-orb-right" />
+      </div>
       <Hero />
-      <AccessibilityToolbar />
 
-      <section id="ministry" className="bg-white px-6 pb-14 pt-12 scroll-mt-28">
+      <section id="ministry" className="nicsi-reveal bg-white px-6 pb-14 pt-12 scroll-mt-28">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Ministry</p>
           <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Ministry Leadership</h2>
-          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+          <div className="nicsi-stagger mt-6 grid gap-5 lg:grid-cols-2">
             {ministers.map((minister) => (
-              <article key={minister.name} className="rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
+              <article key={minister.name} className="nicsi-hover-card rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
                 <div className="flex gap-4">
                   <div
                     className={`shrink-0 overflow-hidden rounded-lg border border-blue-100 bg-white ${
@@ -200,7 +229,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 pt-8">
+      <section className="nicsi-reveal px-6 pt-8">
         <div className="mx-auto max-w-6xl rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -208,9 +237,9 @@ export default async function Home() {
               <h2 className="mt-1 text-xl font-bold text-[#0F172A] md:text-2xl">Access frequently used government service links</h2>
             </div>
           </div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="nicsi-stagger mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {quickServices.map((item) => (
-              <Link key={item.label} href={item.href} className="rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] transition hover:bg-blue-50">
+              <Link key={item.label} href={item.href} className="nicsi-hover-card rounded-lg border border-gray-200 px-4 py-3 font-semibold text-[#003A8C] transition hover:bg-blue-50">
                 {item.label}
               </Link>
             ))}
@@ -218,14 +247,40 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-14">
+      <section className="px-6 py-10">
+        <div className="mx-auto max-w-6xl rounded-3xl border border-[#CFE2FF] bg-gradient-to-br from-[#0A2E73] via-[#0D46AD] to-[#0A2E73] p-6 text-white shadow-[0_20px_40px_rgba(10,46,115,0.25)] md:p-8">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-100">NICSI At A Glance</p>
+              <h2 className="mt-2 text-3xl font-bold">Built for public-sector digital delivery</h2>
+            </div>
+            <Link href="/about" className="rounded-md border border-white/40 px-4 py-2 text-sm font-semibold hover:bg-white hover:text-[#0A2E73]">
+              Explore NICSI
+            </Link>
+          </div>
+          <div className="nicsi-stagger mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {nicsiShowcase.map((item) => (
+              <article key={item.title} className="nicsi-hover-card rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-[2px]">
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">{item.value}</p>
+                <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-blue-100">{item.detail}</p>
+                <Link href={item.href} className="mt-3 inline-block text-sm font-semibold text-cyan-100 hover:text-white">
+                  View details
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="nicsi-reveal px-6 py-14">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.4fr_1fr]">
           <article className="rounded-2xl bg-white p-8 shadow-sm">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Latest Tenders</p>
             <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Current procurement opportunities</h2>
-            <div className="mt-6 space-y-3">
+            <div className="nicsi-stagger mt-6 space-y-3">
               {latestTenders.map((tender) => (
-                <Link key={tender.title} href={tender.href} className="block rounded-xl border border-gray-200 p-4 transition hover:border-blue-300 hover:bg-blue-50/40">
+                <Link key={tender.title} href={tender.href} className="nicsi-hover-card block rounded-xl border border-gray-200 p-4 transition hover:border-blue-300 hover:bg-blue-50/40">
                   <p className="font-semibold text-[#0F172A]">{tender.title}</p>
                   <p className="mt-1 text-sm text-gray-600">
                     Deadline: {tender.deadline}
@@ -237,17 +292,31 @@ export default async function Home() {
             <Link href="/tenders" className="mt-5 inline-block text-sm font-semibold text-[#003A8C]">View all tenders</Link>
           </article>
 
-          <article className="rounded-2xl bg-[#0B1E43] p-8 text-white">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">Message</p>
-            <h3 className="mt-2 text-2xl font-bold">Chairman / MD Desk</h3>
-            <p className="mt-4 text-sm leading-7 text-blue-100">
-              NICSI remains committed to transparent digital enablement for public institutions, supported by secure infrastructure and accountable execution.
-            </p>
-            <p className="mt-4 text-sm font-semibold">Official Message Section (Can be updated from CMS/DB)</p>
-            <Link href="/about" className="mt-5 inline-block rounded-md border border-white/40 px-4 py-2 text-sm font-semibold hover:bg-white hover:text-[#0B1E43]">
-              Read full message
-            </Link>
-          </article>
+          <div className="nicsi-stagger space-y-4">
+            <article className="nicsi-hover-card rounded-2xl bg-[#0B1E43] p-8 text-white">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">Message</p>
+              <h3 className="mt-2 text-2xl font-bold">Chairperson Desk</h3>
+              <p className="mt-4 text-sm leading-7 text-blue-100">
+                NICSI will continue to strengthen trusted digital public infrastructure through transparent governance, policy-aligned execution, and measurable service outcomes for ministries and departments.
+              </p>
+              <p className="mt-4 text-sm font-semibold">Official communication from NICSI leadership.</p>
+              <Link href="/about" className="mt-5 inline-block rounded-md border border-white/40 px-4 py-2 text-sm font-semibold hover:bg-white hover:text-[#0B1E43]">
+                Read full message
+              </Link>
+            </article>
+
+            <article className="nicsi-hover-card rounded-2xl bg-[#0B1E43] p-8 text-white">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">Message</p>
+              <h3 className="mt-2 text-2xl font-bold">MD Desk</h3>
+              <p className="mt-4 text-sm leading-7 text-blue-100">
+                NICSI is focused on delivery excellence across cloud, data centre, procurement, and managed ICT services, ensuring secure, scalable, and citizen-centric implementation support for government programs.
+              </p>
+              <p className="mt-4 text-sm font-semibold">Official communication from NICSI leadership.</p>
+              <Link href="/about" className="mt-5 inline-block rounded-md border border-white/40 px-4 py-2 text-sm font-semibold hover:bg-white hover:text-[#0B1E43]">
+                Read full message
+              </Link>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -299,7 +368,7 @@ export default async function Home() {
             ))}
           </div>
           <div className="mt-5 rounded-xl border border-gray-200 p-5 text-sm text-gray-700">
-            Select a filter to list relevant documents. This block can be connected to DB-backed document feeds.
+            Select a filter to view relevant public documents and notices.
           </div>
         </div>
       </section>
@@ -342,26 +411,73 @@ export default async function Home() {
       <section className="bg-white px-6 py-14">
         <div className="mx-auto max-w-6xl">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Data Centre Services</p>
-          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">National Data Centres (NDCs) – NICSI</h2>
+          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">National Data Centres (NDCs) - NICSI</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">
             NICSI operates multiple National Data Centres (NDCs) across India to provide secure, scalable and highly available hosting,
             colocation and cloud services to Government and public sector organizations. All facilities are designed in compliance with
             Tier-III standards, ensuring redundancy, high uptime and operational resilience.
           </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Locations</p>
+              <p className="mt-1 text-2xl font-bold text-[#0F172A]">{dataCentres.length}</p>
+            </div>
+            <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Total Racks</p>
+              <p className="mt-1 text-2xl font-bold text-[#0F172A]">
+                {dataCentres.reduce((sum, dc) => sum + dc.racks, 0).toLocaleString("en-IN")}
+              </p>
+            </div>
+            <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Built-up Area</p>
+              <p className="mt-1 text-2xl font-bold text-[#0F172A]">
+                {dataCentres.reduce((sum, dc) => sum + dc.areaSqFt, 0).toLocaleString("en-IN")} sq. ft.
+              </p>
+            </div>
+          </div>
           <div className="mt-7 grid gap-4 md:grid-cols-2">
             {dataCentres.map((dc) => (
-              <article key={dc.name} className="rounded-xl border border-gray-200 p-6">
-                <span className="inline-flex rounded-lg bg-blue-50 p-2 text-[#003A8C]"><Server size={18} /></span>
-                <h3 className="mt-3 text-lg font-semibold text-[#0F172A]">{dc.name}</h3>
-                <p className="mt-1 text-sm leading-6 text-gray-700">{dc.description}</p>
+              <article key={dc.name} className="rounded-xl border border-gray-200 p-6 shadow-sm transition hover:border-blue-200 hover:shadow-md">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="inline-flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-1.5 text-sm font-semibold text-[#003A8C]">
+                    <Server size={16} />
+                    {dc.name}
+                  </span>
+                  <span className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-2.5 py-1 text-xs font-semibold text-gray-700">
+                    <ShieldCheck size={13} />
+                    {dc.tier}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-gray-700">{dc.description}</p>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
+                    <span className="inline-flex items-center gap-1 font-semibold text-[#0F172A]">
+                      <MapPin size={14} />
+                      Location:
+                    </span>{" "}
+                    {dc.location}
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
+                    <span className="inline-flex items-center gap-1 font-semibold text-[#0F172A]">
+                      <LayoutGrid size={14} />
+                      Racks:
+                    </span>{" "}
+                    {dc.racks.toLocaleString("en-IN")}
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
+                    <span className="font-semibold text-[#0F172A]">Established:</span> {dc.establishedYear}
+                  </div>
+                  <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
+                    <span className="font-semibold text-[#0F172A]">Built-up Area:</span> {dc.areaSqFt.toLocaleString("en-IN")} sq. ft.
+                  </div>
+                </div>
                 {dc.services.length > 0 ? (
                   <div className="mt-3">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Services</p>
-                    <ul className="mt-1 space-y-1 text-sm text-gray-700">
+                    <ul className="mt-2 flex flex-wrap gap-2 text-sm text-gray-700">
                       {dc.services.map((service) => (
-                        <li key={service} className="flex items-start gap-2">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0052CC]" />
-                          <span>{service}</span>
+                        <li key={service} className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#003A8C]">
+                          {service}
                         </li>
                       ))}
                     </ul>
@@ -369,54 +485,6 @@ export default async function Home() {
                 ) : null}
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-14">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Social Media</p>
-          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Connect with official channels</h2>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {socialMedia.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.platform}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-xl border border-blue-100 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <span className="inline-flex rounded-lg bg-blue-50 p-2 text-[#003A8C]">
-                    <Icon size={18} />
-                  </span>
-                  <p className="mt-3 font-semibold text-[#0F172A]">{item.platform}</p>
-                  <p className="mt-1 text-sm text-gray-600">{item.handle}</p>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-14">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Other Important Links</p>
-          <div className="important-links-marquee mt-5 overflow-hidden rounded-2xl border border-gray-200 bg-[#EEF2F9] p-4">
-            <div className="important-links-track flex w-max gap-4">
-              {scrollingImportantLinks.map((item, index) => (
-              <Link
-                key={`${item.title}-${index}`}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="flex h-28 w-56 shrink-0 items-center justify-center rounded-xl bg-white p-3 shadow-sm ring-1 ring-gray-200 transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                <Image src={item.logo} alt={item.title} width={180} height={72} className="h-16 w-auto object-contain" />
-              </Link>
-              ))}
-            </div>
           </div>
         </div>
       </section>

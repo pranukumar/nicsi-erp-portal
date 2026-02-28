@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PageTitle from "../../components/layout/PageTitle";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 const featuredProjects = [
   {
@@ -238,6 +239,7 @@ const otherProjects = [
     website: "https://attendance.gov.in/",
   },
 ] as const;
+const TOTAL_SLIDES = featuredProjects.length;
 
 export default function Page() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -248,16 +250,24 @@ export default function Page() {
       return;
     }
     const timer = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % featuredProjects.length);
+      setActiveIndex((prev) => (prev + 1) % TOTAL_SLIDES);
     }, 5000);
     return () => window.clearInterval(timer);
   }, [paused]);
+
+  const goToPrevious = () => {
+    setActiveIndex((prev) => (prev - 1 + TOTAL_SLIDES) % TOTAL_SLIDES);
+  };
+
+  const goToNext = () => {
+    setActiveIndex((prev) => (prev + 1) % TOTAL_SLIDES);
+  };
 
   return (
     <main className="pb-12">
       <PageTitle title="National Projects" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
-        <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <h2 className="text-xl font-bold text-[#0F172A]">Key National Projects</h2>
           <div
             className="mt-5 overflow-hidden rounded-xl border border-blue-100 bg-[#FCFDFF] shadow-sm"
@@ -291,11 +301,41 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="flex items-center justify-center border-t border-blue-100 bg-white px-4 py-3">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-blue-100 bg-white px-4 py-3">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={goToPrevious}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-blue-200 bg-blue-50 text-[#003A8C] hover:bg-blue-100"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPaused((prev) => !prev)}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-blue-200 bg-blue-50 text-[#003A8C] hover:bg-blue-100"
+                  aria-label={paused ? "Play slider" : "Pause slider"}
+                >
+                  {paused ? <Play size={14} /> : <Pause size={14} />}
+                </button>
+                <button
+                  type="button"
+                  onClick={goToNext}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-blue-200 bg-blue-50 text-[#003A8C] hover:bg-blue-100"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
               <div className="flex items-center gap-2">
                 {featuredProjects.map((project, index) => (
-                  <span
+                  <button
+                    type="button"
                     key={`${project.title}-dot`}
+                    onClick={() => setActiveIndex(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                    aria-current={activeIndex === index}
                     className={`h-2.5 w-2.5 rounded-full transition ${
                       activeIndex === index ? "bg-[#003A8C]" : "bg-blue-200"
                     }`}
@@ -306,7 +346,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <h2 className="text-xl font-bold text-[#0F172A]">Other Key Projects</h2>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -323,7 +363,7 @@ export default function Page() {
                   rel="noreferrer"
                   className="mt-3 inline-flex w-fit rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
                 >
-                  Visit site
+                  Visit Site
                 </Link>
               </article>
             ))}

@@ -1,4 +1,5 @@
 import PageTitle from "../../components/layout/PageTitle";
+import Image from "next/image";
 
 type GalleryItem = {
   id: number;
@@ -43,7 +44,13 @@ export default function Page() {
             {galleryItems.map((item) => (
               <article key={item.id} className="overflow-hidden rounded-xl border border-blue-100 bg-white shadow-sm">
                 <div className="relative h-48 w-full overflow-hidden bg-gray-100">
-                  <img src={item.imageUrl} alt={item.title} className="h-full w-full object-cover transition duration-300 hover:scale-105" loading="lazy" />
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.title}
+                    fill
+                    className="h-full w-full object-cover transition duration-300 hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                  />
                 </div>
                 <div className="p-3">
                   <p className="line-clamp-3 text-sm font-semibold leading-6 text-[#0F172A]">{item.title}</p>

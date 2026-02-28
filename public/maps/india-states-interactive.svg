@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">India States and Union Territories Interactive Tile Map</title>
+  <desc id="desc">Tile-based SVG map defining all 28 states and 8 union territories by code.</desc>
+  <rect x="0" y="0" width="1200" height="780" fill="#f8fbff"/>
+  <style>
+    .tile { fill:#ffffff; stroke:#b6c9e6; stroke-width:2; rx:10; ry:10; }
+    .tile:hover { fill:#eaf2ff; stroke:#2f66c9; }
+    .code { font:700 16px Arial, sans-serif; fill:#0f2f66; pointer-events:none; }
+    .meta { font:12px Arial, sans-serif; fill:#5a6b85; pointer-events:none; }
+    .heading { font:700 28px Arial, sans-serif; fill:#0f172a; }
+    .sub { font:14px Arial, sans-serif; fill:#475569; }
+  </style>
+  <text x="44" y="54" class="heading">India State/UT Tile Map</text>
+  <text x="44" y="78" class="sub">Codes for all States and Union Territories</text>
+
+  <!-- Row 1 -->
+  <g id="LA" transform="translate(340,120)"><title>Ladakh</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">LA</text></g>
+  <g id="JK" transform="translate(418,120)"><title>Jammu and Kashmir</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">JK</text></g>
+
+  <!-- Row 2 -->
+  <g id="HP" transform="translate(418,180)"><title>Himachal Pradesh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">HP</text></g>
+  <g id="PB" transform="translate(496,180)"><title>Punjab</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">PB</text></g>
+  <g id="CH" transform="translate(574,180)"><title>Chandigarh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">CH</text></g>
+  <g id="UK" transform="translate(652,180)"><title>Uttarakhand</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">UK</text></g>
+  <g id="AR" transform="translate(808,180)"><title>Arunachal Pradesh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">AR</text></g>
+
+  <!-- Row 3 -->
+  <g id="RJ" transform="translate(340,240)"><title>Rajasthan</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">RJ</text></g>
+  <g id="HR" transform="translate(418,240)"><title>Haryana</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">HR</text></g>
+  <g id="DL" transform="translate(496,240)"><title>Delhi</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">DL</text></g>
+  <g id="UP" transform="translate(574,240)"><title>Uttar Pradesh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">UP</text></g>
+  <g id="BR" transform="translate(652,240)"><title>Bihar</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">BR</text></g>
+  <g id="SK" transform="translate(730,240)"><title>Sikkim</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">SK</text></g>
+  <g id="AS" transform="translate(808,240)"><title>Assam</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">AS</text></g>
+  <g id="NL" transform="translate(886,240)"><title>Nagaland</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">NL</text></g>
+
+  <!-- Row 4 -->
+  <g id="GJ" transform="translate(262,300)"><title>Gujarat</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">GJ</text></g>
+  <g id="MP" transform="translate(340,300)"><title>Madhya Pradesh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">MP</text></g>
+  <g id="JH" transform="translate(652,300)"><title>Jharkhand</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">JH</text></g>
+  <g id="WB" transform="translate(730,300)"><title>West Bengal</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">WB</text></g>
+  <g id="ML" transform="translate(808,300)"><title>Meghalaya</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">ML</text></g>
+  <g id="MN" transform="translate(886,300)"><title>Manipur</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">MN</text></g>
+
+  <!-- Row 5 -->
+  <g id="DN" transform="translate(262,360)"><title>Dadra and Nagar Haveli and Daman and Diu</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">DN</text></g>
+  <g id="MH" transform="translate(340,360)"><title>Maharashtra</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">MH</text></g>
+  <g id="CG" transform="translate(418,360)"><title>Chhattisgarh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">CG</text></g>
+  <g id="OD" transform="translate(496,360)"><title>Odisha</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">OD</text></g>
+  <g id="TR" transform="translate(808,360)"><title>Tripura</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">TR</text></g>
+  <g id="MZ" transform="translate(886,360)"><title>Mizoram</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">MZ</text></g>
+
+  <!-- Row 6 -->
+  <g id="GA" transform="translate(262,420)"><title>Goa</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">GA</text></g>
+  <g id="KA" transform="translate(340,420)"><title>Karnataka</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">KA</text></g>
+  <g id="TG" transform="translate(418,420)"><title>Telangana</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">TG</text></g>
+  <g id="AP" transform="translate(496,420)"><title>Andhra Pradesh</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">AP</text></g>
+
+  <!-- Row 7 -->
+  <g id="LD" transform="translate(184,480)"><title>Lakshadweep</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">LD</text></g>
+  <g id="KL" transform="translate(340,480)"><title>Kerala</title><rect class="tile" width="70" height="52"/><text class="code" x="15" y="30">KL</text></g>
+  <g id="TN" transform="translate(418,480)"><title>Tamil Nadu</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">TN</text></g>
+  <g id="PY" transform="translate(496,480)"><title>Puducherry</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">PY</text></g>
+
+  <!-- Row 8 -->
+  <g id="AN" transform="translate(496,540)"><title>Andaman and Nicobar Islands</title><rect class="tile" width="70" height="52"/><text class="code" x="14" y="30">AN</text></g>
+
+  <!-- Legend -->
+  <rect x="44" y="640" width="1112" height="96" rx="12" ry="12" fill="#ffffff" stroke="#d7e3f6"/>
+  <text x="64" y="673" class="code">States (28): AP AR AS BR CG GA GJ HR HP JH KA KL MP MH MN ML MZ NL OD PB RJ SK TN TG TR UP UK WB</text>
+  <text x="64" y="704" class="code">UTs (8): AN CH DN DL JK LA LD PY</text>
+  <text x="64" y="726" class="meta">Use this SVG for interactive state/UT mapping in web UI.</text>
+</svg>

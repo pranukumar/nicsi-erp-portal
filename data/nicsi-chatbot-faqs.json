@@ -1,0 +1,44 @@
+[
+  {
+    "id": "faq-1",
+    "question": "How can I contact NICSI?",
+    "answer": "You can use the Contact page or write to info-nicsi@nic.in for official support communication.",
+    "keywords": ["contact", "email", "phone", "support"],
+    "href": "/contact"
+  },
+  {
+    "id": "faq-2",
+    "question": "Where can I check active tenders?",
+    "answer": "You can view current tender opportunities in the Active Tenders section.",
+    "keywords": ["tender", "bid", "procurement", "gem"],
+    "href": "/active-tenders"
+  },
+  {
+    "id": "faq-3",
+    "question": "Where can I download forms and SOP documents?",
+    "answer": "Forms and SOP documents are available under Resources.",
+    "keywords": ["forms", "sop", "documents", "download", "resource"],
+    "href": "/forms"
+  },
+  {
+    "id": "faq-4",
+    "question": "How can I see NICSI projects?",
+    "answer": "You can explore National, State, MeitY, and PBD project pages from the Projects menu.",
+    "keywords": ["projects", "national", "state", "meity", "pbd"],
+    "href": "/national-projects"
+  },
+  {
+    "id": "faq-5",
+    "question": "How can I access internship and career information?",
+    "answer": "Internship and Career opportunities are available from the top navigation under Opportunities.",
+    "keywords": ["internship", "career", "job", "opportunity"],
+    "href": "/career"
+  },
+  {
+    "id": "faq-6",
+    "question": "Where can I view policy pages like privacy policy and terms?",
+    "answer": "Policy pages are available in the footer links, including Terms & Conditions, Privacy Policy, and Accessibility Statement.",
+    "keywords": ["policy", "privacy", "terms", "copyright", "accessibility", "hyperlinking"],
+    "href": "/privacy-policy"
+  }
+]

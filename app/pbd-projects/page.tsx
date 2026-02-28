@@ -14,17 +14,17 @@ export default function Page() {
   const featuredSolutions: readonly Solution[] = [
     {
       name: "ServicePlus",
-      tagline: "Meta-data-based e-Service delivery framework",
+      tagline: "Low-Code/No-Code e-Service framework",
       description:
-        "Built on Low Code-No Code (LCNC) architecture for delivering electronic-services to citizens.",
+        "A metadata driven e Service delivery framework built on Low-Code/No-Code architecture for delivering digital public services.",
       accent: "text-[#0A2A72]",
       logo: "/logos/national-projects/servicesplus.png",
     },
     {
-      name: "e-Counselling Services",
-      tagline: "Simplifying The Admission Process",
+      name: "e Counselling Services",
+      tagline: "Unified counselling and admission platform",
       description:
-        "One stop solution providing end-to-end technical support and services towards a hassle-free transparent admission processes for Technical and Academic Institutions across the country.",
+        "A unified platform offering end to end online counselling and transparent admission processes for academic institutions.",
       accent: "text-[#C62828]",
       logo: "/logos/national-projects/ecounselling.png",
     },
@@ -42,21 +42,21 @@ export default function Page() {
     {
       name: "eNagar Setu",
       description:
-        "Digital service platform to streamline municipal tax collection across urban local bodies.",
+        "A unified digital platform offering a wide range of municipal services for Urban Local Bodies, including licenses, certificates, permits, payments, and citizen service delivery.",
       accent: "text-[#0A2A72]",
-      tagline: "Property Tax Collection",
+      tagline: "Municipal service delivery platform",
     },
     {
       name: "NextGen eHospital",
       description:
-        "A unified hospital management system for governments that digitizes hospital operations and seamlessly connects patients, hospitals and doctors.",
+        "An integrated hospital management system that digitizes operations and connects patients, hospitals, and doctors seamlessly.",
       accent: "text-[#0284C7]",
       logo: "/logos/pbd-projects/ehospital-logo-v2.png",
     },
     {
-      name: "APIX",
+      name: "NAPIX",
       description:
-        "A centralized platform of Government APIs, which the stakeholders / government departments / government agencies can use for developing their own applications.",
+        "A centralized government API platform enabling departments and agencies to securely build, integrate, and scale digital services.",
       accent: "text-[#0A2A72]",
       logo: "/logos/pbd-projects/apix-logo-v2.png",
     },
@@ -69,7 +69,7 @@ export default function Page() {
     {
       name: "Cyber Solution (Phishing)",
       description:
-        "Cybersecurity awareness tool to strengthen an organization's defense against phishing attacks.",
+        "A cybersecurity awareness platform designed to strengthen organizational defenses against phishing attacks.",
       accent: "text-[#6D28D9]",
     },
   ];
@@ -78,8 +78,7 @@ export default function Page() {
     <main className="pb-12">
       <PageTitle title="PBD Projects" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
-        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8"> 
-          <p className="mt-2 text-sm text-gray-600">Featured PBD Solutions</p>
+        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {featuredSolutions.map((solution) => (
@@ -95,7 +94,7 @@ export default function Page() {
                     </span>
                   ) : null}
                 </div>
-                <p className={`min-h-[3.5rem] text-2xl font-bold ${solution.accent}`}>{solution.name}</p>
+                <p className={`text-base font-semibold leading-7 ${solution.accent}`}>{solution.name}</p>
                 {solution.tagline ? <p className="mt-1 text-sm font-semibold text-gray-600">{solution.tagline}</p> : null}
                 <p className="mt-3 text-sm leading-6 text-gray-700">{solution.description}</p>
               </article>
@@ -114,7 +113,7 @@ export default function Page() {
                     {project.logoText}
                   </span>
                 ) : null}
-                <p className={`min-h-[3.5rem] text-2xl font-bold leading-tight ${project.accent}`}>{project.name}</p>
+                <p className={`text-base font-semibold leading-7 ${project.accent}`}>{project.name}</p>
                 {project.tagline ? <p className="mt-1 text-sm font-semibold text-gray-600">{project.tagline}</p> : null}
                 <p className="mt-3 text-sm leading-6 text-gray-700">{project.description}</p>
               </article>

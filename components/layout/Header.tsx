@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import type { FormEvent, KeyboardEvent as ReactKeyboardEvent, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -19,14 +19,17 @@ import {
   GanttChartSquare,
   House,
   Images,
+  Medal,
   Megaphone,
   Menu,
   Network,
+  Search,
   UserCheck2,
   Users,
   Video,
   X,
 } from "lucide-react";
+import TopStripAccessibilityMenu from "@/components/layout/TopStripAccessibilityMenu";
 
 const menuGroups = [
   {
@@ -166,9 +169,9 @@ const menuGroups = [
     description: "Tender notices, bid opportunities, and procurement updates.",
     items: [
       {
-        label: "Active Tenders",
+        label: "NICSI CPP Tenders",
         href: "/active-tenders",
-        description: "Current open tenders available for participation.",
+        description: "Current and archived CPP tenders with official eTender references.",
         icon: FileText,
       },
       {
@@ -218,6 +221,12 @@ const menuGroups = [
         href: "/news-updates",
         description: "Latest news, announcements, and updates.",
         icon: Megaphone,
+      },
+      {
+        label: "Awards & Recognition",
+        href: "/awards-recognition",
+        description: "Awards, honors, and recognitions received by NICSI.",
+        icon: Medal,
       },
       {
         label: "Events",
@@ -291,10 +300,13 @@ type MegaMenuGroup = {
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [topSearch, setTopSearch] = useState("");
   const [openGroupIndex, setOpenGroupIndex] = useState<number | null>(null);
   const [mobileOpenGroupIndex, setMobileOpenGroupIndex] = useState<number | null>(null);
+  const [mobileTopStripMenu, setMobileTopStripMenu] = useState<"opportunities" | "quick-links" | "accessibility" | null>(null);
   const groupButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const groupItemRefs = useRef<Array<Array<HTMLAnchorElement | null>>>([]);
 
@@ -304,13 +316,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
+  const closeMobileMenu = () => {
+    setOpen(false);
+    setMobileOpenGroupIndex(null);
+  };
+
+  const toggleMobileMenu = () => {
     if (open) {
-      setMobileOpenGroupIndex(0);
+      closeMobileMenu();
       return;
     }
-    setMobileOpenGroupIndex(null);
-  }, [open]);
+    setOpen(true);
+    setMobileOpenGroupIndex((prev) => prev ?? 0);
+  };
 
   const focusGroupButton = (index: number) => {
     groupButtonRefs.current[index]?.focus();
@@ -323,18 +341,24 @@ export default function Header() {
     }, 0);
   };
 
+  const handleTopSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const q = topSearch.trim();
+    router.push(q ? `/sitemap?q=${encodeURIComponent(q)}` : "/sitemap");
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "backdrop-blur-md bg-white/80 shadow-lg"
-          : "bg-white"
+          ? "backdrop-blur-md bg-white/90 shadow-[0_10px_30px_rgba(10,46,115,0.2)]"
+          : "bg-white/95"
       }`}
     >
       {/* Top Bar */}
-      <div className="bg-[#003A8C] px-6 py-1.5 text-xs text-white">
-        <div className="flex items-center justify-between">
-        <span className="inline-flex items-center gap-1 leading-none">
+      <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-6 py-2 text-white">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
+        <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium leading-none tracking-[0.01em]">
           <Image src="/icons/india-flag.svg" alt="India Flag" width={20} height={14} className="h-4 w-5 rounded-[1px]" />
           Government of India
           <span className="inline-flex items-center rounded-sm bg-white px-1 py-0.5">
@@ -348,7 +372,7 @@ export default function Header() {
             className="h-5 w-auto brightness-0 invert"
           />
         </span>
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-4 text-[12.5px] font-medium tracking-[0.01em] lg:flex">
           {utilityLinks.map((item) =>
             item.items?.length ? (
               <div key={item.label} className="group relative">
@@ -356,14 +380,14 @@ export default function Header() {
                   <span>{item.label}</span>
                   <ChevronDown size={12} className="transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
                 </Link>
-                <div className="invisible absolute right-0 top-full z-50 mt-2 w-60 rounded-md border border-blue-100 bg-white p-1 opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div className="invisible absolute right-0 top-full z-50 mt-2 w-64 rounded-xl border border-cyan-100 bg-gradient-to-br from-white via-[#f6fbff] to-[#eef6ff] p-1.5 opacity-0 shadow-[0_18px_35px_rgba(10,46,115,0.22)] transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   {item.items.map((subItem) => (
                     <Link
                       key={subItem.label}
                       href={subItem.href}
                       target={subItem.external ? "_blank" : undefined}
                       rel={subItem.external ? "noreferrer" : undefined}
-                      className="block rounded px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-blue-50 hover:text-[#003A8C]"
+                      className="block rounded-lg border border-transparent px-3 py-2 text-[13px] font-medium text-[#1C2F57] transition hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#e9f4ff] hover:to-[#dff0ff] hover:text-[#0F4BB8]"
                     >
                       <span className="flex items-center gap-2">
                         {subItem.icon ? <subItem.icon size={14} className="text-[#003A8C]" /> : null}
@@ -379,14 +403,103 @@ export default function Header() {
               </Link>
             ),
           )}
+          <form onSubmit={handleTopSearch} className="ml-1 flex items-center">
+            <label htmlFor="top-strip-search" className="sr-only">
+              Search
+            </label>
+            <div className="flex items-center rounded-md border border-white/30 bg-white/10 pl-2">
+              <Search size={13} className="text-cyan-100" />
+              <input
+                id="top-strip-search"
+                type="search"
+                value={topSearch}
+                onChange={(event) => setTopSearch(event.target.value)}
+                placeholder="Search..."
+                className="w-36 bg-transparent px-2 py-1 text-[12px] text-white placeholder:text-white/70 focus:outline-none"
+              />
+            </div>
+          </form>
+          <TopStripAccessibilityMenu />
           <span className="text-white/80">Secure ERP Access Portal</span>
         </div>
-        <span className="md:hidden">ERP Portal</span>
+        <span className="lg:hidden">ERP Portal</span>
+        </div>
+
+        <div className="mx-auto mt-2 w-full max-w-7xl text-[12px] font-medium lg:hidden">
+          <div className="flex flex-wrap items-center gap-2 pb-1">
+          <Link href="/sitemap" className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95">
+            Sitemap
+          </Link>
+          <Link href="/contact" className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95">
+            Contact
+          </Link>
+          <button
+            type="button"
+            onClick={() =>
+              setMobileTopStripMenu((prev) => (prev === "opportunities" ? null : "opportunities"))
+            }
+            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+          >
+            Opportunities
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setMobileTopStripMenu((prev) => (prev === "quick-links" ? null : "quick-links"))
+            }
+            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+          >
+            Quick Links
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              setMobileTopStripMenu((prev) => (prev === "accessibility" ? null : "accessibility"))
+            }
+            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+          >
+            Accessibility
+          </button>
+          </div>
+
+          {mobileTopStripMenu === "opportunities" ? (
+            <div className="mt-2 rounded-lg border border-cyan-100 bg-white p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]">
+              {topStripOpportunitiesItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="block rounded-md px-2 py-1.5 text-[12px] text-[#1C2F57] hover:bg-[#EDF6FF]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+
+          {mobileTopStripMenu === "quick-links" ? (
+            <div className="mt-2 rounded-lg border border-cyan-100 bg-white p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]">
+              {topStripQuickLinksItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
+                  className="block rounded-md px-2 py-1.5 text-[12px] text-[#1C2F57] hover:bg-[#EDF6FF]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          ) : null}
+
+          {mobileTopStripMenu === "accessibility" ? (
+            <TopStripAccessibilityMenu mode="panel" />
+          ) : null}
         </div>
       </div>
 
       {/* Main Header */}
-      <div className="relative flex items-center border-b border-blue-100 px-4 py-4 pr-14 md:pr-6 md:px-6">
+      <div className="relative flex items-center border-b border-blue-100/80 bg-white/90 px-4 py-4 pr-14 md:px-6 md:pr-6">
 
         <div className="min-w-0 shrink-0 flex items-center gap-2 md:gap-4">
           <Image
@@ -405,7 +518,7 @@ export default function Header() {
           />
         </div>
 
-        <nav className="ml-auto hidden items-center justify-end gap-2 text-sm font-semibold tracking-normal text-gray-700 md:flex">
+        <nav className="ml-auto hidden items-center justify-end gap-1.5 text-[15px] font-semibold tracking-[0.01em] text-[#1C2F57] lg:flex">
           <NavLink href="/" ariaLabel="Home">
             <House size={16} />
           </NavLink>
@@ -414,7 +527,6 @@ export default function Header() {
               key={group.label}
               groupIndex={groupIndex}
               label={group.label}
-              description={group.description}
               items={group.items}
               isOpen={openGroupIndex === groupIndex}
               setGroupButtonRef={(element) => {
@@ -494,39 +606,40 @@ export default function Header() {
           ))}
           <Link
             href="/login"
-            className="rounded-md bg-[#003A8C] px-5 py-2 text-white transition hover:bg-[#0052CC]"
+            className="ml-1 rounded-md bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] px-5 py-2.5 text-[14px] font-semibold text-white shadow-[0_6px_16px_rgba(10,46,115,0.28)] transition hover:brightness-110"
           >
             Login
           </Link>
         </nav>
 
         <button
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-md border border-gray-200 bg-white p-1.5 text-gray-700 md:static md:ml-auto md:translate-y-0 md:hidden"
-          onClick={() => setOpen((prev) => !prev)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-md border border-blue-100 bg-white p-1.5 text-[#1C2F57] lg:static lg:ml-auto lg:translate-y-0 lg:hidden"
+          onClick={toggleMobileMenu}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-main-menu"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden max-h-[calc(100vh-8.5rem)] overflow-y-auto border-t bg-white px-4 py-4">
+        <div id="mobile-main-menu" className="lg:hidden max-h-[calc(100vh-8.5rem)] overflow-y-auto border-t border-blue-100 bg-white px-4 py-4">
           <Link
             href="/"
             className="mb-3 flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 font-semibold text-[#003A8C]"
             aria-label="Home"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
           >
             <House size={16} />
             Home
           </Link>
           {menuGroups.map((group, groupIndex) => (
-            <div key={group.label} className="mb-2 overflow-hidden rounded-lg border border-gray-200 bg-white">
+            <div key={group.label} className="mb-2 overflow-hidden rounded-lg border border-blue-100 bg-white">
               <button
                 type="button"
                 onClick={() => setMobileOpenGroupIndex((prev) => (prev === groupIndex ? null : groupIndex))}
-                className="flex w-full items-center justify-between bg-[#F8FAFF] px-3 py-2.5 text-left text-sm font-semibold text-gray-800"
+                className="flex w-full items-center justify-between bg-gradient-to-r from-[#edf6ff] to-[#e4f2ff] px-3 py-2.5 text-left text-sm font-semibold text-[#1C2F57]"
               >
                 <span>{group.label}</span>
                 <ChevronDown
@@ -536,7 +649,7 @@ export default function Header() {
                   }`}
                 />
               </button>
-              <div className={`border-t border-gray-100 px-3 py-2 ${mobileOpenGroupIndex === groupIndex ? "block" : "hidden"}`}>
+              <div className={`border-t border-blue-100 px-3 py-2 ${mobileOpenGroupIndex === groupIndex ? "block" : "hidden"}`}>
                 <div className="space-y-2">
                   {group.items.map((item) => (
                     <Link
@@ -544,10 +657,10 @@ export default function Header() {
                       href={item.href}
                       className={`flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium leading-5 transition ${
                         pathname === item.href
-                          ? "border-[#003A8C] bg-[#003A8C] text-white"
-                          : "border-blue-100 bg-white text-[#1F2937] hover:bg-blue-50 hover:text-[#003A8C]"
+                          ? "border-[#0F4BB8] bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] text-white"
+                          : "border-blue-100 bg-white text-[#1F2937] hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"
                       }`}
-                      onClick={() => setOpen(false)}
+                      onClick={closeMobileMenu}
                     >
                       <item.icon size={15} className={pathname === item.href ? "text-white" : "text-[#003A8C]"} />
                       <span>{item.label}</span>
@@ -560,7 +673,7 @@ export default function Header() {
           <Link
             href="/login"
             className="mt-2 block rounded-md bg-[#003A8C] px-3 py-2 text-center text-sm font-semibold text-white"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
           >
             Login
           </Link>
@@ -575,10 +688,10 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="relative group text-gray-700 hover:text-[#003A8C] transition"
+      className="group relative rounded-md border border-transparent px-2.5 py-2 text-[#1C2F57] transition hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"
     >
       {children}
-      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#F58220] transition-all group-hover:w-full"></span>
+      <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#12B8FF] transition-all group-hover:w-full"></span>
     </Link>
   );
 }
@@ -586,7 +699,6 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
 function MenuGroup({
   groupIndex,
   label,
-  description,
   items,
   isOpen,
   setGroupButtonRef,
@@ -598,7 +710,6 @@ function MenuGroup({
 }: {
   groupIndex: number;
   label: string;
-  description: string;
   items: Array<{
     label: string;
     href: string;
@@ -668,8 +779,10 @@ function MenuGroup({
         ref={setGroupButtonRef}
         id={`mega-trigger-${groupIndex}`}
         type="button"
-        className={`relative flex items-center gap-1 rounded-md px-2.5 py-1.5 transition ${
-          isOpen ? "bg-blue-50 text-[#003A8C]" : "text-gray-700 hover:bg-blue-50/70 hover:text-[#003A8C]"
+        className={`relative flex h-10 items-center gap-1 rounded-md px-3 py-2 text-[14px] font-semibold tracking-[0.01em] transition ${
+          isOpen
+            ? "border border-cyan-100 bg-gradient-to-r from-[#e8f4ff] to-[#dff0ff] text-[#0F4BB8]"
+            : "border border-transparent text-[#1C2F57] hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"
         }`}
         aria-expanded={isOpen}
         aria-haspopup="menu"
@@ -680,7 +793,7 @@ function MenuGroup({
       >
         <span>{label}</span>
         <ChevronDown size={14} className={`mt-[1px] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-        <span className={`absolute left-0 -bottom-1 h-[2px] bg-[#F58220] transition-all ${isOpen ? "w-full" : "w-0"}`}></span>
+        <span className={`absolute left-0 -bottom-1 h-[2px] bg-[#12B8FF] transition-all ${isOpen ? "w-full" : "w-0"}`}></span>
       </button>
       {isOpen && (
         <div
@@ -689,9 +802,9 @@ function MenuGroup({
           role="menu"
           aria-labelledby={`mega-trigger-${groupIndex}`}
           style={{ left: `${panelLeft}px` }}
-          className="absolute top-full z-50 w-[min(54rem,calc(100vw-2rem))] rounded-xl border border-gray-200 bg-white p-4 shadow-2xl"
+          className="absolute top-full z-50 w-[min(54rem,calc(100vw-2rem))] rounded-2xl border border-cyan-100 bg-gradient-to-br from-white via-[#f7fbff] to-[#eef6ff] p-4 shadow-[0_22px_50px_rgba(10,46,115,0.22)]"
         >
-          <div className={`grid gap-3 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+          <div className={`grid gap-3.5 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
             {items.map((item, itemIndex) => {
               const Icon = item.icon;
               return (
@@ -702,15 +815,15 @@ function MenuGroup({
                   role="menuitem"
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  className="rounded-xl border border-gray-100 bg-white p-3.5 transition hover:border-blue-200 hover:bg-blue-50/40"
+                  className="rounded-xl border border-blue-100 bg-white/95 p-3.5 transition hover:border-cyan-200 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff]"
                   onKeyDown={(event) => onItemKeyDown(itemIndex, event)}
                   onClick={onClose}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="rounded-md bg-[#F4F7FB] p-2 text-[#003A8C] ring-1 ring-blue-100">
+                    <span className="rounded-md bg-gradient-to-br from-[#e9f4ff] to-[#ddedff] p-2 text-[#0F4BB8] ring-1 ring-cyan-100">
                       <Icon size={16} />
                     </span>
-                    <span className="block text-sm font-semibold leading-5 text-gray-800">{item.label}</span>
+                    <span className="block text-[14px] font-semibold leading-5 text-gray-800">{item.label}</span>
                   </div>
                 </Link>
               );

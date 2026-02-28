@@ -62,6 +62,8 @@ const INITIAL_STATE: FormState = {
   statementOfPurpose: "",
   nocAvailable: false,
 };
+const MIN_AGE = 16;
+const MAX_AGE = 45;
 
 function isWindowOpenClient() {
   const FORCE_OPEN_FOR_TESTING = process.env.NEXT_PUBLIC_FORCE_OPEN_INTERNSHIP_WINDOW === "true";
@@ -87,7 +89,8 @@ function toReadableMonth(value: string): string {
 function getAllowedMonthRange() {
   const now = new Date();
   const min = new Date(now.getFullYear(), now.getMonth() + 2, 1);
-  const max = new Date(now.getFullYear(), now.getMonth() + 6, 1);
+  const decemberThisYear = new Date(now.getFullYear(), 11, 1);
+  const max = min > decemberThisYear ? min : decemberThisYear;
   return { min: toYearMonth(min), max: toYearMonth(max) };
 }
 
@@ -106,7 +109,25 @@ function getAllowedMonthOptions(min: string, max: string): string[] {
   return options;
 }
 
-function validateClientForm(form: FormState): string | null {
+function formatDateInput(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function getDobBounds() {
+  const now = new Date();
+  const latestDob = new Date(now.getFullYear() - MIN_AGE, now.getMonth(), now.getDate());
+  const earliestDob = new Date(now.getFullYear() - MAX_AGE, now.getMonth(), now.getDate());
+  return {
+    min: formatDateInput(earliestDob),
+    max: formatDateInput(latestDob),
+    today: formatDateInput(now),
+  };
+}
+
+function validateClientForm(form: FormState, monthOptions: string[]): string | null {
   const fullName = form.fullName.trim().replace(/\s+/g, " ");
   const dateOfBirth = form.dateOfBirth.trim();
   const gender = form.gender.trim();
@@ -120,9 +141,19 @@ function validateClientForm(form: FormState): string | null {
   const preferredStartMonth = form.preferredStartMonth.trim();
   const sop = form.statementOfPurpose.trim();
   const duration = Number(form.durationWeeks);
+  const dobDate = new Date(`${dateOfBirth}T00:00:00`);
+  const today = new Date();
+  let age = today.getFullYear() - dobDate.getFullYear();
+  const monthDiff = today.getMonth() - dobDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
+    age -= 1;
+  }
 
   if (!/^[A-Za-z][A-Za-z\s.'-]{2,99}$/.test(fullName)) return "Enter valid full name (3-100 characters).";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateOfBirth)) return "Select valid Date of Birth.";
+  if (Number.isNaN(dobDate.getTime())) return "Select valid Date of Birth.";
+  if (dobDate > today) return "Date of Birth cannot be a future date.";
+  if (age < MIN_AGE || age > MAX_AGE) return `Only candidates aged ${MIN_AGE} to ${MAX_AGE} years can apply.`;
   if (!["Male", "Female", "Other", "Prefer not to say"].includes(gender)) return "Select valid gender.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Enter valid email address.";
   if (!(mobile.length === 10 || (mobile.length === 12 && mobile.startsWith("91")))) return "Enter valid mobile number.";
@@ -135,6 +166,7 @@ function validateClientForm(form: FormState): string | null {
   if (!/^\d{4}-\d{2}$/.test(preferredStartMonth)) {
     return "Preferred start month is required.";
   }
+  if (!monthOptions.includes(preferredStartMonth)) return "Preferred start month is outside allowed window.";
   if (!Number.isInteger(duration) || duration < 6 || duration > 24) return "Duration must be 6 to 24 weeks.";
   if (sop.length < 100 || sop.length > 2000) return "Statement of purpose must be 100-2000 characters.";
   if (!form.nocAvailable) return "NOC declaration is mandatory.";
@@ -150,6 +182,7 @@ export default function InternshipApplyPage() {
   const isWindowOpen = useMemo(() => isWindowOpenClient(), []);
   const monthRange = useMemo(() => getAllowedMonthRange(), []);
   const monthOptions = useMemo(() => getAllowedMonthOptions(monthRange.min, monthRange.max), [monthRange.max, monthRange.min]);
+  const dobBounds = useMemo(() => getDobBounds(), []);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -160,7 +193,7 @@ export default function InternshipApplyPage() {
       setErrorMessage("Applications are accepted online from 1st to 10th of every month only.");
       return;
     }
-    const clientValidation = validateClientForm(form);
+    const clientValidation = validateClientForm(form, monthOptions);
     if (clientValidation) {
       setErrorMessage(clientValidation);
       return;
@@ -171,7 +204,7 @@ export default function InternshipApplyPage() {
       const response = await fetch("/api/internship/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+                body: JSON.stringify({
           ...form,
           durationWeeks: Number(form.durationWeeks),
         }),
@@ -229,9 +262,17 @@ export default function InternshipApplyPage() {
                 <input
                   required
                   maxLength={100}
+                  minLength={3}
+                  pattern="[A-Za-z][A-Za-z\s.'-]{2,99}"
+                  title="Use alphabets only (3-100 characters)."
                   className="w-full rounded-md border border-gray-300 px-3 py-2"
                   value={form.fullName ?? ""}
-                  onChange={(e) => setForm((p) => ({ ...p, fullName: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((p) => ({
+                      ...p,
+                      fullName: e.target.value.replace(/[^A-Za-z\s.'-]/g, ""),
+                    }))
+                  }
                 />
               </label>
               <label className="grid min-w-0 gap-1 text-sm">
@@ -239,10 +280,15 @@ export default function InternshipApplyPage() {
                 <input
                   type="date"
                   required
+                  min={dobBounds.min}
+                  max={dobBounds.max}
                   className="w-full rounded-md border border-gray-300 px-3 py-2"
                   value={form.dateOfBirth ?? ""}
                   onChange={(e) => setForm((p) => ({ ...p, dateOfBirth: e.target.value }))}
                 />
+                <span className="text-xs text-gray-500">
+                  Allowed DOB range: {dobBounds.min} to {dobBounds.max} (Age {MIN_AGE}-{MAX_AGE})
+                </span>
               </label>
               <label className="grid min-w-0 gap-1 text-sm">
                 <span className="font-semibold">Gender</span>
@@ -265,7 +311,16 @@ export default function InternshipApplyPage() {
               </label>
               <label className="grid min-w-0 gap-1 text-sm">
                 <span className="font-semibold">Mobile Number</span>
-                <input required maxLength={15} className="w-full rounded-md border border-gray-300 px-3 py-2" value={form.mobileNumber ?? ""} onChange={(e) => setForm((p) => ({ ...p, mobileNumber: e.target.value }))} />
+                <input
+                  required
+                  maxLength={15}
+                  inputMode="numeric"
+                  pattern="([0-9]{10}|91[0-9]{10})"
+                  title="Enter 10 digit mobile number or 91XXXXXXXXXX."
+                  className="w-full rounded-md border border-gray-300 px-3 py-2"
+                  value={form.mobileNumber ?? ""}
+                  onChange={(e) => setForm((p) => ({ ...p, mobileNumber: e.target.value.replace(/[^\d]/g, "") }))}
+                />
               </label>
               <label className="grid min-w-0 gap-1 text-sm">
                 <span className="font-semibold">Institute Name</span>
@@ -285,7 +340,16 @@ export default function InternshipApplyPage() {
               </label>
               <label className="grid min-w-0 gap-1 text-sm">
                 <span className="font-semibold">PIN Code</span>
-                <input required maxLength={6} className="w-full rounded-md border border-gray-300 px-3 py-2" value={form.pinCode ?? ""} onChange={(e) => setForm((p) => ({ ...p, pinCode: e.target.value }))} />
+                <input
+                  required
+                  maxLength={6}
+                  inputMode="numeric"
+                  pattern="\d{6}"
+                  title="Enter valid 6 digit PIN code."
+                  className="w-full rounded-md border border-gray-300 px-3 py-2"
+                  value={form.pinCode ?? ""}
+                  onChange={(e) => setForm((p) => ({ ...p, pinCode: e.target.value.replace(/[^\d]/g, "").slice(0, 6) }))}
+                />
               </label>
               <label className="grid min-w-0 gap-1 text-sm">
                 <span className="font-semibold">Internship Domain</span>

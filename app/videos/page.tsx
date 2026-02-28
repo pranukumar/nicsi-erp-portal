@@ -11,7 +11,7 @@ export default function Page() {
         </p>
         <p className="mt-3 text-sm">
           Official reference:{" "}
-          <Link href="https://nicsi.nic.in/media" target="_blank" className="font-semibold text-[#003A8C]">
+          <Link href="https://nicsi.nic.in/media" target="_blank" rel="noreferrer" className="font-semibold text-[#003A8C]">
             NICSI Media
           </Link>
         </p>

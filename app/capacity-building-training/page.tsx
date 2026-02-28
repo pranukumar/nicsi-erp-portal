@@ -65,10 +65,10 @@ export default function CapacityBuildingTrainingPage() {
             offerings. Detailed programme schedules, nominations and batch notifications may be published by NICSI as and when issued.
           </p>
           <div className="mt-3 flex flex-wrap gap-2 text-sm">
-            <Link href="https://nicsi.nic.in/home" target="_blank" className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 font-semibold text-[#003A8C] hover:bg-blue-100">
+            <Link href="https://nicsi.nic.in/home" target="_blank" rel="noreferrer" className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 font-semibold text-[#003A8C] hover:bg-blue-100">
               NICSI Home
             </Link>
-            <Link href="https://nicsi.nic.in/services" target="_blank" className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 font-semibold text-[#003A8C] hover:bg-blue-100">
+            <Link href="https://nicsi.nic.in/services" target="_blank" rel="noreferrer" className="rounded-md border border-blue-200 bg-blue-50 px-3 py-1.5 font-semibold text-[#003A8C] hover:bg-blue-100">
               NICSI Services
             </Link>
           </div>
