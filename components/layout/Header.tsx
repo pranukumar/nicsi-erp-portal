@@ -262,13 +262,26 @@ const menuGroups = [
   },
 ];
 
-const topStripOpportunitiesItems = [
+type TopStripMenuItem = {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+  external?: boolean;
+};
+
+type TopStripUtilityLink = {
+  label: string;
+  href: string;
+  items?: TopStripMenuItem[];
+};
+
+const topStripOpportunitiesItems: TopStripMenuItem[] = [
   { label: "Vacancies", href: "/vacancies", icon: BriefcaseBusiness, external: false },
   { label: "Internship", href: "/internship", icon: UserCheck2, external: false },
   { label: "Capacity Building Training", href: "/capacity-building-training", icon: CalendarDays, external: false },
   { label: "Contact Us", href: "/contact", icon: Users, external: false },
 ];
-const topStripQuickLinksItems = [
+const topStripQuickLinksItems: TopStripMenuItem[] = [
   { label: "RTI", href: "/rti", icon: FileCheck2 },
   { label: "CSR", href: "/csr", icon: Building2 },
   { label: "GST Particulars", href: "/gst-particulars", icon: FileBadge2 },
@@ -276,7 +289,7 @@ const topStripQuickLinksItems = [
   { label: "Contact Us", href: "/contact", icon: Users },
 ];
 
-const utilityLinks = [
+const utilityLinks: TopStripUtilityLink[] = [
   {
     label: "Offerings",
     href: "/vacancies",
