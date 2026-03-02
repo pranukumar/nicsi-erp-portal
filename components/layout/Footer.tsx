@@ -12,6 +12,7 @@ export default async function Footer() {
     { label: "LinkedIn", href: "https://www.linkedin.com/company/nicsi/", icon: Linkedin },
   ] as const;
   const policyLinks = [
+    { label: "Sitemap", href: "/sitemap" },
     { label: "Terms & Conditions", href: "/terms-and-conditions" },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Copyright Policy", href: "/copyright-policy" },
@@ -47,7 +48,11 @@ export default async function Footer() {
             {footerContent.quickLinks.map((item) => (
               <li key={item.label}>
                 <Link href={item.href} className={textLinkClass}>
-                  {item.label}
+                  {item.href === "/contact"
+                    ? "Contact Us"
+                    : item.href === "/career" || item.href === "/vacancy" || item.href === "/vacancies"
+                      ? "Vacancies"
+                      : item.label}
                 </Link>
               </li>
             ))}

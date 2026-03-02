@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Bot, MessageCircle, Send, Trash2, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { NicsiChatbotFaq } from "@/services/nicsiChatbot";
 
 type ChatMessage = {
@@ -50,15 +50,21 @@ export default function NicsiSaathiChatbot({ faqs }: { faqs: NicsiChatbotFaq[] }
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
+  const messageSeqRef = useRef(initialMessages.length);
 
   const quickFaqs = useMemo(() => faqs.slice(0, 3), [faqs]);
+
+  const nextMessageId = (prefix: "u" | "b") => {
+    messageSeqRef.current += 1;
+    return `${prefix}-${messageSeqRef.current}`;
+  };
 
   const askQuestion = (input: string) => {
     const text = input.trim();
     if (!text) return;
 
     const userMessage: ChatMessage = {
-      id: `u-${Date.now()}`,
+      id: nextMessageId("u"),
       role: "user",
       text,
     };
@@ -66,13 +72,13 @@ export default function NicsiSaathiChatbot({ faqs }: { faqs: NicsiChatbotFaq[] }
     const match = getBestFaqMatch(text, faqs);
     const botMessage: ChatMessage = match
       ? {
-          id: `b-${Date.now()}`,
+          id: nextMessageId("b"),
           role: "bot",
           text: match.answer,
           href: match.href,
         }
       : {
-          id: `b-${Date.now()}`,
+          id: nextMessageId("b"),
           role: "bot",
           text: "Is query ka exact FAQ abhi available nahi hai. Kripya Contact page use karein.",
           href: "/contact",

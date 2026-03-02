@@ -245,7 +245,7 @@ function getSuggestedScopeTypes(query: string, allScopeTypes: string[]): string[
   return Array.from(new Set([...ruleBasedMatches, ...dynamicMatches]));
 }
 
-export default function EmpanelledvendorsPage() {
+export default function VendorSearchPage() {
   const [vendorRows, setVendorRows] = useState<VendorRow[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -448,11 +448,11 @@ export default function EmpanelledvendorsPage() {
 
   return (
     <main className="pb-12">
-      <PageTitle title="Empanelled Vendors" />
+      <PageTitle title="Vendor Search" />
 
       <section className="mx-auto max-w-7xl px-6 py-8 text-gray-700">
         <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0F172A]">Empanelled Vendors</h2>
+          <h2 className="text-xl font-bold text-[#0F172A]">Vendor Search</h2>
           <p className="mt-2 text-sm text-gray-600">
             Search and filter NICSI empanelled vendors by category and empanelment type.
           </p>

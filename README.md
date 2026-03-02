@@ -20,7 +20,7 @@ Government-focused ERP web portal built with Next.js App Router, React, TypeScri
 - `/services`: ERP service modules
 - `/tenders`: Tender information
 - `/empanelled-vendors`: Empanelled vendors
-- `/career`: Career information
+- `/vacancies`: Vacancies information
 - `/contact`: Contact details
 - `/login`: Portal login UI
 

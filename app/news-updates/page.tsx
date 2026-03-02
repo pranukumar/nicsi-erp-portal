@@ -12,7 +12,7 @@ const newsItems: NewsItem[] = [
   {
     title: "Advertisement for the position of Chief Human Resource Officer (CHRO) on contract basis in NICSI",
     category: "Announcement",
-    href: "/career",
+    href: "/vacancies",
     dateLabel: "As listed on NICSI homepage announcements",
   },
   {

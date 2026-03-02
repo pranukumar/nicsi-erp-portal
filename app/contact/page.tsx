@@ -6,7 +6,7 @@ export default async function ContactPage() {
 
   return (
     <main className="pb-12">
-      <PageTitle title="Contact" />
+      <PageTitle title="Contact Us" />
       <section className="mx-auto max-w-5xl px-6 py-8 text-gray-700">
         <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">NICSI Contact Details</h2>

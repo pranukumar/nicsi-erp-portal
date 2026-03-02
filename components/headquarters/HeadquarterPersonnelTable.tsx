@@ -6,12 +6,14 @@ type Props = {
   initialRows: HeadquarterPersonnel[];
   initialTotal: number;
   initialManagingDirector?: HeadquarterPersonnel;
+  showManagingDirector?: boolean;
 };
 
 export default function HeadquarterPersonnelTable({
   initialRows,
   initialTotal,
   initialManagingDirector,
+  showManagingDirector = true,
 }: Props) {
   const rows = initialRows;
   const total = initialTotal;
@@ -19,7 +21,7 @@ export default function HeadquarterPersonnelTable({
 
   return (
     <>
-      {managingDirector && (
+      {showManagingDirector && managingDirector && (
         <div className="rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-white p-4 shadow-sm md:p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>

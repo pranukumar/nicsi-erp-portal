@@ -63,7 +63,6 @@ export default function FacebookPageEmbed({
   const [embedState, setEmbedState] = useState<"loading" | "ready" | "failed">("loading");
 
   useEffect(() => {
-    setEmbedState("loading");
     (async () => {
       await loadFacebookSDK();
       if (containerRef.current) {

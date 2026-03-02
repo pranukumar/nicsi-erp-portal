@@ -2,9 +2,9 @@ const baseUrl = "https://nicsi.nic.in";
 
 const feedItems = [
   {
-    title: "Career Opportunities - NICSI",
-    description: "Current openings and archived recruitment notifications.",
-    link: `${baseUrl}/career`,
+    title: "Vacancies - NICSI",
+    description: "Current vacancies and archived recruitment notifications.",
+    link: `${baseUrl}/vacancies`,
     pubDate: "Fri, 27 Feb 2026 10:00:00 GMT",
   },
   {

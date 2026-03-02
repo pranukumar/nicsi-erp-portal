@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NICSI ERP Portal - Architecture Review</title>
+  <style>
+    :root {
+      --bg: #f3f7ff;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #003a8c;
+      --brand2: #0a4bd6;
+      --line: #d6e4ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, #f8fbff 100%);
+      color: var(--ink);
+    }
+    .deck {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px;
+    }
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .btn {
+      border: 1px solid #b7cdfa;
+      background: #fff;
+      color: #0a2a72;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn:hover { background: #eef4ff; }
+    .hint { color: var(--muted); font-size: 13px; }
+    .slide {
+      display: none;
+      min-height: 78vh;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 28px 32px;
+      box-shadow: 0 8px 26px rgba(3, 34, 93, 0.08);
+    }
+    .slide.active { display: block; }
+    h1, h2 { margin: 0; color: #0a2a72; }
+    h1 { font-size: 38px; line-height: 1.2; }
+    h2 { font-size: 30px; line-height: 1.25; }
+    .sub { margin-top: 8px; color: var(--muted); font-size: 18px; }
+    ul { margin: 16px 0 0 0; padding-left: 20px; }
+    li { margin: 8px 0; font-size: 19px; line-height: 1.45; }
+    .grid-2 {
+      margin-top: 20px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-3 {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid #dbe8ff;
+      border-radius: 10px;
+      padding: 14px 14px;
+      background: #fcfdff;
+    }
+    .card h3 {
+      margin: 0 0 8px 0;
+      color: #0d3d97;
+      font-size: 17px;
+    }
+    .card p { margin: 0; color: #334155; font-size: 15px; line-height: 1.45; }
+    .kpi {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--brand2);
+      margin: 4px 0 4px 0;
+    }
+    .small { font-size: 14px; color: var(--muted); }
+    .footer {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      h1 { font-size: 30px; }
+      h2 { font-size: 24px; }
+      li { font-size: 17px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .slide { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="controls">
+      <div>
+        <button class="btn" onclick="prevSlide()">Prev</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+      </div>
+      <div class="hint">Use Left/Right Arrow keys | Slide <span id="idx">1</span>/<span id="total">1</span></div>
+    </div>
+
+    <section class="slide active">
+      <h1>NICSI ERP Portal</h1>
+      <div class="sub">Architecture Review</div>
+      <ul>
+        <li>Unified digital platform for governance communication, procurement visibility, and workflow-backed publishing.</li>
+        <li>Technology foundation: Next.js 16, React 19, TypeScript, PostgreSQL.</li>
+        <li>Focus of this review: architecture health, risks, and scale roadmap.</li>
+      </ul>
+      <div class="footer"><span>Prepared: 28 Feb 2026</span><span>NICSI Architecture Review</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Strategic Outcomes</h2>
+      <div class="grid-3">
+        <article class="card"><h3>Governed Publishing</h3><p>Approval workflow with role checks and audit logging for controlled updates.</p></article>
+        <article class="card"><h3>Public Trust</h3><p>Tender, policy, and disclosure pages aligned for transparent communication.</p></article>
+        <article class="card"><h3>Scalable Operations</h3><p>Service-based modules to incrementally onboard new domains and datasets.</p></article>
+      </div>
+      <div class="grid-3">
+        <article class="card"><div class="kpi">6+</div><p>Core dynamic service domains</p></article>
+        <article class="card"><div class="kpi">10+</div><p>API-backed workflows/pages</p></article>
+        <article class="card"><div class="kpi">1</div><p>Unified portal experience</p></article>
+      </div>
+      <div class="footer"><span>Business Alignment</span><span>Slide 2</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Current Architecture (Logical)</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Presentation Layer</h3>
+          <p>Next.js App Router pages + reusable layout components (header, top strip, footer, menus).</p>
+        </article>
+        <article class="card">
+          <h3>Interaction Layer</h3>
+          <p>Client components for maps, accessibility tools, embeds, form flows, and dynamic controls.</p>
+        </article>
+        <article class="card">
+          <h3>Domain Services</h3>
+          <p>`services/*` encapsulates validation, ingestion, workflow logic, and persistence contracts.</p>
+        </article>
+        <article class="card">
+          <h3>Data Layer</h3>
+          <p>PostgreSQL pooled access; fallback defaults where DB is unavailable for non-critical reads.</p>
+        </article>
+      </div>
+      <div class="footer"><span>App Topology</span><span>Slide 3</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>ERP Module Integration Architecture</h2>
+      <div class="grid-3">
+        <article class="card"><h3>AUTH Service</h3><p>Identity, role claims, policy checks, and secure session/token controls.</p></article>
+        <article class="card"><h3>MASTER Service</h3><p>Single source for department, state/UT, category, and status masters.</p></article>
+        <article class="card"><h3>PI Service</h3><p>Project lifecycle, milestone tracking, state mapping, and progress telemetry.</p></article>
+      </div>
+      <div class="grid-3">
+        <article class="card"><h3>Vendor Management</h3><p>Empanelment, compliance, bid linkage, and partner lifecycle governance.</p></article>
+        <article class="card"><h3>Notification Service</h3><p>Event-based alerts for approvals, SLAs, submissions, and escalations.</p></article>
+        <article class="card"><h3>Accounts Service</h3><p>Budget-utilization, invoice/payment status, and finance audit controls.</p></article>
+      </div>
+      <div class="grid-2">
+        <article class="card"><h3>Zoho Integration Adapter</h3><p>Controlled sync layer with mapping, retry queue, and reconciliation logs.</p></article>
+        <article class="card"><h3>Integration Pattern</h3><p>API gateway for sync operations + event bus for async module coordination.</p></article>
+      </div>
+      <div class="footer"><span>Target ERP Modules</span><span>Slide 4</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Data & Integration Design</h2>
+      <ul>
+        <li>PostgreSQL-backed content and workflow tables support governed updates and audit traceability.</li>
+        <li>External procurement sources (GeM/CPP) integrated with parser + fallback strategy.</li>
+        <li>State project module now supports API submission and count aggregation model.</li>
+        <li>Service contracts isolate external source volatility from page rendering logic.</li>
+      </ul>
+      <div class="grid-3">
+        <article class="card"><h3>Ingestion</h3><p>Periodic fetch with revalidation and parser controls.</p></article>
+        <article class="card"><h3>Validation</h3><p>Server-side checks before persistence for data quality.</p></article>
+        <article class="card"><h3>Fallback</h3><p>Graceful content defaults to preserve uptime perception.</p></article>
+      </div>
+      <div class="footer"><span>Data Reliability</span><span>Slide 5</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Security & Governance Posture</h2>
+      <ul>
+        <li>Workflow APIs enforce role checks for proposal, approval, and rejection pathways.</li>
+        <li>Input validation implemented in service layer for forms and API submissions.</li>
+        <li>Authentication route exists for role-aware portal entry and controlled redirects.</li>
+        <li>Governance model already aligns to auditable publish lifecycle.</li>
+      </ul>
+      <div class="small">Note: header-based role simulation should be upgraded to token/session-backed enforcement for production hardening.</div>
+      <div class="footer"><span>Control Plane</span><span>Slide 6</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Accessibility & Citizen Experience</h2>
+      <div class="grid-2">
+        <article class="card"><h3>Accessibility Toolbar</h3><p>Font scale, contrast, grayscale, readable mode, text spacing, motion reduction controls.</p></article>
+        <article class="card"><h3>Policy Surface</h3><p>Dedicated Terms, Privacy, Copyright, Help, Website Policy, Hyperlinking, and Accessibility pages.</p></article>
+      </div>
+      <ul>
+        <li>Improved mobile top strip behavior and menu usability.</li>
+        <li>Structured content blocks for better scannability and public communication clarity.</li>
+      </ul>
+      <div class="footer"><span>Public Interface</span><span>Slide 7</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Operational Risks (Current)</h2>
+      <div class="grid-2">
+        <article class="card"><h3>Parser Drift</h3><p>External page markup changes can affect GeM/CPP data extraction.</p></article>
+        <article class="card"><h3>Auth Hardening Gap</h3><p>Role simulation pattern must move to stronger identity controls.</p></article>
+        <article class="card"><h3>Observability Gap</h3><p>Central dashboards for API SLAs and parser health not yet institutionalized.</p></article>
+        <article class="card"><h3>Data Maturity</h3><p>Certain modules still depend on staged/demo baselines until full data onboarding.</p></article>
+      </div>
+      <div class="footer"><span>Risk Register</span><span>Slide 8</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>90-Day Architecture Plan</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>0-30 Days</h3>
+          <p>Stabilize data contracts, enforce common validation, and add telemetry baselines.</p>
+        </article>
+        <article class="card">
+          <h3>31-60 Days</h3>
+          <p>Upgrade identity controls, parser drift monitoring, and migration governance.</p>
+        </article>
+        <article class="card">
+          <h3>61-90 Days</h3>
+          <p>Admin console for state datasets, analytics views, and CI compliance automation.</p>
+        </article>
+      </div>
+      <div class="footer"><span>Roadmap</span><span>Slide 9</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Decision Requests</h2>
+      <ul>
+        <li>Approve platform hardening track (identity, observability, parser resilience).</li>
+        <li>Approve data ownership model by domain (content, procurement, projects, policy).</li>
+        <li>Approve KPI review cadence for architecture governance.</li>
+      </ul>
+      <div class="grid-3">
+        <article class="card"><h3>KPI 1</h3><p>Content publish lead time</p></article>
+        <article class="card"><h3>KPI 2</h3><p>Procurement listing accuracy</p></article>
+        <article class="card"><h3>KPI 3</h3><p>API validation failure ratio</p></article>
+      </div>
+      <div class="footer"><span>Approvals Needed</span><span>Slide 10</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Closing</h2>
+      <ul>
+        <li>Current architecture is modular, scalable, and governance-ready.</li>
+        <li>With targeted hardening, the portal can serve as a robust digital operating front for NICSI.</li>
+        <li>Immediate next step: approve roadmap and assign cross-functional ownership.</li>
+      </ul>
+      <div class="sub">Thank You</div>
+      <div class="footer"><span>NICSI ERP Portal</span><span>Slide 11</span></div>
+    </section>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+    const totalEl = document.getElementById("total");
+    const idxEl = document.getElementById("idx");
+    totalEl.textContent = String(slides.length);
+
+    function render() {
+      slides.forEach((s, i) => s.classList.toggle("active", i === index));
+      idxEl.textContent = String(index + 1);
+    }
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      render();
+    }
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      render();
+    }
+    window.prevSlide = prevSlide;
+    window.nextSlide = nextSlide;
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    });
+    render();
+  </script>
+</body>
+</html>

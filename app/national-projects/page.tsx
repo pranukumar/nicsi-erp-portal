@@ -278,7 +278,7 @@ export default function Page() {
               className="flex transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
-              {featuredProjects.map((project, index) => (
+              {featuredProjects.map((project) => (
                 <article key={project.title} className="w-full shrink-0">
                   <div className="grid md:grid-cols-[340px_1fr]">
                     <div className="flex h-64 items-center justify-center border-b border-blue-100 bg-white p-6 md:h-full md:border-b-0 md:border-r">

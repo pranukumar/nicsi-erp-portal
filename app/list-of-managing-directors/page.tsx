@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PageTitle from "../../components/layout/PageTitle";
 
 const managingDirectors = [

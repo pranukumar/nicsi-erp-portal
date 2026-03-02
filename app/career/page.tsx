@@ -169,7 +169,7 @@ export default function CareerPage() {
 
   return (
     <main className="pb-12">
-      <PageTitle title="Career" />
+      <PageTitle title="Vacancies" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
         <div className="mb-4">
           <div className="inline-flex overflow-hidden rounded-lg border border-blue-200 bg-white">
@@ -182,7 +182,7 @@ export default function CareerPage() {
                   : "bg-white text-[#0F172A] hover:bg-blue-50"
               }`}
             >
-              Current Opening ({CURRENT_OPENINGS.length})
+              Current Vacancies ({CURRENT_OPENINGS.length})
             </button>
             <button
               type="button"

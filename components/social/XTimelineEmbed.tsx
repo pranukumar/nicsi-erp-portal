@@ -28,7 +28,6 @@ export default function XTimelineEmbed({
   const [embedState, setEmbedState] = useState<"loading" | "ready" | "failed">("loading");
 
   useEffect(() => {
-    setEmbedState("loading");
     let attempts = 0;
     const maxAttempts = 30;
 

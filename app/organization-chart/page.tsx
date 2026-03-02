@@ -60,10 +60,6 @@ const hqHierarchy: Person[] = [
 
 const domainExperts: Person[] = [
   { role: "CHRO – Chief Human Resources Officer", name: " ", designation: " "  },
-  { role: "CTO – Chief Technology Officer", name: " ", designation: " " },
-  { role: "CLO – Chief Legal Officer", name: " ", designation: " "  },
-  { role: "CFO – Chief Financial Officer", name: " ", designation: " "  },
-  { role: "CPO – Chief Procurement Officer", name: " ", designation: " "  },
 ];
 
 const consultants: Person[] = [
@@ -152,6 +148,30 @@ function DetailNode({ person }: { person: Person }) {
   );
 }
 
+function StateUnitNode({ unit }: { unit: StateUnit }) {
+  return (
+    <article className="rounded-lg border border-gray-200 bg-[#F8FAFF] p-3">
+      <p className="text-sm font-semibold uppercase tracking-wide text-[#003A8C]">{unit.stateUt}</p>
+      {unit.officer || unit.designation ? (
+        <p className="mt-1 text-base font-semibold text-[#0F172A]">
+          {unit.officer}
+          {unit.officer && unit.designation ? ` (${unit.designation})` : unit.designation}
+        </p>
+      ) : (
+        <p className="mt-1 text-sm text-gray-600">Officer details to be updated</p>
+      )}
+      {(unit.phone || unit.email) ? (
+        <p className="mt-1 text-[11px] text-gray-600">
+          {unit.phone ?? ""}
+          {unit.phone && unit.email ? " | " : ""}
+          {unit.email ?? ""}
+        </p>
+      ) : null}
+      {unit.note ? <p className="mt-1 text-[11px] text-[#0A2A72]">{unit.note}</p> : null}
+    </article>
+  );
+}
+
 export default function OrganizationChartPage() {
   return (
     <main className="pb-12">
@@ -179,19 +199,19 @@ export default function OrganizationChartPage() {
             <div className="grid items-start gap-3 md:grid-cols-[1fr_minmax(0,28rem)_minmax(0,16rem)]">
               <div className="hidden md:block" />
               <div className="mx-auto w-full max-w-md rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm">
-                <div className="flex flex-col items-center gap-2">
+                <div className="flex w-full flex-col items-center justify-center gap-2 text-center">
                   <div className="h-24 w-20 overflow-hidden rounded-lg border border-blue-100 shadow-sm">
                     <Image
                       src={leadership.md.photo}
                       alt={leadership.md.name}
                       width={120}
                       height={160}
-                      className="h-full w-full object-cover object-top"
+                      className="h-full w-full object-cover object-center"
                     />
                   </div>
                   <div>
                     <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{leadership.md.role}</p>
-                    <h4 className="text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
+                    <h4 className="mx-auto text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
                     <p className="text-sm text-[#003A8C]">Phone: {leadership.md.phone} | Email: {leadership.md.email}</p>
                   </div>
                 </div>
@@ -210,7 +230,7 @@ export default function OrganizationChartPage() {
             <div className="mx-auto h-px w-full max-w-4xl bg-blue-200" />
 
             <div>
-              <div className="grid items-stretch gap-4 lg:grid-cols-3">
+              <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                   <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI HQ Personnel</h4>
                   <div className="mt-3 space-y-2">
@@ -237,26 +257,15 @@ export default function OrganizationChartPage() {
                     ))}
                   </div>
                 </article>
+                <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
+                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI State Personnel</h4>
+                  <div className="mt-3 max-h-[46rem] space-y-2 overflow-y-auto pr-1">
+                    {stateUnits.map((unit) => (
+                      <StateUnitNode key={unit.stateUt} unit={unit} />
+                    ))}
+                  </div>
+                </article>
               </div>
-            </div>
-
-            <div>
-              <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#0052CC]">NICSI State Personnel - 36 States/UTs</p>
-              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {stateUnits.map((unit) => (
-                  <article key={unit.stateUt} className="rounded-md border border-gray-200 bg-white px-3 py-2 text-xs">
-                    <p className="font-semibold text-[#0F172A]">{unit.stateUt}</p>
-                    {unit.officer || unit.designation ? (
-                      <p className="text-gray-700">
-                        {unit.officer}
-                        {unit.officer && unit.designation ? ` (${unit.designation})` : unit.designation}
-                      </p>
-                    ) : null}
-                    {(unit.phone || unit.email) && <p className="text-gray-600">{unit.phone ?? ""}{unit.phone && unit.email ? " | " : ""}{unit.email ?? ""}</p>}
-                    {unit.note && <p className="text-[#003A8C]">{unit.note}</p>}
-                  </article>
-                ))}
-              </div> 
             </div>
           </div>
         </div>

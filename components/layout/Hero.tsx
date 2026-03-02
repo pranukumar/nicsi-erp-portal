@@ -24,7 +24,7 @@ const slides = [
     description: "Track delivery outcomes with real-time visibility across departments.",
     image: "/images/digtal.png",
     primaryCta: { label: "About Portal", href: "/about" },
-    secondaryCta: { label: "Contact", href: "/contact" },
+    secondaryCta: { label: "Contact Us", href: "/contact" },
   },
 ];
 
@@ -141,7 +141,7 @@ export default function Hero() {
             }`}
           >
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">Digital Governance Platform</p>
-            <p className="mt-1 text-sm font-bold tracking-[0.08em] text-white">NICSI ERP PORTAL</p>
+            <p className="mt-1 text-sm font-bold tracking-[0.08em] text-white">NICSI Digital Operations Hub</p>
             <p className="mt-1 text-xs text-blue-100">National Informatics Centre Services Inc.</p>
           </div>
           <h1

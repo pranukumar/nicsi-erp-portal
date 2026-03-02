@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NICSI ERP - Implementation Execution Plan</title>
+  <style>
+    :root {
+      --bg: #f3f7ff;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0a3b94;
+      --line: #d7e3fb;
+      --ok: #0f9d58;
+      --warn: #d97706;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: linear-gradient(180deg, #eef4ff, #f8fbff); color: var(--ink); }
+    .deck { max-width: 1280px; margin: 0 auto; padding: 20px; }
+    .controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
+    .btn { border: 1px solid #b8cdf7; background: #fff; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; color: #0b2f72; }
+    .btn:hover { background: #eef4ff; }
+    .hint { font-size: 13px; color: #64748b; }
+    .slide { display: none; min-height: 78vh; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; box-shadow: 0 8px 24px rgba(4, 33, 86, 0.08); }
+    .slide.active { display: block; }
+    h1, h2 { margin: 0; color: #0b2f72; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 30px; }
+    .sub { margin-top: 8px; color: var(--muted); font-size: 18px; }
+    ul { margin: 14px 0 0 0; padding-left: 20px; }
+    li { margin: 8px 0; font-size: 18px; line-height: 1.45; }
+    .grid2 { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 16px; }
+    .grid3 { display: grid; gap: 12px; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 16px; }
+    .card { border: 1px solid #dce8ff; border-radius: 10px; padding: 12px; background: #fcfdff; }
+    .card h3 { margin: 0 0 6px 0; color: #0e429f; font-size: 17px; }
+    .card p { margin: 0; font-size: 15px; color: #334155; line-height: 1.45; }
+    .pill { display: inline-block; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 700; }
+    .ok { background: #e8f8ef; color: #0e8a4f; border: 1px solid #b9ebcd; }
+    .warn { background: #fff5e8; color: #b36005; border: 1px solid #ffd7a7; }
+    .num { font-size: 34px; font-weight: 700; color: #0a4bd6; }
+    .footer { margin-top: 12px; display: flex; justify-content: space-between; font-size: 13px; color: #64748b; }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 15px; }
+    th, td { border: 1px solid #dce8ff; padding: 8px; vertical-align: top; text-align: left; }
+    th { background: #f4f8ff; color: #0d3d97; }
+    @media (max-width: 900px) {
+      .grid2, .grid3 { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+      h2 { font-size: 24px; }
+      li { font-size: 17px; }
+      .slide { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="controls">
+      <div>
+        <button class="btn" onclick="prevSlide()">Prev</button>
+        <button class="btn" onclick="nextSlide()">Next</button>
+      </div>
+      <div class="hint">Use Left/Right keys | Slide <span id="idx">1</span>/<span id="total">1</span></div>
+    </div>
+
+    <section class="slide active">
+      <h1>NICSI ERP Implementation Plan</h1>
+      <div class="sub">Execution-Focused Slides for Review Meeting</div>
+      <ul>
+        <li>Objective: Move from portal-first foundation to integrated ERP operating model.</li>
+        <li>Scope: AUTH, MASTER, PI, Vendor Management, Notification, Accounts, Zoho Integration.</li>
+        <li>Focus: Real deliverables, responsibilities, milestones, and risk controls.</li>
+      </ul>
+      <div class="footer"><span>Date: 28 Feb 2026</span><span>Implementation Review</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Implementation Principles</h2>
+      <div class="grid3">
+        <article class="card"><h3>Domain Ownership</h3><p>Every module has clear product owner, API owner, and data steward.</p></article>
+        <article class="card"><h3>Security by Design</h3><p>Central auth/policy checks before any business operation.</p></article>
+        <article class="card"><h3>Event-Driven Sync</h3><p>Modules publish key events to reduce tight coupling.</p></article>
+      </div>
+      <div class="grid3">
+        <article class="card"><h3>Incremental Rollout</h3><p>Deliver in vertical slices, not big-bang release.</p></article>
+        <article class="card"><h3>Observability</h3><p>Every API and sync job has telemetry + alerts.</p></article>
+        <article class="card"><h3>Auditability</h3><p>Workflow actions and data mutations are traceable.</p></article>
+      </div>
+      <div class="footer"><span>Execution Model</span><span>Slide 2</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Target Module Map</h2>
+      <div class="grid2">
+        <article class="card"><h3>AUTH Service</h3><p>Identity, role claims, token/session management, authorization middleware.</p></article>
+        <article class="card"><h3>MASTER Service</h3><p>Departments, states/UT, category/status masters, canonical lookups.</p></article>
+        <article class="card"><h3>PI Service</h3><p>Project lifecycle, milestones, state mapping, performance KPIs.</p></article>
+        <article class="card"><h3>Vendor Management</h3><p>Empanelment, compliance, capability matrix, vendor lifecycle.</p></article>
+        <article class="card"><h3>Notification Service</h3><p>Email/SMS/in-app alerts based on workflow and SLA events.</p></article>
+        <article class="card"><h3>Accounts + Zoho Adapter</h3><p>Budget/invoice/payment state and controlled CRM sync.</p></article>
+      </div>
+      <div class="footer"><span>Module Architecture</span><span>Slide 3</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Release Plan (12 Weeks)</h2>
+      <table>
+        <thead><tr><th>Phase</th><th>Weeks</th><th>Core Deliverables</th><th>Exit Criteria</th></tr></thead>
+        <tbody>
+          <tr><td>Phase 1 - Foundation</td><td>1-4</td><td>Auth hardening, master data APIs, module contracts</td><td>Signed API specs + baseline telemetry</td></tr>
+          <tr><td>Phase 2 - Core Workflows</td><td>5-8</td><td>PI + Vendor + Notifications integration</td><td>End-to-end workflow runs in staging</td></tr>
+          <tr><td>Phase 3 - Finance & Integration</td><td>9-12</td><td>Accounts module + Zoho sync adapter + reconciliation</td><td>Pilot go-live with rollback readiness</td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>Roadmap</span><span>Slide 4</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Sprint Deliverables (Detailed)</h2>
+      <ul>
+        <li><strong>Sprint 1:</strong> Auth middleware, role matrix, session policy, master schema freeze.</li>
+        <li><strong>Sprint 2:</strong> Master APIs + admin maintenance UI + validation registry.</li>
+        <li><strong>Sprint 3:</strong> PI APIs, project-state mapping, timeline/event model.</li>
+        <li><strong>Sprint 4:</strong> Vendor profile/compliance workflows + alert hooks.</li>
+        <li><strong>Sprint 5:</strong> Accounts APIs + invoice status model + notification escalation.</li>
+        <li><strong>Sprint 6:</strong> Zoho adapter, retry queue, reconciliation dashboard, UAT signoff.</li>
+      </ul>
+      <div class="footer"><span>Iteration Plan</span><span>Slide 5</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Team Structure & Ownership</h2>
+      <div class="grid3">
+        <article class="card"><h3>Architecture Pod</h3><p>Solution architect, tech lead, security lead.</p></article>
+        <article class="card"><h3>Platform Pod</h3><p>Backend engineers, DB engineer, integration engineer.</p></article>
+        <article class="card"><h3>Product Pod</h3><p>Functional owner, BA, QA lead, rollout coordinator.</p></article>
+      </div>
+      <table>
+        <thead><tr><th>Module</th><th>Primary Owner</th><th>Secondary</th></tr></thead>
+        <tbody>
+          <tr><td>AUTH + MASTER</td><td>Platform Team</td><td>Security Team</td></tr>
+          <tr><td>PI + Vendor</td><td>Business Apps Team</td><td>Architecture Team</td></tr>
+          <tr><td>Accounts + Zoho</td><td>Finance Systems Team</td><td>Integration Team</td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>Operating Model</span><span>Slide 6</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Risk Register & Mitigation</h2>
+      <table>
+        <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Cross-module contract drift</td><td>High</td><td>Versioned API specs + contract tests</td><td><span class="pill warn">Monitor</span></td></tr>
+          <tr><td>External integration failures</td><td>High</td><td>Retry queue + circuit breaker + DLQ</td><td><span class="pill warn">Planned</span></td></tr>
+          <tr><td>Role policy misconfiguration</td><td>High</td><td>Central RBAC policy and approval gates</td><td><span class="pill ok">In Progress</span></td></tr>
+          <tr><td>Production data inconsistency</td><td>Medium</td><td>Master governance + reconciliation jobs</td><td><span class="pill warn">Planned</span></td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>Risk Controls</span><span>Slide 7</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>KPIs for Review Cadence</h2>
+      <div class="grid3">
+        <article class="card"><div class="num">&lt;2%</div><p>API error ratio target</p></article>
+        <article class="card"><div class="num">&lt;5 min</div><p>Critical alert response SLA</p></article>
+        <article class="card"><div class="num">100%</div><p>Workflow action audit coverage</p></article>
+      </div>
+      <ul>
+        <li>Weekly architecture governance checkpoint.</li>
+        <li>Fortnightly release readiness review with rollback test evidence.</li>
+        <li>Monthly stakeholder dashboard review (module quality + business outcomes).</li>
+      </ul>
+      <div class="footer"><span>Performance Governance</span><span>Slide 8</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Go-Live Readiness Checklist</h2>
+      <ul>
+        <li>Security test signoff: auth, access controls, secret handling, webhook validation.</li>
+        <li>Data signoff: master quality checks and reconciliation proof.</li>
+        <li>Operational signoff: monitoring dashboards, runbooks, on-call roster.</li>
+        <li>Business signoff: UAT acceptance and contingency SOPs.</li>
+      </ul>
+      <div class="grid2">
+        <article class="card"><h3>Mandatory Gate</h3><p>No module release without rollback and smoke automation evidence.</p></article>
+        <article class="card"><h3>Pilot Strategy</h3><p>Controlled rollout with selected departments before full expansion.</p></article>
+      </div>
+      <div class="footer"><span>Readiness</span><span>Slide 9</span></div>
+    </section>
+
+    <section class="slide">
+      <h2>Immediate Next Actions</h2>
+      <ul>
+        <li>Approve module boundaries and ownership matrix.</li>
+        <li>Freeze phase-1 API contracts for AUTH and MASTER.</li>
+        <li>Start sprint-1 execution with weekly architecture report-out.</li>
+      </ul>
+      <div class="sub">Execution can begin immediately after approval.</div>
+      <div class="footer"><span>Action Closure</span><span>Slide 10</span></div>
+    </section>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+    const totalEl = document.getElementById("total");
+    const idxEl = document.getElementById("idx");
+    totalEl.textContent = String(slides.length);
+    function render() {
+      slides.forEach((s, i) => s.classList.toggle("active", i === index));
+      idxEl.textContent = String(index + 1);
+    }
+    function prevSlide() { index = (index - 1 + slides.length) % slides.length; render(); }
+    function nextSlide() { index = (index + 1) % slides.length; render(); }
+    window.prevSlide = prevSlide;
+    window.nextSlide = nextSlide;
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    });
+    render();
+  </script>
+</body>
+</html>

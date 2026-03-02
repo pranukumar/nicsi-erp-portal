@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
 import {
   RTI_APPEAL_RECORDS,
@@ -124,14 +124,6 @@ export default function RtiPage() {
     const start = (normalizedAppealsPage - 1) * PAGE_SIZE;
     return filteredAppeals.slice(start, start + PAGE_SIZE);
   }, [filteredAppeals, normalizedAppealsPage]);
-
-  useEffect(() => {
-    setDetailsPage(1);
-  }, [detailsQuery, recordView]);
-
-  useEffect(() => {
-    setAppealsPage(1);
-  }, [appealsQuery]);
 
   return (
     <main className="pb-12">
@@ -259,7 +251,10 @@ export default function RtiPage() {
                   <div className="inline-flex overflow-hidden rounded-lg border border-blue-200 bg-white">
                     <button
                       type="button"
-                      onClick={() => setRecordView("current")}
+                      onClick={() => {
+                        setRecordView("current");
+                        setDetailsPage(1);
+                      }}
                       className={`px-4 py-2 text-sm font-semibold transition ${
                         recordView === "current"
                           ? "bg-[#003A8C] text-white"
@@ -270,7 +265,10 @@ export default function RtiPage() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setRecordView("archive")}
+                      onClick={() => {
+                        setRecordView("archive");
+                        setDetailsPage(1);
+                      }}
                       className={`border-l border-blue-200 px-4 py-2 text-sm font-semibold transition ${
                         recordView === "archive"
                           ? "bg-[#003A8C] text-white"
@@ -285,7 +283,10 @@ export default function RtiPage() {
                     <input
                       type="text"
                       value={detailsQuery}
-                      onChange={(e) => setDetailsQuery(e.target.value)}
+                      onChange={(e) => {
+                        setDetailsQuery(e.target.value);
+                        setDetailsPage(1);
+                      }}
                       placeholder="Search RTI number, applicant, status..."
                       className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[#003A8C] focus:outline-none"
                     />
@@ -302,7 +303,7 @@ export default function RtiPage() {
                       <tr>
                         <th className="px-4 py-3">Sr. No.</th>
                         <th className="px-4 py-3">RTI No.</th>
-                        <th className="px-4 py-3">Applicant's Name</th>
+                        <th className="px-4 py-3">Applicant&apos;s Name</th>
                         <th className="px-4 py-3">Received Source</th>
                         <th className="px-4 py-3">Date of Receipt</th>
                         <th className="px-4 py-3">Current Status</th>
@@ -349,7 +350,10 @@ export default function RtiPage() {
                     <input
                       type="text"
                       value={appealsQuery}
-                      onChange={(e) => setAppealsQuery(e.target.value)}
+                      onChange={(e) => {
+                        setAppealsQuery(e.target.value);
+                        setAppealsPage(1);
+                      }}
                       placeholder="Search appeal no, applicant, action..."
                       className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-[#003A8C] focus:outline-none"
                     />
@@ -366,7 +370,7 @@ export default function RtiPage() {
                       <tr>
                         <th className="px-4 py-3">Sr. No.</th>
                         <th className="px-4 py-3">Appeal No.</th>
-                        <th className="px-4 py-3">Applicant's Name</th>
+                        <th className="px-4 py-3">Applicant&apos;s Name</th>
                         <th className="px-4 py-3">Received Source</th>
                         <th className="px-4 py-3">Date of Receipt</th>
                         <th className="px-4 py-3">Action to be taken</th>

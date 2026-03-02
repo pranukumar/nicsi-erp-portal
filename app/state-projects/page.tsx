@@ -109,7 +109,7 @@ export default async function Page() {
             </Link>
 
             <Link href="/pbd-projects" className="rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm hover:border-blue-300">
-              <p className="text-base font-semibold text-[#0F172A]">PBD Projects</p>
+              <p className="text-base font-semibold text-[#0F172A]">NICSI Products</p>
               <p className="mt-1 text-sm text-gray-600">Product and business delivery projects with implementation focus.</p>
             </Link>
 

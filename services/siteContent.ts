@@ -25,7 +25,7 @@ export type FooterContent = {
 const fallbackAnnouncements: Announcement[] = [
   { text: "Corrigendum issued for cloud infrastructure tender batch Q1-2026.", href: "/tenders" },
   { text: "Updated vendor document checklist published in forms section.", href: "/forms" },
-  { text: "Career opportunities open for project and security operations teams.", href: "/career" },
+  { text: "Vacancies are open for project and security operations teams.", href: "/vacancies" },
 ];
 
 const fallbackContactInfo: ContactInfo = {
@@ -41,8 +41,8 @@ const fallbackFooterContent: FooterContent = {
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Tenders", href: "/tenders" },
-    { label: "Career", href: "/career" },
-    { label: "Contact", href: "/contact" },
+    { label: "Vacancies", href: "/vacancies" },
+    { label: "Contact Us", href: "/contact" },
   ],
   resourceLinks: [
     { label: "Forms", href: "/forms" },

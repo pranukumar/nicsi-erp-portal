@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NICSI ERP - One Page Implementation Summary</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #475569;
+      --brand: #0b3a91;
+      --line: #d9e5fb;
+      --bg: #f7faff;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+    }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+      background: #fff;
+    }
+    .header {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #eef4ff, #f9fbff);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      color: var(--brand);
+    }
+    .sub {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .grid2 {
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      background: var(--bg);
+    }
+    .card h2 {
+      margin: 0 0 8px 0;
+      color: #0d3f9b;
+      font-size: 18px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    li {
+      margin: 6px 0;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 7px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #edf3ff;
+      color: #123f8e;
+    }
+    .footer {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+      font-size: 12px;
+    }
+    @media print {
+      .page { padding: 10mm; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="header">
+      <h1>NICSI ERP Implementation - One Page Summary</h1>
+      <div class="sub">Execution Snapshot | Date: 28 Feb 2026</div>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Target Module Stack</h2>
+        <ul>
+          <li><strong>AUTH:</strong> Identity, role claims, policy enforcement.</li>
+          <li><strong>MASTER:</strong> Canonical reference data (state/UT, department, categories).</li>
+          <li><strong>PI:</strong> Project lifecycle, milestones, program KPIs.</li>
+          <li><strong>Vendor Management:</strong> Empanelment and compliance flow.</li>
+          <li><strong>Notification:</strong> Event-driven alerts and SLA reminders.</li>
+          <li><strong>Accounts:</strong> Budget, invoice, payment status governance.</li>
+          <li><strong>Zoho Adapter:</strong> Controlled sync + reconciliation logs.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Delivery Model (12 Weeks)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Weeks</th>
+              <th>Outcome</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Foundation</td>
+              <td>1-4</td>
+              <td>Auth hardening, master APIs, contract freeze.</td>
+            </tr>
+            <tr>
+              <td>Core Workflows</td>
+              <td>5-8</td>
+              <td>PI + Vendor + Notification end-to-end flow.</td>
+            </tr>
+            <tr>
+              <td>Finance & Integration</td>
+              <td>9-12</td>
+              <td>Accounts + Zoho adapter + pilot go-live.</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="grid2">
+      <article class="card">
+        <h2>Key Risks & Controls</h2>
+        <ul>
+          <li>API contract drift -> Versioned contracts + contract tests.</li>
+          <li>Integration failure -> Retry queue + reconciliation dashboard.</li>
+          <li>Access policy gaps -> Central RBAC governance checks.</li>
+          <li>Data inconsistency -> Master-data stewardship and periodic audits.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Immediate Actions</h2>
+        <ul>
+          <li>Approve module boundaries and ownership matrix.</li>
+          <li>Freeze phase-1 API specs for AUTH + MASTER services.</li>
+          <li>Start Sprint-1 with weekly architecture review checkpoint.</li>
+          <li>Track KPIs: error rate, SLA response, audit coverage, release quality.</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="footer">
+      <span>NICSI ERP Program</span>
+      <span>Print this page to Save as PDF</span>
+    </div>
+  </main>
+</body>
+</html>

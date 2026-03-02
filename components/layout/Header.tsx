@@ -49,21 +49,9 @@ const menuGroups = [
         icon: BriefcaseBusiness,
       },
       {
-        label: "Headquarters Personnel",
-        href: "/headquarters-personnel",
-        description: "Headquarters officials and contact directory.",
-        icon: Users,
-      },
-      {
-        label: "State Personnel",
-        href: "/state-personnel",
-        description: "State unit personnel and regional contact information.",
-        icon: Users,
-      },
-      {
-        label: "Work Allocation",
-        href: "/work-allocation",
-        description: "Division and section wise responsibility mapping.",
+        label: "Personnel & Work Allocation",
+        href: "/personnel-work-allocation",
+        description: "Unified view of HQ personnel, state personnel, and work allocation.",
         icon: FileText,
       },
       {
@@ -109,9 +97,9 @@ const menuGroups = [
         icon: GanttChartSquare,
       },
       {
-        label: "PBD Projects",
+        label: "NICSI Products",
         href: "/pbd-projects",
-        description: "Projects under PBD and related delivery segments.",
+        description: "NICSI product initiatives and related delivery segments.",
         icon: GanttChartSquare,
       },
       {
@@ -204,6 +192,24 @@ const menuGroups = [
         description: "Annual reports and other publication records.",
         icon: Network,
       },
+      {
+        label: "Architecture Review Deck",
+        href: "/presentations/md-architecture-review.html",
+        description: "High-level architecture review presentation deck.",
+        icon: FileText,
+      },
+      {
+        label: "ERP Implementation Deck",
+        href: "/presentations/erp-implementation-execution.html",
+        description: "Execution-focused ERP implementation presentation.",
+        icon: GanttChartSquare,
+      },
+      {
+        label: "ERP One-Page Summary",
+        href: "/presentations/erp-implementation-one-page.html",
+        description: "Single-page implementation summary for quick review.",
+        icon: FileCheck2,
+      },
     ],
   },
   {
@@ -257,23 +263,23 @@ const menuGroups = [
 ];
 
 const topStripOpportunitiesItems = [
-  { label: "Career", href: "/career", icon: BriefcaseBusiness, external: false },
+  { label: "Vacancies", href: "/vacancies", icon: BriefcaseBusiness, external: false },
   { label: "Internship", href: "/internship", icon: UserCheck2, external: false },
   { label: "Capacity Building Training", href: "/capacity-building-training", icon: CalendarDays, external: false },
+  { label: "Contact Us", href: "/contact", icon: Users, external: false },
 ];
 const topStripQuickLinksItems = [
-  { label: "NIC Official Website", href: "https://www.nic.gov.in/", icon: Network, external: true },
   { label: "RTI", href: "/rti", icon: FileCheck2 },
   { label: "CSR", href: "/csr", icon: Building2 },
   { label: "GST Particulars", href: "/gst-particulars", icon: FileBadge2 },
-  { label: "Contact", href: "/contact", icon: Users },
+  { label: "Vendor Search", href: "/vendor-search", icon: Network },
+  { label: "Contact Us", href: "/contact", icon: Users },
 ];
 
 const utilityLinks = [
-  { label: "Sitemap", href: "/sitemap" },
   {
-    label: "Opportunities",
-    href: "/career",
+    label: "Offerings",
+    href: "/vacancies",
     items: topStripOpportunitiesItems,
   },
   {
@@ -281,7 +287,7 @@ const utilityLinks = [
     href: "/contact",
     items: topStripQuickLinksItems,
   },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 type MegaMenuItem = {
@@ -304,11 +310,16 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [topSearch, setTopSearch] = useState("");
+  const [topSearchOpen, setTopSearchOpen] = useState(false);
+  const [mobileTopSearchOpen, setMobileTopSearchOpen] = useState(false);
+  const [mobilePortalInfoOpen, setMobilePortalInfoOpen] = useState(false);
   const [openGroupIndex, setOpenGroupIndex] = useState<number | null>(null);
   const [mobileOpenGroupIndex, setMobileOpenGroupIndex] = useState<number | null>(null);
   const [mobileTopStripMenu, setMobileTopStripMenu] = useState<"opportunities" | "quick-links" | "accessibility" | null>(null);
   const groupButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const groupItemRefs = useRef<Array<Array<HTMLAnchorElement | null>>>([]);
+  const topSearchInputRef = useRef<HTMLInputElement | null>(null);
+  const mobileTopSearchInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -345,6 +356,8 @@ export default function Header() {
     event.preventDefault();
     const q = topSearch.trim();
     router.push(q ? `/sitemap?q=${encodeURIComponent(q)}` : "/sitemap");
+    setTopSearchOpen(false);
+    setMobileTopSearchOpen(false);
   };
 
   return (
@@ -359,18 +372,39 @@ export default function Header() {
       <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-6 py-2 text-white">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
         <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium leading-none tracking-[0.01em]">
-          <Image src="/icons/india-flag.svg" alt="India Flag" width={20} height={14} className="h-4 w-5 rounded-[1px]" />
-          Government of India
-          <span className="inline-flex items-center rounded-sm bg-white px-1 py-0.5">
+          <a
+            href="https://www.india.gov.in/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-white transition hover:text-cyan-100"
+          >
+            <Image src="/icons/india-flag.svg" alt="India Flag" width={20} height={14} className="h-4 w-5 rounded-[1px]" />
+            <span>Government of India</span>
+          </a>
+          <a
+            href="https://www.digitalindia.gov.in/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center rounded-sm bg-white px-1 py-0.5 transition hover:opacity-90"
+            aria-label="Digital India"
+          >
             <Image src="/logos/digital-india.png" alt="Digital India" width={96} height={24} className="h-5 w-auto" />
-          </span>
-          <Image
-            src="/logos/swachh-bharat.png"
-            alt="Swachh Bharat"
-            width={84}
-            height={20}
-            className="h-5 w-auto brightness-0 invert"
-          />
+          </a>
+          <a
+            href="https://swachhbharatmission.gov.in/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center transition hover:opacity-90"
+            aria-label="Swachh Bharat"
+          >
+            <Image
+              src="/logos/swachh-bharat.png"
+              alt="Swachh Bharat"
+              width={84}
+              height={20}
+              className="h-5 w-auto brightness-0 invert"
+            />
+          </a>
         </span>
         <div className="hidden items-center gap-4 text-[12.5px] font-medium tracking-[0.01em] lg:flex">
           {utilityLinks.map((item) =>
@@ -403,64 +437,169 @@ export default function Header() {
               </Link>
             ),
           )}
-          <form onSubmit={handleTopSearch} className="ml-1 flex items-center">
-            <label htmlFor="top-strip-search" className="sr-only">
-              Search
-            </label>
-            <div className="flex items-center rounded-md border border-white/30 bg-white/10 pl-2">
-              <Search size={13} className="text-cyan-100" />
-              <input
-                id="top-strip-search"
-                type="search"
-                value={topSearch}
-                onChange={(event) => setTopSearch(event.target.value)}
-                placeholder="Search..."
-                className="w-36 bg-transparent px-2 py-1 text-[12px] text-white placeholder:text-white/70 focus:outline-none"
-              />
-            </div>
-          </form>
+          <div
+            className="relative ml-1"
+            onMouseEnter={() => setTopSearchOpen(true)}
+            onMouseLeave={() => setTopSearchOpen(false)}
+            onFocusCapture={() => setTopSearchOpen(true)}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+                setTopSearchOpen(false);
+              }
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => {
+                setTopSearchOpen((prev) => !prev);
+                window.setTimeout(() => topSearchInputRef.current?.focus(), 0);
+              }}
+              className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-white/30 bg-white/10 text-cyan-100 transition hover:bg-white/20 hover:text-white"
+              aria-label="Open search"
+              aria-expanded={topSearchOpen}
+              aria-controls="top-strip-search-panel"
+            >
+              <Search size={13} />
+            </button>
+            {topSearchOpen ? (
+              <form
+                id="top-strip-search-panel"
+                onSubmit={handleTopSearch}
+                className="absolute right-0 top-full z-50 mt-2 flex items-center rounded-md border border-cyan-100 bg-gradient-to-br from-white via-[#f6fbff] to-[#eef6ff] p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]"
+              >
+                <label htmlFor="top-strip-search" className="sr-only">
+                  Search
+                </label>
+                <input
+                  ref={topSearchInputRef}
+                  id="top-strip-search"
+                  type="search"
+                  value={topSearch}
+                  onChange={(event) => setTopSearch(event.target.value)}
+                  placeholder="Search..."
+                  className="w-44 rounded-md border border-blue-100 bg-white px-2 py-1 text-[12px] text-[#1C2F57] placeholder:text-[#5B6F97] focus:border-[#0F4BB8] focus:outline-none"
+                />
+              </form>
+            ) : null}
+          </div>
           <TopStripAccessibilityMenu />
-          <span className="text-white/80">Secure ERP Access Portal</span>
+          <div className="group relative">
+            <span
+              tabIndex={0}
+              className="cursor-help rounded px-1 text-white/80 outline-none transition hover:text-white focus-visible:text-white"
+              aria-label="Secure ERP Access Portal features"
+            >
+              Secure ERP Access Portal
+            </span>
+            <div className="pointer-events-none invisible absolute right-0 top-full z-50 mt-2 w-72 rounded-xl border border-cyan-100 bg-gradient-to-br from-white via-[#f7fbff] to-[#eef6ff] p-3 text-[12px] text-[#1C2F57] opacity-0 shadow-[0_18px_35px_rgba(10,46,115,0.22)] transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <p className="font-semibold text-[#0F4BB8]">Portal Features</p>
+              <ul className="mt-1.5 list-disc space-y-1 pl-4">
+                <li>Role-based secure login and dashboard access</li>
+                <li>Workflow approvals with audit trail visibility</li>
+                <li>Integrated tenders, vendors, and project updates</li>
+              </ul>
+            </div>
+          </div>
         </div>
         <span className="lg:hidden">ERP Portal</span>
         </div>
 
         <div className="mx-auto mt-2 w-full max-w-7xl text-[12px] font-medium lg:hidden">
           <div className="flex flex-wrap items-center gap-2 pb-1">
-          <Link href="/sitemap" className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95">
-            Sitemap
-          </Link>
           <Link href="/contact" className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95">
-            Contact
+            Contact Us
           </Link>
           <button
             type="button"
-            onClick={() =>
-              setMobileTopStripMenu((prev) => (prev === "opportunities" ? null : "opportunities"))
-            }
-            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+            onClick={() => {
+              setMobileTopSearchOpen((prev) => !prev);
+              setMobilePortalInfoOpen(false);
+              setMobileTopStripMenu(null);
+              window.setTimeout(() => mobileTopSearchInputRef.current?.focus(), 0);
+            }}
+            className="inline-flex h-[30px] w-[30px] items-center justify-center rounded border border-white/30 bg-white/10 text-white/95"
+            aria-label="Open search"
+            aria-expanded={mobileTopSearchOpen}
           >
-            Opportunities
+            <Search size={13} />
           </button>
           <button
             type="button"
-            onClick={() =>
-              setMobileTopStripMenu((prev) => (prev === "quick-links" ? null : "quick-links"))
-            }
+            onClick={() => {
+              setMobilePortalInfoOpen((prev) => !prev);
+              setMobileTopSearchOpen(false);
+              setMobileTopStripMenu(null);
+            }}
+            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+            aria-expanded={mobilePortalInfoOpen}
+          >
+            Secure ERP Access Portal
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setMobileTopSearchOpen(false);
+              setMobilePortalInfoOpen(false);
+              setMobileTopStripMenu((prev) => (prev === "opportunities" ? null : "opportunities"));
+            }}
+            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+          >
+            Offerings
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setMobileTopSearchOpen(false);
+              setMobilePortalInfoOpen(false);
+              setMobileTopStripMenu((prev) => (prev === "quick-links" ? null : "quick-links"));
+            }}
             className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
           >
             Quick Links
           </button>
           <button
             type="button"
-            onClick={() =>
-              setMobileTopStripMenu((prev) => (prev === "accessibility" ? null : "accessibility"))
-            }
+            onClick={() => {
+              setMobileTopSearchOpen(false);
+              setMobilePortalInfoOpen(false);
+              setMobileTopStripMenu((prev) => (prev === "accessibility" ? null : "accessibility"));
+            }}
             className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
           >
             Accessibility
           </button>
           </div>
+
+          {mobileTopSearchOpen ? (
+            <form
+              onSubmit={handleTopSearch}
+              className="mt-2 flex items-center rounded-md border border-cyan-100 bg-gradient-to-br from-white via-[#f6fbff] to-[#eef6ff] p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]"
+            >
+              <label htmlFor="top-strip-search-mobile" className="sr-only">
+                Search
+              </label>
+              <input
+                ref={mobileTopSearchInputRef}
+                id="top-strip-search-mobile"
+                type="search"
+                value={topSearch}
+                onChange={(event) => setTopSearch(event.target.value)}
+                placeholder="Search..."
+                className="w-full rounded-md border border-blue-100 bg-white px-2 py-1.5 text-[12px] text-[#1C2F57] placeholder:text-[#5B6F97] focus:border-[#0F4BB8] focus:outline-none"
+              />
+            </form>
+          ) : null}
+
+          {mobilePortalInfoOpen ? (
+            <div className="mt-2 rounded-lg border border-cyan-100 bg-gradient-to-br from-white via-[#f7fbff] to-[#eef6ff] p-3 text-[12px] text-[#1C2F57] shadow-[0_18px_35px_rgba(10,46,115,0.22)]">
+              <p className="font-semibold text-[#0F4BB8]">Portal Features</p>
+              <ul className="mt-1.5 list-disc space-y-1 pl-4">
+                <li>Role-based secure login and dashboard access</li>
+                <li>Workflow approvals with audit trail visibility</li>
+                <li>Integrated tenders, vendors, and project updates</li>
+              </ul>
+            </div>
+          ) : null}
 
           {mobileTopStripMenu === "opportunities" ? (
             <div className="mt-2 rounded-lg border border-cyan-100 bg-white p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]">

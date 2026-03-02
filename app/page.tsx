@@ -67,6 +67,18 @@ const ministers: Minister[] = [
   },
 ];
 
+const aboutNicsiMinistryBlock = {
+  title: "About NICSI",
+  description:
+    "National Informatics Centre Services Inc. (NICSI), under the Ministry of Electronics and Information Technology (MeitY), supports ministries and departments in delivering secure, scalable, and accountable ICT programs.",
+  points: [
+    "Technology and implementation support partner for government institutions.",
+    "ICT procurement, project execution, and managed service enablement.",
+    "Secure cloud, data centre, and digital infrastructure support.",
+    "Advisory and operational support for emerging technology adoption.",
+  ],
+};
+
 const trustIndicators = [
   { title: "ISO-aligned Processes", subtitle: "Service governance and operational controls" },
   { title: "99.9% Platform Uptime", subtitle: "Business continuity focused delivery" },
@@ -115,7 +127,7 @@ const mediaCards = [
   {
     title: "Event Brief: Department Enablement Workshop Series",
     description: "Capacity-building sessions for teams adopting workflow-led digital governance.",
-    href: "/career",
+    href: "/vacancies",
   },
 ];
 
@@ -193,38 +205,54 @@ export default async function Home() {
 
       <section id="ministry" className="nicsi-reveal bg-white px-6 pb-14 pt-12 scroll-mt-28">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Ministry</p>
-          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Ministry Leadership</h2>
-          <div className="nicsi-stagger mt-6 grid gap-5 lg:grid-cols-2">
-            {ministers.map((minister) => (
-              <article key={minister.name} className="nicsi-hover-card rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
-                <div className="flex gap-4">
-                  <div
-                    className={`shrink-0 overflow-hidden rounded-lg border border-blue-100 bg-white ${
-                      minister.imageSize === "small" ? "h-32 w-24" : "h-36 w-28"
-                    }`}
-                  >
-                    <Image src={minister.image} alt={minister.name} width={240} height={320} className="h-full w-full object-cover object-top" />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-bold text-[#0A2A72]">{minister.name}</h3>
-                    <p className="mt-1 text-sm leading-6 text-gray-700">{minister.role}</p>
-                    <div className="mt-3 text-sm">
-                      <p className="font-semibold text-[#0F172A]">Telephone</p>
-                      <ul className="mt-1 space-y-1">
-                        {minister.phone.map((number) => (
-                          <li key={number}>{number}</li>
-                        ))}
-                      </ul>
+          <div className="nicsi-stagger rounded-2xl border border-blue-100 bg-gradient-to-b from-[#F7FAFF] via-white to-white p-4 shadow-sm md:p-6">
+            <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+            <div className="space-y-5">
+              {ministers.map((minister) => (
+                <article
+                  key={minister.name}
+                  className="nicsi-hover-card rounded-xl border border-[#D9E6FF] bg-white p-0 shadow-sm transition hover:border-[#BFD4FF]"
+                >
+                  <div className="grid grid-cols-[120px_1fr] gap-0 sm:grid-cols-[150px_1fr]">
+                    <div className="h-36 overflow-hidden rounded-l-xl border-r border-[#D9E6FF] bg-[#EDF3FF] sm:h-44">
+                      <Image
+                        src={minister.image}
+                        alt={minister.name}
+                        width={440}
+                        height={360}
+                        className="h-full w-full object-cover object-top"
+                      />
                     </div>
-                    <div className="mt-3 text-sm">
-                      <p className="font-semibold text-[#0F172A]">Email</p>
-                      <p>{minister.email}</p>
+                    <div className="p-3 sm:p-5">
+                      <h3 className="text-lg font-extrabold leading-tight tracking-tight text-[#0F2F78] sm:text-2xl">
+                        {minister.name}
+                      </h3>
+                      <p className="mt-2 text-sm font-medium leading-6 text-gray-700 sm:text-base sm:leading-7">
+                        {minister.role}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
+
+            <article className="rounded-xl border border-[#D9E6FF] bg-[#FCFDFF] p-5 shadow-sm sm:p-6">
+              <h3 className="text-2xl font-semibold text-[#133987] sm:text-3xl">{aboutNicsiMinistryBlock.title}</h3>
+              <div className="mt-3 h-0.5 w-full bg-[#BFD4FF]" />
+              <p className="mt-5 text-sm leading-6 text-gray-800 sm:text-base sm:leading-7">{aboutNicsiMinistryBlock.description}</p>
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-gray-800 sm:text-base sm:leading-7">
+                {aboutNicsiMinistryBlock.points.map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    <span className="mt-2.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EEF3FF] text-[11px] font-bold text-[#1B3F8E]">
+                      •
+                    </span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+               
+            </article>
+          </div>
           </div>
         </div>
       </section>
@@ -492,5 +520,3 @@ export default async function Home() {
     </div>
   );
 }
-
-
