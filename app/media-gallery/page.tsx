@@ -4,7 +4,7 @@ import PageTitle from "../../components/layout/PageTitle";
 import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type GalleryItem = {
@@ -72,6 +72,25 @@ function normalizeTab(value: string | null): MediaTab {
 }
 
 export default function MediaGalleryPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="pb-12">
+          <PageTitle title="Media Gallery" />
+          <section className="mx-auto max-w-7xl px-6 py-8 text-gray-700">
+            <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
+              <p className="text-sm text-gray-600">Loading media gallery...</p>
+            </div>
+          </section>
+        </main>
+      }
+    >
+      <MediaGalleryContent />
+    </Suspense>
+  );
+}
+
+function MediaGalleryContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
