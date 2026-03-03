@@ -23,26 +23,18 @@ export default function Page() {
       website: "https://etaal.gov.in/",
     },
     {
-      title: "Secure Email Services",
+      title: "Government Email Services",
       logo: "/logos/meity-projects/secure-email.png",
       description: "A robust, managed email platform ensuring secure communication for government users.",
       website: "https://email.gov.in/",
     },
+   
     {
-      title: "National Data Highway (NDH)",
-      logo: "/logos/meity-projects/nic.png",
-      description: "A high speed, scalable data exchange layer enabling seamless inter departmental digital integration.",
-    },
-    {
-      title: "National Single Sign On (NSSO)",
+      title: "Parichay",
       logo: "/logos/meity-projects/default.svg",
       description: "A unified authentication system allowing users to access multiple digital government services with a single login.",
     },
-    {
-      title: "Collab Files",
-      logo: "/logos/meity-projects/default.svg",
-      description: "A secure platform for document creation, collaboration, workflow automation, and file management for government.",
-    },
+   
     {
       title: "Enhancement and Management of Ministries' Websites",
       logo: "/logos/meity-projects/default.svg",
@@ -59,11 +51,7 @@ export default function Page() {
       logo: "/logos/meity-projects/pragati.png",
       description: "A video conferencing platform enabling collaborative governance and real-time monitoring.",
     },
-    {
-      title: "Gov.in - Secure Intranet Portal",
-      logo: "/logos/meity-projects/india-portal.png",
-      description: "A secure internal workspace for collaboration, communication, and information sharing within government.",
-    },
+   
     {
       title: "GovDrive - Government Cloud Storage",
       logo: "/logos/meity-projects/nic.png",
@@ -75,16 +63,12 @@ export default function Page() {
       description: "A regional data centre ensuring resilient hosting and digital service availability for the North East.",
     },
     {
-      title: "National Scholarship Portal (Phase III)",
+      title: "National Scholarship Portal",
       logo: "/logos/meity-projects/nsp-logo.svg",
       description: "A unified digital platform supporting transparent scholarship applications, verification, and disbursement.",
       website: "https://scholarships.gov.in/",
     },
-    {
-      title: "Website Facilitation & Management System (WFMS)",
-      logo: "/logos/meity-projects/default.svg",
-      description: "A centralized website management ecosystem enabling standardization, governance, and quality control for government sites.",
-    },
+    
     {
       title: "e Office - Hosting & Application Services",
       logo: "/logos/meity-projects/e-office.png",
@@ -103,11 +87,7 @@ export default function Page() {
       description: "A high speed, secure network connecting educational and research institutions across India.",
       website: "https://www.nkn.gov.in/",
     },
-    {
-      title: "Unified Blockchain Framework Development",
-      logo: "/logos/meity-projects/blockchain.jpg",
-      description: "Creating a standardized blockchain platform to support trusted, interoperable government applications.",
-    },
+    
     {
       title: "MeitY Website Development",
       logo: "/logos/meity-projects/meity.png",

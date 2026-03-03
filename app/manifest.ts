@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "NICSI ERP Portal",
+    name: "NICSI Digital Governance Platform",
     short_name: "NICSI Portal",
-    description: "National Informatics Centre Services Inc. public information and ERP portal.",
+    description: "National Informatics Centre Services Inc. public information and digital governance platform.",
     start_url: "/",
     display: "standalone",
     background_color: "#f2f6ff",

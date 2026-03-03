@@ -62,8 +62,13 @@ const domainExperts: Person[] = [
   { role: "CHRO – Chief Human Resources Officer", name: " ", designation: " "  },
 ];
 
+const companySecretary: Person = {
+  role: "Company Secretary",
+  name: "",
+  designation: "",
+};
+
 const consultants: Person[] = [
-  { role: "Company Secretary", name: "Name to be updated", designation: "Designation to be updated" },
   { role: "Consultant (Program Management)", name: " ", designation: " ", note: " " },
   { role: "Consultant (Technology Profile)", name: " ", designation: " ", note: " " },
 ];
@@ -157,9 +162,7 @@ function StateUnitNode({ unit }: { unit: StateUnit }) {
           {unit.officer}
           {unit.officer && unit.designation ? ` (${unit.designation})` : unit.designation}
         </p>
-      ) : (
-        <p className="mt-1 text-sm text-gray-600">Officer details to be updated</p>
-      )}
+      ) : null}
       {(unit.phone || unit.email) ? (
         <p className="mt-1 text-[11px] text-gray-600">
           {unit.phone ?? ""}
@@ -216,14 +219,33 @@ export default function OrganizationChartPage() {
                   </div>
                 </div>
               </div>
-              <div className="mx-auto hidden w-full max-w-xs md:mx-0 md:block">
-                <div className="relative mt-16 rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3">
-                  <span className="absolute left-0 top-[62%] h-px w-8 -translate-x-8 -translate-y-1/2 bg-blue-300" />
+              <div className="mx-auto hidden w-full max-w-xs md:mx-0 md:flex md:flex-col md:gap-3">
+                <div className="relative mt-12 rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3">
+                  <span className="absolute left-0 top-1/2 h-px w-8 -translate-x-8 -translate-y-1/2 bg-blue-300" />
+                  <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
+                  {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
+                  {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
+                </div>
+                <div className="relative rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3">
+                  <span className="absolute left-0 top-1/2 h-px w-8 -translate-x-8 -translate-y-1/2 bg-blue-300" />
                   <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">PS to MD NICSI</p>
                   <p className="text-sm font-semibold text-[#0F172A]">P. K. Parida</p>
                   <p className="text-sm text-gray-600">Phone: 011-26105291</p>
                 </div>
               </div>
+            </div>
+
+            <div className="mx-auto w-full max-w-md space-y-2 md:hidden">
+              <article className="rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 text-center">
+                <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
+                {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
+                {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
+              </article>
+              <article className="rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 text-center">
+                <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">PS to MD NICSI</p>
+                <p className="text-sm font-semibold text-[#0F172A]">P. K. Parida</p>
+                <p className="text-sm text-gray-600">Phone: 011-26105291</p>
+              </article>
             </div>
 
             <div className="mx-auto h-6 w-px bg-blue-300" />
@@ -250,7 +272,7 @@ export default function OrganizationChartPage() {
                 </article>
 
                 <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
-                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Company Secretary and Consultants</h4>
+                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Consultants</h4>
                   <div className="mt-3 space-y-2">
                     {consultants.map((person) => (
                       <DetailNode key={person.role} person={person} />
@@ -259,7 +281,7 @@ export default function OrganizationChartPage() {
                 </article>
                 <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                   <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI State Personnel</h4>
-                  <div className="mt-3 max-h-[46rem] space-y-2 overflow-y-auto pr-1">
+                  <div className="mt-3 max-h-[88rem] space-y-2 overflow-y-auto pr-1">
                     {stateUnits.map((unit) => (
                       <StateUnitNode key={unit.stateUt} unit={unit} />
                     ))}

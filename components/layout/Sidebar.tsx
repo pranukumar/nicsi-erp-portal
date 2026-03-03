@@ -10,9 +10,9 @@ export default function Sidebar() {
     { name: "Dashboard", path: "/" },
     { name: "Admin", path: "/admin" },
     { name: "Vendors", path: "/vendors" },
-    { name: "Tenders", path: "/tenders" },
+    { name: "Tenders", path: "/nicsi-gem-bids" },
     { name: "Empanelment", path: "/empanelment" },
-    { name: "Reports", path: "/reports" },
+    { name: "Download Annual Report", path: "/reports" },
   ];
 
   return (

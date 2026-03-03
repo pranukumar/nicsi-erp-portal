@@ -1,7 +1,6 @@
 export type AwardEvidence = {
   label: string;
   href: string;
-  status: "available" | "pending";
   type: "document";
 };
 
@@ -11,7 +10,8 @@ export type AwardRecognitionItem = {
   year: string;
   description: string;
   source: string;
-  evidence: AwardEvidence;
+  imageUrl?: string;
+  evidence?: AwardEvidence;
 };
 
 export type AwardsRecognitionContent = {
@@ -28,10 +28,10 @@ const awardsRecognitionContent: AwardsRecognitionContent = {
       year: "2025",
       description: "Recognized for impactful ICT enablement and service delivery support for government programs.",
       source: "NICSI Annual Report references",
+      imageUrl: "https://nicsi.nic.in/assets/images/gallery/nicsi_day_1.jpeg",
       evidence: {
         label: "Annual Report 2023-24",
         href: "/pdfs/reports/Annual_Report_2023-24.pdf",
-        status: "available",
         type: "document",
       },
     },
@@ -41,10 +41,10 @@ const awardsRecognitionContent: AwardsRecognitionContent = {
       year: "2024",
       description: "Appreciation for efficient project execution and technology advisory support across departments.",
       source: "NICSI Annual Report references",
+      imageUrl: "https://nicsi.nic.in/assets/images/gallery/annualday_img1.jpeg",
       evidence: {
         label: "Annual Report 2022-23",
         href: "/pdfs/reports/Annual_Report_2022-23.pdf",
-        status: "available",
         type: "document",
       },
     },
@@ -54,12 +54,6 @@ const awardsRecognitionContent: AwardsRecognitionContent = {
       year: "2023",
       description: "Acknowledged for contribution to digital transformation initiatives in the public sector.",
       source: "NICSI Annual Report references",
-      evidence: {
-        label: "Approval note / citation upload pending",
-        href: "#",
-        status: "pending",
-        type: "document",
-      },
     },
   ],
 };

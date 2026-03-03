@@ -20,12 +20,12 @@ const links: { label: string; href: string }[] = [
   { label: "NICSI Centre of Excellence", href: "/centre-of-excellence" },
   { label: "Empanelled Vendors", href: "/empanelled-vendors" },
   { label: "Empanelled Vendors (Classic)", href: "/empanelled-vendors-classic" },
-  { label: "Tenders", href: "/tenders" },
+  { label: "Tenders", href: "/nicsi-gem-bids" },
   { label: "NICSI CPP Tenders", href: "/active-tenders" },
   { label: "NICSI GeM Bids", href: "/nicsi-gem-bids" },
   { label: "NICSI SOP", href: "/nicsi-sop" },
-  { label: "Forms", href: "/forms" },
-  { label: "Reports", href: "/reports" },
+  { label: "Download Form", href: "/forms" },
+  { label: "Download Annual Report", href: "/reports" },
   { label: "Press Releases", href: "/press-releases" },
   { label: "News & Updates", href: "/news-updates" },
   { label: "Awards & Recognition", href: "/awards-recognition" },
@@ -51,6 +51,7 @@ const links: { label: string; href: string }[] = [
   { label: "Website Policy", href: "/website-policy" },
   { label: "Hyperlinking Policy", href: "/hyperlinking-policy" },
   { label: "Accessibility Statement", href: "/accessibility-statement" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 export default function SitemapPage() {

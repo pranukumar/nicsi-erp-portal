@@ -7,9 +7,9 @@ import { getNicsiChatbotFaqs } from "@/services/nicsiChatbot";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "NICSI ERP Portal | Digital Governance Platform",
+  title: "NICSI Digital Governance Platform",
   description:
-    "Secure, Scalable ERP Platform for Government Digital Transformation",
+    "Secure, scalable digital governance platform for government transformation and service delivery.",
   metadataBase: new URL("https://nicsi.nic.in"),
   alternates: {
     languages: {
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "NICSI ERP Portal | Digital Governance Platform",
-    description: "Secure, Scalable ERP Platform for Government Digital Transformation",
+    title: "NICSI Digital Governance Platform",
+    description: "Secure, scalable digital governance platform for government transformation and service delivery.",
     type: "website",
     url: "/",
-    siteName: "NICSI ERP Portal",
+    siteName: "NICSI Digital Governance Platform",
   },
 };
 

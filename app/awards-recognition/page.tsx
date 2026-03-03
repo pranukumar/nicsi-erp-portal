@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
 import { getAwardsRecognitionContent } from "@/services/awardsRecognition";
 
@@ -15,32 +16,26 @@ export default async function Page() {
             Highlights of institutional awards, recognitions, and appreciation received by NICSI.
           </p>
           <p className="mt-1 text-xs text-gray-500">Data last updated: {content.lastUpdated}</p>
-          <p className="mt-1 text-xs text-gray-500">
-            Proof policy: Only official document references are shown. Photograph/graph evidence is not included.
-          </p>
 
           <div className="mt-6 grid gap-4">
             {content.items.map((item) => (
-              <article key={item.id} className="rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="inline-flex rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-[#003A8C]">
-                    {item.year}
-                  </span>
-                  <span
-                    className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${
-                      item.evidence.status === "available"
-                        ? "bg-emerald-100 text-emerald-800"
-                        : "bg-amber-100 text-amber-800"
-                    }`}
-                  >
-                    {item.evidence.status === "available" ? "Proof Available" : "Proof Pending"}
-                  </span>
-                </div>
+              <article key={item.id} className="overflow-hidden rounded-xl border border-blue-100 bg-[#FCFDFF] shadow-sm">
+                {item.imageUrl ? (
+                  <div className="relative h-52 w-full bg-[#F3F7FF]">
+                    <Image src={item.imageUrl} alt={item.title} fill className="object-contain p-2" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  </div>
+                ) : null}
+                <div className="p-4">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="inline-flex rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-[#003A8C]">
+                      {item.year}
+                    </span>
+                  </div>
                 <h3 className="text-base font-semibold leading-7 text-[#0F172A]">{item.title}</h3>
                 <p className="mt-1 text-sm leading-6 text-gray-600">{item.description}</p>
                 <p className="mt-2 text-xs text-gray-500">Source: {item.source}</p>
-                <div className="mt-3">
-                  {item.evidence.status === "available" ? (
+                {item.evidence?.href ? (
+                  <div className="mt-3">
                     <Link
                       href={item.evidence.href}
                       target="_blank"
@@ -49,11 +44,8 @@ export default async function Page() {
                     >
                       {item.evidence.label}
                     </Link>
-                  ) : (
-                    <span className="inline-flex rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
-                      {item.evidence.label}
-                    </span>
-                  )}
+                  </div>
+                ) : null}
                 </div>
               </article>
             ))}

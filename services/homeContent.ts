@@ -29,7 +29,7 @@ const fallbackTracks: HomeTrack[] = [
   {
     title: "Tender Information",
     text: "Notices, bid-related updates, and process references for participating organizations.",
-    href: "/tenders",
+    href: "/nicsi-gem-bids",
     iconKey: "file",
   },
 ];

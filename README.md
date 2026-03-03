@@ -1,4 +1,4 @@
-# NICSI ERP Portal
+# NICSI Digital Governance Platform
 
 Government-focused ERP web portal built with Next.js App Router, React, TypeScript, and Tailwind CSS.
 
@@ -18,7 +18,7 @@ Government-focused ERP web portal built with Next.js App Router, React, TypeScri
 - `/`: Home dashboard
 - `/about`: About portal
 - `/services`: ERP service modules
-- `/tenders`: Tender information
+- `/nicsi-gem-bids`: Tender information
 - `/empanelled-vendors`: Empanelled vendors
 - `/vacancies`: Vacancies information
 - `/contact`: Contact details

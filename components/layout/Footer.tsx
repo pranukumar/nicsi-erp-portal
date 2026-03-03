@@ -23,6 +23,9 @@ export default async function Footer() {
   ] as const;
   const textLinkClass =
     "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-blue-50 transition-all duration-200 hover:translate-x-1 hover:bg-white/12 hover:text-white focus-visible:bg-white/12";
+  const quickLinksWithFaq = footerContent.quickLinks.some((item) => item.href === "/faq")
+    ? footerContent.quickLinks
+    : [...footerContent.quickLinks, { label: "FAQ", href: "/faq" }];
 
   return (
     <footer className="border-t border-blue-200 bg-gradient-to-r from-[#081A3D] via-[#0A2E73] to-[#081A3D] text-white">
@@ -45,13 +48,19 @@ export default async function Footer() {
           <h4 className="text-sm font-semibold uppercase tracking-wide text-cyan-200">Useful Links</h4>
           <p className="mt-3 text-left text-xs text-blue-200">Frequently accessed public pages.</p>
           <ul className="mt-3 space-y-2 text-sm">
-            {footerContent.quickLinks.map((item) => (
-              <li key={item.label}>
+            {quickLinksWithFaq.map((item) => (
+              <li key={`${item.href}-${item.label}`}>
                 <Link href={item.href} className={textLinkClass}>
                   {item.href === "/contact"
                     ? "Contact Us"
                     : item.href === "/career" || item.href === "/vacancy" || item.href === "/vacancies"
                       ? "Vacancies"
+                      : item.href === "/forms"
+                        ? "Download Form"
+                        : item.href === "/reports"
+                          ? "Download Annual Report"
+                          : item.href === "/faq"
+                            ? "FAQ"
                       : item.label}
                 </Link>
               </li>
@@ -66,7 +75,7 @@ export default async function Footer() {
             {footerContent.resourceLinks.map((item) => (
               <li key={item.label}>
                 <Link href={item.href} className={textLinkClass}>
-                  {item.label}
+                  {item.href === "/forms" ? "Download Form" : item.href === "/reports" ? "Download Annual Report" : item.label}
                 </Link>
               </li>
             ))}

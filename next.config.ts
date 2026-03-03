@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
               "connect-src 'self' https:",
-              "frame-src 'self' https://platform.twitter.com https://www.facebook.com https://www.instagram.com https://www.linkedin.com",
+              "frame-src 'self' https://platform.twitter.com https://www.facebook.com https://www.instagram.com https://www.linkedin.com https://www.openstreetmap.org https://www.google.com https://maps.google.com",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",

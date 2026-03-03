@@ -1,6 +1,6 @@
 import Hero from "@/components/layout/Hero";
+import DocumentCentre from "@/components/layout/DocumentCentre";
 import NicsiMotionBackdrop from "@/components/layout/NicsiMotionBackdrop";
-import { getHomeTracks } from "@/services/homeContent";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,11 +9,9 @@ import {
   Cloud,
   FileText,
   Globe2,
-  LayoutGrid,
   MapPin,
   Megaphone,
   Server,
-  ShieldCheck,
 } from "lucide-react";
 
 const iconMap = {
@@ -23,26 +21,46 @@ const iconMap = {
   file: FileText,
 } as const;
 
-const latestTenders = [
-  { title: "RFP for Managed Cloud Infrastructure Services", deadline: "March 18, 2026", status: "Open", href: "/tenders" },
-  { title: "Security Operations Center Enhancement Bid", deadline: "March 25, 2026", status: "Open", href: "/tenders" },
-  { title: "Data Centre Network Modernization", deadline: "April 2, 2026", status: "Pre-bid", href: "/tenders" },
-  { title: "ERP Application Support Services", deadline: "April 8, 2026", status: "Open", href: "/tenders" },
-  { title: "Document Digitization and Workflow Automation", deadline: "April 12, 2026", status: "Open", href: "/tenders" },
+const projectSubmenuLinks = [
+  {
+    title: "National Projects",
+    description: "Projects delivered across India for public institutions.",
+    href: "/national-projects",
+  },
+  {
+    title: "State Projects",
+    description: "State-specific e-Governance implementation projects.",
+    href: "/state-projects",
+  },
+  {
+    title: "MeitY Projects",
+    description: "Projects aligned to MeitY programs and initiatives.",
+    href: "/meity-projects",
+  },
+  {
+    title: "NICSI Products",
+    description: "NICSI product initiatives and related delivery segments.",
+    href: "/pbd-projects",
+  },
+  {
+    title: "International Projects",
+    description: "Overseas projects and international engagement initiatives.",
+    href: "/international-projects",
+  },
 ];
 
 const quickServices = [
   { label: "RTI", href: "/rti" },
-  { label: "Forms", href: "/forms" },
-  { label: "Resources", href: "/tenders" },
+  { label: "Download Form", href: "/forms" },
+  { label: "NICSI GeM Bids", href: "/nicsi-gem-bids" },
   { label: "Contact Office", href: "/contact" },
-  { label: "Vendor Login", href: "/login" },
-  { label: "Empanelment", href: "/empanelled-vendors" },
+  { label: "Vendor Search", href: "/vendor-search" },
+  { label: "Internship", href: "/internship" },
 ];
 
 type Minister = {
   name: string;
-  role: string;
+  roles: string[];
   image: string;
   imageSize?: "small" | "default";
   phone: string[];
@@ -52,14 +70,21 @@ type Minister = {
 const ministers: Minister[] = [
   {
     name: "Shri Ashwini Vaishnaw",
-    role: "Hon'ble Minister of Railways, Information and Broadcasting, and Electronics and Information Technology",
+    roles: [
+      "Hon'ble Minister of Railways",
+      "Hon'ble Minister of Information and Broadcasting",
+      "Hon'ble Minister of Electronics and Information Technology",
+    ],
     image: "/images/ministry/ashwini-vaishnaw.jpg",
     phone: ["+91-11-24369191 (Office)", "+91-11-24362626 (Office)", "+91-11-24366070 (Fax)"],
     email: "moeit[at]gov[dot]in",
   },
   {
     name: "Shri Jitin Prasada",
-    role: "Hon'ble Minister of State in the Ministry of Commerce and Industry, and Electronics and Information Technology",
+    roles: [
+      "Hon'ble Minister of State for Commerce and Industry",
+      "Hon'ble Minister of State for Electronics and Information Technology",
+    ],
     image: "/images/ministry/jitin-prasada.png",
     imageSize: "small",
     phone: ["+91-11-24368757 (Office)", "+91-11-24368758 (Office)", "+91-11-24360958 (Fax)"],
@@ -67,26 +92,41 @@ const ministers: Minister[] = [
   },
 ];
 
+const chairpersonDetail = {
+  role: "Chairperson, NICSI",
+  name: "Shri Abhishek Singh",
+  designation: "Additional Secretary, MeitY",
+  phone: "011-24369222",
+  email: "as[at]meity[dot]gov[dot]in",
+  image: "/images/dg_sir.jpg",
+};
+
 const aboutNicsiMinistryBlock = {
   title: "About NICSI",
   description:
-    "National Informatics Centre Services Inc. (NICSI), under the Ministry of Electronics and Information Technology (MeitY), supports ministries and departments in delivering secure, scalable, and accountable ICT programs.",
+    "National Informatics Centre Services Inc. (NICSI), under the Ministry of Electronics and Information Technology (MeitY), enables ministries and departments to implement secure, scalable, and transparent digital governance initiatives.",
   points: [
-    "Technology and implementation support partner for government institutions.",
-    "ICT procurement, project execution, and managed service enablement.",
-    "Secure cloud, data centre, and digital infrastructure support.",
-    "Advisory and operational support for emerging technology adoption.",
+    "Trusted implementation partner for ministries, departments, and public institutions.",
+    "End-to-end ICT support across procurement, project delivery, and managed services.",
+    "Secure cloud, data centre, and digital infrastructure operations for critical workloads.",
   ],
 };
 
 const trustIndicators = [
   { title: "ISO-aligned Processes", subtitle: "Service governance and operational controls" },
-  { title: "99.9% Platform Uptime", subtitle: "Business continuity focused delivery" },
+  { title: "Cyber Resilience Readiness", subtitle: "Continuous monitoring, hardening, and incident response preparedness" },
   { title: "Multiple Ministries & Departments", subtitle: "Cross-organization service integration" },
   { title: "SLA-driven Operations", subtitle: "Measured response and resolution timelines" },
 ];
 
-const nicsiShowcase = [
+type ShowcaseCard = {
+  value: string;
+  title: string;
+  detail: string;
+  href: string;
+};
+
+const nicsiShowcase: ShowcaseCard[] = [
   {
     value: "Pan-India Reach",
     title: "Government delivery backbone",
@@ -101,9 +141,9 @@ const nicsiShowcase = [
   },
   {
     value: "Procurement + PMU",
-    title: "Execution with accountability",
+    title: "Execution with assurance",
     detail: "Transparent procurement and lifecycle management from planning to implementation and support.",
-    href: "/active-tenders",
+    href: "/nicsi-gem-bids",
   },
   {
     value: "Citizen-first Focus",
@@ -138,14 +178,51 @@ const whatsNew = [
   { month: "Oct 2025", text: "Data centre operational enhancements announced for service continuity." },
 ];
 
+type ValuePillar = {
+  title: string;
+  text: string;
+  href: string;
+  cta: string;
+  iconKey: keyof typeof iconMap;
+};
+
+const coreValuePillars: ValuePillar[] = [
+  {
+    title: "Strategic ICT Advisory",
+    text: "Policy-aligned advisory and planning support for ministries and departments to launch high-impact digital programs.",
+    href: "/about",
+    cta: "Explore Profile",
+    iconKey: "building",
+  },
+  {
+    title: "Project Delivery & PMU",
+    text: "End-to-end execution support from planning and procurement to implementation, monitoring, and outcomes.",
+    href: "/national-projects",
+    cta: "Explore Projects",
+    iconKey: "globe",
+  },
+  {
+    title: "Secure Cloud & Data Centre",
+    text: "Resilient, scalable cloud and data centre infrastructure for mission-critical government workloads.",
+    href: "/nicsi-cloud",
+    cta: "Explore Cloud Services",
+    iconKey: "cloud",
+  },
+  {
+    title: "Transparent Procurement",
+    text: "Structured procurement workflows, GeM bid enablement, and auditable lifecycle management.",
+    href: "/nicsi-gem-bids",
+    cta: "View NICSI GeM Bids",
+    iconKey: "file",
+  },
+];
+
 const dataCentres = [
   {
     name: "NDC Bhubaneswar",
     location: "Bhubaneswar",
     establishedYear: 2018,
     areaSqFt: 40000,
-    racks: 271,
-    tier: "Tier-III",
     description: "Designed for high availability and reliable delivery of government digital workloads.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
@@ -154,8 +231,6 @@ const dataCentres = [
     location: "Hyderabad",
     establishedYear: 2018,
     areaSqFt: 14000,
-    racks: 221,
-    tier: "Tier-III",
     description: "Supports secure hosting with operational reliability aligned to national service delivery needs.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
@@ -164,8 +239,6 @@ const dataCentres = [
     location: "Delhi",
     establishedYear: 2011,
     areaSqFt: 30000,
-    racks: 475,
-    tier: "Tier-III",
     description: "Core hub for resilient infrastructure and mission-critical government application hosting.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
@@ -174,8 +247,6 @@ const dataCentres = [
     location: "Pune",
     establishedYear: 2010,
     areaSqFt: 10000,
-    racks: 175,
-    tier: "Tier-III",
     description: "Built for continuous operations with redundancy and dependable infrastructure services.",
     services: ["Infrastructure as a Service (IaaS)", "Platform as a Service (PaaS)"],
   },
@@ -184,16 +255,12 @@ const dataCentres = [
     location: "Guwahati",
     establishedYear: 2026,
     areaSqFt: 43000,
-    racks: 200,
-    tier: "Tier-III",
     description: "Expands regional resilience and strengthens availability for North-East focused digital services.",
     services: [],
   },
 ];
 
-export default async function Home() {
-  const keyTracks = await getHomeTracks();
-
+export default function Home() {
   return (
     <div className="relative overflow-hidden bg-[var(--nicsi-bg)] pb-8">
       <NicsiMotionBackdrop />
@@ -206,15 +273,15 @@ export default async function Home() {
       <section id="ministry" className="nicsi-reveal bg-white px-6 pb-14 pt-12 scroll-mt-28">
         <div className="mx-auto max-w-6xl">
           <div className="nicsi-stagger rounded-2xl border border-blue-100 bg-gradient-to-b from-[#F7FAFF] via-white to-white p-4 shadow-sm md:p-6">
-            <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-            <div className="space-y-5">
+            <div className="grid items-start gap-6 lg:grid-cols-[1.1fr_1fr]">
+            <div className="space-y-3">
               {ministers.map((minister) => (
                 <article
                   key={minister.name}
-                  className="nicsi-hover-card rounded-xl border border-[#D9E6FF] bg-white p-0 shadow-sm transition hover:border-[#BFD4FF]"
+                  className="nicsi-hover-card rounded-lg border border-[#D9E6FF] bg-white p-0 shadow-sm transition hover:border-[#BFD4FF]"
                 >
-                  <div className="grid grid-cols-[120px_1fr] gap-0 sm:grid-cols-[150px_1fr]">
-                    <div className="h-36 overflow-hidden rounded-l-xl border-r border-[#D9E6FF] bg-[#EDF3FF] sm:h-44">
+                  <div className="grid grid-cols-[96px_1fr] gap-0 sm:grid-cols-[122px_1fr]">
+                    <div className="h-28 overflow-hidden rounded-l-lg border-r border-[#D9E6FF] bg-[#EDF3FF] sm:h-32">
                       <Image
                         src={minister.image}
                         alt={minister.name}
@@ -223,34 +290,59 @@ export default async function Home() {
                         className="h-full w-full object-cover object-top"
                       />
                     </div>
-                    <div className="p-3 sm:p-5">
-                      <h3 className="text-lg font-extrabold leading-tight tracking-tight text-[#0F2F78] sm:text-2xl">
+                    <div className="flex flex-col justify-center p-3 sm:p-4">
+                      <h3 className="text-base font-extrabold leading-tight tracking-tight text-[#0F2F78] sm:text-xl">
                         {minister.name}
                       </h3>
-                      <p className="mt-2 text-sm font-medium leading-6 text-gray-700 sm:text-base sm:leading-7">
-                        {minister.role}
-                      </p>
+                      <ul className="mt-2 space-y-1 text-xs font-medium leading-5 text-gray-700 sm:text-sm sm:leading-6">
+                        {minister.roles.map((role) => (
+                          <li key={role}>{role}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </article>
               ))}
+              <article className="rounded-lg border border-[#D9E6FF] bg-white p-0 shadow-sm">
+                <div className="grid grid-cols-[96px_1fr] gap-0 sm:grid-cols-[122px_1fr]">
+                  <div className="h-28 overflow-hidden rounded-l-lg border-r border-[#D9E6FF] bg-[#EDF3FF] sm:h-32">
+                    <Image
+                      src={chairpersonDetail.image}
+                      alt={chairpersonDetail.name}
+                      width={440}
+                      height={360}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center p-3 sm:p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#1B3F8E]">{chairpersonDetail.role}</p>
+                    <h3 className="mt-1 text-base font-extrabold leading-tight tracking-tight text-[#0F2F78] sm:text-xl">
+                      {chairpersonDetail.name}
+                    </h3>
+                    <p className="mt-1 text-xs font-medium leading-5 text-gray-700 sm:text-sm sm:leading-6">{chairpersonDetail.designation}</p>
+                    <p className="mt-1 text-[11px] leading-5 text-[#38517B] sm:text-xs">
+                      Phone: {chairpersonDetail.phone} | Email: {chairpersonDetail.email}
+                    </p>
+                  </div>
+                </div>
+              </article>
             </div>
 
             <article className="rounded-xl border border-[#D9E6FF] bg-[#FCFDFF] p-5 shadow-sm sm:p-6">
               <h3 className="text-2xl font-semibold text-[#133987] sm:text-3xl">{aboutNicsiMinistryBlock.title}</h3>
               <div className="mt-3 h-0.5 w-full bg-[#BFD4FF]" />
               <p className="mt-5 text-sm leading-6 text-gray-800 sm:text-base sm:leading-7">{aboutNicsiMinistryBlock.description}</p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-gray-800 sm:text-base sm:leading-7">
+              <ul className="mt-4 list-disc space-y-3 pl-5 text-sm leading-6 text-gray-800 marker:text-[#1B3F8E] sm:text-base sm:leading-7">
                 {aboutNicsiMinistryBlock.points.map((point) => (
-                  <li key={point} className="flex items-start gap-3">
-                    <span className="mt-2.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EEF3FF] text-[11px] font-bold text-[#1B3F8E]">
-                      •
-                    </span>
-                    <span>{point}</span>
-                  </li>
+                  <li key={point}>{point}</li>
                 ))}
               </ul>
-               
+              <Link
+                href="/about"
+                className="mt-6 inline-flex items-center rounded-md border border-[#BFD4FF] bg-[#F1F6FF] px-4 py-2 text-sm font-semibold text-[#0F4BB8] transition hover:border-[#8DB4FF] hover:bg-[#E6F0FF]"
+              >
+                About More...
+              </Link>
             </article>
           </div>
           </div>
@@ -261,8 +353,8 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Citizen Quick Services</p>
-              <h2 className="mt-1 text-xl font-bold text-[#0F172A] md:text-2xl">Access frequently used government service links</h2>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">NICSI Quick Services</p>
+              <h2 className="mt-1 text-xl font-bold text-[#0F172A] md:text-2xl">Access frequently used NICSI service links</h2>
             </div>
           </div>
           <div className="nicsi-stagger mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -292,7 +384,10 @@ export default async function Home() {
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">{item.value}</p>
                 <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-blue-100">{item.detail}</p>
-                <Link href={item.href} className="mt-3 inline-block text-sm font-semibold text-cyan-100 hover:text-white">
+                <Link
+                  href={item.href}
+                  className="mt-4 inline-flex items-center rounded-md border border-cyan-200/40 bg-white/10 px-3 py-1.5 text-sm font-semibold text-cyan-100 transition hover:border-cyan-100 hover:bg-white/20 hover:text-white"
+                >
                   View details
                 </Link>
               </article>
@@ -304,42 +399,36 @@ export default async function Home() {
       <section className="nicsi-reveal px-6 py-14">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.4fr_1fr]">
           <article className="rounded-2xl bg-white p-8 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Latest Tenders</p>
-            <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Current procurement opportunities</h2>
-            <div className="nicsi-stagger mt-6 space-y-3">
-              {latestTenders.map((tender) => (
-                <Link key={tender.title} href={tender.href} className="nicsi-hover-card block rounded-xl border border-gray-200 p-4 transition hover:border-blue-300 hover:bg-blue-50/40">
-                  <p className="font-semibold text-[#0F172A]">{tender.title}</p>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Deadline: {tender.deadline}
-                    <span className="ml-3 rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-700">{tender.status}</span>
-                  </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Project Showcase</p>
+            <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Project Portfolio</h2>
+            <div className="nicsi-stagger mt-6 grid gap-3 sm:grid-cols-2">
+              {projectSubmenuLinks.map((project) => (
+                <Link
+                  key={project.title}
+                  href={project.href}
+                  className="nicsi-hover-card block rounded-xl border border-gray-200 bg-[#FCFDFF] p-4 transition hover:border-blue-300 hover:bg-blue-50/40"
+                >
+                  <p className="font-semibold text-[#0F172A]">{project.title}</p>
+                  <p className="mt-1 text-sm text-gray-600">{project.description}</p>
                 </Link>
               ))}
             </div>
-            <Link href="/tenders" className="mt-5 inline-block text-sm font-semibold text-[#003A8C]">View all tenders</Link>
           </article>
 
-          <div className="nicsi-stagger space-y-4">
+          <div className="nicsi-stagger">
             <article className="nicsi-hover-card rounded-2xl bg-[#0B1E43] p-8 text-white">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">Message</p>
-              <h3 className="mt-2 text-2xl font-bold">Chairperson Desk</h3>
-              <p className="mt-4 text-sm leading-7 text-blue-100">
-                NICSI will continue to strengthen trusted digital public infrastructure through transparent governance, policy-aligned execution, and measurable service outcomes for ministries and departments.
+              <h3 className="mt-2 text-2xl font-bold">Managing Director Desk</h3>
+              <p className="mt-2 text-sm font-semibold text-cyan-100">
+                Under the visionary guidance of the Chairperson, NICSI is shaping the next era of secure, citizen-first digital governance.
               </p>
-              <p className="mt-4 text-sm font-semibold">Official communication from NICSI leadership.</p>
-              <Link href="/about" className="mt-5 inline-block rounded-md border border-white/40 px-4 py-2 text-sm font-semibold hover:bg-white hover:text-[#0B1E43]">
-                Read full message
-              </Link>
-            </article>
-
-            <article className="nicsi-hover-card rounded-2xl bg-[#0B1E43] p-8 text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-blue-200">Message</p>
-              <h3 className="mt-2 text-2xl font-bold">MD Desk</h3>
               <p className="mt-4 text-sm leading-7 text-blue-100">
-                NICSI is focused on delivery excellence across cloud, data centre, procurement, and managed ICT services, ensuring secure, scalable, and citizen-centric implementation support for government programs.
+                NICSI is delivering measurable impact through secure cloud and data centre operations, transparent procurement, and faster project execution support for ministries and departments across India.
               </p>
-              <p className="mt-4 text-sm font-semibold">Official communication from NICSI leadership.</p>
+              <p className="mt-3 text-sm leading-7 text-blue-100">
+                Going forward, NICSI is focused on AI-enabled governance platforms, stronger cyber resilience, and outcome-driven digital programs to build faster, safer, and citizen-first public services.
+              </p>
+              <p className="mt-4 text-sm font-semibold">Strategic direction from NICSI leadership.</p>
               <Link href="/about" className="mt-5 inline-block rounded-md border border-white/40 px-4 py-2 text-sm font-semibold hover:bg-white hover:text-[#0B1E43]">
                 Read full message
               </Link>
@@ -350,17 +439,17 @@ export default async function Home() {
 
       <section className="bg-white px-6 py-14">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Core Sections</p>
-          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Homepage service architecture</h2>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">NICSI Value Pillars</p>
+          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">How NICSI Enables Government Digital Delivery</h2>
           <div className="mt-7 grid gap-4 md:grid-cols-2">
-            {keyTracks.map((track) => {
-              const Icon = iconMap[track.iconKey as keyof typeof iconMap] ?? Building2;
+            {coreValuePillars.map((pillar) => {
+              const Icon = iconMap[pillar.iconKey] ?? Building2;
               return (
-                <article key={track.title} className="rounded-xl border border-blue-100 p-6">
+                <article key={pillar.title} className="rounded-xl border border-blue-100 p-6">
                   <span className="inline-flex rounded-lg bg-blue-50 p-2 text-[#003A8C]"><Icon size={20} /></span>
-                  <h3 className="mt-3 text-xl font-semibold text-[#0F172A]">{track.title}</h3>
-                  <p className="mt-2 text-sm text-gray-600">{track.text}</p>
-                  <Link href={track.href} className="mt-3 inline-block text-sm font-semibold text-[#003A8C]">View details</Link>
+                  <h3 className="mt-3 text-xl font-semibold text-[#0F172A]">{pillar.title}</h3>
+                  <p className="mt-2 text-sm text-gray-600">{pillar.text}</p>
+                  <Link href={pillar.href} className="mt-3 inline-block text-sm font-semibold text-[#003A8C]">{pillar.cta}</Link>
                 </article>
               );
             })}
@@ -384,22 +473,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-14">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Document Centre</p>
-          <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Filter-ready documents section</h2>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {["Tender", "Circular", "Notice", "Press Release", "Vendor Forms"].map((chip) => (
-              <button key={chip} type="button" className="rounded-full border border-blue-200 px-4 py-1.5 text-sm font-medium text-[#003A8C] hover:bg-blue-50">
-                {chip}
-              </button>
-            ))}
-          </div>
-          <div className="mt-5 rounded-xl border border-gray-200 p-5 text-sm text-gray-700">
-            Select a filter to view relevant public documents and notices.
-          </div>
-        </div>
-      </section>
+      <DocumentCentre />
 
       <section className="px-6 py-14">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1fr]">
@@ -442,55 +516,39 @@ export default async function Home() {
           <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">National Data Centres (NDCs) - NICSI</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">
             NICSI operates multiple National Data Centres (NDCs) across India to provide secure, scalable and highly available hosting,
-            colocation and cloud services to Government and public sector organizations. All facilities are designed in compliance with
-            Tier-III standards, ensuring redundancy, high uptime and operational resilience.
+            colocation and cloud services to Government and public sector organizations, ensuring redundancy, high uptime and operational resilience.
           </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Locations</p>
               <p className="mt-1 text-2xl font-bold text-[#0F172A]">{dataCentres.length}</p>
             </div>
             <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Total Racks</p>
-              <p className="mt-1 text-2xl font-bold text-[#0F172A]">
-                {dataCentres.reduce((sum, dc) => sum + dc.racks, 0).toLocaleString("en-IN")}
-              </p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Built-up Area</p>
+              <p className="mt-1 text-2xl font-bold text-[#0F172A]">{dataCentres.reduce((sum, dc) => sum + dc.areaSqFt, 0).toLocaleString("en-IN")} sq. ft.</p>
             </div>
             <div className="rounded-xl border border-blue-100 bg-[#F7FAFF] p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Built-up Area</p>
-              <p className="mt-1 text-2xl font-bold text-[#0F172A]">
-                {dataCentres.reduce((sum, dc) => sum + dc.areaSqFt, 0).toLocaleString("en-IN")} sq. ft.
-              </p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#0052CC]">Services</p>
+              <p className="mt-1 text-sm font-semibold text-[#0F172A]">IaaS and PaaS</p>
             </div>
           </div>
-          <div className="mt-7 grid gap-4 md:grid-cols-2">
+          <div className="mt-7 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {dataCentres.map((dc) => (
-              <article key={dc.name} className="rounded-xl border border-gray-200 p-6 shadow-sm transition hover:border-blue-200 hover:shadow-md">
-                <div className="flex flex-wrap items-center justify-between gap-3">
+              <article key={dc.name} className="rounded-xl border border-gray-200 bg-[#FCFDFF] p-5 shadow-sm transition hover:border-blue-200 hover:shadow-md">
+                <div className="flex items-start justify-between gap-3">
                   <span className="inline-flex items-center gap-2 rounded-lg bg-blue-50 px-3 py-1.5 text-sm font-semibold text-[#003A8C]">
                     <Server size={16} />
                     {dc.name}
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-2.5 py-1 text-xs font-semibold text-gray-700">
-                    <ShieldCheck size={13} />
-                    {dc.tier}
-                  </span>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-700">{dc.description}</p>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                <div className="mt-4 grid gap-2">
                   <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
                     <span className="inline-flex items-center gap-1 font-semibold text-[#0F172A]">
                       <MapPin size={14} />
                       Location:
                     </span>{" "}
                     {dc.location}
-                  </div>
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
-                    <span className="inline-flex items-center gap-1 font-semibold text-[#0F172A]">
-                      <LayoutGrid size={14} />
-                      Racks:
-                    </span>{" "}
-                    {dc.racks.toLocaleString("en-IN")}
                   </div>
                   <div className="rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700">
                     <span className="font-semibold text-[#0F172A]">Established:</span> {dc.establishedYear}
@@ -520,3 +578,4 @@ export default async function Home() {
     </div>
   );
 }
+

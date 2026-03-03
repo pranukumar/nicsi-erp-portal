@@ -1,5 +1,6 @@
 import PageTitle from "../../components/layout/PageTitle";
 import Link from "next/link";
+import { ArrowDown, ArrowRight, CloudCog, FileCheck2, HelpCircle, UserPlus } from "lucide-react";
 
 export default function Page() {
   const keyFeatures = [
@@ -50,16 +51,55 @@ export default function Page() {
 
   const provisioningSteps = [
     {
+      phase: "Onboarding",
       title: "Applicant Registration",
       detail: "Register the department/entity and authorized officials on the NGC portal to initiate access.",
+      icon: UserPlus,
     },
     {
+      phase: "Planning",
       title: "Cloud Plan Registration",
       detail: "Define service categories, environments and quotas aligned to program objectives and governance requirements.",
+      icon: FileCheck2,
     },
     {
+      phase: "Provisioning",
       title: "Resource Provisioning",
       detail: "Provision compute, storage, network, database and security resources with observability and managed services as needed.",
+      icon: CloudCog,
+    },
+  ] as const;
+
+  const faqs = [
+    {
+      question: "Who can apply for NICSI Cloud Services?",
+      answer:
+        "Ministries, Departments, Government Organizations, and approved public sector entities can onboard through the NGC portal as per defined governance and authorization requirements.",
+    },
+    {
+      question: "How is billing handled for cloud usage?",
+      answer:
+        "Billing follows a Pay As You Go model, where charges are based on the consumed services and allocated resources, ensuring transparency and cost control.",
+    },
+    {
+      question: "What deployment models are supported?",
+      answer:
+        "The platform supports public, private, and hybrid cloud models based on workload sensitivity, compliance requirements, and operational priorities.",
+    },
+    {
+      question: "How long does resource provisioning usually take?",
+      answer:
+        "Provisioning timelines depend on resource type and approvals, but the workflow is designed for streamlined onboarding and faster delivery through standardized stages.",
+    },
+    {
+      question: "What security measures are available?",
+      answer:
+        "Services include configurable security controls such as IAM, encryption, firewall protections, vulnerability management, and monitoring capabilities.",
+    },
+    {
+      question: "Where can departments get service and pricing details?",
+      answer:
+        "Detailed service specifications, onboarding guidance, and pricing information are available on the official NGC Cloud Services portal.",
     },
   ] as const;
 
@@ -78,16 +118,20 @@ export default function Page() {
             Services are provisioned through the National Government Cloud (NGC) platform, enabling access to public, private and hybrid cloud
             environments with integrated monitoring, managed services and a Pay As You Go model for operational efficiency.
           </p>
+          <p className="mt-3 text-sm">
+            <Link href="#cloud-faq" className="font-semibold text-[#003A8C] hover:text-[#0F4BB8]">
+              Jump to FAQs
+            </Link>
+          </p>
         </div>
 
         <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0F172A]">Key Features</h2>
+          <h2 className="text-xl font-bold text-[#0F172A]">Service Highlights</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
-            {keyFeatures.map((feature, index) => (
-              <article key={feature.title} className="rounded-lg border border-blue-100 bg-[#FCFDFF] p-4">
-                <p className="text-xs font-semibold tracking-wide text-[#0052CC]">Feature {index + 1}</p>
-                <h3 className="mt-1 text-base font-semibold text-[#0F172A]">{feature.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-gray-700">{feature.detail}</p>
+            {keyFeatures.map((highlight) => (
+              <article key={highlight.title} className="rounded-lg border border-blue-100 bg-[#FCFDFF] p-4">
+                <h3 className="text-base font-semibold text-[#0F172A]">{highlight.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-gray-700">{highlight.detail}</p>
               </article>
             ))}
           </div>
@@ -115,16 +159,43 @@ export default function Page() {
         <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">Provisioning Process</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Departments can onboard and avail cloud services through the NGC portal in three streamlined steps.
+            Departments can onboard and avail cloud services through the NGC portal in three streamlined stages.
           </p>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            {provisioningSteps.map((step, index) => (
-              <article key={step.title} className="rounded-lg border border-blue-100 bg-[#FCFDFF] p-4">
-                <p className="text-xs font-semibold tracking-wide text-[#0052CC]">Step {index + 1}</p>
-                <h3 className="mt-1 text-base font-semibold text-[#0F172A]">{step.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-gray-700">{step.detail}</p>
-              </article>
-            ))}
+          <div className="mt-4 flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-stretch">
+            {provisioningSteps.map((step, index) => {
+              const Icon = step.icon;
+              const isLast = index === provisioningSteps.length - 1;
+
+              return (
+                <div key={step.title} className="contents">
+                  <article className="rounded-lg border border-blue-100 bg-[#FCFDFF] p-4">
+                    <span
+                      className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#0052CC]"
+                    >
+                      <span className="nicsi-process-icon" style={{ animationDelay: `${index * 0.22}s` }}>
+                        <Icon size={14} />
+                      </span>
+                      {step.phase}
+                    </span>
+                    <h3 className="mt-2 text-base font-semibold text-[#0F172A]">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-gray-700">{step.detail}</p>
+                  </article>
+
+                  {!isLast ? (
+                    <div className="flex items-center justify-center text-[#0F4BB8]">
+                      <ArrowDown
+                        className="nicsi-process-arrow-down h-5 w-5 md:hidden"
+                        style={{ animationDelay: `${index * 0.22}s` }}
+                      />
+                      <ArrowRight
+                        className="nicsi-process-arrow-right hidden h-5 w-5 md:block"
+                        style={{ animationDelay: `${index * 0.22}s` }}
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -139,6 +210,27 @@ export default function Page() {
               NGC Cloud Services
             </Link>
           </p>
+        </div>
+
+        <div id="cloud-faq" className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm scroll-mt-28">
+          <div className="flex items-center gap-2">
+            <HelpCircle size={19} className="text-[#0052CC]" />
+            <h2 className="text-xl font-bold text-[#0F172A]">Frequently Asked Questions</h2>
+          </div>
+          <p className="mt-2 text-sm text-gray-600">Quick answers to common onboarding, usage, and service queries.</p>
+          <div className="mt-4 space-y-3">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group rounded-lg border border-blue-100 bg-[#FCFDFF] p-4">
+                <summary className="cursor-pointer list-none text-sm font-semibold text-[#0F172A]">
+                  <span className="inline-flex items-start gap-2">
+                    <span className="mt-[2px] h-2 w-2 rounded-full bg-[#0F4BB8]" />
+                    <span>{faq.question}</span>
+                  </span>
+                </summary>
+                <p className="mt-3 pl-4 text-sm leading-6 text-gray-700">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     </main>

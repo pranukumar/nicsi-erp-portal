@@ -115,10 +115,10 @@ const REPORTS: Report[] = [
 export default function Page() {
   return (
     <main className="pb-12">
-      <PageTitle title="Reports" />
+      <PageTitle title="Download Annual Report" />
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-xl font-bold text-[#0F172A]">Reports</h2>
+          <h2 className="text-xl font-bold text-[#0F172A]">Download Annual Report</h2>
           <div className="mt-3 h-[2px] w-24 bg-[#003A8C]" />
 
           <div className="mt-5 overflow-x-auto rounded-lg border border-gray-200">

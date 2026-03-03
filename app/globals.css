@@ -312,6 +312,40 @@ iframe {
   white-space: nowrap;
 }
 
+@keyframes nicsi-process-icon-float {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-3px) rotate(-8deg) scale(1.05); }
+  50% { transform: translateY(0) rotate(0deg) scale(1); }
+  75% { transform: translateY(3px) rotate(8deg) scale(1.05); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes nicsi-process-arrow-down-move {
+  0%, 100% { transform: translateY(0); opacity: 0.65; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+@keyframes nicsi-process-arrow-right-move {
+  0%, 100% { transform: translateX(0); opacity: 0.65; }
+  50% { transform: translateX(6px); opacity: 1; }
+}
+
+.nicsi-process-icon {
+  display: inline-flex;
+  animation: nicsi-process-icon-float 1.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.nicsi-process-arrow-down {
+  animation: nicsi-process-arrow-down-move 1.05s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.nicsi-process-arrow-right {
+  animation: nicsi-process-arrow-right-move 1.05s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 .nicsi-motion-backdrop {
   isolation: isolate;
   --mx: 0;

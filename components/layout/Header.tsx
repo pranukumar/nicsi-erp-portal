@@ -181,13 +181,13 @@ const menuGroups = [
         icon: Download,
       },
       {
-        label: "Forms",
+        label: "Download Form",
         href: "/forms",
         description: "Downloadable application and process forms.",
         icon: Network,
       },
       {
-        label: "Reports",
+        label: "Download Annual Report",
         href: "/reports",
         description: "Annual reports and other publication records.",
         icon: Network,
@@ -217,6 +217,30 @@ const menuGroups = [
     description: "Press communication, events, galleries, and media archive.",
     items: [
       {
+        label: "Photo Gallery",
+        href: "/photo-gallery",
+        description: "Event photographs and official image gallery.",
+        icon: Images,
+      },
+      {
+        label: "Awards & Recognition",
+        href: "/awards-recognition",
+        description: "Awards, honors, and recognitions received by NICSI.",
+        icon: Medal,
+      },
+      {
+        label: "Video Gallery",
+        href: "/video-gallery",
+        description: "Official videos and multimedia content.",
+        icon: Video,
+      },
+      {
+        label: "NICSI Events",
+        href: "/events",
+        description: "Conferences, workshops, and official events.",
+        icon: CalendarDays,
+      },
+      {
         label: "Press Releases",
         href: "/press-releases",
         description: "Official press release publications.",
@@ -227,30 +251,6 @@ const menuGroups = [
         href: "/news-updates",
         description: "Latest news, announcements, and updates.",
         icon: Megaphone,
-      },
-      {
-        label: "Awards & Recognition",
-        href: "/awards-recognition",
-        description: "Awards, honors, and recognitions received by NICSI.",
-        icon: Medal,
-      },
-      {
-        label: "Events",
-        href: "/events",
-        description: "Conferences, workshops, and official events.",
-        icon: CalendarDays,
-      },
-      {
-        label: "Photo Gallery",
-        href: "/photo-gallery",
-        description: "Event photographs and official image gallery.",
-        icon: Images,
-      },
-      {
-        label: "Video Gallery",
-        href: "/video-gallery",
-        description: "Official videos and multimedia content.",
-        icon: Video,
       },
       {
         label: "Archive",
@@ -286,6 +286,7 @@ const topStripQuickLinksItems: TopStripMenuItem[] = [
   { label: "CSR", href: "/csr", icon: Building2 },
   { label: "GST Particulars", href: "/gst-particulars", icon: FileBadge2 },
   { label: "Vendor Search", href: "/vendor-search", icon: Network },
+  { label: "FAQ", href: "/faq", icon: FileText },
   { label: "Contact Us", href: "/contact", icon: Users },
 ];
 
@@ -514,7 +515,6 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <span className="lg:hidden">ERP Portal</span>
         </div>
 
         <div className="mx-auto mt-2 w-full max-w-7xl text-[12px] font-medium lg:hidden">

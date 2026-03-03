@@ -47,7 +47,7 @@ export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>NICSI ERP Portal Updates</title>
+    <title>NICSI Digital Governance Platform Updates</title>
     <link>${baseUrl}</link>
     <description>Official updates from NICSI portal.</description>
     <language>en-in</language>

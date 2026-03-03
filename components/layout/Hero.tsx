@@ -10,7 +10,7 @@ const slides = [
     description: "Empowering transparent, scalable, and secure public service delivery.",
     image: "/images/banner1.jpg",
     primaryCta: { label: "Explore Services", href: "/services" },
-    secondaryCta: { label: "View Tenders", href: "/tenders" },
+    secondaryCta: { label: "View Tenders", href: "/nicsi-gem-bids" },
   },
   {
     title: "Unified Tender and Vendor Workflows",

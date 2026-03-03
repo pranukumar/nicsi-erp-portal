@@ -23,8 +23,8 @@ export type FooterContent = {
 };
 
 const fallbackAnnouncements: Announcement[] = [
-  { text: "Corrigendum issued for cloud infrastructure tender batch Q1-2026.", href: "/tenders" },
-  { text: "Updated vendor document checklist published in forms section.", href: "/forms" },
+  { text: "Corrigendum issued for cloud infrastructure tender batch Q1-2026.", href: "/nicsi-gem-bids" },
+  { text: "Updated vendor document checklist published in download form section.", href: "/forms" },
   { text: "Vacancies are open for project and security operations teams.", href: "/vacancies" },
 ];
 
@@ -40,12 +40,13 @@ const fallbackFooterContent: FooterContent = {
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Tenders", href: "/tenders" },
+    { label: "Tenders", href: "/nicsi-gem-bids" },
+    { label: "FAQ", href: "/faq" },
     { label: "Vacancies", href: "/vacancies" },
     { label: "Contact Us", href: "/contact" },
   ],
   resourceLinks: [
-    { label: "Forms", href: "/forms" },
+    { label: "Download Form", href: "/forms" },
     { label: "Empanelled Vendors", href: "/empanelled-vendors" },
     { label: "Portal Login", href: "/login" },
   ],

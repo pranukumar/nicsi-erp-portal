@@ -68,7 +68,7 @@ export default function AboutPage() {
           <h2 className="mt-2 text-xl font-bold text-[#0F172A] md:text-2xl">National Informatics Centre Services Inc.</h2>
           <p className="mt-4 text-left leading-7 text-gray-700">
             National Informatics Centre Services Inc. (NICSI), established in 1995, is a Section 8 company under the Companies Act, 
-            2013 (formerly a Section 25 company) under National Informatics Centre (NIC), Ministry of Electronics & Information 
+            2013 under National Informatics Centre (NIC), Ministry of Electronics & Information 
             Technology (MeitY), Government of India for providing and procuring IT solutions for multiple e-governance projects undertaken 
             by NIC, MeitY, Governments and Government Organizations (like Public Sector Undertakings).
           </p>

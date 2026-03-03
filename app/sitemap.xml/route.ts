@@ -11,6 +11,7 @@ const routes = [
   "/website-policy",
   "/hyperlinking-policy",
   "/accessibility-statement",
+  "/faq",
   "/national-projects",
   "/state-projects",
   "/meity-projects",
