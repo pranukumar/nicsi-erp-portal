@@ -11,16 +11,16 @@ interface Project {
 export default function Page() {
   const projects: Project[] = [
     {
+      title: "NKN",
+      logo: "/logos/meity-projects/nkn.png",
+      description: "A high speed, secure network connecting educational and research institutions across India.",
+      website: "https://www.nkn.gov.in/",
+    },
+    {
       title: "National Cloud Services",
       logo: "/logos/meity-projects/national-cloud.png",
       description: "Strengthening and modernizing cloud infrastructure to support secure government service delivery.",
       website: "https://www.cloud.gov.in/",
-    },
-    {
-      title: "eTaal 3.0",
-      logo: "/logos/meity-projects/etaal.png",
-      description: "A real time analytics platform measuring and monitoring the usage of digital government services across India.",
-      website: "https://etaal.gov.in/",
     },
     {
       title: "Government Email Services",
@@ -28,39 +28,22 @@ export default function Page() {
       description: "A robust, managed email platform ensuring secure communication for government users.",
       website: "https://email.gov.in/",
     },
-   
-    {
-      title: "Parichay",
-      logo: "/logos/meity-projects/default.svg",
-      description: "A unified authentication system allowing users to access multiple digital government services with a single login.",
-    },
-   
-    {
-      title: "Enhancement and Management of Ministries' Websites",
-      logo: "/logos/meity-projects/default.svg",
-      description: "Improving security, accessibility, design, and backend management for government ministry portals.",
-    },
-    {
-      title: "India Portal 2.0",
-      logo: "/logos/meity-projects/india-portal.png",
-      description: "A unified gateway providing centralized access to discoverable government information and citizen services.",
-      website: "https://www.india.gov.in/",
-    },
-    {
-      title: "Pragati VC 2.0",
-      logo: "/logos/meity-projects/pragati.png",
-      description: "A video conferencing platform enabling collaborative governance and real-time monitoring.",
-    },
-   
-    {
-      title: "GovDrive - Government Cloud Storage",
-      logo: "/logos/meity-projects/nic.png",
-      description: "A centralized cloud based storage solution for secure file access, sharing, and management by government entities.",
-    },
     {
       title: "National Data Centre - North East Region (NDC NER)",
       logo: "/logos/meity-projects/nic.png",
       description: "A regional data centre ensuring resilient hosting and digital service availability for the North East.",
+    },
+    {
+      title: "Parichay",
+      logo: "/logos/meity-projects/default.svg",
+      description: "A unified authentication system allowing users to access multiple digital government services with a single login.",
+      website: "https://parichay.nic.in/",
+    },
+    {
+      title: "eOffice",
+      logo: "/logos/meity-projects/e-office.png",
+      description: "Managed hosting and application services for eOffice to streamline digital file movement and administration.",
+      website: "https://eoffice.gov.in/",
     },
     {
       title: "National Scholarship Portal",
@@ -68,26 +51,17 @@ export default function Page() {
       description: "A unified digital platform supporting transparent scholarship applications, verification, and disbursement.",
       website: "https://scholarships.gov.in/",
     },
-    
     {
-      title: "e Office - Hosting & Application Services",
-      logo: "/logos/meity-projects/e-office.png",
-      description: "Managed hosting and application services for e Office to streamline digital file movement and administration.",
-      website: "https://eoffice.gov.in/",
+      title: "Pragati VC 2.0",
+      logo: "/logos/meity-projects/pragati.png",
+      description: "A video conferencing platform enabling collaborative governance and real-time monitoring.",
     },
     {
-      title: "Grievance Redressal Web Portal",
-      logo: "/logos/meity-projects/gac.jpg",
-      description: "Integrated online platform handling citizen grievances efficiently.",
-      website: "https://gac.gov.in/",
+      title: "India Portal 2.0",
+      logo: "/logos/meity-projects/india-portal.png",
+      description: "A unified gateway providing centralized access to discoverable government information and citizen services.",
+      website: "https://www.india.gov.in/",
     },
-    {
-      title: "National Knowledge Network",
-      logo: "/logos/meity-projects/nkn.png",
-      description: "A high speed, secure network connecting educational and research institutions across India.",
-      website: "https://www.nkn.gov.in/",
-    },
-    
     {
       title: "MeitY Website Development",
       logo: "/logos/meity-projects/meity.png",

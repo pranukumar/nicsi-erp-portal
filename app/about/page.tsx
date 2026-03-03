@@ -81,23 +81,23 @@ export default function AboutPage() {
 
           </p>
           <div className="mt-6 rounded-xl border border-blue-100 bg-[#F8FAFF] p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Geographical Reach</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Nationwide Digital Footprint</p>
             <div className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-lg border border-gray-200 bg-white p-4">
-                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Ministries Covered</p>
-                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Ministries</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">52+</p>
               </div>
               <div className="rounded-lg border border-gray-200 bg-white p-4">
-                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Departments Covered</p>
-                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Departments</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">166+</p>
               </div>
               <div className="rounded-lg border border-gray-200 bg-white p-4">
-                <p className="text-sm uppercase tracking-wide text-[#0052CC]">PSUs Covered</p>
-                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">PSUs</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">280+</p>
               </div>
               <div className="rounded-lg border border-gray-200 bg-white p-4">
-                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Projects Delivered (Exact)</p>
-                <p className="mt-1 text-lg font-bold text-[#0F172A]">--</p>
+                <p className="text-sm uppercase tracking-wide text-[#0052CC]">Projects</p>
+                <p className="mt-1 text-lg font-bold text-[#0F172A]">9350+</p>
               </div>
             </div>
             
@@ -165,7 +165,7 @@ export default function AboutPage() {
                 <ul className="mt-3 flex-1 space-y-2 text-sm text-gray-700">
                   {card.points.map((point) => (
                     <li key={point} className="flex items-start gap-2 leading-6">
-                      <span className="mt-2 h-2 w-2 shrink-0 rounded-sm bg-[#0A2A72] rotate-45" />
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-[2px] bg-[#0A2A72] rotate-45" />
                       <span>{point}</span>
                     </li>
                   ))}

@@ -79,19 +79,19 @@ const menuGroups = [
     description: "National and international project portfolios and initiatives.",
     items: [
       {
-        label: "National Projects",
+        label: "NICSI National Projects",
         href: "/national-projects",
         description: "Projects delivered across India for public institutions.",
         icon: GanttChartSquare,
       },
       {
-        label: "State Projects",
+        label: "NICSI State Projects",
         href: "/state-projects",
         description: "State-specific e-Governance implementation projects.",
         icon: GanttChartSquare,
       },
       {
-        label: "MeitY Projects",
+        label: "NICSI MeitY Projects",
         href: "/meity-projects",
         description: "Projects aligned to MeitY programs and initiatives.",
         icon: GanttChartSquare,
@@ -103,7 +103,7 @@ const menuGroups = [
         icon: GanttChartSquare,
       },
       {
-        label: "International Projects",
+        label: "NICSI International Projects",
         href: "/international-projects",
         description: "Overseas projects and international engagement initiatives.",
         icon: UserCheck2,
@@ -123,11 +123,11 @@ const menuGroups = [
     ],
   },
   {
-    label: "NICSI Centre of Excellence",
+    label: "NICSI Centres of Excellence",
     description: "Innovation, standards, enablement and specialized domain capability initiatives.",
     items: [
       {
-        label: "NICSI Centre of Excellence",
+        label: "NICSI Centres of Excellence",
         href: "/centre-of-excellence",
         description: "Domain-led excellence initiatives for digital governance outcomes.",
         icon: Building2,
@@ -191,24 +191,6 @@ const menuGroups = [
         href: "/reports",
         description: "Annual reports and other publication records.",
         icon: Network,
-      },
-      {
-        label: "Architecture Review Deck",
-        href: "/presentations/md-architecture-review.html",
-        description: "High-level architecture review presentation deck.",
-        icon: FileText,
-      },
-      {
-        label: "ERP Implementation Deck",
-        href: "/presentations/erp-implementation-execution.html",
-        description: "Execution-focused ERP implementation presentation.",
-        icon: GanttChartSquare,
-      },
-      {
-        label: "ERP One-Page Summary",
-        href: "/presentations/erp-implementation-one-page.html",
-        description: "Single-page implementation summary for quick review.",
-        icon: FileCheck2,
       },
     ],
   },

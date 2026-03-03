@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="280" viewBox="0 0 900 280" role="img" aria-label="StarBus One Nation One Portal">
+  <rect width="900" height="280" fill="#ffffff"/>
+  <g transform="translate(20 26)">
+    <text x="0" y="110" font-family="Segoe UI, Arial, sans-serif" font-size="98" font-weight="700" fill="#0f8a4b">StarBus</text>
+    <text x="335" y="58" font-family="Segoe UI Symbol, Segoe UI, Arial, sans-serif" font-size="86" font-weight="700" fill="#0f8a4b">*</text>
+    <text x="0" y="220" font-family="Segoe UI, Arial, sans-serif" font-size="86" font-weight="700" fill="#59b9e7">‘One Nation One - Portal’</text>
+  </g>
+</svg>

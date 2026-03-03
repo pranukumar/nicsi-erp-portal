@@ -80,9 +80,7 @@ export default function BoardOfDirectorsPage() {
 
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
         <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
-          <h2 className="text-xl font-bold text-[#0F172A]">NICSI Board of Directors</h2>
-
-          <div className="mt-4 overflow-x-auto rounded-lg border border-gray-200">
+          <div className="overflow-x-auto rounded-lg border border-gray-200">
             <table className="nic-table min-w-full text-left text-sm">
               <thead className="bg-gray-50 text-gray-700">
                 <tr>

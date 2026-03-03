@@ -34,7 +34,7 @@ export default function Page() {
       description:
         "A fully configurable, cloud-enabled platform providing State Transport Corporation (STC) services such as online seat booking, bus pass issuance, fleet and crew management.",
       accent: "text-[#0A2A72]",
-      logoText: "StarBus",
+      logo: "/logos/pbd-projects/starbus-logo.svg",
     },
   ];
 
@@ -48,6 +48,7 @@ export default function Page() {
     },
     {
       name: "NextGen eHospital",
+      tagline: "Smart Hospital Management System",
       description:
         "An integrated hospital management system that digitizes operations and connects patients, hospitals, and doctors seamlessly.",
       accent: "text-[#0284C7]",
@@ -55,6 +56,7 @@ export default function Page() {
     },
     {
       name: "NAPIX",
+      tagline: "National API Exchange Platform",
       description:
         "A centralized government API platform enabling departments and agencies to securely build, integrate, and scale digital services.",
       accent: "text-[#0A2A72]",
@@ -62,15 +64,24 @@ export default function Page() {
     },
     {
       name: "Face Auth",
+      tagline: "Biometric Identity Verification System",
       description:
         "Biometric authentication service that leverages facial recognition technology to verify user identity across government platforms.",
       accent: "text-[#1E40AF]",
     },
     {
       name: "Cyber Solution (Phishing)",
+      tagline: "Anti Phishing Readiness Platform",
       description:
         "A cybersecurity awareness platform designed to strengthen organizational defenses against phishing attacks.",
       accent: "text-[#6D28D9]",
+    },
+    {
+      name: "eVetan Seva",
+      tagline: "Unified Government Payroll Platform",
+      description:
+        "A centralized and scalable payroll management system for secure, efficient handling of salaries, employee data, and financial deductions across government bodies.",
+      accent: "text-[#0F4BB8]",
     },
   ];
 

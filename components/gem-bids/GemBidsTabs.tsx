@@ -9,7 +9,56 @@ function getGemBidPlusUrl(bidNo: string): string {
   return `https://bidplus.gem.gov.in/advance-search?searchType=bid-search&text=${encodedBid}#tab1`;
 }
 
-function BidsTable({ rows, serialOffset = 0 }: { rows: GemBid[]; serialOffset?: number }) {
+function parseBidDate(dateText: string): Date | null {
+  const cleaned = dateText.trim();
+  const match = cleaned.match(/(\d{1,2})\s*[-/.]\s*(\d{1,2})\s*[-/.]\s*(\d{4})/);
+  if (!match) return null;
+
+  const day = Number(match[1]);
+  const monthIndex = Number(match[2]) - 1;
+  const year = Number(match[3]);
+  const parsed = new Date(year, monthIndex, day);
+
+  if (
+    Number.isNaN(parsed.getTime()) ||
+    parsed.getFullYear() !== year ||
+    parsed.getMonth() !== monthIndex ||
+    parsed.getDate() !== day
+  ) {
+    return null;
+  }
+  return parsed;
+}
+
+function sortBidsByEndDate(rows: GemBid[]): GemBid[] {
+  return rows
+    .map((row, index) => {
+      const parsedEndDate = parseBidDate(row.endDate);
+      const endDateTime = parsedEndDate ? parsedEndDate.getTime() : Number.POSITIVE_INFINITY;
+      return { row, index, endDateTime };
+    })
+    .sort((a, b) => {
+      if (a.endDateTime !== b.endDateTime) {
+        return a.endDateTime - b.endDateTime;
+      }
+      return a.index - b.index;
+    })
+    .map((item) => item.row);
+}
+
+function BidsTable({
+  rows,
+  serialOffset = 0,
+  highlightUpcomingExpiry = false,
+}: {
+  rows: GemBid[];
+  serialOffset?: number;
+  highlightUpcomingExpiry?: boolean;
+}) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dayInMs = 24 * 60 * 60 * 1000;
+
   return (
     <div className="overflow-x-auto rounded-lg border border-gray-200">
       <table className="nic-table min-w-full text-left text-sm">
@@ -24,39 +73,57 @@ function BidsTable({ rows, serialOffset = 0 }: { rows: GemBid[]; serialOffset?: 
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => (
-            <tr key={`${row.bidNo}-${serialOffset + index}`} className="border-t align-top">
-              <td className="px-4 py-3">{serialOffset + index + 1}</td>
-              <td className="px-4 py-3">
-                <p className="font-semibold text-[#0F172A]">{row.bidNo}</p>
-                <Link
-                  href={getGemBidPlusUrl(row.bidNo)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-1 inline-flex rounded-md border border-blue-200 bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-[#003A8C] hover:bg-blue-100"
-                >
-                  Open on GeM BidPlus
-                </Link>
-              </td>
-              <td className="px-4 py-3">{row.startDate}</td>
-              <td className="px-4 py-3">{row.endDate}</td>
-              <td className="px-4 py-3">{row.brief}</td>
-              <td className="px-4 py-3">
-                {row.documentUrl ? (
+          {rows.map((row, index) => {
+            const parsedEndDate = parseBidDate(row.endDate);
+            const daysToExpiry =
+              parsedEndDate !== null ? Math.floor((parsedEndDate.getTime() - today.getTime()) / dayInMs) : null;
+            const isExpiringSoon =
+              highlightUpcomingExpiry && daysToExpiry !== null && daysToExpiry >= 0 && daysToExpiry <= 7;
+
+            return (
+              <tr
+                key={`${row.bidNo}-${serialOffset + index}`}
+                className={`border-t align-top ${isExpiringSoon ? "bg-[#FFF7E6]" : ""}`}
+              >
+                <td className="px-4 py-3">{serialOffset + index + 1}</td>
+                <td className="px-4 py-3">
+                  <p className="font-semibold text-[#0F172A]">{row.bidNo}</p>
                   <Link
-                    href={row.documentUrl}
+                    href={getGemBidPlusUrl(row.bidNo)}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
+                    className="mt-1 inline-flex rounded-md border border-blue-200 bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-[#003A8C] hover:bg-blue-100"
                   >
-                    View PDF
+                    Open on GeM BidPlus
                   </Link>
-                ) : (
-                  <span className="text-xs text-gray-500">-</span>
-                )}
-              </td>
-            </tr>
-          ))}
+                </td>
+                <td className="px-4 py-3">{row.startDate}</td>
+                <td className="px-4 py-3">
+                  <p>{row.endDate}</p>
+                  {isExpiringSoon ? (
+                    <span className="mt-1 inline-flex rounded-full border border-amber-300 bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900">
+                      Expiring Soon
+                    </span>
+                  ) : null}
+                </td>
+                <td className="px-4 py-3">{row.brief}</td>
+                <td className="px-4 py-3">
+                  {row.documentUrl ? (
+                    <Link
+                      href={row.documentUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
+                    >
+                      View PDF
+                    </Link>
+                  ) : (
+                    <span className="text-xs text-gray-500">-</span>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -77,12 +144,16 @@ export default function GemBidsTabs({
 
   const filteredArchive = useMemo(() => {
     const query = archiveSearch.trim().toLowerCase();
-    if (!query) return archiveBids;
-    return archiveBids.filter((item) => {
-      const haystack = `${item.bidNo} ${item.startDate} ${item.endDate} ${item.brief}`.toLowerCase();
-      return haystack.includes(query);
-    });
+    const result = !query
+      ? archiveBids
+      : archiveBids.filter((item) => {
+          const haystack = `${item.bidNo} ${item.startDate} ${item.endDate} ${item.brief}`.toLowerCase();
+          return haystack.includes(query);
+        });
+    return sortBidsByEndDate(result);
   }, [archiveBids, archiveSearch]);
+
+  const sortedCurrentBids = useMemo(() => sortBidsByEndDate(currentBids), [currentBids]);
 
   const totalArchivePages = Math.max(1, Math.ceil(filteredArchive.length / PAGE_SIZE));
   const safeArchivePage = Math.min(archivePage, totalArchivePages);
@@ -142,7 +213,12 @@ export default function GemBidsTabs({
 
       <div className="mt-4">
         {tab === "current" ? (
-          <BidsTable rows={currentBids} />
+          <>
+            <p className="mb-2 text-xs font-medium text-amber-800">
+              Highlighted rows indicate bids expiring within the upcoming 7 days (from today).
+            </p>
+            <BidsTable rows={sortedCurrentBids} highlightUpcomingExpiry />
+          </>
         ) : (
           <BidsTable rows={pagedArchive} serialOffset={archiveStart} />
         )}
