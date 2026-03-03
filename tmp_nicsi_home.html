@@ -1,0 +1,2090 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="NICSI">
+<meta name="format" content="text/html">
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+<link rel="stylesheet" href="assets/css/bootstrap.css">
+<link rel="stylesheet" href="assets/css/slick.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/responsive_main.css">
+<link rel="stylesheet" href="assets/css/formal_blue_theme.css">
+
+
+<title>Welcome to NICSI | Home</title>
+<script type="text/javascript">
+	function search() {
+		var searchContent = document.getElementById("searchData").value;
+		var regex = /^[^a-zA-Z]+$/;
+		if (/^[a-zA-Z0-9- ,_]*$/.test(searchContent) == false) {
+			document.getElementById("searchData").value = "";
+			alert("Invalid Search Keywords")
+			return false;
+		} else {
+			window.location.href = "search?keyword=" + searchContent;
+		}
+	}
+	function changeLanguage(url) {
+		if (url === 'डेटा_खोज') {
+			return false;
+		} else {
+
+			window.location.href = "http://xn--m1bafb5ac6o4eb2f.xn--h2brj9c/"
+					+ url;
+		}
+	}
+</script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		document.documentElement.addEventListener("contextmenu", function(e) {
+			e.preventDefault();
+		});
+	});
+</script>
+
+</head>
+<!-- <body   oncontextmenu="return false;" oncopy="return false" oncut="return false" onpaste="return false"  onload="activeCurrentThemeColor('', '')"> -->
+<body class="formal_blue_theme" oncontextmenu="return false;">
+	<!-- Header Section Start -->
+	<div class="top__header">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				<div class="col-2 col-sm-2 col-md-1">
+					<div class="sitemap___box">
+						<a href="sitemap">Sitemap</a>
+					</div>
+				</div>
+				<div class="col-10 col-sm-10 col-md-11">
+					<ul class="navbar-nav top___right">
+						<li class="nav-item"><a class="nav-link"
+							href="screenReaderAccess">Screen Reader Access</a></li>
+						<li class="nav-item"><a class="nav-link" href="#skip_to_main">Skip
+								To Main Content</a></li>
+						<li>
+							<div class="search___input">
+								<div class="input-group">
+									<div class="form-inline">
+										<input type="search" id="searchData" name="searchData"
+											class="form-control" placeholder="Search" size="20"
+											maxlength="20" />
+									</div>
+									<button type="button" class="btn btn-search" onclick="search()">
+										<img src="assets/images/Search_icon.svg" alt="icon">
+									</button>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="text___resize">
+								<span class="font-button" id="text-size-decrease">A-</span><span
+									class="px-2 font-button" id="text-size-reset">A</span><span
+									class="font-button" id="text-size-increase">A+</span>
+							</div>
+						</li>
+						<li class="nav-item select___language"><select
+							name="language" id="language"
+							onchange="changeLanguage('होम')">
+								<option value="en" selected>English</option>
+								<option value="hi">हिन्दी</option>
+						</select></li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="nicsi_header_sticky">
+		<nav class="navbar navbar-expand-lg navbar-middle">
+			<div class="container-fluid">
+				<div class="row sec_logo">
+					<div
+						class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-4 nicsi_logo">
+						<div class="logo d-flex">
+							<a class="navbar-brand" href="home"> <img
+								src="assets/images/logo.svg" alt="headerImage"></a>
+						</div>
+					</div>
+					<div
+						class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 col-xxl-8 client_logo m-auto">
+
+						<ul class="navbar-nav ms-auto mb-lg-0 i item-right2 d-flex">
+							
+								<li class="nav-item two"><img
+									src="assets/images/digital-India-White.svg" loading="lazy"
+									alt="headerImage"></li>
+							
+							
+								<li class="nav-item"><img
+									src="assets/images/Swachh_Bharat_Logo.png" loading="lazy"
+									alt="headerImage"></li>
+							
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="navbar navbar-main">
+			<!-- responsive Navbar toggle button -->
+			<input type="checkbox" id="nav-check">
+			<div class="nav-btn">
+				<label for="nav-check"> <span></span> <span></span> <span></span>
+				</label>
+			</div>
+
+			<!-- Navbar items -->
+			<div class="nav-links">
+				
+					
+						<a href="home" class="nicsi__navlink active"> <img
+							src="assets/images/Home_icon.svg" alt="home"></a>
+					
+					
+				
+				
+					
+						<div class="dropdown">
+
+							<!--nicsi__navlink active   0-->
+
+							 
+								
+								
+									<a class="dropBtn nicsi__navlink" href="#">Profile
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+                            <path
+												d="M1.71429 0L6 5L10.2857 0L12 1L6 8L0 1L1.71429 0Z"
+												fill="#1F1F1F" />
+                        </svg>
+									</a>
+								
+							  							
+
+							<div class="drop-content">
+								<div class="inner-drop-content">
+									
+
+										
+										
+											
+												
+													
+														<a href="aboutUs">About NICSI</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+											<div class="dropdown2">
+												<a class="dropBtn2" href="javascript:void(0);">Organization
+													<img src="assets/images/dropdown_arrow.svg" alt="icon"
+													class="right_dropdown_arrow">
+												</a>
+												<div class="drop-content2">
+													<div class="inner-drop-content">
+														
+															
+																<a href="organizationChart">Organization Chart</a>
+															
+														
+															
+																<a href="headQuarterPersonnel">Headquarters Personnel</a>
+															
+														
+															
+																<a href="statePersonnel">State Personnel</a>
+															
+														
+															
+																<a href="workAllocation">Work Allocation</a>
+															
+														
+													</div>
+												</div>
+											</div>
+										
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="boardOfDirectors">Board of Directors</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="listOfChairpersons">List of Chairpersons</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="listOfMd">List of Managing Directors</a>
+													
+												
+												
+											
+
+
+										
+									
+
+								</div>
+							</div>
+						</div>
+					
+					
+						
+					
+				
+					
+						<div class="dropdown">
+
+							<!--nicsi__navlink active   0-->
+
+							 
+								
+								
+									<a class="dropBtn nicsi__navlink" href="#">Projects
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+                            <path
+												d="M1.71429 0L6 5L10.2857 0L12 1L6 8L0 1L1.71429 0Z"
+												fill="#1F1F1F" />
+                        </svg>
+									</a>
+								
+							  							
+
+							<div class="drop-content">
+								<div class="inner-drop-content">
+									
+
+										
+										
+											
+												
+													
+														<a href="nationalProjects">National Projects</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="internationalProjects">International Projects</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+								</div>
+							</div>
+						</div>
+					
+					
+				
+					
+						<div class="dropdown">
+
+							<!--nicsi__navlink active   0-->
+
+							 
+								
+								
+									<a class="dropBtn nicsi__navlink" href="#">Cloud Services
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+                            <path
+												d="M1.71429 0L6 5L10.2857 0L12 1L6 8L0 1L1.71429 0Z"
+												fill="#1F1F1F" />
+                        </svg>
+									</a>
+								
+							  							
+
+							<div class="drop-content">
+								<div class="inner-drop-content">
+									
+
+										
+										
+											
+												
+												
+													
+													
+														
+															<a href="https://cloud.nicsi.nic.in/" target="_BLANK"
+																onclick="return callExtPage()">NICSI Cloud</a>
+														
+													
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+												
+													
+													
+														
+															<a href="https://ngc.gov.in/" target="_BLANK"
+																onclick="return callExtPage()">NGC Cloud</a>
+														
+													
+												
+											
+
+
+										
+									
+
+								</div>
+							</div>
+						</div>
+					
+					
+				
+					
+					
+						
+							
+								
+								
+									
+									
+										<a href="empanelledvendors" class="nicsi__navlink">Empanelled vendors</a>
+									
+								
+							
+						
+					
+				
+					
+						<div class="dropdown">
+
+							<!--nicsi__navlink active   0-->
+
+							 
+								
+								
+									<a class="dropBtn nicsi__navlink" href="#">Tenders
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+                            <path
+												d="M1.71429 0L6 5L10.2857 0L12 1L6 8L0 1L1.71429 0Z"
+												fill="#1F1F1F" />
+                        </svg>
+									</a>
+								
+							  							
+
+							<div class="drop-content">
+								<div class="inner-drop-content">
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="active-Tender">NICSI CPP Tenders</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="gem-bids">NICSI GeM Bids</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+								</div>
+							</div>
+						</div>
+					
+					
+				
+					
+						<div class="dropdown">
+
+							<!--nicsi__navlink active   0-->
+
+							 
+								
+								
+									<a class="dropBtn nicsi__navlink" href="#">Downloads
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+                            <path
+												d="M1.71429 0L6 5L10.2857 0L12 1L6 8L0 1L1.71429 0Z"
+												fill="#1F1F1F" />
+                        </svg>
+									</a>
+								
+							  							
+
+							<div class="drop-content">
+								<div class="inner-drop-content">
+									
+
+										
+										
+											
+												
+												
+													
+														<a href="nicsiSOP" target="_BLANK">NICSI SOP</a>
+													
+													
+														
+													
+												
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="circularAndOrder">Circular & Notices</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="downloadForms">Forms</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="reports">Reports</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+										
+										
+											
+
+
+										
+									
+
+								</div>
+							</div>
+						</div>
+					
+					
+				
+					
+						<div class="dropdown">
+
+							<!--nicsi__navlink active   0-->
+
+							 
+								
+								
+									<a class="dropBtn nicsi__navlink" href="#">Media
+										<svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+                            <path
+												d="M1.71429 0L6 5L10.2857 0L12 1L6 8L0 1L1.71429 0Z"
+												fill="#1F1F1F" />
+                        </svg>
+									</a>
+								
+							  							
+
+							<div class="drop-content">
+								<div class="inner-drop-content">
+									
+
+										
+										
+											
+												
+													
+														<a href="photos">Photos</a>
+													
+												
+												
+											
+
+
+										
+									
+
+										
+										
+											
+												
+													
+														<a href="videos">Videos</a>
+													
+												
+												
+											
+
+
+										
+									
+
+								</div>
+							</div>
+						</div>
+					
+					
+				
+					
+					
+						
+							
+								
+								
+									
+									
+										<a href="rti" class="nicsi__navlink">RTI</a>
+									
+								
+							
+						
+					
+				
+					
+					
+						
+							
+								
+								
+									
+									
+										<a href="gstParticulars" class="nicsi__navlink">GST Particulars</a>
+									
+								
+							
+						
+					
+				
+					
+					
+						
+							
+								
+								
+									
+									
+										<a href="csr" class="nicsi__navlink">CSR</a>
+									
+								
+							
+						
+					
+				
+					
+					
+						
+							
+								
+								
+									
+									
+										<a href="career" class="nicsi__navlink">Career</a>
+									
+								
+							
+						
+					
+				
+					
+					
+						
+							
+								
+								
+									
+									
+										<a href="contactUs" class="nicsi__navlink">Contact Us</a>
+									
+								
+							
+						
+					
+				
+			</div>
+		</div>
+	</section>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<marquee class="py-2" direction="left" scrollamount="6"
+				onmouseover="this.stop();" onMouseOut="this.start()">
+				<img src="assets/images/contact_icon.svg" alt="icon"
+					style="height: 25px; margin-right: 6px;">Contact:+91-11-22900525,
+				+91-11-22900523, <a href="https://wa.me/8527625551" target="_blank"
+					style="color: black;"><img
+					src="assets/images/contact_whatsapp_icon.svg" alt="icon"
+					style="height: 25px;">8527625551</a>
+
+			</marquee>
+			<div class="col-12"
+				style="background: #fff; height: 5px; box-shadow: 0px 4px 17px rgb(0 0 0/ 18%);"></div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
+<!-- Header Section End -->
+
+<!-- Slider Section Start -->
+<section>
+	<!-- <div class="nicsi_30logo">
+		<img src="assets/images/nicsi30_logo.png" alt="nicsi30_logo">
+	</div> -->
+	<div class="nicsi_slider add-remove">
+		
+			
+
+				
+				
+					<a href="https://www.vandemataram150.in/" target="_blank"> <img
+						src="assets/images/Slider/vm_website_banner.jpg" alt="slider img"
+						class="w-100">
+					</a>
+				
+
+			
+		
+			
+
+				
+					<img src="assets/images/Slider/ceda.jpg" alt="slider img"
+						class="w-100">
+				
+				
+
+			
+		
+			
+
+				
+					<img src="assets/images/Slider/pbd.jpg" alt="slider img"
+						class="w-100">
+				
+				
+
+			
+		
+			
+
+				
+					<img src="assets/images/Slider/nicsi-services.jpg" alt="slider img"
+						class="w-100">
+				
+				
+
+			
+		
+			
+
+				
+					<img src="assets/images/Slider/web-development.jpg" alt="slider img"
+						class="w-100">
+				
+				
+
+			
+		
+	</div>
+	<div class="slider_bottom_shadow"></div>
+</section>
+
+<!-- Slider Section End -->
+
+<!-- NICSI Social Icons Section Start -->
+<div class="soial_container">
+	<ul>
+		<li class="nicsi_twitter"><img src="assets/images/x_social.svg"
+			alt="Twitter"> <a href="https://twitter.com/MeitY_NICSI"
+			target="_blank"> <span class="twitter_text">Twitter</span>
+		</a></li>
+
+		<li class="nicsi_linkedin"><img
+			src="assets/images/linkedin_social_icon.svg" alt="LinkedIn"> <a
+			href="https://in.linkedin.com/company/nicsi" target="_blank"> <span
+				class="linkedin_text">LinkedIn</span>
+		</a></li>
+
+		<li class="nicsi_linkedin nicsi_Insta"><img
+			src="assets/images/insta_icon.svg" alt="Instagram"> <a
+			href="https://www.instagram.com/meity_nicsi/?hl=en" target="_blank">
+				<span class="linkedin_text">Instagram</span>
+		</a></li>
+
+		<li class="nicsi_facebook"><img
+			src="assets/images/Facebook_social_icon.svg" alt="Facebook"> <a
+			href="https://facebook.com/MeitY.NICSI/about" target="_blank"> <span
+				class="facebook_text">Facebook</span>
+		</a></li>
+
+		<!-- <li class="nicsi_threads"><img
+			src="assets/images/threads_icon.png" alt="Threads"> <a
+			href="https://www.threads.net/@meity_nicsi" target="_blank"> <span
+				class="threads_text">Threads</span>
+		</a></li> -->
+
+		<li class="nicsi_whatsapp"><img
+			src="assets/images/contact_whatsapp_icon.svg" alt="WhatsApp"> <a
+			href="https://wa.me/8527625551" target="_blank"> <span
+				class="whatsapp_text">WhatsApp</span>
+		</a></li>
+	</ul>
+</div>
+
+
+<!-- NICSI Social Icons Section End -->
+
+<!-- About Section Start -->
+<section class="about_nicsi nicsi_sec_pad" style="margin-top: 0px">
+	<div class="container-fluid">
+		<div class="row">
+			<div
+				class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xxl-8 mb-4 mb-sm-4 mb-md-4 mb-lg-4 mb-xl-0 mb-xxl-0">
+				<div class="nicsi_shadow_box" data-aos="fade-up">
+					<div class="row align-items-center">
+						<div class="col-md-5">
+							<img src="assets/images/nicsi_strength_4.svg"
+								alt="NICSI Strengths"
+								class="w-75 h-100 m-auto strengths_img brown_color_img"> <img
+								src="assets/images/nicsi_strength_blue1_4.svg"
+								alt="NICSI Strengths"
+								class="w-75 h-100 m-auto strengths_img formal_color_img">
+						</div>
+						<div class="col-md-7">
+							<h2 class="nicsi_heading about_nicsi_heading">
+								About<span> NICSI</span></h2>
+							<div class="about_nicsi_heading_line heading_division_footer"></div>
+							<!-- <div class="heading_division_white mb-3"></div> -->
+							<p class="about_text">National Informatics Centre Services Inc. (NICSI) was established in 1995 as a section-25 (now section 8 company under the Companies Act, 2013) company under National Informatics Centre, Ministry of Electronics & Information Technology, Government of India for providing and procuring IT solutions for multiple e-governance projects undertaken by NIC, MeitY, Governments and Government Organizations (like Public Sector Undertakings).</p>
+							<a href="aboutUs"><button class="nicsi_btn d-block">View
+									More</button></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 col-xxl-4">
+				<div class="nicsi_shadow_box p-3">
+					<div class="heading_2 mb-4 p-2">
+						<img src="assets/images/announcement_icon.svg"
+							alt="Announcement icon" style="height: 28px;">
+						<h5>Announcements</h5>
+					</div>
+					<div class="announcements_box">
+						
+							<p>
+								
+								
+									<a href="career">Advertisement for the position of Chief Human Resource Officer (CHRO) on contract basis in NICSI </a>
+								
+							</p>
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!-- About Section End -->
+<!-- NICSI Strengths Section Start -->
+
+<!-- NICSI Strengths Section End -->
+<!-- Our Services Section Start -->
+<section class="our_services nicsi_sec_pad">
+	<div class="our_services_bg_img"></div>
+	<h2 class="nicsi_heading nicsi_heading_white">Our Core Services</h2>
+	<div class="heading_division"></div>
+	<div class="container-fluid">
+		<div class="row">
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service5.svg" alt="CEDA">
+						<p>Manpower Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service8.svg" alt="CEDA">
+						<p>Procurement &<br>GeM Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service3.svg" alt="CEDA">
+						<p>Data Centre Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service13.svg" alt="CEDA">
+						<p>Comprehensive Security Audit</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service4.svg" alt="CEDA">
+						<p>Software and Website Development</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service14.svg" alt="CEDA">
+						<p>Passport Related Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service15.svg" alt="CEDA">
+						<p>SMS Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service16.svg" alt="CEDA">
+						<p>Scanning & Digitization</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service11.svg" alt="CEDA">
+						<p>Workspace Development Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service7.svg" alt="CEDA">
+						<p>Rollout Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service20.svg" alt="CEDA">
+						<p>Project Implementation & Integrated Service</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service21.svg" alt="CEDA">
+						<p>Email Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service12.svg" alt="CEDA">
+						<p>Call Centre Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service1.svg" alt="CEDA">
+						<p>Centre of Excellence for Data Analytics (CEDA)</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service9.svg" alt="CEDA">
+						<p>Training Services</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service10.svg" alt="CEDA">
+						<p>Video Conferencing</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service2.svg" alt="CEDA">
+						<p>Product Business Division (PBD)</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+				<div
+					class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 col-xxl-2 mb-4">
+					<div class="service_container">
+						<img src="assets/images/service6.svg" alt="CEDA">
+						<p>IT Consultancy</p>
+						<div class="view_after_hover"></div>
+					</div>
+				</div>
+			
+		</div>
+	</div>
+</section>
+<!-- Our Services Section End -->
+
+<!-- Announcements Section Start -->
+<section class="our_announcements nicsi_sec_pad">
+	<div class="container-fluid">
+		<div class="row">
+			<div
+				class="col-12 col-sm-6 col-md-7 col-lg-8 col-xl-3 col-xxl-4 mb-4 mb-sm-4 mb-md-4 mb-lg-4 mb-xl-0 mb-xxl-0">
+
+				<div class="nicsi_shadow_box p-3" data-aos="fade-up"
+					data-aos-delay="1300">
+					<div class="heading_2 p-2">
+						<img src="assets/images/media_icon.svg" alt="Media icon">
+						<h5>Media</h5>
+					</div>
+					<div class="media_tabs mb-3">
+						<ul class="nav nav-tabs" id="mediaTab" role="tablist">
+							<li class="nav-item" role="presentation"><a
+								class="nav-link active" id="photos-tab" data-toggle="tab"
+								href="#photos" role="tab" aria-controls="photos"
+								aria-selected="true">Photos</a></li>
+								
+								<!-- Comment on demand on 12022026 -->
+							<!-- <li class="nav-item" role="presentation"><a class="nav-link"
+								id="videos-tab" data-toggle="tab" href="#videos" role="tab"
+								aria-controls="videos" aria-selected="false">Videos</a></li> -->
+							<li class="nav-item" role="presentation"><a class="nav-link"
+								id="poster-tab" data-toggle="tab" href="#poster" role="tab"
+								aria-controls="poster" aria-selected="false">Posters</a></li>
+						</ul>
+					</div>
+					<div class="tab-content mb-3" id="mediaTabContent">
+
+						<div class="tab-pane fade show active" role="tabpanel"
+							aria-labelledby="photos-tab" id="photos">
+							<div class="media_grid">
+								
+									<div class="nicsi_photo">
+										<img src="assets/images/gallery/new-year-2.jpg" alt="image">
+									</div>
+								
+									<div class="nicsi_photo">
+										<img src="assets/images/gallery/pledge2026-1.jpg" alt="image">
+									</div>
+								
+									<div class="nicsi_photo">
+										<img src="assets/images/gallery/rajbhasha-workshop2026-1.jpg" alt="image">
+									</div>
+								
+									<div class="nicsi_photo">
+										<img src="assets/images/gallery/painting2026-1.jpg" alt="image">
+									</div>
+								
+									<div class="nicsi_photo">
+										<img src="assets/images/gallery/MD03122025.jpg" alt="image">
+									</div>
+								
+									<div class="nicsi_photo">
+										<img src="assets/images/gallery/hindi-pakhwadha(1).jpeg" alt="image">
+									</div>
+								
+
+							</div>
+							<a href="photos"><button
+									class="nicsi_btn d-block m-auto media_btn mt-2">View
+									More</button></a>
+						</div>
+						<div class="tab-pane fade" id="videos" role="tabpanel"
+							aria-labelledby="videos-tab">
+							<div class="media_grid">
+								
+
+
+							</div>
+							<!-- <a href="videos"><button
+									class="nicsi_btn d-block m-auto media_btn mt-2">View
+									More</button></a> -->
+						</div>
+						<div class="tab-pane fade show" role="tabpanel"
+							aria-labelledby="poster-tab" id="poster">
+
+							<div class="media_grid">
+
+								<!-- Image Poster -->
+								<div class="nicsi_photo">
+									<a href="assets/images/LetUsLearnBanner.jpeg" target="_blank"> <img
+										src="assets/images/LetUsLearnBanner.jpeg" alt="Let Us Learn">
+									</a>
+								</div>
+
+								<!-- PDF Poster 1 -->
+								<div class="nicsi_photo">
+									<a href="assets/images/NICSI_Major_Projects.pdf" target="_blank">
+										<img src="assets/images/NICSIMajorProjects.jpeg" alt="NICSIMajorProjects">
+									</a>
+								</div>
+
+								<!-- PDF Poster 2 -->
+								<div class="nicsi_photo">
+									<a href="assets/images/NextGen_eHospital.pdf" target="_blank">
+										<img src="assets/images/NextGeneHospital.jpeg" alt="NextGeneHospital">
+									</a>
+								</div>
+
+								<!-- PDF Poster 3 -->
+								<div class="nicsi_photo">
+									<a href="assets/images/eNagar_Sewa_Brochure.pdf" target="_blank">
+										<img src="assets/images/eNagarSewaBrochure.jpeg" alt="eNagarSewBrochure">
+									</a>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+			<div
+				class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 col-xxl-3 mb-4 mb-sm-4 mb-md-4 mb-lg-4 mb-xl-0 mb-xxl-0">
+				<div class="nicsi_shadow_box aos-init aos-animate">
+					<div class="samanvay_img_grid" style="margin-bottom: 0;">
+						<div class="samanvay_img_grid_inner">
+							<a href="assets/images/Samanvay_img2.jpg" target="_blank"><img
+								src="assets/images/Samanvay_img2.jpg" alt="img"></a> <a
+								href="assets/images/Samanvay_img1.jpg" target="_blank"><img
+								src="assets/images/Samanvay_img1.jpg" alt="img" class="mt-3"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="col-12 col-sm-6 col-md-7 col-lg-8 col-xl-2 col-xxl-2 mb-4 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0 mb-xxl-0">
+				<div class="nicsi_shadow_box" data-aos="fade-up"
+					data-aos-delay="2000">
+					<div class="brochure_grid">
+						
+							<div class="brochure_grid_inner">
+								<img src="assets/images/brochures/Digital_Diplomacy_img.jpg"
+									alt="Brochure">
+								<div class="brochure_view_after_hover">
+									<a href="assets/pdf/brochures/DigitalDiplomacyFlyerDesign.pdf" target="_blank">Download</a>
+								</div>
+							</div>
+						
+							<div class="brochure_grid_inner">
+								<img src="assets/images/brochures/NICSICoreServices.jpg"
+									alt="Brochure">
+								<div class="brochure_view_after_hover">
+									<a href="assets/pdf/brochures/NICSICoreServices.pdf" target="_blank">Download</a>
+								</div>
+							</div>
+						
+							<div class="brochure_grid_inner">
+								<img src="assets/images/brochures/NICSI_Offerings_Manpower.png"
+									alt="Brochure">
+								<div class="brochure_view_after_hover">
+									<a href="assets/pdf/brochures/NICSI-Offerings-Manpower.pdf" target="_blank">Download</a>
+								</div>
+							</div>
+						
+							<div class="brochure_grid_inner">
+								<img src="assets/images/brochures/NICSI_Offerings_Services.png"
+									alt="Brochure">
+								<div class="brochure_view_after_hover">
+									<a href="assets/pdf/brochures/NICSI_Offerings_Services.pdf" target="_blank">Download</a>
+								</div>
+							</div>
+						
+
+					</div>
+
+					<!-- <a href=""><button class="nicsi_btn d-block m-auto">View More</button></a> -->
+				</div>
+
+
+			</div>
+
+			<!-- 			<div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3">
+				<div class="nicsi_shadow_box p-3" data-aos="fade-up"
+					data-aos-delay="2700">
+
+					<div class="heading_2 p-2">
+						<img src="assets/images/feeds_icon.svg" alt="Media icon">
+						<h5>NICSI Feeds</h5>
+					</div>
+
+					TABS
+					<div class="social_media_tabs mb-3">
+						<ul class="nav nav-tabs" role="tablist">
+
+							INSTAGRAM (DEFAULT ACTIVE)
+							<li class="nav-item" role="presentation"><a
+								class="twitter insta nav-link active" id="insta-tab"
+								data-toggle="tab" href="#insta" role="tab" aria-controls="insta"
+								aria-selected="true"> Instagram </a></li>
+
+							LINKEDIN
+							<li class="nav-item" role="presentation"><a
+								class="facebook nav-link" id="facebook-tab" data-toggle="tab"
+								href="#linkedin" role="tab" aria-selected="false"> Linkedin
+							</a></li>
+
+							TWITTER
+							<li class="nav-item" role="presentation"><a
+								class="twitter nav-link" id="twitter-tab" data-toggle="tab"
+								href="#twitter" role="tab" aria-controls="twitter"
+								aria-selected="false"> <img src="assets/images/x.svg"
+									width="22" height="19" alt="x"> Twitter
+							</a></li>
+
+						</ul>
+					</div>
+
+					TAB CONTENT
+					<div class="tab-content">
+
+						INSTAGRAM CONTENT (ACTIVE)
+						<div class="tab-pane fade show active" id="insta" role="tabpanel"
+							aria-labelledby="insta-tab">
+
+							<div class="insta_container">
+								<blockquote class="instagram-media"
+									data-instgrm-permalink="https://www.instagram.com/meity_nicsi/"
+									data-instgrm-version="12"></blockquote>
+								<script async src="https://www.instagram.com/embed.js"></script>
+							</div>
+						</div>
+
+						LINKEDIN CONTENT
+						<div class="tab-pane fade" id="linkedin" role="tabpanel"
+							aria-labelledby="facebook-tab">
+							<div class="feeds_container">
+								<a href="https://www.linkedin.com/company/nicsi" target="_blank">
+									<img src="assets/images/linkedin_nicsi.jpg" alt="linkedin"
+									class="w-100">
+								</a>
+							</div>
+						</div>
+
+						TWITTER CONTENT
+
+						<div class="tab-pane fade" id="twitter" role="tabpanel"
+							aria-labelledby="twitter-tab">
+
+							<div class="feeds_container" id="twitter-container"></div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div> -->
+
+		</div>
+	</div>
+</section>
+<!-- Announcements Section Start -->
+
+	
+					<div class="modal nicsi_modal" id="service_5_Modal"><div class="modal-dialog modal-lg"><div class="modal-content"><!-- Modal Header --><div class="modal-header"><h5 class="modal-title">Manpower Services</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div><!-- Modal body --><div class="modal-body"><div class="row row px-0 py-4 justify-content-center"><div class="col-12 col-sm-12 col-md-12 col-lg-8 mb-4"><img class="img-fluid service_img" src="assets/images/manpower_services.svg"></div><div class="col-12 col-sm-12 col-md-12 col-lg-12"><p class="mb-0">NICSI provides NICSI-certified eGov Technical/Management consultants services based on Ministry/Govt. Department requirements via its empanelled vendors on a project and manpower basis for the further development of existing services, technologies, infrastructure, and expertise. NICSI also provides Technical & Core Competency Support Services for various ICT Projects and National Data Centre, manpower for website development and applications, UI/UX and Creative Designing, Management of Social Media and Digital Presence, Facility Management Services (FMS) for NICNET and Networks managed by NIC, etc.</p> </div> </div>  </div> </div> </div> </div>
+				
+
+	
+
+	
+					<div class="modal nicsi_modal" id="service_3_Modal"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <!-- Modal Header --> <div class="modal-header"> <h5 class="modal-title">Data Centre Services</h5> <button type="button" class="close" data-dismiss="modal">&times;</button> </div> <!-- Modal body --> <div class="modal-body"> <div class="data_centre_outer mb-3"> <div class="data_centre_head"> <h5 class="mt-2">National Data Centre Shastri Park</h5> <!-- <div class="heading_division_white"></div> --> <p>This Data Centre is housed at the first floor of DMRC IT Park, Shastri Park, New Delhi. </p> </div> <div class="row data_centre_inner"> <div class="col data_centre_content"> <p class="data_centre_text"><span>Established :</span> 2011</p> <p class="data_centre_text"><span>Type :</span> Tier-III</p> <p class="data_centre_text"><span>Area :</span> 30,000 sq ft</p> <p class="data_centre_text"><span>Capacity :</span> 462 Racks</p> </div> <div class="col data_centre_img"> <div><img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-shastri-park.png"> </div> &nbsp;&nbsp;&nbsp; <div><img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-shastri-park1.png"></div> </div> </div> </div> <hr class="mt-3"> <div class="data_centre_outer mb-3"> <div class="data_centre_head"> <h5 class="mt-2">Laxmi Nagar Data Centre Delhi</h5> <p>NICSI has built a Data Centre in SCOPE Minar loacated at Laxmi Nagar, Delhi.</p> </div> <div class="row data_centre_inner row_reverse"> <div class="col data_centre_content"> <p class="data_centre_text"><span>Established :</span> 2008</p> <p class="data_centre_text"><span>Type :</span> Tier-II (*)</p> <p class="data_centre_text"><span>Area :</span> 16,000 sq ft</p> <p class="data_centre_text"><span>Capacity :</span> 62 Racks</p> </div> <div class="col data_centre_img"> <div><img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-laxmi-nagar.png"> </div> &nbsp;&nbsp;&nbsp; <div><img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-laxmi-nagar1.png"></div> </div><div class="star">(*)Under process for Tier-III</div> </div> <hr class="mt-3"> <div class="data_centre_outer mb-3"> <div class="data_centre_head"> <h5 class="mt-2">National Data Centre - Hyderabad</h5> <p>Due to increasing requirement of high availability and reliability of mission mode critical applications, NIC has set up a NDC at Hyderabad.</p> </div> <div class="row data_centre_inner"> <div class="col data_centre_content"> <p class="data_centre_text"><span>Established :</span> 2010</p> <p class="data_centre_text"><span>Type :</span> Tier-III</p> <p class="data_centre_text"><span>Area :</span> 10,000 sq ft</p> <p class="data_centre_text"><span>Capacity :</span> 154 Racks</p> </div> <div class="col data_centre_img"> <img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-hyderabad.png"> </div> </div> </div> <hr class="mt-3"> <div class="data_centre_outer mb-3"> <div class="data_centre_head"> <h5 class="mt-2">National Data Centre - Pune</h5> <p>To meet the requirement of high availability and reliability of mission critical applications, NIC has set up a National Data Centre (NDC) at Pune.</p> </div> <div class="row data_centre_inner row_reverse"> <div class="col data_centre_content"> <p class="data_centre_text"><span>Established :</span> 2010</p> <p class="data_centre_text"><span>Type :</span> Tier-III</p> <p class="data_centre_text"><span>Area :</span> 10,000 sq ft</p> <p class="data_centre_text"><span>Capacity :</span> 171 Racks</p> </div> <div class="col data_centre_img"> <div><img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-pune.png"> </div> &nbsp;&nbsp;&nbsp; <div><img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-pune1.png"> </div> </div> </div> </div> <hr class="mt-3"> <div class="data_centre_outer mb-3"> <div class="data_centre_head"> <h5 class="mt-2">National Data Centre - Bhubaneswar</h5> <p>Due to increasing requirement, NIC has setup a new state of the art National Data Centre-BHUBANESWAR.</p> </div> <div class="row data_centre_inner"> <div class="col data_centre_content"> <p class="data_centre_text"><span>Established :</span> 2018</p> <p class="data_centre_text"><span>Type :</span> Tier-III</p> <p class="data_centre_text"><span>Area :</span> 25,885 sq ft</p> <p class="data_centre_text"><span>Capacity :</span> 271 Racks</p> </div> <div class="col data_centre_img"> <img class="img-fluid w-100 desktop-img ds_img" src="assets/images/data-centre-bhubaneswar.png"> </div> </div> </div> </div> </div> </div> </div></div>
+				
+
+	
+
+	
+					<div class="modal nicsi_modal" id="service_4_Modal"><div class="modal-dialog modal-lg"><div class="modal-content"> <!-- Modal Header --><div class="modal-header"><h5 class="modal-title">Software and Website Development</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div> <!-- Modal body --><div class="modal-body"><div class="row px-0 py-4 align-items-center"><div class="col-12 col-sm-12 col-md-12 col-lg-5 mb-4"><img class="img-fluid service_img" src="assets/images/website_development.svg"></div><div class="col-12 col-sm-12 col-md-12 col-lg-7"><p class="mb-0">NICSI provides software and website development services to the Ministries/Departments and PSUs via its empanelled vendors with its state-of-the-art development methodologies, adapting the SDLC life cycle framework to meet the requirements of the user department. NICSI has been creating compelling experiences to uphold the standards of excellence and maintainability for the best interest of the user department and stakeholders.</p></div></div></div></div></div></div>
+				
+
+	
+					
+				
+
+	
+					
+				
+
+	
+					
+				
+
+	
+					<div class="modal nicsi_modal" id="service_11_Modal"><div class="modal-dialog modal-lg"><div class="modal-content"><!-- Modal Header --><div class="modal-header"><h5 class="modal-title">Workspace Development Centre</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div><!-- Modal body --><div class="modal-body"><img src="assets/images/Workspace.jpg" alt="img" class="w-100 mb-3"><p>NICSI provides development seats / workstations on a per-seat basis. The seats are fully equipped with workstations / computers, Internet connectivity, and other basic amenities such as table, chair, light, air conditioning, washrooms, water etc. Additional services are also available on demand for a modest fee. The cost per seat is significantly cheaper than that of other comparable Coworking space providers. </p> <h6 class="mt-4">Important Features:</h6> <ul> <li>Low Price with High Flexibility</li> <li>Workspace With Great Location and Full Amenities</li> <li>Higher Productivity and Motivation For Your Employees</li> <li>Network & Collaboration Opportunities </li></ul></div></div></div></div>
+				
+
+	
+					<div class="modal nicsi_modal" id="service_7_Modal"> <div class="modal-dialog modal-lg"> <div class="modal-content"> <!-- Modal Header --> <div class="modal-header"> <h5 class="modal-title">Rollout Services</h5> <button type="button" class="close" data-dismiss="modal">&times;</button> </div> <!-- Modal body --> <div class="modal-body"> <div class="row row px-0 py-4 align-items-center"><div class="col-12 col-sm-12 col-md-12 col-lg-5"><img class="img-fluid service_img" src="assets/images/rollout-services.svg"></div><div class="col-12 col-sm-12 col-md-12 col-lg-7"><p class="mb-0">NICSI offers the Rollout of eGov Software Products that bring together the independent functions and systems under a single framework. NICSI by Leveraging business opportunities has  successfully rolled out NIC/NICSI's e-Governance products in foreign countries like eOffice and eHospital applications to support smooth operation by ushering in more effective and transparent inter and intra-operating processes which addresses all the major functional areas of the user departments. </p></div> </div> </div> </div> </div> </div>
+				
+
+	
+					
+				
+
+	
+					
+				
+
+	
+					<div class="modal nicsi_modal" id="service_12_Modal"><div class="modal-dialog modal-lg"><div class="modal-content"><!-- Modal Header --><div class="modal-header"><h5 class="modal-title">Call Centre Services</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div><!-- Modal body --><div class="modal-body"><div class="row row px-0 py-4"><div class="col-12 col-sm-12 col-md-12 col-lg-5"><img class="img-fluid service_img" src="assets/images/call_centre_services.svg" alt=""> </div><div class="col-12 col-sm-12 col-md-12 col-lg-7"><p>NICSI offers call centre/help desk services through its empanelled vendors to various Ministries, Government Departments and PSUs for the establishment and operation of help desk/call centre to support ICT Infrastructure services and e-Governance applications to handle all types of inbound queries, complaints, requests, outbound calling, and response through phone / message / web / email / messenger</p></div></div></div></div></div></div>
+				
+
+	
+
+	
+					<div class="modal nicsi_modal" id="service_9_Modal"><div class="modal-dialog modal-lg"><div class="modal-content"><!-- Modal Header --><div class="modal-header"><h5 class="modal-title">Training Services</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div><!-- Modal body --><div class="modal-body"><p>The Digital India vision provides the intensified impetus for momentum and progress for e-Governance initiatives and to meet this vision, it is required to build adequate and relevant capacities at all levels. Success of the guidelines depend on their effective implementation which includes plans for developing programs related to capacity building, training, hand holding and towards sensitization of the departments in the adoption and implementation of these guidelines. With the above-mentioned view, NIC/NICSI provides both General Computer Training & Application specific Training services. The Training and Workshop curriculum has been diligently prepared, understanding the functions performed by the stakeholders. In addition, NIC/NICSI offer immense training opportunities in well planned and professionally managed training courses not only on various computer related topics, but also on the application of IT in key sectoral areas. </p> <h6 class="mt-4">Types of Training Programmes:</h6> <div class="row"> <div class="col-md-4 my-3"> <div class="modal_type_box">Government Informatics Training Programs</div> </div> <div class="col-md-4 my-3"> <div class="modal_type_box">Technology Update Programs</div> </div> <div class="col-md-4 my-3"> <div class="modal_type_box">Customized Programs for various Sectors</div> </div> </div> </div> </div> </div> </div>
+				
+
+	
+					<div class="modal nicsi_modal" id="service_10_Modal"><div class="modal-dialog modal-lg"><div class="modal-content"><!-- Modal Header --><div class="modal-header"><h5 class="modal-title">Video Conferencing</h5><button type="button" class="close" data-dismiss="modal">&times;</button></div><!-- Modal body --><div class="modal-body"><div class="row row px-0 py-4 align-items-center"><div class="col-12 col-sm-12 col-md-12 col-lg-5"><img class="img-fluid service_img" src="assets/images/video-conference.svg"></div><div class="col-12 col-sm-12 col-md-12 col-lg-7"><p class="mb-0">NICSI provides Video Conferencing services to various Ministries, Government Departments, and PSUs. NICSI VC service provides a secure communication with useful features which are in line with government requirements and ensures smooth interaction between multiple platforms and across the country at all levels for monitoring different government projects, schemes, public grievances, monitoring law and order situations. </p> </div> </div></div></div></div></div>
+				
+
+	
+
+	
+					<div class="modal nicsi_modal" id="service_6_Modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">IT Consultancy</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    <div style="padding:1em 3em;">
+                        <p>NICSI’s Consulting services are complemented by a range of experience, portfolio,
+                            capabilities in Technology as well as operational management capabilities. NICSI supports
+                            Government User Departments/ Ministries/ PSUs in achieving objectives/goals of their Schemes
+                            & Programmes.
+                        </p>
+                        <h6 class="mt-4">NICSI helps in several ways including:</h6>
+                        <ol>
+                            <li>Providing relevant and accessible consulting grounded in today’s best practices and
+                                compliance requirements</li>
+                            <li>Providing a talented and experienced consulting team to work alongside User Department’s
+                                team</li>
+                            <li>Augmenting User Department’s existing team with specialist skills or extending the
+                                broader capacity and capability, giving a headroom to grow</li>
+                            <li> Improving existing programs effectiveness and capability</li>
+                            <li>Provides User Departments with external Subject Matter Experts (SMEs) performing the
+                                same activities, as traditional onsite consulting addressing varying needs and budgetary
+                                considerations</li>
+                        </ol>
+                    </div>
+
+                    <div style="background-color: #fff9f4;">
+                        <img src="assets/images/Key_consulting.svg" alt="img" class="w-100 mt-1 px-3">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+				
+
+
+<style>
+@media ( min-width : 1200px) {
+	.modal-xl {
+		max-width: 700px;
+	}
+}
+
+@media ( min-width : 1900px) {
+	.modal-xl {
+		max-width: 900px;
+	}
+}
+</style>
+<!-- JOB VACANCY MODAL -->
+<div class="modal nicsi_modal" id="jobVacancyModal"
+	style="margin-top: 50px;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+
+			<!-- Header -->
+			<div class="modal-header">
+				<!-- <h4 class="modal-title">JOB ALERTS</h4> -->
+
+				<!-- CROSS -->
+				<button type="button" class="close" data-dismiss="modal">
+					&times;</button>
+			</div>
+
+			<!-- Modal Body -->
+			<div class="modal-body"
+				style="background-image: url('assets/images/popupBg.jpeg');">
+
+				<div class="row">
+					<div class="col-12">
+
+						<!-- Main Heading -->
+						<h4 style="text-align: center;">JOB VACANCY NOTICE</h4>
+
+						<div class="heading_division_white mb-4"></div>
+
+						<!-- Subject -->
+						<h5 style="text-align: justify;">Subject: Engagement of
+							Professionals in NICSI on Contract Basis.</h5>
+
+						<div class="row">
+							<div class="sc_head"></div>
+							<div style="text-align: justify;">
+								<!-- Paragraph -->
+								<p> National Informatics Centre Services Incorporated
+									(NICSI) invites applications from eligible candidates for
+									engagement of the following position(s) on contract basis. </p>
+
+								<!-- Vacancy List -->
+								<div style="margin-top: 10px;">
+									<b>Available Position:</b>
+									<ul style="margin-top: 8px;">
+										<li>Chief Human Resource Officer (CHRO) on Contract Basis
+										</li>
+									</ul>
+								</div>
+
+								<!-- Apply Info -->
+								<div>
+									<p> Interested candidates are requested to apply online
+										through the official NICSI Career Portal before the closing
+										date mentioned in the advertisement. </p>
+								</div>
+
+								<div class="d-flex justify-content-center my-3">
+									<a href="/career">
+										<button class="nicsi_btn d-block">View Position</button>
+									</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="modal nicsi_modal" id="memberModal1"
+	style="margin-top: 50px;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h5 class="modal-title"></h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body"
+				style="background-image: url('assets/images/popupBg.jpeg');">
+				<div class="row">
+					<div class="col-12">
+						<h4 style="text-align: center">ADVISORY/CAUTION NOTICE</h4>
+						<div class="heading_division_white mb-4"></div>
+
+						<h5 style="text-align: justify;">Subject: Advisory / Caution
+							Notice to Banks / Non-Banking Financial Institutions (NBFC) on
+							availing Bills discounting / Credit Facility by the vendors of
+							NICSI.</h5>
+						<div class="row">
+							<div class="sc_head"></div>
+							<div style="text-align: justify;">
+
+								<b>This is to notify all concerned that it has come to the
+									notice of National Informatics Centre Services Incorporated
+									(NICSI) that some Vendors of NICSI are availing Bills
+									Discounting / Credit Facility from Banking Institutions /
+									Non-Banking Financial Institutions (NBFC) on the invoices
+									raised by them to NICSI without prior consent of NICSI.</b> <br>
+								<div style="margin-top: 10px">
+									<b>This is to advise to all concerned that NICSI shall bear
+										no responsibility for any loss suffered by anyone by dealing
+										with such arrangement and the same shall be at their own risk.
+										Further, NICSI shall not be held liable for any financial loss
+										to Third Parties arising out of such arrangement due to
+										non-payment of such invoices by NICSI to Vendors.</b>
+								</div>
+								<br> <br>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+ 
+
+ <!-- Footer Section Start -->
+    <footer class="Nicsi_footer nicsi_sec_pad">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-6 col-xl-4 col-xxl-4">
+                    <h5 class="nicsi_text-white">Quick Links</h5>
+                    <div class="heading_division_footer"></div>
+                    <div class="left_links">
+                    
+                        <ul>
+                            <li><a href="termsAndConditions">Terms & Conditions</a></li>
+                            <li><a href="privacyPolicy">Privacy Policy</a></li>
+                            <li><a href="copyrightPolicy">Copyright Policy</a></li>
+                        </ul>
+                        <ul class="ml-3">
+                            <li><a href="help">Help</a> / <a href="websitePolicy">Website Policy</a></li>
+                            <li><a href="hyperlinkingPolicy">Hyperlinking Policy</a></li>
+                            <li><a href="accessibilityStatement">Accessibility Statement</a></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-5 col-xxl-4 nicsi_order">
+                    <p class="text-center nicsi_text-white mb-0">&#169; Content Owned by<br>National Informatics Centre Services
+                        Incorporated<br>
+                        (A Government of India Enterprise under NIC)<br>
+                        Ministry of Electronics & Information Technology<br>
+                        All rights reserved.</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-3 col-xxl-4 logos_order">
+               
+                
+                
+                
+                
+                
+                    <ul class="last_sec">
+                     	
+	                     	
+	                     		<li>
+	                        		<a href="https://www.india.gov.in/" target="_blank">
+	                        			<img src="assets/images/footer/india_gov.in_logo.png" alt="logo">
+	                        		</a>
+	                        	</li>
+	                       
+                		
+	                     	
+	                     		<li>
+	                        		<a href="https://www.nic.in/" target="_blank">
+	                        			<img src="assets/images/footer/NIC_Logo.png" alt="logo">
+	                        		</a>
+	                        	</li>
+	                       
+                		
+	                     	
+                		
+	                     	
+                		
+                    </ul>
+                     <ul class="last_sec">
+                     	
+	                     	
+                		
+	                     	
+                		
+	                     	
+	                     		<li>
+	                        		<a href="https://www.meity.gov.in/" target="_blank">
+	                        			<img src="assets/images/footer/meity_logo.png" alt="logo">
+	                        		</a>
+	                        	</li>
+	                       
+                		
+	                     	
+	                     		<li>
+	                        		<a href="https://nkn.gov.in/en/" target="_blank">
+	                        			<img src="assets/images/footer/nkn_logo.png" alt="logo">
+	                        		</a>
+	                        	</li>
+	                       
+                		
+                    </ul>
+                    
+				</div>
+            </div>
+
+        </div>
+<!--ASHU ADITYA -->
+        <img src="assets/images/top_arrow.svg" alt="top arrow" class="top_arrow" onclick="topFunction()">
+    </footer>
+
+    
+    <ul class="bottom_sec">
+        <li>Page Last Updated on: 24-02-2026</li>
+        <li>Total no. of visitors : 731971 (Since 11 February 2023)</li>
+	</ul>
+    <!-- Footer Section End -->
+
+    <script src="assets/js/jquery-3.6.1.min.js"></script>
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootnavbar.js"></script>
+     <script src="assets/js/main.js"></script>
+<script src="assets/js/jquery-3.6.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootnavbar.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+<!-- <script src="assets/js/font-resize.js"></script> -->
+
+<script>
+	$('.nicsi_slider').slick({
+		slidesToShow : 1,
+		dots : true,
+		fade : true,
+		speed : 900,
+		infinite : true,
+		autoplay : true,
+		arrows : true,
+		autoplaySpeed : 5000,
+		cssEase : 'cubic-bezier(0.7, 0, 0.3, 1)',
+
+	});
+
+	setInterval(function() {
+		$('.min_sec').toggleClass('min_sec-fadeOut');
+		$('.min_sec-2').toggleClass('min_sec-2-fadeIn');
+
+	}, 5000);
+
+	$(document).ready(function() {
+		$(".theme_change").click(function() {
+			$("body").toggleClass("formal_blue_theme");
+		});
+		/* $('#memberModal1').modal('show'); */
+	});
+</script>
+
+<!-- For hiding first popup -->
+<!-- <script>
+	$(document).ready(function() {
+
+		// OPEN FIRST POPUP FAST
+		$('#jobVacancyModal').modal({
+			backdrop : 'static',
+			keyboard : false,
+			show : true
+		});
+
+	});
+
+	// CHAIN SECOND POPUP
+	$(document).on('hidden.bs.modal', '#jobVacancyModal', function() {
+
+		// Remove stuck backdrop (safety fix)
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+
+		// OPEN ADVISORY
+		$('#memberModal1').modal('show');
+
+	});
+</script> -->
+<script>
+$(document).ready(function() {
+
+    $('#memberModal1').modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: true
+    });
+
+});
+</script>
+
+<style>
+.aboutNicsi {
+	text-decoration: none;
+	color: white;
+}
+
+.announcement {
+	text-decoration: none;
+	color: black;
+}
+</style>
+
+</body>
+
+</html>
+<div class="modal nicsi_modal" id="service_3_Modal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h5 class="modal-title">Data Centre Services</h5>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			</div>
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="data_centre_outer mb-3">
+					<div class="data_centre_head">
+						<h5 class="mt-2">National Data Centre Shastri Park</h5>
+						<!-- <div class="heading_division_white"></div> -->
+						<p>This Data Centre is housed at the first floor of DMRC IT
+
+							Park, Shastri Park, New Delhi.</p>
+					</div>
+					<div class="row data_centre_inner">
+						<div class="col data_centre_content">
+							<p class="data_centre_text">
+								<span>Established :</span> 2011
+							</p>
+							<p class="data_centre_text">
+								<span>Type :</span> Tier-III
+							</p>
+							<p class="data_centre_text">
+								<span>Area :</span> 30,000 sq ft
+							</p>
+							<p class="data_centre_text">
+								<span>Capacity :</span> 462 Racks
+							</p>
+						</div>
+						<div class="col data_centre_img">
+							<div>
+								<img class="img-fluid w-100 desktop-img ds_img"
+									src="assets/images/data-centre-shastri-park.png" alt="img">
+							</div>
+
+							&nbsp;&nbsp;&nbsp;
+							<div>
+								<img class="img-fluid w-100 desktop-img ds_img"
+									src="assets/images/data-centre-shastri-park1.png" alt="img">
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<hr class="mt-3">
+				<div class="data_centre_outer mb-3">
+					<div class="data_centre_head">
+						<h5 class="mt-2">Laxmi Nagar Data Centre Delhi</h5>
+
+						<p>NICSI has built a Data Centre in SCOPE Minar loacated at
+							Laxmi Nagar, Delhi.</p>
+					</div>
+					<div class="row data_centre_inner row_reverse">
+						<div class="col data_centre_content">
+							<p class="data_centre_text">
+								<span>Established :</span> 2008
+							</p>
+							<p class="data_centre_text">
+								<span>Type :</span> Tier-II (*)
+							</p>
+							<p class="data_centre_text">
+								<span>Area :</span> 16,000 sq ft
+							</p>
+							<p class="data_centre_text">
+								<span>Capacity :</span> 62 Racks
+							</p>
+
+						</div>
+						<div class="col data_centre_img">
+							<div>
+								<img class="img-fluid w-100 desktop-img ds_img"
+									src="assets/images/data-centre-laxmi-nagar.png" alt="img">
+
+							</div>
+							&nbsp;&nbsp;&nbsp;
+							<div>
+								<img class="img-fluid w-100 desktop-img ds_img"
+									src="assets/images/data-centre-laxmi-nagar1.png" alt="img">
+							</div>
+						</div>
+
+					</div>
+					<hr class="mt-3">
+					<div class="data_centre_outer mb-3">
+						<div class="data_centre_head">
+							<h5 class="mt-2">National Data Centre - Hyderabad</h5>
+							<p>Due to increasing requirement of high availability and
+								reliability of mission mode critical applications, NIC has set
+								up a NDC at Hyderabad.</p>
+						</div>
+						<div class="row data_centre_inner">
+							<div class="col data_centre_content">
+								<p class="data_centre_text">
+									<span>Established :</span> 2010
+								</p>
+								<p class="data_centre_text">
+									<span>Type :</span> Tier-III
+								</p>
+								<p class="data_centre_text">
+									<span>Area :</span> 10,000 sq ft
+								</p>
+
+								<p class="data_centre_text">
+									<span>Capacity :</span> 154 Racks
+								</p>
+							</div>
+							<div class="col data_centre_img">
+								<img class="img-fluid w-100 desktop-img ds_img"
+									src="assets/images/data-centre-hyderabad.png" alt="img">
+							</div>
+						</div>
+					</div>
+					<hr class="mt-3">
+					<div class="data_centre_outer mb-3">
+						<div class="data_centre_head">
+							<h5 class="mt-2">National Data Centre - Pune</h5>
+							<p>To meet the requirement of high availability and
+								reliability of mission critical applications, NIC has set up a
+								National Data Centre (NDC) at Pune.</p>
+						</div>
+						<div class="row data_centre_inner row_reverse">
+
+							<div class="col data_centre_content">
+								<p class="data_centre_text">
+									<span>Established :</span> 2010
+								</p>
+								<p class="data_centre_text">
+									<span>Type :</span> Tier-III
+								</p>
+								<p class="data_centre_text">
+									<span>Area :</span> 10,000 sq ft
+								</p>
+								<p class="data_centre_text">
+									<span>Capacity :</span> 171 Racks
+								</p>
+							</div>
+							<div class="col data_centre_img">
+								<div>
+									<img class="img-fluid w-100 desktop-img ds_img"
+										src="assets/images/data-centre-pune.png" alt="img">
+
+								</div>
+								&nbsp;&nbsp;&nbsp;
+								<div>
+									<img class="img-fluid w-100 desktop-img ds_img"
+										src="assets/images/data-centre-pune1.png" alt="img">
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<hr class="mt-3">
+					<div class="data_centre_outer mb-3">
+						<div class="data_centre_head">
+							<h5 class="mt-2">National Data Centre - Bhubaneswar</h5>
+							<p>Due to increasing requirement, NIC has setup a new state
+								of the art National Data Centre-BHUBANESWAR.</p>
+						</div>
+						<div class="row data_centre_inner">
+							<div class="col data_centre_content">
+								<p class="data_centre_text">
+									<span>Established :</span> 2018
+								</p>
+								<p class="data_centre_text">
+									<span>Type :</span> Tier-III
+								</p>
+								<p class="data_centre_text">
+									<span>Area :</span> 25,885 sq ft
+								</p>
+								<p class="data_centre_text">
+									<span>Capacity :</span> 271 Racks
+								</p>
+							</div>
+							<div class="col data_centre_img">
+								<img class="img-fluid w-100 desktop-img ds_img"
+									src="assets/images/data-centre-bhubaneswar.png" alt="img">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+.social_media_tabs .insta.nav-link.active {
+	background-color: #C837AB;
+}
+</style>
+<style>
+.social_media_tabs .insta.nav-link.active {
+	background-color: #C837AB;
+}
+
+li.nicsi_Insta {
+    top: calc(55% + 150px);
+    background: #C837AB;
+}
+
+li.nicsi_whatsapp {
+    top: calc(55% + 200px);
+    background: #02a698;
+}
+
+li.nicsi_threads {
+	top: calc(70.4% + 100px);
+	background: #000000;
+}
+/* top:calc(60.2%+100px);
+background:#C837AB; */
+}
+</style>
+<script>
+	function testNicsi() {
+		alert("ASHU ADITYA");
+	}
+
+	document.addEventListener("DOMContentLoaded", function() {
+		$('#insta-tab').tab('show');
+	});
+</script>

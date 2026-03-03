@@ -1,0 +1,38 @@
+@charset "utf-8";
+header .header-buttons ul li.login a {background: linear-gradient(180deg, var(--primary-color-regular) 0%, #be5c00 100%);}
+.cloud-bg { background: url(../images/common/cloud-bg.svg) repeat-x center top; height: 185px;}
+#main-heading { background: linear-gradient(263.78deg, #01244E 28.66%, #1b3044 54.92%);}
+a.more-link,.icon-large { filter: var(--icon-filter);}
+.card-right-btn ul li a { color: var(--secondary-color-light);}
+#hero-slider .carousel-item .banner-bg.backup_storage {background:url(../images/carousel/backup-storage-bg.jpg) no-repeat top right;}
+#hero-slider .carousel-item .banner-bg.ai {background:url(../images/carousel/ai-bg.jpg) no-repeat top right;}
+#hero-slider .carousel-item .banner-bg.da {background:url(../images/carousel/da-bg.jpg) no-repeat top right;}
+#hero-slider .carousel-item .banner-bg.antivirus {background:url(../images/carousel/antivirus-bg.jpg) no-repeat top right;}
+#hero-slider .carousel-item .banner-bg.rm {background:url(../images/carousel/rm-bg.jpg) no-repeat top right;}
+#hero-slider button span {filter: var(--icon-filter);}
+#service-catalouge .service-item img { filter:var(--icon-filter);}
+#onboarding-section ul li a:hover span.icon:before { background: var(--secondary-color-regular);}
+#onboarding-section ul li a:hover span.icon { border-color: var(--secondary-color-regular);}
+#onboarding-section ul li a:hover h5 { color: var(--secondary-color-regular);}
+#onboarding-section ul li span.icon img { filter: var(--icon-filter);}
+#case-studies .case-items .content a.more-link:hover {filter: var(--icon-filter);}
+#services .service-item  img { filter: var(--icon-filter);}
+.accordion-button:not(.collapsed)::after { filter:var(--icon-filter);}
+#cloud-coordinators .card img { filter: var(--icon-filter);}
+.np-btn .btn.btn-outline.btn-secondary.next::after { filter:invert(122%) sepia(204%) saturate(339%) hue-rotate(203deg) brightness(43%) contrast(99%);}
+.np-btn .btn.btn-outline.btn-secondary.next:hover::after { filter: none;}
+#cost-calculator .btn.print-btn::before { filter: var(--icon-filter);}
+#service-request .left-navbar {background: linear-gradient(90deg, rgba(253, 245, 238, 1) 88%, rgb(253 233 214) 100%)}
+#service-request .left-navbar ul li ul li a.active::before {filter: var(--icon-filter);}
+#registration .preview-details ul li::before { background:var(--primary-color-light);}
+#cost-calculator .btn.print-btn:hover::before { filter: none;}
+.checkbox .form-check-input:checked { background: var(--color-white) url(../images/common/checkbox-arrow.svg) no-repeat center center;}
+.form-check-input:focus { border-color: var(--primary-color-regular);}
+#service-request .droplet .icon { background:url(../images/common/icon-bg.svg) no-repeat left top;}
+#services .service-item a,.table a { color: var(--primary-color-regular);}
+#dashboard-signup .dashboard-block ul li::before { background: var(--primary-color-regular);}
+#obp #service-request .service-item .icon { filter: var(--icon-filter);}
+.form-check-input:checked {background: var(--color-white) url(../images/common/radio-btn-bg.svg) no-repeat center center;}
+.project-details { border-color: var(--secondary-color-thin);}
+#service-request .left-navbar ul li ul {background: linear-gradient(90deg, rgba(253, 245, 238, 1) 88%, rgba(255, 224, 195, 1) 100%);}
+#service-request .left-navbar ul li a { border-color: var(--service-nav-color-400);}

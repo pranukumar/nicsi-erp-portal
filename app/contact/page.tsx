@@ -71,7 +71,7 @@ export default function ContactPage() {
                   <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#EAF2FF] text-[#0F4BB8]">
                     <Mail size={16} />
                   </span>
-                  <p className="text-sm text-[#334155]">Email: info-nicsi@nic.in, mdnicsi@nic.in</p>
+                  <p className="text-sm text-[#334155]">Email: mdnicsi@nic.in</p>
                 </div>
               </div>
             </div>
@@ -82,6 +82,10 @@ export default function ContactPage() {
                 Email:{" "}
                 <a href="mailto:info-nicsi@nic.in" className="underline decoration-blue-300 underline-offset-2 hover:text-[#0F4BB8]">
                   info-nicsi@nic.in
+                </a>
+                {", "}
+                <a href="mailto:mdnicsi@nic.in" className="underline decoration-blue-300 underline-offset-2 hover:text-[#0F4BB8]">
+                  mdnicsi@nic.in
                 </a>
               </p>
               <p className="mt-2 text-sm text-gray-600">(A single point of contact for support or issue related to NICSI services and products)</p>

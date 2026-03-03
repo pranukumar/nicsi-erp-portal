@@ -30,13 +30,13 @@ const archiveBlocks: ArchiveBlock[] = [
   {
     title: "Photo Archive",
     description: "Photo-based archival collection of activities, programmes and observances.",
-    href: "/photo-gallery",
+    href: "/media-gallery?tab=photos",
     countLabel: "21 records",
   },
   {
     title: "Video Archive",
     description: "Official video messages and awareness clips available in NICSI media records.",
-    href: "/video-gallery",
+    href: "/media-gallery?tab=videos",
     countLabel: "4 records",
   },
   {

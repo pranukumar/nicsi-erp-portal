@@ -46,7 +46,7 @@ export default function Page() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-xl font-bold text-[#0F172A]">Events & Activities</h2>
             <Link
-              href="/photo-gallery"
+              href="/media-gallery?tab=photos"
               className="inline-flex rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
             >
               View Photo Gallery

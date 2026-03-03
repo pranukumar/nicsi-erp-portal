@@ -26,7 +26,6 @@ import {
   Search,
   UserCheck2,
   Users,
-  Video,
   X,
 } from "lucide-react";
 import TopStripAccessibilityMenu from "@/components/layout/TopStripAccessibilityMenu";
@@ -123,11 +122,11 @@ const menuGroups = [
     ],
   },
   {
-    label: "NICSI Centres of Excellence",
+    label: "Centres of Excellence",
     description: "Innovation, standards, enablement and specialized domain capability initiatives.",
     items: [
       {
-        label: "NICSI Centres of Excellence",
+        label: "Centres of Excellence",
         href: "/centre-of-excellence",
         description: "Domain-led excellence initiatives for digital governance outcomes.",
         icon: Building2,
@@ -199,9 +198,9 @@ const menuGroups = [
     description: "Press communication, events, galleries, and media archive.",
     items: [
       {
-        label: "Photo Gallery",
-        href: "/photo-gallery",
-        description: "Event photographs and official image gallery.",
+        label: "Media Gallery",
+        href: "/media-gallery",
+        description: "Unified photo and video media gallery.",
         icon: Images,
       },
       {
@@ -209,12 +208,6 @@ const menuGroups = [
         href: "/awards-recognition",
         description: "Awards, honors, and recognitions received by NICSI.",
         icon: Medal,
-      },
-      {
-        label: "Video Gallery",
-        href: "/video-gallery",
-        description: "Official videos and multimedia content.",
-        icon: Video,
       },
       {
         label: "NICSI Events",
