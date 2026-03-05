@@ -492,8 +492,8 @@ export default function Header() {
         </div>
 
         <div className="mx-auto mt-2 w-full max-w-7xl text-[12px] font-medium lg:hidden">
-          <div className="flex flex-wrap items-center gap-2 pb-1">
-          <Link href="/contact" className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95">
+          <div className="grid grid-cols-12 gap-2 pb-1">
+          <Link href="/contact" className="col-span-4 w-full rounded border border-white/30 bg-white/10 px-2 py-1 text-center whitespace-nowrap text-white/95">
             Contact Us
           </Link>
           <button
@@ -504,7 +504,7 @@ export default function Header() {
               setMobileTopStripMenu(null);
               window.setTimeout(() => mobileTopSearchInputRef.current?.focus(), 0);
             }}
-            className="inline-flex h-[30px] w-[30px] items-center justify-center rounded border border-white/30 bg-white/10 text-white/95"
+            className="col-span-2 inline-flex h-[34px] w-full items-center justify-center rounded border border-white/30 bg-white/10 text-white/95"
             aria-label="Open search"
             aria-expanded={mobileTopSearchOpen}
           >
@@ -517,8 +517,9 @@ export default function Header() {
               setMobileTopSearchOpen(false);
               setMobileTopStripMenu(null);
             }}
-            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+            className="col-span-6 min-w-0 w-full truncate rounded border border-white/30 bg-white/10 px-2 py-1 text-center text-[10px] leading-4 text-white/95 sm:text-[12px]"
             aria-expanded={mobilePortalInfoOpen}
+            title="Secure ERP Access Portal"
           >
             Secure ERP Access Portal
           </button>
@@ -529,7 +530,7 @@ export default function Header() {
               setMobilePortalInfoOpen(false);
               setMobileTopStripMenu((prev) => (prev === "opportunities" ? null : "opportunities"));
             }}
-            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+            className="col-span-4 w-full rounded border border-white/30 bg-white/10 px-2 py-1 text-center whitespace-nowrap text-white/95"
           >
             Offerings
           </button>
@@ -540,7 +541,7 @@ export default function Header() {
               setMobilePortalInfoOpen(false);
               setMobileTopStripMenu((prev) => (prev === "quick-links" ? null : "quick-links"));
             }}
-            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+            className="col-span-4 w-full rounded border border-white/30 bg-white/10 px-2 py-1 text-center whitespace-nowrap text-white/95"
           >
             Quick Links
           </button>
@@ -551,7 +552,7 @@ export default function Header() {
               setMobilePortalInfoOpen(false);
               setMobileTopStripMenu((prev) => (prev === "accessibility" ? null : "accessibility"));
             }}
-            className="shrink-0 rounded border border-white/30 bg-white/10 px-2 py-1 text-white/95"
+            className="col-span-4 w-full rounded border border-white/30 bg-white/10 px-2 py-1 text-center whitespace-nowrap text-white/95"
           >
             Accessibility
           </button>
@@ -594,7 +595,7 @@ export default function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block rounded-md px-2 py-1.5 text-[12px] text-[#1C2F57] hover:bg-[#EDF6FF]"
+                  className="block break-words rounded-md px-2 py-1.5 text-[12px] text-[#1C2F57] hover:bg-[#EDF6FF]"
                 >
                   {item.label}
                 </Link>
@@ -610,7 +611,7 @@ export default function Header() {
                   href={item.href}
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  className="block rounded-md px-2 py-1.5 text-[12px] text-[#1C2F57] hover:bg-[#EDF6FF]"
+                  className="block break-words rounded-md px-2 py-1.5 text-[12px] text-[#1C2F57] hover:bg-[#EDF6FF]"
                 >
                   {item.label}
                 </Link>
@@ -625,26 +626,26 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="relative flex items-center border-b border-blue-100/80 bg-white/90 px-4 py-4 pr-14 md:px-6 md:pr-6">
+      <div className="relative flex items-center border-b border-blue-100/80 bg-white/90 px-3 py-3 pr-14 md:px-5 md:pr-5 xl:px-4 2xl:px-6">
 
-        <div className="min-w-0 shrink-0 flex items-center gap-2 md:gap-4">
+        <div className="min-w-0 shrink-0 flex items-center gap-2 md:gap-3 xl:gap-2 2xl:gap-4">
           <Image
             src="/logos/ashoka.png"
             alt="Ashoka"
             width={64}
             height={64}
-            className="h-12 w-auto md:h-16"
+            className="h-11 w-auto md:h-14 xl:h-12 2xl:h-16"
           />
           <Image
             src="/logos/NICSI-logo.png"
             alt="NICSI"
             width={210}
             height={75}
-            className="h-10 w-auto max-w-[170px] md:h-16 md:max-w-none"
+            className="h-9 w-auto max-w-[150px] md:h-12 md:max-w-[180px] xl:h-10 xl:max-w-[170px] 2xl:h-14 2xl:max-w-none"
           />
         </div>
 
-        <nav className="ml-auto hidden items-center justify-end gap-1.5 text-[15px] font-semibold tracking-[0.01em] text-[#1C2F57] lg:flex">
+        <nav className="ml-auto hidden items-center justify-end gap-1 text-[13px] font-semibold tracking-[0.005em] text-[#1C2F57] 2xl:gap-1.5 2xl:text-[15px] xl:flex">
           <NavLink href="/" ariaLabel="Home">
             <House size={16} />
           </NavLink>
@@ -732,14 +733,14 @@ export default function Header() {
           ))}
           <Link
             href="/login"
-            className="ml-1 rounded-md bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] px-5 py-2.5 text-[14px] font-semibold text-white shadow-[0_6px_16px_rgba(10,46,115,0.28)] transition hover:brightness-110"
+            className="ml-1 rounded-md bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] px-3 py-2 text-[13px] font-semibold text-white shadow-[0_6px_16px_rgba(10,46,115,0.28)] transition hover:brightness-110 2xl:px-5 2xl:py-2.5 2xl:text-[14px]"
           >
             Login
           </Link>
         </nav>
 
         <button
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-md border border-blue-100 bg-white p-1.5 text-[#1C2F57] lg:static lg:ml-auto lg:translate-y-0 lg:hidden"
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-md border border-blue-100 bg-white p-1.5 text-[#1C2F57] xl:static xl:ml-auto xl:translate-y-0 xl:hidden"
           onClick={toggleMobileMenu}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -750,7 +751,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div id="mobile-main-menu" className="lg:hidden max-h-[calc(100vh-8.5rem)] overflow-y-auto border-t border-blue-100 bg-white px-4 py-4">
+        <div id="mobile-main-menu" className="max-h-[calc(100vh-8.5rem)] overflow-x-hidden overflow-y-auto border-t border-blue-100 bg-white px-4 py-4 xl:hidden">
           <Link
             href="/"
             className="mb-3 flex items-center gap-2 rounded-md border border-gray-200 px-3 py-2 font-semibold text-[#003A8C]"
@@ -781,15 +782,15 @@ export default function Header() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className={`flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium leading-5 transition ${
+                      className={`flex min-w-0 items-start gap-2 rounded-md border px-3 py-2 text-sm font-medium leading-5 transition ${
                         pathname === item.href
                           ? "border-[#0F4BB8] bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] text-white"
                           : "border-blue-100 bg-white text-[#1F2937] hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"
                       }`}
                       onClick={closeMobileMenu}
                     >
-                      <item.icon size={15} className={pathname === item.href ? "text-white" : "text-[#003A8C]"} />
-                      <span>{item.label}</span>
+                      <item.icon size={15} className={`mt-0.5 shrink-0 ${pathname === item.href ? "text-white" : "text-[#003A8C]"}`} />
+                      <span className="min-w-0 break-words whitespace-normal">{item.label}</span>
                     </Link>
                   ))}
                 </div>
@@ -814,7 +815,7 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="group relative rounded-md border border-transparent px-2.5 py-2 text-[#1C2F57] transition hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"
+      className="group relative rounded-md border border-transparent px-2 py-1.5 text-[#1C2F57] transition hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8] 2xl:px-2.5 2xl:py-2"
     >
       {children}
       <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#12B8FF] transition-all group-hover:w-full"></span>
@@ -905,7 +906,7 @@ function MenuGroup({
         ref={setGroupButtonRef}
         id={`mega-trigger-${groupIndex}`}
         type="button"
-        className={`relative flex h-10 items-center gap-1 rounded-md px-3 py-2 text-[14px] font-semibold tracking-[0.01em] transition ${
+        className={`relative flex h-9 items-center gap-1 rounded-md px-2 py-1.5 text-[13px] font-semibold tracking-[0.005em] transition 2xl:h-10 2xl:px-3 2xl:py-2 2xl:text-[14px] ${
           isOpen
             ? "border border-cyan-100 bg-gradient-to-r from-[#e8f4ff] to-[#dff0ff] text-[#0F4BB8]"
             : "border border-transparent text-[#1C2F57] hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"

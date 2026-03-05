@@ -268,11 +268,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="nicsi-reveal px-6 py-14">
-        <div className="mx-auto grid max-w-6xl items-stretch gap-8 lg:grid-cols-[1.45fr_1fr]">
-          <article className="rounded-3xl border border-[#D5E7FF] bg-gradient-to-br from-[#F8FBFF] via-white to-[#F3F8FF] p-8 shadow-[0_16px_40px_rgba(15,75,184,0.08)]">
-            <h2 className="mt-2 text-3xl font-bold text-[#0F172A]">Project Portfolio</h2>
-            <div className="nicsi-stagger mt-7 grid items-stretch gap-3 sm:grid-cols-2 lg:grid-cols-6">
+      <section className="nicsi-reveal px-4 py-10 sm:px-6 sm:py-14">
+        <div className="mx-auto grid max-w-6xl items-stretch gap-5 sm:gap-8 lg:grid-cols-[1.45fr_1fr]">
+          <article className="overflow-hidden rounded-3xl border border-[#D5E7FF] bg-gradient-to-br from-[#F8FBFF] via-white to-[#F3F8FF] p-4 shadow-[0_16px_40px_rgba(15,75,184,0.08)] sm:p-8">
+            <h2 className="mt-1 text-2xl font-bold text-[#0F172A] sm:mt-2 sm:text-3xl">Project Portfolio</h2>
+            <div className="nicsi-stagger mt-5 grid items-stretch gap-3 sm:mt-7 sm:grid-cols-2 lg:grid-cols-6">
               {projectSubmenuLinks.map((project, index) => {
                 const Icon = projectPortfolioIconMap[project.iconKey];
                 const centeredRowClass =
@@ -286,13 +286,13 @@ export default function Home() {
                   <Link
                     key={project.title}
                     href={project.href}
-                    className={`nicsi-hover-card group relative flex aspect-square w-full flex-col items-center rounded-2xl border border-[#D7E5FA] bg-white/95 px-4 py-5 text-center shadow-[0_6px_18px_rgba(15,75,184,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#8FB8F0] hover:shadow-[0_14px_30px_rgba(13,70,173,0.16)] ${centeredRowClass}`}
+                    className={`nicsi-hover-card group relative flex min-h-[216px] w-full flex-col items-center rounded-2xl border border-[#D7E5FA] bg-white/95 px-3 py-4 text-center shadow-[0_6px_18px_rgba(15,75,184,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#8FB8F0] hover:shadow-[0_14px_30px_rgba(13,70,173,0.16)] sm:aspect-square sm:min-h-0 sm:px-4 sm:py-5 ${centeredRowClass}`}
                   >
                     <span className={`mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full ring-1 ring-inset ring-[#D5E5FA] ${project.iconBg}`}>
                       <Icon size={24} className={project.iconColor} />
                     </span>
-                    <p className="mt-4 text-base font-semibold leading-snug text-[#102A56] sm:text-lg">{project.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-[#4A5B78]">{project.description}</p>
+                    <p className="mt-3 text-[15px] font-semibold leading-snug text-[#102A56] sm:mt-4 sm:text-lg">{project.title}</p>
+                    <p className="mt-1.5 text-[13px] leading-5 text-[#4A5B78] sm:mt-2 sm:text-sm sm:leading-6">{project.description}</p>
                     <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-[#1E63B5]">Explore</span>
                   </Link>
                 );
@@ -301,15 +301,15 @@ export default function Home() {
           </article>
 
           <div className="nicsi-stagger h-full">
-            <article className="nicsi-hover-card h-full rounded-3xl bg-[#0B1E43] p-8 text-white shadow-[0_16px_40px_rgba(11,30,67,0.28)]">
-              <h3 className="text-2xl font-bold">Message</h3>
-              <p className="mt-4 text-justify text-[15px] italic leading-8 text-[#D9E6FF]">
+            <article className="nicsi-hover-card h-full overflow-hidden rounded-3xl bg-[#0B1E43] p-5 text-white shadow-[0_16px_40px_rgba(11,30,67,0.28)] sm:p-8">
+              <h3 className="text-xl font-bold sm:text-2xl">Message</h3>
+              <p className="mt-3 break-words text-justify text-[13px] italic leading-6 text-[#D9E6FF] sm:mt-4 sm:text-[15px] sm:leading-8">
                 &ldquo;India stands at a defining moment in its digital transformation journey. As emerging technologies reshape governance worldwide, NICSI strives to empower every Ministry, Department, and State with solutions that are secure, scalable, intelligent, and future-ready. By fostering innovation and collaboration, NICSI is committed to building a digital ecosystem that not only addresses today&apos;s challenges but also anticipates tomorrow&apos;s opportunities.
               </p>
-              <p className="mt-2 text-justify indent-8 text-[15px] italic leading-8 text-[#D9E6FF]">
+              <p className="mt-2 break-words text-justify text-[13px] italic leading-6 text-[#D9E6FF] sm:indent-8 sm:text-[15px] sm:leading-8">
                 As we advance toward an era driven by Artificial Intelligence, Quantum Computing, and automation, NICSI aims to play a pivotal role in strengthening digital public infrastructure, enhancing cyber resilience, and enabling mission-mode projects that touch the lives of millions. With a vision rooted in inclusivity and sustainability, NICSI endeavors to ensure that technology becomes a true enabler of good governance, citizen-centric services, and national progress.&rdquo;
               </p>
-              <p className="mt-5 text-sm font-semibold text-cyan-100">Shri Alok Tiwari, MD NICSI</p>
+              <p className="mt-4 text-sm font-semibold text-cyan-100 sm:mt-5">Shri Alok Tiwari, MD NICSI</p>
             </article>
           </div>
         </div>

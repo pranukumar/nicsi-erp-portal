@@ -33,6 +33,7 @@ export type EmpanelledVendorFilterOptions = {
   empanelmentCategories: string[];
   agreementTypes: string[];
   scopeTypes: string[];
+  scopeTypesByEmpanelment: Record<string, string[]>;
 };
 
 export type EmpanelledVendorListResult = {
@@ -81,11 +82,26 @@ function toVendor(row: DbRow): EmpanelledVendor {
 
 function getFallbackFilterOptions(rows: EmpanelledVendor[]): EmpanelledVendorFilterOptions {
   const unique = (items: string[]) => Array.from(new Set(items.filter(Boolean))).sort((a, b) => a.localeCompare(b));
+  const scopeByEmpanelmentMap = rows.reduce<Record<string, Set<string>>>((acc, row) => {
+    if (!row.empanelment_category || !row.empanelment_scope_type) return acc;
+    if (!acc[row.empanelment_category]) {
+      acc[row.empanelment_category] = new Set<string>();
+    }
+    acc[row.empanelment_category].add(row.empanelment_scope_type);
+    return acc;
+  }, {});
+
+  const scopeTypesByEmpanelment = Object.fromEntries(
+    Object.entries(scopeByEmpanelmentMap)
+      .map(([key, valueSet]) => [key, Array.from(valueSet).sort((a, b) => a.localeCompare(b))]),
+  );
+
   return {
     vendorCategories: unique(rows.map((r) => r.vendor_category)),
     empanelmentCategories: unique(rows.map((r) => r.empanelment_category)),
     agreementTypes: unique(rows.map((r) => r.agreement_empanelment)),
     scopeTypes: unique(rows.map((r) => r.empanelment_scope_type)),
+    scopeTypesByEmpanelment,
   };
 }
 
@@ -106,7 +122,7 @@ export async function getEmpanelledVendorFilterOptions(): Promise<EmpanelledVend
     return getFallbackFilterOptions(fallbackRows);
   }
 
-  const [vendorCategoryResult, empanelmentCategoryResult, agreementTypeResult, scopeTypeResult] = await Promise.all([
+  const [vendorCategoryResult, empanelmentCategoryResult, agreementTypeResult, scopeTypeResult, scopeByEmpanelmentResult] = await Promise.all([
     pool.query<{ value: string }>(
       `SELECT DISTINCT vendor_category as value FROM empanelled_vendors WHERE is_active = true AND vendor_category IS NOT NULL ORDER BY value ASC`,
     ),
@@ -119,13 +135,34 @@ export async function getEmpanelledVendorFilterOptions(): Promise<EmpanelledVend
     pool.query<{ value: string }>(
       `SELECT DISTINCT empanelment_scope_type as value FROM empanelled_vendors WHERE is_active = true AND empanelment_scope_type IS NOT NULL ORDER BY value ASC`,
     ),
+    pool.query<{ empanelment_category: string; empanelment_scope_type: string }>(
+      `SELECT DISTINCT empanelment_category, empanelment_scope_type
+       FROM empanelled_vendors
+       WHERE is_active = true
+         AND empanelment_category IS NOT NULL
+         AND empanelment_scope_type IS NOT NULL`,
+    ),
   ]);
+
+  const scopeByEmpanelmentMap = scopeByEmpanelmentResult.rows.reduce<Record<string, Set<string>>>((acc, row) => {
+    if (!acc[row.empanelment_category]) {
+      acc[row.empanelment_category] = new Set<string>();
+    }
+    acc[row.empanelment_category].add(row.empanelment_scope_type);
+    return acc;
+  }, {});
+
+  const scopeTypesByEmpanelment = Object.fromEntries(
+    Object.entries(scopeByEmpanelmentMap)
+      .map(([key, valueSet]) => [key, Array.from(valueSet).sort((a, b) => a.localeCompare(b))]),
+  );
 
   return {
     vendorCategories: vendorCategoryResult.rows.map((r) => r.value),
     empanelmentCategories: empanelmentCategoryResult.rows.map((r) => r.value),
     agreementTypes: agreementTypeResult.rows.map((r) => r.value),
     scopeTypes: scopeTypeResult.rows.map((r) => r.value),
+    scopeTypesByEmpanelment,
   };
 }
 

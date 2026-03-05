@@ -2,6 +2,24 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Fragment } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  Cloud,
+  Database,
+  ShieldCheck,
+  Lightbulb,
+  Code2,
+  Globe2,
+  Smartphone,
+  Users,
+  Headset,
+  Wrench,
+  Video,
+  ScanSearch,
+  Mail,
+  Share2,
+  GraduationCap,
+} from "lucide-react";
 import PageTitle from "../../components/layout/PageTitle";
 
 type VendorRow = {
@@ -19,6 +37,141 @@ type VendorRow = {
   vendor_category: string;
   vendor_name: string;
 };
+
+type ServiceShortcut = {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  hintTerms: string[];
+  scopeHints?: string[];
+  empanelmentHints?: string[];
+  agreementHints?: string[];
+  vendorHints?: string[];
+};
+
+const serviceShortcuts: ServiceShortcut[] = [
+  {
+    id: "cloud-services",
+    label: "Cloud Services",
+    icon: Cloud,
+    hintTerms: ["cloud", "hosting", "iaas", "paas", "ngc"],
+    scopeHints: ["cloud", "hosting", "iaas", "paas"],
+    empanelmentHints: ["cloud"],
+  },
+  {
+    id: "data-centre-services",
+    label: "Data Centre Services",
+    icon: Database,
+    hintTerms: ["data centre", "data center", "colocation", "ndc"],
+    scopeHints: ["data centre", "data center", "ndc", "colocation"],
+    empanelmentHints: ["data centre", "data center"],
+  },
+  {
+    id: "security-audit-services",
+    label: "Security Audit Services",
+    icon: ShieldCheck,
+    hintTerms: ["security audit", "cyber security", "vapt", "application security", "cert-in"],
+    scopeHints: ["security", "cyber", "vapt", "cert-in", "audit"],
+    empanelmentHints: ["security", "cyber", "audit"],
+  },
+  {
+    id: "it-consultancy-services",
+    label: "IT Consultancy Services",
+    icon: Lightbulb,
+    hintTerms: ["it consultancy", "consulting", "strategy consulting", "technology consulting"],
+    scopeHints: ["consultancy", "consulting", "advisory", "strategy"],
+    empanelmentHints: ["consultancy", "consulting"],
+  },
+  {
+    id: "application-development",
+    label: "Application Development",
+    icon: Code2,
+    hintTerms: ["application development", "software development", "developer", "fullstack"],
+    scopeHints: ["application", "software", "development"],
+    empanelmentHints: ["application", "software"],
+  },
+  {
+    id: "software-website-development",
+    label: "Software & Website Development",
+    icon: Globe2,
+    hintTerms: ["website development", "web portal", "software solutions", "web development"],
+    scopeHints: ["website", "web", "portal", "software"],
+    empanelmentHints: ["website", "web", "software"],
+  },
+  {
+    id: "mobile-app-development",
+    label: "Mobile App Development",
+    icon: Smartphone,
+    hintTerms: ["mobile app", "android", "ios", "flutter"],
+    scopeHints: ["mobile", "android", "ios", "app"],
+    empanelmentHints: ["mobile"],
+  },
+  {
+    id: "manpower-services",
+    label: "Manpower Services",
+    icon: Users,
+    hintTerms: ["manpower", "professional services", "resource support", "staff"],
+    scopeHints: ["manpower", "professional", "resource", "egov professional"],
+    empanelmentHints: ["manpower", "professional"],
+    vendorHints: ["service provider"],
+  },
+  {
+    id: "support-oa",
+    label: "Support (OA & Others)",
+    icon: Headset,
+    hintTerms: ["office support", "rollout support", "project management support", "eoffice support"],
+    scopeHints: ["office support", "project management", "rollout", "eoffice"],
+    empanelmentHints: ["office support", "project management"],
+  },
+  {
+    id: "amc",
+    label: "AMC",
+    icon: Wrench,
+    hintTerms: ["annual maintenance", "amc support", "maintenance contract"],
+    scopeHints: ["amc", "maintenance"],
+    agreementHints: ["amc", "annual maintenance"],
+  },
+  {
+    id: "vc-services",
+    label: "VC Services",
+    icon: Video,
+    hintTerms: ["video conferencing", "vc services", "webcast"],
+    scopeHints: ["vc", "video", "webcast"],
+    empanelmentHints: ["video", "webcast"],
+  },
+  {
+    id: "scanning-digitization",
+    label: "Scanning & Digitization",
+    icon: ScanSearch,
+    hintTerms: ["scanning", "digitization", "digitisation", "ocr", "document conversion"],
+    scopeHints: ["scanning", "digitization", "digitisation", "ocr"],
+    empanelmentHints: ["digitization", "digitisation", "scanning"],
+  },
+  {
+    id: "sms-email-services",
+    label: "SMS/Email Services",
+    icon: Mail,
+    hintTerms: ["sms", "email", "message gateway", "otp communication"],
+    scopeHints: ["sms", "message gateway", "email"],
+    empanelmentHints: ["sms", "email", "message"],
+  },
+  {
+    id: "social-media-services",
+    label: "Social Media Services",
+    icon: Share2,
+    hintTerms: ["social media", "campaign management", "digital outreach"],
+    scopeHints: ["social media", "campaign"],
+    empanelmentHints: ["social media", "campaign"],
+  },
+  {
+    id: "capacity-building",
+    label: "Capacity Building",
+    icon: GraduationCap,
+    hintTerms: ["capacity building", "training services", "workshop"],
+    scopeHints: ["training", "capacity building"],
+    empanelmentHints: ["training"],
+  },
+];
 
 function tokenize(text: string): string[] {
   return text
@@ -89,6 +242,31 @@ function getDynamicSuggestions(query: string, values: string[], max = 10): strin
     .sort((a, b) => b.score - a.score || a.value.localeCompare(b.value))
     .slice(0, max)
     .map((item) => item.value);
+}
+
+function pickBestOption(options: string[], hints: string[] = []): string {
+  if (!options.length || !hints.length) return "";
+
+  const normalizedOptions = options.map((option) => ({
+    raw: option,
+    normalized: normalizeText(option),
+  }));
+
+  for (const hint of hints) {
+    const normalizedHint = normalizeText(hint);
+    const exact = normalizedOptions.find((option) => option.normalized === normalizedHint);
+    if (exact) return exact.raw;
+  }
+
+  for (const hint of hints) {
+    const normalizedHint = normalizeText(hint);
+    const partial = normalizedOptions.find(
+      (option) => option.normalized.includes(normalizedHint) || normalizedHint.includes(option.normalized),
+    );
+    if (partial) return partial.raw;
+  }
+
+  return "";
 }
 
 const intentRules = [
@@ -261,16 +439,19 @@ export default function EmpanelledvendorsPage() {
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [openVendorId, setOpenVendorId] = useState<string | null>(null);
+  const [activeShortcutId, setActiveShortcutId] = useState<string>("");
   const [filterOptions, setFilterOptions] = useState<{
     vendorCategories: string[];
     empanelmentCategories: string[];
     agreementTypes: string[];
     scopeTypes: string[];
+    scopeTypesByEmpanelment: Record<string, string[]>;
   }>({
     vendorCategories: [],
     empanelmentCategories: [],
     agreementTypes: [],
     scopeTypes: [],
+    scopeTypesByEmpanelment: {},
   });
 
   useEffect(() => {
@@ -315,6 +496,7 @@ export default function EmpanelledvendorsPage() {
             empanelmentCategories?: string[];
             agreementTypes?: string[];
             scopeTypes?: string[];
+            scopeTypesByEmpanelment?: Record<string, string[]>;
           };
         };
         setVendorRows(payload.rows ?? []);
@@ -324,6 +506,7 @@ export default function EmpanelledvendorsPage() {
           empanelmentCategories: payload.filters?.empanelmentCategories ?? [],
           agreementTypes: payload.filters?.agreementTypes ?? [],
           scopeTypes: payload.filters?.scopeTypes ?? [],
+          scopeTypesByEmpanelment: payload.filters?.scopeTypesByEmpanelment ?? {},
         });
       } catch (error) {
         if ((error as Error).name !== "AbortError") {
@@ -356,6 +539,18 @@ export default function EmpanelledvendorsPage() {
     [filterOptions.scopeTypes],
   );
 
+  const filteredScopeTypes = useMemo(() => {
+    if (!empanelmentCategory) return scopeTypes;
+    return filterOptions.scopeTypesByEmpanelment[empanelmentCategory] ?? [];
+  }, [empanelmentCategory, filterOptions.scopeTypesByEmpanelment, scopeTypes]);
+
+  useEffect(() => {
+    if (!scopeType) return;
+    if (!filteredScopeTypes.includes(scopeType)) {
+      setScopeType("");
+    }
+  }, [filteredScopeTypes, scopeType]);
+
   const suggestedScopeTypes = useMemo(
     () => getSuggestedScopeTypes(search, scopeTypes),
     [scopeTypes, search],
@@ -364,6 +559,25 @@ export default function EmpanelledvendorsPage() {
     () => getDynamicSuggestions(search, empanelmentCategories, 10),
     [search, empanelmentCategories],
   );
+
+  const applyServiceShortcut = (shortcut: ServiceShortcut) => {
+    const q = shortcut.hintTerms.join(" ");
+    const nextScope = pickBestOption(scopeTypes, shortcut.scopeHints ?? shortcut.hintTerms);
+    const nextEmpanelment = pickBestOption(empanelmentCategories, shortcut.empanelmentHints ?? shortcut.hintTerms);
+    const nextAgreement = pickBestOption(agreementTypes, shortcut.agreementHints ?? shortcut.hintTerms);
+    const nextVendor = pickBestOption(vendorCategories, shortcut.vendorHints ?? shortcut.hintTerms);
+
+    setActiveShortcutId(shortcut.id);
+    setVendorCategory(nextVendor);
+    setEmpanelmentCategory(nextEmpanelment);
+    setAgreementType(nextAgreement);
+    setScopeType(nextScope);
+    setSmartMatch(true);
+    setSearch(q);
+    setDebouncedSearch(q);
+    setPage(1);
+    setOpenVendorId(null);
+  };
 
   const filteredRows = useMemo(() => {
     const query = debouncedSearch.toLowerCase();
@@ -457,6 +671,64 @@ export default function EmpanelledvendorsPage() {
             Search and filter NICSI empanelled vendors by category and empanelment type.
           </p>
 
+          <div className="mt-5 rounded-xl border border-blue-100 bg-[#F8FBFF] p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-sm font-semibold text-[#0F172A]">NICSI Service Offerings - Quick Filters</h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveShortcutId("");
+                  setVendorCategory("");
+                  setEmpanelmentCategory("");
+                  setAgreementType("");
+                  setScopeType("");
+                  setSearch("");
+                  setDebouncedSearch("");
+                  setPage(1);
+                }}
+                className="rounded-md border border-blue-200 bg-white px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-50"
+              >
+                Clear Service Filter
+              </button>
+            </div>
+            <p className="mt-1 text-xs text-gray-600">
+              Click any service button to auto-apply matching advanced filters. You can further refine using dropdowns below.
+            </p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {serviceShortcuts.map((shortcut) => {
+                const Icon = shortcut.icon;
+                const isActive = activeShortcutId === shortcut.id;
+                return (
+                  <button
+                    key={shortcut.id}
+                    type="button"
+                    onClick={() => applyServiceShortcut(shortcut)}
+                    className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-left text-xs font-semibold transition ${
+                      isActive
+                        ? "border-[#0F4BB8] bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] text-white shadow-[0_6px_14px_rgba(15,75,184,0.28)]"
+                        : "border-blue-200 bg-white text-[#1C2F57] hover:border-blue-300 hover:bg-blue-50"
+                    }`}
+                  >
+                    <span className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md ${isActive ? "bg-white/20" : "bg-[#EAF2FF] text-[#0F4BB8]"}`}>
+                      <Icon size={14} />
+                    </span>
+                    <span className="leading-4">{shortcut.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+            {(vendorCategory || empanelmentCategory || agreementType || scopeType || search) && (
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px]">
+                <span className="font-semibold text-[#0F172A]">Applied:</span>
+                {vendorCategory ? <span className="rounded-full border border-blue-200 bg-white px-2 py-0.5">Vendor: {vendorCategory}</span> : null}
+                {empanelmentCategory ? <span className="rounded-full border border-blue-200 bg-white px-2 py-0.5">Empanelment: {empanelmentCategory}</span> : null}
+                {agreementType ? <span className="rounded-full border border-blue-200 bg-white px-2 py-0.5">Agreement: {agreementType}</span> : null}
+                {scopeType ? <span className="rounded-full border border-blue-200 bg-white px-2 py-0.5">Scope: {scopeType}</span> : null}
+                {search ? <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5">Smart Query: {search}</span> : null}
+              </div>
+            )}
+          </div>
+
           <div className="mt-5 grid gap-3 md:grid-cols-4">
             <select
               value={vendorCategory}
@@ -500,7 +772,7 @@ export default function EmpanelledvendorsPage() {
               className="rounded-md border border-gray-300 px-3 py-2 text-sm"
             >
               <option value="">Select Scope Type</option>
-              {scopeTypes.map((type) => (
+              {filteredScopeTypes.map((type) => (
                 <option key={type} value={type}>
                   {type}
                 </option>
@@ -533,6 +805,8 @@ export default function EmpanelledvendorsPage() {
                 setValidity("all");
                 setSmartMatch(true);
                 setSearch("");
+                setDebouncedSearch("");
+                setActiveShortcutId("");
                 setOpenVendorId(null);
                 setPage(1);
               }}
