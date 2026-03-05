@@ -106,7 +106,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative isolate h-[68vh] min-h-[420px] w-full overflow-hidden text-white"
+      className="relative isolate h-[62vh] min-h-[360px] w-full overflow-hidden text-white sm:h-[66vh] sm:min-h-[400px] lg:h-[68vh] lg:min-h-[420px]"
       tabIndex={0}
       onKeyDown={onKeyDown}
       onMouseEnter={() => setIsPaused(true)}
@@ -145,7 +145,7 @@ export default function Hero() {
             <p className="mt-1 text-xs text-blue-100">National Informatics Centre Services Inc.</p>
           </div>
           <h1
-            className={`mt-4 text-4xl font-bold leading-tight transition-all duration-700 md:text-5xl ${
+            className={`mt-4 text-3xl font-bold leading-tight transition-all duration-700 sm:text-4xl md:text-5xl ${
               progress < 28 ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
             }`}
           >

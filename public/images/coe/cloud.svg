@@ -1,0 +1,41 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#04225F"/>
+      <stop offset="1" stop-color="#0E57B7"/>
+    </linearGradient>
+    <radialGradient id="cloudGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 300) rotate(90) scale(220 330)">
+      <stop stop-color="#E0F3FF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#E0F3FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect width="1200" height="720" fill="url(#cloudGlow)"/>
+  <g opacity="0.3" stroke="#9FD8FF" stroke-width="2" stroke-linecap="round">
+    <path d="M130 500C260 440 360 450 510 500"/>
+    <path d="M690 500C840 450 950 450 1080 500"/>
+    <path d="M180 220C300 180 430 180 540 230"/>
+    <path d="M660 230C780 180 910 180 1030 230"/>
+  </g>
+  <path d="M396 380C396 324 440 280 496 280C516 280 534 286 549 297C568 258 607 230 652 230C715 230 766 281 766 344C819 346 862 389 862 442C862 496 818 540 764 540H500C442 540 396 493 396 435V380Z" fill="#EAF7FF" fill-opacity="0.18" stroke="#C0E7FF" stroke-width="5"/>
+  <g fill="#A8DFFF">
+    <rect x="470" y="560" width="120" height="20" rx="10"/>
+    <rect x="640" y="560" width="120" height="20" rx="10"/>
+  </g>
+  <g stroke="#9EDCFF" stroke-width="3">
+    <path d="M530 540V560"/>
+    <path d="M700 540V560"/>
+  </g>
+  <g fill="#9EDCFF">
+    <circle cx="450" cy="360" r="5"/>
+    <circle cx="555" cy="290" r="5"/>
+    <circle cx="675" cy="260" r="5"/>
+    <circle cx="795" cy="320" r="5"/>
+  </g>
+  <g opacity="0.55" fill="#BFE8FF">
+    <circle cx="220" cy="150" r="2.5"/>
+    <circle cx="1010" cy="140" r="2.5"/>
+    <circle cx="1080" cy="460" r="2"/>
+    <circle cx="160" cy="470" r="2"/>
+  </g>
+</svg>

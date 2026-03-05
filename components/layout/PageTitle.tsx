@@ -10,7 +10,7 @@ const coeTheme = {
 export default function PageTitle({ title }: { title: string }) {
   return (
     <div
-      className="relative overflow-hidden border-b border-blue-200 px-6 py-8 text-white shadow-[0_12px_24px_rgba(13,53,130,0.24)]"
+      className="relative overflow-hidden border-b border-blue-200 px-4 py-6 text-white shadow-[0_12px_24px_rgba(13,53,130,0.24)] sm:px-6 sm:py-8"
       style={{
         background: coeTheme.gradient,
       }}
@@ -49,7 +49,7 @@ export default function PageTitle({ title }: { title: string }) {
       </div>
       <div className="pointer-events-none absolute bottom-0 left-0 h-[3px] w-full" style={{ background: coeTheme.accentBar }} />
       <div className="mx-auto max-w-6xl">
-        <h1 className="text-[30px] font-bold leading-tight">{title}</h1>
+        <h1 className="text-2xl font-bold leading-tight sm:text-3xl md:text-[30px]">{title}</h1>
       </div>
     </div>
   );

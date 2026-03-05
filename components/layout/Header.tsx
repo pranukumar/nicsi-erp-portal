@@ -358,9 +358,9 @@ export default function Header() {
       }`}
     >
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-6 py-2 text-white">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium leading-none tracking-[0.01em]">
+      <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-3 py-2 text-white sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-2 lg:items-center">
+        <span className="flex min-w-0 flex-wrap items-center gap-1 text-[11px] font-medium leading-none tracking-[0.01em] sm:gap-1.5 sm:text-[12.5px]">
           <a
             href="https://www.india.gov.in/"
             target="_blank"
@@ -374,7 +374,7 @@ export default function Header() {
             href="https://www.digitalindia.gov.in/"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center rounded-sm bg-white px-1 py-0.5 transition hover:opacity-90"
+            className="hidden items-center rounded-sm bg-white px-1 py-0.5 transition hover:opacity-90 sm:inline-flex"
             aria-label="Digital India"
           >
             <Image src="/logos/digital-india.png" alt="Digital India" width={96} height={24} className="h-5 w-auto" />
@@ -383,7 +383,7 @@ export default function Header() {
             href="https://swachhbharatmission.gov.in/"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center transition hover:opacity-90"
+            className="hidden items-center transition hover:opacity-90 sm:inline-flex"
             aria-label="Swachh Bharat"
           >
             <Image

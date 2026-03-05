@@ -1,0 +1,50 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#031A46"/>
+      <stop offset="1" stop-color="#0D3D8F"/>
+    </linearGradient>
+    <radialGradient id="pulse" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(610 330) rotate(90) scale(320 360)">
+      <stop stop-color="#80DEFF" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#80DEFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect width="1200" height="720" fill="url(#pulse)"/>
+  <g opacity="0.2" stroke="#9DD9FF" stroke-width="1.2">
+    <path d="M100 150H1100"/>
+    <path d="M100 250H1100"/>
+    <path d="M100 350H1100"/>
+    <path d="M100 450H1100"/>
+    <path d="M100 550H1100"/>
+    <path d="M180 80V640"/>
+    <path d="M340 80V640"/>
+    <path d="M500 80V640"/>
+    <path d="M660 80V640"/>
+    <path d="M820 80V640"/>
+    <path d="M980 80V640"/>
+  </g>
+  <g stroke="#B8E8FF" stroke-width="7" stroke-linejoin="round">
+    <path d="M600 170L770 235V350C770 455 700 538 600 570C500 538 430 455 430 350V235L600 170Z"/>
+  </g>
+  <g stroke="#86D7FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="540" y="305" width="120" height="95" rx="18"/>
+    <path d="M565 305V277C565 253 584 234 608 234C632 234 651 253 651 277V305"/>
+  </g>
+  <g fill="#7DD2FF">
+    <circle cx="320" cy="220" r="4"/>
+    <circle cx="900" cy="200" r="4"/>
+    <circle cx="270" cy="420" r="4"/>
+    <circle cx="930" cy="430" r="4"/>
+    <circle cx="460" cy="575" r="4"/>
+    <circle cx="740" cy="585" r="4"/>
+  </g>
+  <g opacity="0.5" stroke="#7DD2FF" stroke-width="2">
+    <path d="M320 220L430 260"/>
+    <path d="M900 200L770 250"/>
+    <path d="M270 420L430 380"/>
+    <path d="M930 430L770 385"/>
+    <path d="M460 575L560 520"/>
+    <path d="M740 585L640 520"/>
+  </g>
+</svg>

@@ -84,31 +84,31 @@ const centreOfExcellencePreviewCards = [
     title: "Artificial Intelligence",
     line1: "Advanced AI solutions",
     line2: "for intelligent governance",
-    image: "/images/banner1.jpg",
+    image: "/images/coe/artificial-intelligence.svg?v=20260304",
   },
   {
     title: "Cyber Security",
     line1: "Protecting digital",
     line2: "infrastructure and data",
-    image: "/images/banner2.jpg",
+    image: "/images/coe/cyber-security.svg?v=20260304",
   },
   {
     title: "Data Analytics",
     line1: "Data-driven insights",
     line2: "for better decision making",
-    image: "/images/digtal.png",
+    image: "/images/coe/data-analytics.svg?v=20260304",
   },
   {
     title: "Cloud",
     line1: "Scalable cloud",
     line2: "infrastructure and services",
-    image: "/images/2.png",
+    image: "/images/coe/cloud.svg?v=20260304",
   },
   {
     title: "Blockchain",
     line1: "Secure distributed ledger",
     line2: "technologies",
-    image: "/images/1.png",
+    image: "/images/coe/blockchain.svg?v=20260304",
   },
 ] as const;
 
@@ -317,8 +317,8 @@ export default function Home() {
 
       <section className="bg-white px-6 py-14">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-4xl font-bold text-[#0F4BB8]">NICSI Centres of Excellence</h2>
-          <p className="mt-3 text-center text-2xl text-[#334155]">Pioneering Innovation In Emerging Technologies</p>
+          <h2 className="text-center text-2xl font-bold text-[#0F4BB8] sm:text-3xl md:text-4xl">NICSI Centres of Excellence</h2>
+          <p className="mt-3 text-center text-base text-[#334155] sm:text-xl md:text-2xl">Pioneering Innovation In Emerging Technologies</p>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {centreOfExcellencePreviewCards.map((item) => (
               <article
@@ -348,8 +348,8 @@ export default function Home() {
       <section className="px-6 py-14">
         <div className="mx-auto max-w-6xl">
           <div className="rounded-2xl border border-blue-100 bg-gradient-to-br from-[#F8FBFF] via-white to-[#EEF4FF] p-6 shadow-[0_14px_32px_rgba(15,75,184,0.10)] md:p-8">
-            <h2 className="text-center text-4xl font-bold text-[#0F4BB8]">NICSI Service Offerings</h2>
-            <p className="mt-3 text-center text-[clamp(0.62rem,2.3vw,1.5rem)] whitespace-nowrap text-[#334155]">Comprehensive ICT Services for Government Requirements</p>
+            <h2 className="text-center text-2xl font-bold text-[#0F4BB8] sm:text-3xl md:text-4xl">NICSI Service Offerings</h2>
+            <p className="mt-3 text-center text-sm text-[#334155] sm:text-base md:text-lg">Comprehensive ICT Services for Government Requirements</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {serviceOfferings.map((item) => (
                 <article
@@ -360,11 +360,11 @@ export default function Home() {
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#EEF4FF] to-[#DDEBFF] text-[#0F4BB8]">
                       <item.icon size={19} />
                     </span>
-                    <h3 className="mt-3 whitespace-nowrap text-sm font-semibold leading-tight text-[#0F172A]">{item.title}</h3>
+                    <h3 className="mt-3 min-h-[2.5rem] text-sm font-semibold leading-5 text-[#0F172A]">{item.title}</h3>
                     {item.subtitle ? (
-                      <p className="mt-1 whitespace-nowrap text-xs leading-6 text-[#475569]">{item.subtitle}</p>
+                      <p className="mt-1 min-h-[2.5rem] text-xs leading-5 text-[#475569]">{item.subtitle}</p>
                     ) : (
-                      <p className="mt-1 whitespace-nowrap text-xs leading-6 text-transparent">.</p>
+                      <p className="mt-1 min-h-[2.5rem] text-xs leading-5 text-transparent">.</p>
                     )}
                   </div>
                 </article>
@@ -384,7 +384,7 @@ export default function Home() {
 
       <section className="bg-white px-6 pb-14">
         <div className="mx-auto max-w-6xl rounded-2xl border border-blue-100 bg-gradient-to-br from-[#F8FBFF] via-white to-[#EEF4FF] p-6 shadow-[0_12px_28px_rgba(15,75,184,0.08)] md:p-8">
-          <h2 className="text-center text-4xl font-bold text-[#0F4BB8]">Connect with US</h2>
+          <h2 className="text-center text-2xl font-bold text-[#0F4BB8] sm:text-3xl md:text-4xl">Connect with US</h2>
           <p className="mt-3 text-center text-lg text-[#334155]">Follow us on social media for latest updates</p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

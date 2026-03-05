@@ -67,18 +67,10 @@ export default function AboutPage() {
           {/* <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">About NICSI</p> */}
           <h2 className="mt-2 text-xl font-bold text-[#0F172A] md:text-2xl">National Informatics Centre Services Inc.</h2>
           <p className="mt-4 text-left leading-7 text-gray-700">
-            National Informatics Centre Services Inc. (NICSI), established in 1995, is a Section 8 company under the Companies Act, 
-            2013 under National Informatics Centre (NIC), Ministry of Electronics & Information 
-            Technology (MeitY), Government of India for providing and procuring IT solutions for multiple e-governance projects undertaken 
-            by NIC, MeitY, Governments and Government Organizations (like Public Sector Undertakings).
+            National Informatics Centre Services Inc. (NICSI), established in 1995, is a Section 8 company under the Companies Act, 2013 under National Informatics Centre (NIC), Ministry of Electronics & Information Technology (MeitY), Government of India for providing and procuring IT solutions for multiple e-governance projects undertaken by NIC, MeitY, Governments and Government Organizations (like Public Sector Undertakings).
           </p>
           <p className="mt-4 text-left leading-7 text-gray-700">
-            With a turnover of more than Rs.3100 crores (FY-2024-25), NICSI has emerged as a 
-            leading government-focused IT organization in the last 30 years. NICSI has successfully 
-            executed more than 30,000 projects in India and other developing nations by providing state 
-            of art and cost-effective solutions for all their growing ICT needs. These solutions are 
-            delivered through the procurement of products and services from high quality vendors, empanelled with NICSI/GeM.
-
+            With a turnover of more than Rs.3100 crores (FY-2024-25), NICSI has emerged as a leading government-focused IT organization in the last 30 years. NICSI has successfully executed more than 30,000 projects in India and other developing nations by providing state of art and cost-effective solutions for all their growing ICT needs. These solutions are delivered through the procurement of products and services from high quality vendors, empanelled with NICSI/GeM.
           </p>
           <div className="mt-6 rounded-xl border border-blue-100 bg-[#F8FAFF] p-5">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0052CC]">Nationwide Digital Footprint</p>
@@ -109,8 +101,7 @@ export default function AboutPage() {
         <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Vision</p>
           <p className="mt-3 rounded-lg bg-blue-50 p-4 text-left text-sm italic leading-6 text-[#0F172A]">
-            &quot;Achieve leadership position in the technology enablement of India and other developing countries thereby contributing
-            effectively to accelerate socioeconomic growth&quot;
+            &quot;Achieve leadership position in the technology enablement of India and other developing countries thereby contributing effectively to accelerate socioeconomic growth&quot;
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-gray-700">
             {visionPoints.map((point) => (
@@ -122,9 +113,7 @@ export default function AboutPage() {
         <article className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0052CC]">Mission</p>
           <p className="mt-3 rounded-lg bg-blue-50 p-4 text-left text-sm italic leading-6 text-[#0F172A]">
-            &quot;To promote and provide transparent value-added Information and Communication 
-            Technology procurement services and business solutions at competitive prices with a 
-            focus on socioeconomic development&quot;
+            &quot;To promote and provide transparent value-added Information and Communication Technology procurement services and business solutions at competitive prices with a focus on socioeconomic development&quot;
           </p>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-gray-700">
             {missionPoints.map((point) => (
@@ -165,7 +154,9 @@ export default function AboutPage() {
                 <ul className="mt-3 flex-1 space-y-2 text-sm text-gray-700">
                   {card.points.map((point) => (
                     <li key={point} className="flex items-start gap-2 leading-6">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-[2px] bg-[#0A2A72] rotate-45" />
+                      <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[#BCD0F8] bg-[#EAF1FF]">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#0A2A72]" />
+                      </span>
                       <span>{point}</span>
                     </li>
                   ))}

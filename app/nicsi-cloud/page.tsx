@@ -362,7 +362,7 @@ export default function Page() {
                       <span className="inline-flex rounded-full bg-[#0F4BB8] px-3 py-1 text-xs font-semibold text-white">
                         Step {index + 1}
                       </span>
-                      <h3 className="mt-3 text-[30px] font-semibold leading-tight text-[#0F172A] md:text-[34px]">{step.title}</h3>
+                      <h3 className="mt-3 text-xl font-semibold leading-tight text-[#0F172A] sm:text-2xl md:text-[30px]">{step.title}</h3>
                       <p className="mt-3 text-sm leading-7 text-gray-700 md:text-base">{step.detail}</p>
                     </article>
                   </div>

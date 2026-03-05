@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Building2, Mail, MapPin, MapPinned, MessageCircle, Phone } from "lucide-react";
+import { Building2, Clock3, Mail, MapPin, MapPinned, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import PageTitle from "../../components/layout/PageTitle";
 
 export default function ContactPage() {
@@ -13,9 +13,9 @@ export default function ContactPage() {
     <main className="pb-12">
       <PageTitle title="Contact Us" />
       <section className="mx-auto max-w-5xl px-6 py-8 text-gray-700">
-        <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+        <div className="rounded-xl border border-blue-100 bg-gradient-to-br from-white via-[#F8FBFF] to-[#EEF5FF] p-6 shadow-sm">
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-lg border border-gray-200 bg-[#F8FAFF] p-5">
+            <div className="rounded-lg border border-gray-200 bg-gradient-to-br from-[#F8FAFF] to-[#EEF5FF] p-5">
               <h2 className="text-xl font-bold text-[#0F172A]">NICSI Contact Details</h2>
               <div className="mt-4 space-y-3">
                 <div className="flex items-start gap-3 rounded-lg border border-blue-100 bg-white px-3 py-2.5">
@@ -76,32 +76,41 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 bg-[#F8FAFF] p-5">
-              <h2 className="text-xl font-bold text-[#0F172A]">Support &amp; Directory</h2>
-              <p className="mt-3 font-semibold text-[#0A2E73]">
-                Email:{" "}
-                <a href="mailto:info-nicsi@nic.in" className="underline decoration-blue-300 underline-offset-2 hover:text-[#0F4BB8]">
-                  info-nicsi@nic.in
-                </a>
-                {", "}
-                <a href="mailto:mdnicsi@nic.in" className="underline decoration-blue-300 underline-offset-2 hover:text-[#0F4BB8]">
-                  mdnicsi@nic.in
-                </a>
-              </p>
-              <p className="mt-2 text-sm text-gray-600">(A single point of contact for support or issue related to NICSI services and products)</p>
-              <div className="mt-4">
-                <Link
-                  href="/personnel-work-allocation"
-                  className="inline-flex items-center rounded-md border border-blue-200 bg-[#F4F8FF] px-4 py-2 text-sm font-semibold text-[#0F4BB8] transition hover:bg-[#EAF2FF]"
-                >
-                  Employees Directory
-                </Link>
+            <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-gradient-to-br from-[#F8FAFF] to-[#EEF5FF] p-5">
+              <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-blue-100/70 blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-sky-100/70 blur-2xl" />
+
+              <div className="relative">
+                <h2 className="text-xl font-bold text-[#0F172A]">Support &amp; Directory</h2>
+                <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white px-3 py-1.5 text-xs font-medium text-[#1D4ED8]">
+                  <ShieldCheck size={14} />
+                  <span>Single Point Support</span>
+                  <span className="text-blue-200">|</span>
+                  <Clock3 size={14} />
+                  <span>Assisted Response</span>
+                </div>
+                <p className="mt-3 font-semibold text-[#0A2E73]">
+                  Email:{" "}
+                  <a href="mailto:info-nicsi@nic.in" className="underline decoration-blue-300 underline-offset-2 hover:text-[#0F4BB8]">
+                    info-nicsi@nic.in
+                  </a>
+                  
+                </p>
+                <p className="mt-2 text-sm text-gray-600">(A single point of contact for support or issue related to NICSI services and products)</p>
+                <div className="mt-5">
+                  <Link
+                    href="/personnel-work-allocation"
+                    className="inline-flex w-full items-center justify-center rounded-lg border border-[#0F4BB8] bg-gradient-to-r from-[#0F4BB8] to-[#1E63CF] px-5 py-3 text-base font-semibold text-white transition hover:from-[#0C3D95] hover:to-[#174FA8]"
+                  >
+                    Employees Directory
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-blue-100 bg-gradient-to-br from-white to-[#F4F9FF] p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">Office Location Map</h2>
           <p className="mt-2 text-sm text-gray-600">
             If map does not load, open location on{" "}
@@ -125,7 +134,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+        <div className="mt-6 rounded-xl border border-blue-100 bg-gradient-to-br from-white to-[#F4F9FF] p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">NICSI Other Office Addresses</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             <article className="rounded-lg border border-gray-200 bg-[#F8FAFF] p-4">
