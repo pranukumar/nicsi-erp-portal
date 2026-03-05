@@ -142,35 +142,23 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center px-6">
         <div className="max-w-3xl">
-          <div
-            className={`transition-all duration-700 ${
-              progress < 20 ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
-            }`}
-          >
+          <div className="translate-y-0 opacity-100 transition-all duration-500">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-200">Digital Governance Platform</p>
             <p className="mt-1 text-sm font-bold tracking-[0.08em] text-white">NICSI Digital Operations Hub</p>
             <p className="mt-1 text-xs text-blue-100">National Informatics Centre Services Inc.</p>
           </div>
           <h1
-            className={`mt-4 text-3xl font-bold leading-tight transition-all duration-700 sm:text-4xl md:text-5xl ${
-              progress < 28 ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-            }`}
+            className="mt-4 translate-y-0 text-3xl font-bold leading-tight opacity-100 transition-all duration-500 sm:text-4xl md:text-5xl"
           >
             {activeSlide.title}
           </h1>
           <p
-            className={`mt-5 text-base text-blue-100 transition-all duration-700 md:text-lg ${
-              progress < 36 ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-            }`}
+            className="mt-5 translate-y-0 text-base text-blue-100 opacity-100 transition-all duration-500 md:text-lg"
           >
             {activeSlide.description}
           </p>
 
-          <div
-            className={`mt-8 flex flex-wrap gap-4 transition-all duration-700 ${
-              progress < 45 ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-            }`}
-          >
+          <div className="mt-8 flex translate-y-0 flex-wrap gap-4 opacity-100 transition-all duration-500">
             <Link
               href={activeSlide.primaryCta.href}
               className="rounded-md bg-white px-6 py-3 font-semibold text-[var(--dsci-primary)] transition hover:bg-gray-200"
@@ -188,9 +176,7 @@ export default function Hero() {
           <button
             type="button"
             onClick={() => setIsPaused((prev) => !prev)}
-            className={`mt-5 rounded-md border border-white/60 bg-black/30 px-4 py-2 text-sm font-medium text-white transition-all duration-700 hover:bg-black/50 ${
-              progress < 52 ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-            }`}
+            className="mt-5 translate-y-0 rounded-md border border-white/60 bg-black/30 px-4 py-2 text-sm font-medium text-white opacity-100 transition-all duration-500 hover:bg-black/50"
           >
             {isPaused ? "Resume Auto Slide" : "Pause Auto Slide"}
           </button>
