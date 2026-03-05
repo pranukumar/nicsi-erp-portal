@@ -3,7 +3,6 @@ import PolicyPageLayout from "@/components/policy/PolicyPageLayout";
 
 const links: { label: string; href: string }[] = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
   { label: "About NICSI", href: "/about" },
   { label: "Organization Chart", href: "/organization-chart" },
   { label: "Personnel & Work Allocation", href: "/personnel-work-allocation" },

@@ -68,7 +68,7 @@ export default function IndiaStateUtTileMap({ items }: IndiaStateUtTileMapProps)
 
       <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr]">
         <div className="overflow-x-auto rounded-lg border border-blue-100 bg-white p-3">
-          <div className="mx-auto grid min-w-[700px] grid-cols-12 gap-2">
+          <div className="mx-auto grid min-w-[620px] grid-cols-12 gap-1.5 sm:min-w-[700px] sm:gap-2">
           {indiaMapRows.flatMap((row, rowIndex) =>
             row.map((code, colIndex) => {
               if (code === "__") {
@@ -85,7 +85,7 @@ export default function IndiaStateUtTileMap({ items }: IndiaStateUtTileMapProps)
                   key={`${item.code}-${rowIndex}-${colIndex}`}
                   type="button"
                   onClick={() => setSelectedCode(item.code)}
-                  className={`h-12 rounded-md border px-2 py-1 text-left transition hover:-translate-y-0.5 hover:shadow-sm ${
+                  className={`h-11 rounded-md border px-1.5 py-1 text-left transition hover:-translate-y-0.5 hover:shadow-sm sm:h-12 sm:px-2 ${
                     isMuted ? "opacity-35" : ""
                   } ${getTileClasses(
                     item.projectCount,

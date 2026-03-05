@@ -58,9 +58,7 @@ const hqHierarchy: Person[] = [
   
    ];
 
-const domainExperts: Person[] = [
-  { role: "CHRO – Chief Human Resources Officer", name: " ", designation: " "  },
-];
+const domainExperts: Person[] = [];
 
 const companySecretary: Person = {
   role: "Company Secretary",
@@ -68,11 +66,7 @@ const companySecretary: Person = {
   designation: "",
 };
 
-const consultants: Person[] = [
-  { role: "Consultant (Technology Profile)", name: " ", designation: " ", note: " " },
-  { role: "Consultant (Program Management)", name: " ", designation: " ", note: " " },
-
-];
+const consultants: Person[] = [];
 
 const stateUnits: StateUnit[] = [
   { stateUt: "Andhra Pradesh", officer: "Shri A. Maruthi Kumar", designation: "General Manager", phone: "04023221904", email: "kumar[dot]maruthi[at]nic[dot]in" },
@@ -154,6 +148,14 @@ function DetailNode({ person }: { person: Person }) {
   );
 }
 
+function EmptyNode({ label }: { label: string }) {
+  return (
+    <article className="rounded-lg border border-dashed border-blue-200 bg-[#F8FAFF] p-3 text-sm text-[#334155]">
+      {label}
+    </article>
+  );
+}
+
 function StateUnitNode({ unit }: { unit: StateUnit }) {
   return (
     <article className="rounded-lg border border-gray-200 bg-[#F8FAFF] p-3">
@@ -227,15 +229,16 @@ export default function OrganizationChartPage() {
                   <p className="text-sm text-gray-600">Phone: 011-26105291</p>
                 </article>
 
-                <article className="absolute left-[calc(50%+17rem)] top-[11.5rem] z-10 w-[16rem] rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 shadow-sm">
+                <article className="absolute left-[calc(50%+17rem)] top-[11.25rem] z-10 w-[16rem] rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 shadow-sm">
                   <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
                   {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
                   {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
                 </article>
 
                 <span className="absolute left-[calc(50%+14rem)] top-[6.5rem] h-px w-[3rem] bg-blue-300" />
-                <span className="absolute left-1/2 top-[10.75rem] h-[10.8rem] w-px -translate-x-1/2 bg-blue-300" />
-                <span className="absolute left-1/2 top-[13rem] h-px w-[17rem] bg-blue-300" />
+                <span className="absolute left-1/2 top-[10.75rem] h-[8.25rem] w-px -translate-x-1/2 bg-blue-300" />
+                <span className="absolute left-1/2 top-[12.75rem] h-px w-[17rem] bg-blue-300" />
+                <span className="absolute left-1/2 top-[15.75rem] h-px w-full bg-blue-300" />
               </div>
             </div>
 
@@ -266,12 +269,10 @@ export default function OrganizationChartPage() {
               </article>
             </div>
 
-            <div className="mx-auto h-px w-full bg-blue-300" />
-
-            <div className="relative pt-0">
+            <div className="relative pt-4 md:pt-6">
               <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <div className="flex flex-col">
-                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI HQ Personnel</h4>
                     <div className="mt-3 space-y-2">
@@ -283,31 +284,35 @@ export default function OrganizationChartPage() {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Domain Experts</h4>
                     <div className="mt-3 space-y-2">
-                      {domainExperts.map((person) => (
-                        <DetailNode key={person.role} person={person} />
-                      ))}
+                      {domainExperts.length ? (
+                        domainExperts.map((person) => <DetailNode key={person.role} person={person} />)
+                      ) : (
+                        <EmptyNode label="Details will be updated soon." />
+                      )}
                     </div>
                   </article>
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Consultants</h4>
                     <div className="mt-3 space-y-2">
-                      {consultants.map((person) => (
-                        <DetailNode key={person.role} person={person} />
-                      ))}
+                      {consultants.length ? (
+                        consultants.map((person) => <DetailNode key={person.role} person={person} />)
+                      ) : (
+                        <EmptyNode label="Details will be updated soon." />
+                      )}
                     </div>
                   </article>
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI State Personnel</h4>
                     <div className="mt-3 max-h-[88rem] space-y-2 overflow-y-auto pr-1">

@@ -372,7 +372,7 @@ export default function Home() {
             </div>
             <div className="mt-8 text-center">
               <Link
-                href="/services"
+                href="/empanelled-vendors"
                 className="inline-flex items-center rounded-md bg-gradient-to-r from-[#0F4BB8] to-[#0A2E73] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(15,75,184,0.28)] transition hover:from-[#0C3C96] hover:to-[#08245B]"
               >
                 Access Our Services Here

@@ -9,7 +9,7 @@ const slides = [
     title: "Secure Digital Governance Infrastructure",
     description: "Empowering transparent, scalable, and secure public service delivery.",
     image: "/images/banner1.jpg",
-    primaryCta: { label: "Explore Services", href: "/services" },
+    primaryCta: { label: "Empanelled Vendors", href: "/empanelled-vendors" },
     secondaryCta: { label: "View Tenders", href: "/nicsi-gem-bids" },
   },
   {

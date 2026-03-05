@@ -298,7 +298,7 @@ export default function RtiPage() {
                 </div>
 
                 <div className="overflow-x-auto rounded-lg border border-gray-200">
-                  <table className="nic-table min-w-[980px] text-left text-sm">
+                  <table className="nic-table min-w-[760px] text-left text-sm md:min-w-[980px]">
                     <thead className="bg-gray-50 text-gray-700">
                       <tr>
                         <th className="px-4 py-3">Sr. No.</th>
@@ -365,7 +365,7 @@ export default function RtiPage() {
                 </div>
 
                 <div className="overflow-x-auto rounded-lg border border-gray-200">
-                  <table className="nic-table min-w-[980px] text-left text-sm">
+                  <table className="nic-table min-w-[760px] text-left text-sm md:min-w-[980px]">
                     <thead className="bg-gray-50 text-gray-700">
                       <tr>
                         <th className="px-4 py-3">Sr. No.</th>

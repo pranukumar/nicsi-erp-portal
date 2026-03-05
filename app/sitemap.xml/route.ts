@@ -1,7 +1,8 @@
 const routes = [
   "",
   "/about",
-  "/services",
+  "/empanelled-vendors",
+  "/nicsi-gem-bids",
   "/contact",
   "/sitemap",
   "/privacy-policy",
