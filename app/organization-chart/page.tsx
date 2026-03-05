@@ -69,8 +69,9 @@ const companySecretary: Person = {
 };
 
 const consultants: Person[] = [
-  { role: "Consultant (Program Management)", name: " ", designation: " ", note: " " },
   { role: "Consultant (Technology Profile)", name: " ", designation: " ", note: " " },
+  { role: "Consultant (Program Management)", name: " ", designation: " ", note: " " },
+
 ];
 
 const stateUnits: StateUnit[] = [
@@ -199,94 +200,123 @@ export default function OrganizationChartPage() {
 
             <div className="mx-auto h-6 w-px bg-blue-300" />
 
-            <div className="grid items-start gap-3 md:grid-cols-[1fr_minmax(0,28rem)_minmax(0,16rem)]">
-              <div className="hidden md:block" />
-              <div className="mx-auto w-full max-w-md rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm">
-                <div className="flex w-full flex-col items-center justify-center gap-2 text-center">
-                  <div className="h-24 w-20 overflow-hidden rounded-lg border border-blue-100 shadow-sm">
-                    <Image
-                      src={leadership.md.photo}
-                      alt={leadership.md.name}
-                      width={120}
-                      height={160}
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{leadership.md.role}</p>
-                    <h4 className="mx-auto text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
-                    <p className="text-sm text-[#003A8C]">Phone: {leadership.md.phone} | Email: {leadership.md.email}</p>
+            <div className="hidden md:block">
+              <div className="relative mx-auto h-[20rem] w-full max-w-6xl overflow-visible">
+                <div className="absolute left-1/2 top-0 z-10 w-full max-w-md -translate-x-1/2 rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm">
+                  <div className="flex w-full flex-col items-center justify-center gap-2 text-center">
+                    <div className="h-24 w-20 overflow-hidden rounded-lg border border-blue-100 shadow-sm">
+                      <Image
+                        src={leadership.md.photo}
+                        alt={leadership.md.name}
+                        width={120}
+                        height={160}
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{leadership.md.role}</p>
+                      <h4 className="mx-auto text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
+                      <p className="text-sm text-[#003A8C]">Phone: {leadership.md.phone} | Email: {leadership.md.email}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mx-auto hidden w-full max-w-xs md:mx-0 md:flex md:flex-col md:gap-3">
-                <div className="relative mt-12 rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3">
-                  <span className="absolute left-0 top-1/2 h-px w-8 -translate-x-8 -translate-y-1/2 bg-blue-300" />
-                  <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
-                  {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
-                  {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
-                </div>
-                <div className="relative rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3">
-                  <span className="absolute left-0 top-1/2 h-px w-8 -translate-x-8 -translate-y-1/2 bg-blue-300" />
+
+                <article className="absolute left-[calc(50%+17rem)] top-[4.25rem] z-10 w-[16rem] rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 shadow-sm">
                   <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">PS to MD NICSI</p>
                   <p className="text-sm font-semibold text-[#0F172A]">P. K. Parida</p>
                   <p className="text-sm text-gray-600">Phone: 011-26105291</p>
-                </div>
+                </article>
+
+                <article className="absolute left-[calc(50%+17rem)] top-[11.5rem] z-10 w-[16rem] rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 shadow-sm">
+                  <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
+                  {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
+                  {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
+                </article>
+
+                <span className="absolute left-[calc(50%+14rem)] top-[6.5rem] h-px w-[3rem] bg-blue-300" />
+                <span className="absolute left-1/2 top-[10.75rem] h-[10.8rem] w-px -translate-x-1/2 bg-blue-300" />
+                <span className="absolute left-1/2 top-[13rem] h-px w-[17rem] bg-blue-300" />
               </div>
             </div>
 
             <div className="mx-auto w-full max-w-md space-y-2 md:hidden">
-              <article className="rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 text-center">
-                <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
-                {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
-                {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
+              <article className="rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm">
+                <div className="mx-auto h-24 w-20 overflow-hidden rounded-lg border border-blue-100 shadow-sm">
+                  <Image
+                    src={leadership.md.photo}
+                    alt={leadership.md.name}
+                    width={120}
+                    height={160}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{leadership.md.role}</p>
+                <h4 className="text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
+                <p className="text-sm text-[#003A8C]">Phone: {leadership.md.phone} | Email: {leadership.md.email}</p>
               </article>
               <article className="rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 text-center">
                 <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">PS to MD NICSI</p>
                 <p className="text-sm font-semibold text-[#0F172A]">P. K. Parida</p>
                 <p className="text-sm text-gray-600">Phone: 011-26105291</p>
               </article>
+              <article className="rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 text-center">
+                <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{companySecretary.role}</p>
+                {companySecretary.name ? <p className="text-sm font-semibold text-[#0F172A]">{companySecretary.name}</p> : null}
+                {companySecretary.designation ? <p className="text-sm text-gray-600">{companySecretary.designation}</p> : null}
+              </article>
             </div>
 
-            <div className="mx-auto h-6 w-px bg-blue-300" />
-            <div className="mx-auto h-px w-full max-w-4xl bg-blue-200" />
+            <div className="mx-auto h-px w-full bg-blue-300" />
 
-            <div>
+            <div className="relative pt-0">
               <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
-                <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
-                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI HQ Personnel</h4>
-                  <div className="mt-3 space-y-2">
-                    {hqHierarchy.map((person) => (
-                      <DetailNode key={person.role} person={person} />
-                    ))}
-                  </div>
-                </article>
+                <div className="flex flex-col">
+                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
+                    <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI HQ Personnel</h4>
+                    <div className="mt-3 space-y-2">
+                      {hqHierarchy.map((person) => (
+                        <DetailNode key={person.role} person={person} />
+                      ))}
+                    </div>
+                  </article>
+                </div>
 
-                <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
-                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Domain Experts</h4>
-                  <div className="mt-3 space-y-2">
-                    {domainExperts.map((person) => (
-                      <DetailNode key={person.role} person={person} />
-                    ))}
-                  </div>
-                </article>
+                <div className="flex flex-col">
+                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
+                    <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Domain Experts</h4>
+                    <div className="mt-3 space-y-2">
+                      {domainExperts.map((person) => (
+                        <DetailNode key={person.role} person={person} />
+                      ))}
+                    </div>
+                  </article>
+                </div>
 
-                <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
-                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Consultants</h4>
-                  <div className="mt-3 space-y-2">
-                    {consultants.map((person) => (
-                      <DetailNode key={person.role} person={person} />
-                    ))}
-                  </div>
-                </article>
-                <article className="rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
-                  <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI State Personnel</h4>
-                  <div className="mt-3 max-h-[88rem] space-y-2 overflow-y-auto pr-1">
-                    {stateUnits.map((unit) => (
-                      <StateUnitNode key={unit.stateUt} unit={unit} />
-                    ))}
-                  </div>
-                </article>
+                <div className="flex flex-col">
+                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
+                    <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Consultants</h4>
+                    <div className="mt-3 space-y-2">
+                      {consultants.map((person) => (
+                        <DetailNode key={person.role} person={person} />
+                      ))}
+                    </div>
+                  </article>
+                </div>
+
+                <div className="flex flex-col">
+                  <span className="mx-auto -mb-px hidden h-4 w-px bg-blue-300 md:block" />
+                  <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
+                    <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI State Personnel</h4>
+                    <div className="mt-3 max-h-[88rem] space-y-2 overflow-y-auto pr-1">
+                      {stateUnits.map((unit) => (
+                        <StateUnitNode key={unit.stateUt} unit={unit} />
+                      ))}
+                    </div>
+                  </article>
+                </div>
               </div>
             </div>
           </div>

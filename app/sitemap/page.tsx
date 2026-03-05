@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PageTitle from "../../components/layout/PageTitle";
+import PolicyPageLayout from "@/components/policy/PolicyPageLayout";
 
 const links: { label: string; href: string }[] = [
   { label: "Home", href: "/" },
@@ -36,7 +36,6 @@ const links: { label: string; href: string }[] = [
   { label: "GST Particulars", href: "/gst-particulars" },
   { label: "CSR", href: "/csr" },
   { label: "Vacancies", href: "/vacancies" },
-  { label: "Capacity Building Training", href: "/capacity-building-training" },
   { label: "Internship", href: "/internship" },
   { label: "Internship Application", href: "/internship/apply" },
   { label: "Login", href: "/login" },
@@ -53,25 +52,20 @@ const links: { label: string; href: string }[] = [
 
 export default function SitemapPage() {
   return (
-    <main className="pb-12">
-      <PageTitle title="Sitemap" />
-      <section className="mx-auto max-w-6xl px-6 py-8">
-        <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
-          <h2 className="text-xl font-bold text-[#0F172A]">Sitemap</h2>
-          <div className="mt-3 h-[2px] w-20 bg-[#003A8C]" />
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {links.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-lg border border-blue-100 bg-[#FCFDFF] px-4 py-3 text-sm font-medium text-[#0F172A] hover:border-blue-300 hover:text-[#003A8C]"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
+    <PolicyPageLayout title="Sitemap">
+      <h2>Sitemap</h2>
+      <p>Quick access to all major NICSI pages and public information sections.</p>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map((item) => (
+          <Link
+            key={`${item.href}-${item.label}`}
+            href={item.href}
+            className="rounded-xl border border-blue-100 bg-gradient-to-b from-[#FCFDFF] to-white px-4 py-3 text-sm font-medium text-[#0F172A] shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:text-[#003A8C] hover:shadow-md"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </PolicyPageLayout>
   );
 }

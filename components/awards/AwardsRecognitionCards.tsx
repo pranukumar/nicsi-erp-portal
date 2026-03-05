@@ -79,7 +79,7 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
                 ) : null}
               </div>
               <h3 className="text-base font-semibold leading-7 text-[#0F172A]">{item.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-600">{item.description}</p>
+              <p className="mt-2 text-justify text-sm leading-6 text-gray-600">{item.description}</p>
             </div>
           </article>
         ))}

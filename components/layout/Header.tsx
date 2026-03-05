@@ -253,7 +253,6 @@ type TopStripUtilityLink = {
 const topStripOpportunitiesItems: TopStripMenuItem[] = [
   { label: "Vacancies", href: "/vacancies", icon: BriefcaseBusiness, external: false },
   { label: "Internship", href: "/internship", icon: UserCheck2, external: false },
-  { label: "Capacity Building Training", href: "/capacity-building-training", icon: CalendarDays, external: false },
   { label: "Contact Us", href: "/contact", icon: Users, external: false },
 ];
 const topStripQuickLinksItems: TopStripMenuItem[] = [

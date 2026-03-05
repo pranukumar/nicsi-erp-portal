@@ -5,6 +5,14 @@ import ImportantLinksBar from "@/components/layout/ImportantLinksBar";
 import NicsiSaathiChatbot from "@/components/chatbot/NicsiSaathiChatbot";
 import { getNicsiChatbotFaqs } from "@/services/nicsiChatbot";
 import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-primary",
+});
 
 export const metadata: Metadata = {
   title: "NICSI Digital Governance Platform",
@@ -35,7 +43,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en-IN">
-      <body className="nicsi-theme bg-gray-50 text-gray-800 antialiased">
+      <body className={`${poppins.variable} ${poppins.className} nicsi-theme bg-gray-50 text-gray-800 antialiased`}>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

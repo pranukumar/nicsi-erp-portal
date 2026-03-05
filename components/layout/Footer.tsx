@@ -4,7 +4,7 @@ import { Facebook, Instagram, Linkedin, Mail, MessageCircle, Twitter } from "luc
 
 export default async function Footer() {
   const footerContent = await getFooterContent();
-  const lastUpdated = process.env.NEXT_PUBLIC_SITE_LAST_UPDATED ?? "February 28, 2026";
+  const lastUpdated = process.env.NEXT_PUBLIC_SITE_LAST_UPDATED ?? "March 5, 2026";
   const socialLinks = [
     { label: "X", href: "https://x.com/MeitY_NICSI", icon: Twitter },
     { label: "Facebook", href: "https://www.facebook.com/MeitY.NICSI", icon: Facebook },
@@ -23,9 +23,27 @@ export default async function Footer() {
   ] as const;
   const textLinkClass =
     "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-blue-50 transition-all duration-200 hover:translate-x-1 hover:bg-white/12 hover:text-white focus-visible:bg-white/12";
-  const quickLinksWithFaq = footerContent.quickLinks.some((item) => item.href === "/faq")
-    ? footerContent.quickLinks
-    : [...footerContent.quickLinks, { label: "FAQ", href: "/faq" }];
+  const quickLinksBase = footerContent.quickLinks.filter((item) => item.href !== "/services");
+  const quickLinksWithVendors = quickLinksBase.some((item) => item.href === "/empanelled-vendors")
+    ? quickLinksBase
+    : [...quickLinksBase, { label: "Empanelled Vendors", href: "/empanelled-vendors" }];
+  const quickLinksWithFaq = quickLinksWithVendors.some((item) => item.href === "/faq")
+    ? quickLinksWithVendors
+    : [...quickLinksWithVendors, { label: "FAQ", href: "/faq" }];
+  const usefulLinksOrdered = (() => {
+    const list = [...quickLinksWithFaq];
+    const vendorIndex = list.findIndex((item) => item.href === "/empanelled-vendors");
+    const aboutIndex = list.findIndex((item) => item.href === "/about");
+
+    if (vendorIndex === -1 || aboutIndex === -1) {
+      return list;
+    }
+
+    const [vendorItem] = list.splice(vendorIndex, 1);
+    const targetIndex = aboutIndex < list.length ? aboutIndex + 1 : list.length;
+    list.splice(targetIndex, 0, vendorItem);
+    return list;
+  })();
   const resourcesAndMediaLinks = [
     { label: "NICSI SOP", href: "/nicsi-sop" },
     { label: "Download Form", href: "/forms" },
@@ -45,9 +63,7 @@ export default async function Footer() {
           <p className="mt-3 text-justify text-sm leading-6 text-blue-100">
             National Informatics Centre Services Inc. (NICSI), established in 1995, is a Section 8 company under the Companies Act, 2013 under National Informatics Centre (NIC), Ministry of Electronics and Information Technology (MeitY), Government of India.
           </p>
-          <p className="mt-3 text-justify text-xs leading-6 text-blue-200">
-            NICSI provides and procures ICT products and services for e-Governance projects of NIC, MeitY, Central and State Governments, and Public Sector Undertakings.
-          </p>
+          
           <Link
             href="/about"
             className="mt-4 inline-flex rounded-md border border-cyan-200/40 px-3 py-1.5 text-xs font-semibold text-cyan-100 transition hover:bg-white/10 hover:text-white"
@@ -58,9 +74,9 @@ export default async function Footer() {
 
         <div className="rounded-xl border border-cyan-200/25 bg-white/10 p-5 backdrop-blur-sm">
           <h4 className="text-sm font-semibold uppercase tracking-wide text-cyan-200">Useful Links</h4>
-          <p className="mt-3 text-left text-xs text-blue-200">Frequently accessed public pages.</p>
+          {/* <p className="mt-3 text-left text-xs text-blue-200">Frequently accessed public pages.</p> */}
           <ul className="mt-3 space-y-2 text-sm">
-            {quickLinksWithFaq.map((item) => (
+            {usefulLinksOrdered.map((item) => (
               <li key={`${item.href}-${item.label}`}>
                 <Link href={item.href} className={textLinkClass}>
                   {item.href === "/contact"
@@ -82,7 +98,7 @@ export default async function Footer() {
 
         <div className="rounded-xl border border-cyan-200/25 bg-white/10 p-5 backdrop-blur-sm">
           <h4 className="text-sm font-semibold uppercase tracking-wide text-cyan-200">Resources &amp; Media</h4>
-          <p className="mt-3 text-left text-xs text-blue-200">Official resources and media pages. (Archive excluded)</p>
+          {/* <p className="mt-3 text-left text-xs text-blue-200">Official resources and media pages. (Archive excluded)</p> */}
           <ul className="mt-3 space-y-2 text-sm">
             {resourcesAndMediaLinks.map((item) => (
               <li key={item.label}>
@@ -95,7 +111,7 @@ export default async function Footer() {
         </div>
 
         <div className="rounded-xl border border-cyan-200/25 bg-white/10 p-5 backdrop-blur-sm">
-          <h4 className="text-sm font-semibold uppercase tracking-wide text-cyan-200">Contact & Connect</h4>
+          <h4 className="text-sm font-semibold uppercase tracking-wide text-cyan-200">Contact Us</h4>
           <p className="mt-3 text-left text-sm text-blue-100">Contact: +91-11-22900525, +91-11-22900523</p>
           <p className="mt-1 text-left text-sm text-blue-100">
             <span className="inline-flex items-center gap-2">

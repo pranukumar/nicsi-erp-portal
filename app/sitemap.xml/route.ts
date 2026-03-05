@@ -37,7 +37,7 @@ function toIsoDate(value: string): string {
 
 export function GET() {
   const baseUrl = "https://nicsi.nic.in";
-  const lastModified = toIsoDate(process.env.NEXT_PUBLIC_SITE_LAST_UPDATED ?? "2026-02-28");
+  const lastModified = toIsoDate(process.env.NEXT_PUBLIC_SITE_LAST_UPDATED ?? "2026-03-05");
 
   const urlset = routes
     .map((route) => {

@@ -303,11 +303,11 @@ export default function Home() {
           <div className="nicsi-stagger h-full">
             <article className="nicsi-hover-card h-full rounded-3xl bg-[#0B1E43] p-8 text-white shadow-[0_16px_40px_rgba(11,30,67,0.28)]">
               <h3 className="text-2xl font-bold">Message</h3>
-              <p className="mt-4 text-justify font-serif text-[15px] italic leading-8 text-[#D9E6FF]">
-                India stands at a defining moment in its digital transformation journey. As emerging technologies reshape governance worldwide, NICSI strives to empower every Ministry, Department, and State with solutions that are secure, scalable, intelligent, and future-ready. By fostering innovation and collaboration, NICSI is committed to building a digital ecosystem that not only addresses today&apos;s challenges but also anticipates tomorrow&apos;s opportunities.
+              <p className="mt-4 text-justify text-[15px] italic leading-8 text-[#D9E6FF]">
+                &ldquo;India stands at a defining moment in its digital transformation journey. As emerging technologies reshape governance worldwide, NICSI strives to empower every Ministry, Department, and State with solutions that are secure, scalable, intelligent, and future-ready. By fostering innovation and collaboration, NICSI is committed to building a digital ecosystem that not only addresses today&apos;s challenges but also anticipates tomorrow&apos;s opportunities.
               </p>
-              <p className="mt-2 text-justify indent-8 font-serif text-[15px] italic leading-8 text-[#D9E6FF]">
-                As we advance toward an era driven by Artificial Intelligence, Quantum Computing, and automation, NICSI aims to play a pivotal role in strengthening digital public infrastructure, enhancing cyber resilience, and enabling mission-mode projects that touch the lives of millions. With a vision rooted in inclusivity and sustainability, NICSI endeavors to ensure that technology becomes a true enabler of good governance, citizen-centric services, and national progress.
+              <p className="mt-2 text-justify indent-8 text-[15px] italic leading-8 text-[#D9E6FF]">
+                As we advance toward an era driven by Artificial Intelligence, Quantum Computing, and automation, NICSI aims to play a pivotal role in strengthening digital public infrastructure, enhancing cyber resilience, and enabling mission-mode projects that touch the lives of millions. With a vision rooted in inclusivity and sustainability, NICSI endeavors to ensure that technology becomes a true enabler of good governance, citizen-centric services, and national progress.&rdquo;
               </p>
               <p className="mt-5 text-sm font-semibold text-cyan-100">Shri Alok Tiwari, MD NICSI</p>
             </article>
@@ -413,4 +413,3 @@ export default function Home() {
     </div>
   );
 }
-

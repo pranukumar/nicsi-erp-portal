@@ -22,7 +22,7 @@
 
 body {
   color: var(--nicsi-text);
-  font-family: "Poppins", "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-primary), "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
   font-size: 15.5px;
   line-height: 1.65;
   background:
@@ -136,6 +136,23 @@ html {
 
 a {
   text-underline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary), "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 .text-justify-safe {
