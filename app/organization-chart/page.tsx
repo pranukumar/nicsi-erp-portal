@@ -236,9 +236,8 @@ export default function OrganizationChartPage() {
                 </article>
 
                 <span className="absolute left-[calc(50%+14rem)] top-[6.5rem] h-px w-[3rem] bg-blue-300" />
-                <span className="absolute left-1/2 top-[10.75rem] h-[8.25rem] w-px -translate-x-1/2 bg-blue-300" />
+                <span className="absolute left-1/2 top-[10.75rem] h-[9.25rem] w-px -translate-x-1/2 bg-blue-300" />
                 <span className="absolute left-1/2 top-[12.75rem] h-px w-[17rem] bg-blue-300" />
-                <span className="absolute left-1/2 top-[15.75rem] h-px w-full bg-blue-300" />
               </div>
             </div>
 
@@ -269,10 +268,12 @@ export default function OrganizationChartPage() {
               </article>
             </div>
 
-            <div className="relative pt-4 md:pt-6">
+            <div className="relative pt-6 md:pt-6">
+              <span className="absolute -top-6 left-1/2 hidden h-6 w-px -translate-x-1/2 bg-blue-300 md:block" />
+              <span className="absolute left-0 right-0 top-0 hidden h-px bg-blue-300 md:block" />
               <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <div className="flex flex-col">
-                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI HQ Personnel</h4>
                     <div className="mt-3 space-y-2">
@@ -284,7 +285,7 @@ export default function OrganizationChartPage() {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Domain Experts</h4>
                     <div className="mt-3 space-y-2">
@@ -298,7 +299,7 @@ export default function OrganizationChartPage() {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">Consultants</h4>
                     <div className="mt-3 space-y-2">
@@ -312,7 +313,7 @@ export default function OrganizationChartPage() {
                 </div>
 
                 <div className="flex flex-col">
-                  <span className="mx-auto -mt-4 mb-0 hidden h-4 w-px bg-blue-300 md:block" />
+                  <span className="mx-auto mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI State Personnel</h4>
                     <div className="mt-3 max-h-[88rem] space-y-2 overflow-y-auto pr-1">
