@@ -128,7 +128,14 @@ export default function Hero() {
             index === activeIndex ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Image src={slide.image} alt={slide.title} fill priority={index === 0} className="object-cover" />
+          <Image
+            src={slide.image}
+            alt={slide.title}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className="object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/30" />
         </div>
       ))}

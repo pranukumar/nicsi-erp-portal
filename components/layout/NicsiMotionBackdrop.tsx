@@ -20,7 +20,7 @@ export default function NicsiMotionBackdrop() {
     if (!root) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || window.innerWidth < 1024) return;
 
     let rafId = 0;
     const update = (mx: number, my: number) => {

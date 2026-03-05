@@ -326,7 +326,13 @@ export default function Home() {
                 className="overflow-hidden rounded-2xl border border-[#D9E3F4] bg-white shadow-[0_4px_14px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(15,23,42,0.16)]"
               >
                 <div className="relative h-52">
-                  <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 20vw"
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-[#0F172A]/25 to-transparent" />
                   <h3 className="absolute bottom-4 left-4 right-4 text-3xl font-bold leading-tight text-white">{item.title}</h3>
                 </div>

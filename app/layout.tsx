@@ -2,7 +2,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ImportantLinksBar from "@/components/layout/ImportantLinksBar";
-import NicsiSaathiChatbot from "@/components/chatbot/NicsiSaathiChatbot";
+import NicsiSaathiChatbotLazy from "@/components/chatbot/NicsiSaathiChatbotLazy";
 import { getNicsiChatbotFaqs } from "@/services/nicsiChatbot";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
@@ -53,7 +53,7 @@ export default async function RootLayout({
         </div>
         <ImportantLinksBar />
         <Footer />
-        <NicsiSaathiChatbot faqs={faqs} />
+        <NicsiSaathiChatbotLazy faqs={faqs} />
       </body>
     </html>
   );
