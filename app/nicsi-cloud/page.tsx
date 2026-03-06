@@ -226,15 +226,17 @@ export default function Page() {
           </p>
           <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-[#0F4BB8]" />
 
-          <div className="mt-7 overflow-hidden rounded-[28px] border border-[#C8D9FF] bg-[#EFF5FF] shadow-[0_18px_40px_rgba(15,75,184,0.16)]">
-            <Image
-              src="/images/map_nicsi_datacenter.jpg"
-              alt="Attached NDC locations map showing Delhi, Guwahati, Bhubaneswar, Pune, and Hyderabad"
-              width={1280}
-              height={760}
-              priority
-              className="h-auto w-full"
-            />
+          <div className="mt-7 rounded-[28px] border border-[#C8D9FF] bg-[#EFF5FF] p-4 shadow-[0_18px_40px_rgba(15,75,184,0.16)] md:p-6">
+            <div className="mx-auto max-w-5xl">
+              <Image
+                src="/images/map_nicsi_datacenter.jpg"
+                alt="Attached NDC locations map showing Delhi, Guwahati, Bhubaneswar, Pune, and Hyderabad"
+                width={1280}
+                height={760}
+                priority
+                className="mx-auto h-auto w-full rounded-2xl"
+              />
+            </div>
           </div>
         </div>
 
