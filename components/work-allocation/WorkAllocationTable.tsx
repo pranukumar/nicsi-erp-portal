@@ -11,80 +11,42 @@ type WorkAllocationRow = {
 };
 
 const rows: WorkAllocationRow[] = [
-  { srNo: "1", name: "Shri Naveen Agrawal", designation: "Chief General Manager", stateCoordinator: "Uttar Pradesh and Uttarakhand", projectsMinistry: "M/o Rural Development, M/o Cooperation, M/o Finance, President Secretariat, Vice President Secretariat, Prime Minister Office, Cabinet Secretariat, Lok Sabha and Rajya Sabha, M/o Parliamentary Affairs" },
-  { srNo: "1.1", name: "Shri Mahesh Kumar", designation: "Deputy Manager", stateCoordinator: "", projectsMinistry: "" },
-  { srNo: "2", name: "Shri Jitender Kumar", designation: "Chief General Manager", stateCoordinator: "West Bengal and all North East states including Sikkim", projectsMinistry: "M/o Heavy Industries & Public Enterprises, M/o Development of NE-Region" },
-  { srNo: "3", name: "Shri Prasanna Pandey", designation: "General Manager", stateCoordinator: "", projectsMinistry: "M/o Fisheries, Animal Husbandry & Dairying, NIC budget Projects" },
-  { srNo: "3.1", name: "Shri Kumar Jyoti", designation: "Senior Manager", stateCoordinator: "", projectsMinistry: "M/o Education" },
-  { srNo: "4", name: "Shri Atul Rastogi", designation: "General Manager", stateCoordinator: "Andhra Pradesh, Telangana, Lakshadweep, Puducherry", projectsMinistry: "M/o Food Processing Industries, M/o Civil Aviation, M/o Skill Development & Entrepreneurship, M/o Textiles, M/o Steels, Election Commission of India" },
-  { srNo: "5", name: "Md. Ziya Ur Rehman Badar", designation: "Sr. General Manager", stateCoordinator: "Bihar, Jharkhand", projectsMinistry: "M/o Chemicals and Fertilizers, M/o Coal, M/o Jal Shakti, M/o Earth Sciences, M/o Panchayati Raj, M/o Shipping, M/o Law & Justice, M/o Social Justice and Empowerment" },
-  { srNo: "5.1", name: "Shri Vikas Dixit", designation: "Manager", stateCoordinator: "Maharashtra", projectsMinistry: "" },
-  { srNo: "5.2", name: "Shri Jeevan Nath", designation: "Assistant Manager", stateCoordinator: "", projectsMinistry: "" },
-  { srNo: "6", name: "Shri Rahul Sharma", designation: "General Manager", stateCoordinator: "J&K and Ladakh", projectsMinistry: "M/o Electronics & Information Technology (MeitY), M/o Road Transport & Highways" },
-  { srNo: "7", name: "Shri Bhupendra Kumar Sharma", designation: "General Manager", stateCoordinator: "", projectsMinistry: "IVFRT MMP" },
-  { srNo: "8", name: "Shri Gyan Prakash Singh", designation: "General Manager", stateCoordinator: "CAG, M/o Communications", projectsMinistry: "NITI Aayog, M/o Information & Broadcasting, M/o Science & Technology, M/o Agriculture and Farmers Welfare, M/o Commerce and Industry, M/o Corporate Affairs, M/o Micro, Small & Medium Enterprises, M/o Home Affairs (other than IVFRT & Data Centre/Cloud Infrastructure)" },
-  { srNo: "9", name: "Shri Ramdatt Updhyay", designation: "General Manager", stateCoordinator: "Madhya Pradesh, Chhattisgarh, Gujarat, Odisha", projectsMinistry: "M/o Environment, Forest & Climate Change, D/o Space, D/o Atomic Energy, M/o Women & Child Development" },
-  { srNo: "10", name: "Shri Shailendra Saxena", designation: "Deputy General Manager", stateCoordinator: "Himachal Pradesh", projectsMinistry: "M/o Defence, M/o AYUSH, M/o Health & Family Welfare, eHospital, All AIIMS, M/o Labour & Employment, M/o Power, M/o New & Renewal Energy (MNRE), M/o External Affairs including all projects" },
-  { srNo: "11", name: "Shri Neeraj Chawla", designation: "Deputy General Manager", stateCoordinator: "Tamil Nadu, Kerala, Punjab, Haryana, Chandigarh", projectsMinistry: "M/o Minority Affairs, M/o Youth Affairs and Sports, M/o Tribal Affairs, M/o Tourism, M/o Culture, M/o Housing & Urban Affairs" },
-  { srNo: "12", name: "Shri Lalit Kumar Bhatia", designation: "General Manager", stateCoordinator: "Karnataka, Dadar & Nagar Haveli, Andaman & Nicobar, Rajasthan", projectsMinistry: "M/o Statistics & Planning Implementation (MoSPI), M/o Railways" },
-  { srNo: "13", name: "Shri Ajay Kumar Gupta", designation: "General Manager", stateCoordinator: "Goa, Daman & Diu and Delhi", projectsMinistry: "M/o Personnel, Public Grievances & Pensions, M/o Petroleum & Natural Gas, M/o Mines, M/o Consumer Affairs, Food & Public Distribution" },
-  { srNo: "14", name: "Shri Mahesh Kumar (Additional Charge)", designation: "Company Secretary", stateCoordinator: "", projectsMinistry: "" },
-  { srNo: "15", name: "Shri Ravi Kumar", designation: "Consultant", stateCoordinator: "", projectsMinistry: "Accounts, unidentified funds settlement, MSME vendors payments settlement, Project Section (TA/DA claims of Projects officers/coordinators)" },
+  { srNo: "1", name: "Shri Jitender Kumar", designation: "Chief General Manager", stateCoordinator: "West Bengal and all North East states including Sikkim", projectsMinistry: "M/o Heavy Industries & Public Enterprises, M/o Development of NE-Region, Financial Adviser and Controller of Accounts, Audit Division, iRAD Project, e-Counseling Debt Recovery Cell" },
+  { srNo: "2", name: "Shri Naveen Agrawal", designation: "Chief General Manager", stateCoordinator: "Uttar Pradesh and Uttarakhand", projectsMinistry: "M/o Rural Development, M/o Cooperation, M/o Finance. President Secretariat, Vice resident Sed President Secretariat, Prime Minister Office, Cabinet Secretariat, Lok Sabha and Rajya Sabha, M/o Parliamentary Affairs, Administration, Physical Infrastructure, Stores, Travel Help Desk and e-Way Bill Appellate Authority for RTI" },
+  { srNo: "3", name: "Md. Ziya Ur Rehman Badar", designation: "Sr. General Manager", stateCoordinator: "Bihar, Jharkhand", projectsMinistry: "M/o Chemicals and Fertilizers, M/o Coal, M/o Jal Shakti, M/o Ear M/o Earth Sciences, M/o Panchayati Raj, M/o Shipping M/o Law & Justice, M/o Social Justice and Empowerment, e-Court, Cloud Services & Data Centre Business Division, Enhancement of NIC Cloud Services at National Data Centre-Shastri Park, Hyderabad & Pune, Bhubaneswar -do- Project of MHA ICR-ER, e- Shield North East-National Data Centre, Human Resources (HR), Aadhaar Data Vault (ADV) Legal Division, Vigilance Division" },
+  { srNo: "4", name: "Shri Rahul Sharma", designation: "General Manager", stateCoordinator: "J&K and Ladakh", projectsMinistry: "M/o Electronics & Information Technology (MeitY), M/o Road Transport & Highways, NKN, PRAGATI, My Gov, OGD, W3C, India Portal Projects, Coordination of NIC and MeitY, SWAN (States), PMU- Transports, Smart Card Based Driving License and Registrauon Registration Certification Projects/ e-Transport, IVRS-NIC eHRM" },
+  { srNo: "5", name: "Shri Bhupendra Kumar Sharma", designation: "General Manager", stateCoordinator: "-", projectsMinistry: "IVFRT MMP, Accounts Division, DrFrojec Project Division, ERP Implementation in NICSI, UC Cell" },
+  { srNo: "6", name: "Shri Gyan Prakash Singh", designation: "General Manager", stateCoordinator: "CAG, M/o Communications", projectsMinistry: "NITI Aayog, M/o Information & Broadcasting, M/o Science & Technology, M/o Agriculture and Farmers Welfare, M/o Commerce and Industry, M/o Corporate Affairs, M/o Micro, Small & Medium Enterprises, M/o Home Affairs (other than IVFRT & Data Centre/Cloud Infrastructure), ePrison (Mauritius), NDMA, NCRB, CCTNS, ICJS," },
+  { srNo: "7", name: "Shri Ramdatt Updhyay", designation: "General Manager", stateCoordinator: "Madhya Pradesh, Chhattisgarh, Gujarat, Odisha", projectsMinistry: "M/o Environment, Forest & Climate Change, D/o Space, D/o Atomic Energy, M/o Women & Child Development, ICDS, CPC-Env Project, STOC, Collab files, NSP, e-Taal, ALN, XLN, E-Distict, e-District, Tender Division, GeM Division" },
+  { srNo: "8", name: "Shri Prasanna Pandey", designation: "General Manager", stateCoordinator: "-", projectsMinistry: "M/o Fisheries, Animal Husbandry & Dairying, NIC budget Projects, CEDA, Products Business Division, AI-MEDHA" },
+  { srNo: "9", name: "Shri Atul Rastogi", designation: "General Manager", stateCoordinator: "Andhra Pradesh, Telangana, Lakshadweep, Puducherry", projectsMinistry: "M/o Food Processing Industries, M/o Civil Aviation, M/o Skill Development & Entrepreneurship, M/o Textiles, M/o Steels, Election Commission of India, e-Granthalaya, SwaaS Project App Store, Webcast (NIC), NDH, Jeevan Pramaan Aadhar Enabled Biometrics Attendance nce Systems Systems (AEBAS) E-Mail/Email Solution" },
+  { srNo: "10", name: "Shri Lalit Kumar Bhatia", designation: "General Manager", stateCoordinator: "Karnataka, Dadar & Nagar Haveli, Andaman & Nicobar, Rajasthan", projectsMinistry: "M/o Statistics & Planning Implementation (MoSPI), M/o Railways, I Division Technology Division New Vertical with roles: (i) Consulting of large NICSI projects; (ii) Supporting PMs for Monitoring of NICSI projects in Project mode; (iii) Other activities assigned by Competent Authority from time to time." },
+  { srNo: "11", name: "Shri Ajay Kumar Gupta", designation: "General Manager", stateCoordinator: "Goa, Daman & Diu and Delhi", projectsMinistry: "M/o Personnel, Public Grievances & Pensions, M/o Petroleum & Natural Gas, M/o Mines, M/o Consumer Affairs, Food & Public Distribution, DCPCR-Grievance Management Project of Delhi Government, CPIO for RTI in NICSI Sub Appellate Authority for Public Grievance" },
+  { srNo: "12", name: "Shri Shailendra Saxena", designation: "Deputy General Manager", stateCoordinator: "Himachal Pradesh", projectsMinistry: "M/o Defence, M/o AYUSH, M/o Health & Family Welfare, eHospital, All AIIMS, M/o Labour & Employment, M/o Power, M/o New & Renewal Energy (MNRE), M/o External Affairs including all projects" },
+  { srNo: "13", name: "Shri Neeraj Chawla", designation: "Deputy General Manager", stateCoordinator: "Tamil Nadu, Kerala, Punjab, Haryana, Chandigarh", projectsMinistry: "M/o Minority Affairs, M/o Youth Affairs and Sports, M/o Tribal Affairs, M/o Tourism, M/o Culture, M/o Housing & Urban Affairs, Districts Augmentation, CSCV-SAT, Geo-Spatial Technology & Services Division, Chief Information Security Officer (CISO) for NICSI, Supreme Court Data Centre" },
+  { srNo: "14", name: "Shri Kumar Jyoti", designation: "Senior Manager", stateCoordinator: "-", projectsMinistry: "M/o Education, Centre of Excellence for Data Analytics (CEDA), Products Business Division, Training Division and IT-Division, TechnicaL Technical rechica Support in ERP Division" },
+  { srNo: "15", name: "Shri Vikas Dixit", designation: "Manager", stateCoordinator: "Maharashtra", projectsMinistry: "Media & Public Relation, Coordination User-Public Relation, eOffice, eProcurement, Lokpal, UIDAI, Messaging Division, Rajbhasha Adhikari, Data Centre Business Division, GPU Data Centre, Development Centres of NICSI, Public Grievance Officer" },
+  { srNo: "16", name: "Shri Mahesh Kumar", designation: "Deputy Manager", stateCoordinator: "-", projectsMinistry: "Administration, Personnel, Travel Help Desk, TA/DA Claims processing of NICSI Officers" },
+  { srNo: "17", name: "Shri Jeevan Nath", designation: "Assistant Manager", stateCoordinator: "-", projectsMinistry: "HR Division, Tender Divisio" },
+  { srNo: "18", name: "Shri Mahesh Kumar (Additional Charge)", designation: "Company Secretary", stateCoordinator: "-", projectsMinistry: "Company Secretary, SubPublic Grievance Officer" },
+  { srNo: "19", name: "Shri Ravi Kumar", designation: "Consultant", stateCoordinator: "-", projectsMinistry: "Accounts, unidentified funds settlement, MSME vendors payments settlement, Project Section (TA/DA claims of Projects officers/coordinators)" },
 ];
-
-const designationPriority: Record<string, number> = {
-  "chief general manager": 1,
-  "sr. general manager": 2,
-  "senior general manager": 2,
-  "general manager": 3,
-  "deputy general manager": 4,
-  "senior manager": 5,
-  manager: 6,
-  "deputy manager": 7,
-  "assistant manager": 8,
-  "company secretary": 9,
-  consultant: 10,
-};
-
-function getDesignationRank(designation: string): number {
-  const normalized = designation.trim().toLowerCase();
-  return designationPriority[normalized] ?? 99;
-}
-
-function getSrNoRank(srNo: string): number {
-  const value = Number(srNo);
-  return Number.isFinite(value) ? value : 9999;
-}
 
 export default function WorkAllocationTable() {
   const [query, setQuery] = useState("");
 
-  const orderedRows = useMemo(() => {
-    return [...rows].sort((a, b) => {
-      const designationDiff = getDesignationRank(a.designation) - getDesignationRank(b.designation);
-      if (designationDiff !== 0) {
-        return designationDiff;
-      }
-      const srNoDiff = getSrNoRank(a.srNo) - getSrNoRank(b.srNo);
-      if (srNoDiff !== 0) {
-        return srNoDiff;
-      }
-      return a.name.localeCompare(b.name);
-    });
-  }, []);
-
   const filteredRows = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) {
-      return orderedRows;
+      return rows;
     }
-    return orderedRows.filter((row) =>
+    return rows.filter((row) =>
       row.name.toLowerCase().includes(q) ||
       row.designation.toLowerCase().includes(q) ||
       row.stateCoordinator.toLowerCase().includes(q) ||
       row.projectsMinistry.toLowerCase().includes(q),
     );
-  }, [query, orderedRows]);
+  }, [query]);
 
   return (
     <>
@@ -131,13 +93,13 @@ export default function WorkAllocationTable() {
                 </td>
               </tr>
             ) : (
-              filteredRows.map((row, index) => (
+              filteredRows.map((row) => (
                 <tr key={`${row.srNo}-${row.name}`} className="border-t align-top">
-                  <td className="px-4 py-3">{index + 1}</td>
+                  <td className="px-4 py-3">{row.srNo}</td>
                   <td className="px-4 py-3 font-medium text-gray-900">{row.name}</td>
                   <td className="px-4 py-3">{row.designation}</td>
                   <td className="px-4 py-3">{row.stateCoordinator || "-"}</td>
-                  <td className="px-4 py-3">{row.projectsMinistry || "-"}</td>
+                  <td className="px-4 py-3 text-justify">{row.projectsMinistry || "-"}</td>
                 </tr>
               ))
             )}
