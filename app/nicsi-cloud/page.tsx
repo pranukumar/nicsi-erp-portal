@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
 import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
@@ -9,13 +10,11 @@ import {
   CheckCircle2,
   CloudCog,
   Cpu,
-  Database,
   FileCheck2,
   Globe,
   HelpCircle,
   Layers,
   LockKeyhole,
-  MapPin,
   Network,
   Server,
   ShieldCheck,
@@ -135,21 +134,6 @@ export default function Page() {
     },
   ] as const;
 
-  const ndcLocations = [
-    { name: "NDC Delhi", year: "2011" },
-    { name: "NDC Guwahati", year: "2025" },
-    { name: "NDC Bhubaneswar", year: "2018" },
-    { name: "NDC Pune", year: "2010" },
-    { name: "NDC Hyderabad", year: "2008" },
-  ] as const;
-
-  const infraMetrics = [
-    { label: "Attached NDCs", value: "5 Locations", icon: MapPin },
-    { label: "vCPUs", value: "4,00,000+", icon: Cpu },
-    { label: "Storage", value: "100+ PB", icon: Database },
-    { label: "Total IT Load", value: "11.4 Megawatt", icon: CloudCog },
-  ] as const;
-
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
   const activeServiceGroup = serviceCatalogue[activeServiceIndex];
   const ActiveServiceIcon = activeServiceGroup.icon;
@@ -242,45 +226,15 @@ export default function Page() {
           </p>
           <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-[#0F4BB8]" />
 
-          <div className="mt-7 grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
-            <div className="rounded-2xl border border-[#D9E6FF] bg-[#F8FBFF] p-5 shadow-[0_10px_24px_rgba(15,75,184,0.12)]">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#1E4FA8]">Attached NDC Locations</p>
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                {ndcLocations.map((centre) => (
-                  <article
-                    key={centre.name}
-                    className="rounded-xl border border-[#D9E6FF] bg-white p-4 shadow-[0_6px_16px_rgba(15,75,184,0.08)]"
-                  >
-                    <div className="flex items-start gap-2.5">
-                      <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#E9F1FF] text-[#0F4BB8]">
-                        <MapPin size={16} />
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-[#0F172A]">{centre.name}</p>
-                        <p className="text-xs font-medium uppercase tracking-[0.1em] text-[#1E4FA8]">Year: {centre.year}</p>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid gap-3">
-              {infraMetrics.map((metric) => {
-                const Icon = metric.icon;
-                return (
-                  <article key={metric.label} className="flex items-center gap-3 rounded-xl border border-[#D9E6FF] bg-[#F8FBFF] p-3.5">
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#0F4BB8] text-white">
-                      <Icon size={19} />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-[#0F172A]">{metric.label}</p>
-                      <p className="text-base font-bold text-[#0F4BB8]">{metric.value}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+          <div className="mt-7 overflow-hidden rounded-[28px] border border-[#C8D9FF] bg-[#EFF5FF] shadow-[0_18px_40px_rgba(15,75,184,0.16)]">
+            <Image
+              src="/images/map_nicsi_datacenter.jpg"
+              alt="Attached NDC locations map showing Delhi, Guwahati, Bhubaneswar, Pune, and Hyderabad"
+              width={1280}
+              height={760}
+              priority
+              className="h-auto w-full"
+            />
           </div>
         </div>
 
