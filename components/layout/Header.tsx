@@ -29,6 +29,7 @@ import {
   X,
 } from "lucide-react";
 import TopStripAccessibilityMenu from "@/components/layout/TopStripAccessibilityMenu";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 
 const menuGroups = [
   {
@@ -360,30 +361,25 @@ export default function Header() {
       <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-3 py-2 text-white sm:px-6">
         <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-2 lg:items-center">
         <span className="flex min-w-0 flex-wrap items-center gap-1 text-[11px] font-medium leading-none tracking-[0.01em] sm:gap-1.5 sm:text-[12.5px]">
-          <a
-            href="https://www.india.gov.in/"
-            target="_blank"
-            rel="noreferrer"
+          <ExternalLaunchButton
+            url="https://www.india.gov.in/"
             className="inline-flex items-center gap-1.5 text-white transition hover:text-cyan-100"
+            title="Government of India"
           >
             <Image src="/icons/india-flag.svg" alt="India Flag" width={20} height={14} className="h-4 w-5 rounded-[1px]" />
             <span>Government of India</span>
-          </a>
-          <a
-            href="https://www.digitalindia.gov.in/"
-            target="_blank"
-            rel="noreferrer"
+          </ExternalLaunchButton>
+          <ExternalLaunchButton
+            url="https://www.digitalindia.gov.in/"
             className="hidden items-center rounded-sm bg-white px-1 py-0.5 transition hover:opacity-90 sm:inline-flex"
-            aria-label="Digital India"
+            title="Digital India"
           >
             <Image src="/logos/digital-india.png" alt="Digital India" width={96} height={24} className="h-5 w-auto" />
-          </a>
-          <a
-            href="https://swachhbharatmission.gov.in/"
-            target="_blank"
-            rel="noreferrer"
+          </ExternalLaunchButton>
+          <ExternalLaunchButton
+            url="https://swachhbharatmission.gov.in/"
             className="hidden items-center transition hover:opacity-90 sm:inline-flex"
-            aria-label="Swachh Bharat"
+            title="Swachh Bharat"
           >
             <Image
               src="/logos/swachh-bharat.png"
@@ -392,7 +388,7 @@ export default function Header() {
               height={20}
               className="h-5 w-auto brightness-0 invert"
             />
-          </a>
+          </ExternalLaunchButton>
         </span>
         <div className="hidden items-center gap-4 text-[12.5px] font-medium tracking-[0.01em] lg:flex">
           {utilityLinks.map((item) =>

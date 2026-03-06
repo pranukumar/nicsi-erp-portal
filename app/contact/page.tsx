@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { Building2, Mail, MapPin, MapPinned, MessageCircle, Phone } from "lucide-react";
 import PageTitle from "../../components/layout/PageTitle";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 
 export default function ContactPage() {
   const mapQuery = "NBCC Tower, 15 Bhikaji Cama Place, New Delhi - 110066";
   const mapSearchHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`;
-  const mapOpenStreetHref = "https://www.openstreetmap.org/?mlat=28.5699&mlon=77.1838#map=16/28.5699/77.1838";
-  const mapEmbedSrc =
-    "https://www.openstreetmap.org/export/embed.html?bbox=77.1758%2C28.5654%2C77.1918%2C28.5744&layer=mapnik&marker=28.5699%2C77.1838";
 
   return (
     <main className="pb-12">
@@ -32,17 +30,16 @@ export default function ContactPage() {
                   <p className="text-sm text-[#334155]">6th Floor (Hall No. 2 &amp; 3), NBCC Tower, 15 Bhikaji Cama Place, New Delhi - 110066</p>
                 </div>
 
-                <a
-                  href={mapSearchHref}
-                  target="_blank"
-                  rel="noreferrer"
+                <ExternalLaunchButton
+                  url={mapSearchHref}
                   className="flex items-start gap-3 rounded-lg border border-blue-100 bg-white px-3 py-2.5 text-sm font-semibold text-[#0F4BB8] transition hover:border-blue-200 hover:bg-[#F4F8FF]"
+                  title="View on Google Maps"
                 >
                   <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#EAF2FF] text-[#0F4BB8]">
                     <MapPinned size={16} />
                   </span>
                   <span className="mt-1">View on Google Maps</span>
-                </a>
+                </ExternalLaunchButton>
 
                 <div className="flex items-start gap-3 rounded-lg border border-blue-100 bg-white px-3 py-2.5">
                   <span className="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#FFEEDB] text-[#E97817]">
@@ -107,24 +104,19 @@ export default function ContactPage() {
         <div className="mt-6 rounded-xl border border-blue-100 bg-gradient-to-br from-white to-[#F4F9FF] p-6 shadow-sm">
           <h2 className="text-xl font-bold text-[#0F172A]">Office Location Map</h2>
           <p className="mt-2 text-sm text-gray-600">
-            If map does not load, open location on{" "}
-            <a href={mapSearchHref} target="_blank" rel="noreferrer" className="font-semibold text-[#0F4BB8] underline">
-              Google Maps
-            </a>{" "}
-            or{" "}
-            <a href={mapOpenStreetHref} target="_blank" rel="noreferrer" className="font-semibold text-[#0F4BB8] underline">
-              OpenStreetMap
-            </a>
-            .
+            Open location directly on Google Maps.
           </p>
-          <div className="mt-4 overflow-hidden rounded-lg border border-gray-200">
-            <iframe
-              title="NBCC Tower, Bhikaji Cama Place, New Delhi map"
-              src={mapEmbedSrc}
-              className="h-[320px] w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div className="mt-4 rounded-lg border border-gray-200 bg-gradient-to-br from-[#F8FBFF] to-white p-5">
+            <p className="text-sm text-[#334155]">
+              NBCC Tower, 15 Bhikaji Cama Place, New Delhi - 110066
+            </p>
+            <ExternalLaunchButton
+              url={mapSearchHref}
+              className="mt-3 inline-flex rounded-md border border-blue-200 bg-blue-50 px-3 py-2 text-sm font-semibold text-[#003A8C] hover:bg-blue-100"
+              title="Open on Google Maps"
+            >
+              Open on Google Maps
+            </ExternalLaunchButton>
           </div>
         </div>
 

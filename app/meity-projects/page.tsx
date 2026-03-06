@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 
 interface Project {
   title: string;
@@ -90,14 +91,13 @@ export default function Page() {
                 <h3 className="mt-3 text-base font-semibold leading-7 text-[#0F172A]">{project.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-gray-700">{project.description}</p>
                 {project.website ? (
-                  <a
-                    href={project.website}
-                    target="_blank"
-                    rel="noreferrer"
+                  <ExternalLaunchButton
+                    url={project.website}
                     className="mt-3 inline-flex w-fit rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
+                    title={`Visit ${project.title}`}
                   >
                     Visit Site
-                  </a>
+                  </ExternalLaunchButton>
                 ) : null}
               </article>
             ))}

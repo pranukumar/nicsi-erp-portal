@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import PageTitle from "../../components/layout/PageTitle";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 
 const featuredProjects = [
   {
@@ -268,14 +268,13 @@ export default function Page() {
                 <h3 className="mt-3 text-sm font-semibold text-[#0F172A]">{project.name}</h3>
                 <p className="mt-1 text-sm leading-6 text-gray-700">{project.description}</p>
                 {project.website ? (
-                  <Link
-                    href={project.website}
-                    target="_blank"
-                    rel="noreferrer"
+                  <ExternalLaunchButton
+                    url={project.website}
                     className="mt-3 inline-flex w-fit rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
+                    title={`Visit ${project.name}`}
                   >
                     Visit Site
-                  </Link>
+                  </ExternalLaunchButton>
                 ) : null}
               </article>
             ))}

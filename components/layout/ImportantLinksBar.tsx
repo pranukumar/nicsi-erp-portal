@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 
 const importantLinks = [
   { title: "Gov.in", href: "https://www.india.gov.in/", logo: "/logos/india_gov.in_logo.png", width: 174, height: 53 },
@@ -21,12 +21,11 @@ export default function ImportantLinksBar() {
         <div className="important-links-marquee mt-4 overflow-hidden rounded-2xl border border-gray-200 bg-[#EEF2F9] p-4">
           <div className="important-links-track flex w-max gap-4">
             {scrollingImportantLinks.map((item, index) => (
-              <Link
+              <ExternalLaunchButton
                 key={`${item.title}-${index}`}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
+                url={item.href}
                 className="flex h-24 w-52 shrink-0 items-center justify-center rounded-xl bg-white p-3 shadow-sm ring-1 ring-gray-200 transition hover:-translate-y-0.5 hover:shadow-md"
+                title={item.title}
               >
                 <Image
                   src={item.logo}
@@ -35,7 +34,7 @@ export default function ImportantLinksBar() {
                   height={item.height}
                   className="h-14 w-auto max-w-[170px] object-contain"
                 />
-              </Link>
+              </ExternalLaunchButton>
             ))}
           </div>
         </div>

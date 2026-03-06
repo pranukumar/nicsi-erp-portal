@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { GemBid } from "@/services/gemBids";
 import Link from "next/link";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 
 function getGemBidPlusUrl(bidNo: string): string {
   const encodedBid = encodeURIComponent(bidNo);
@@ -88,14 +89,13 @@ function BidsTable({
                 <td className="px-4 py-3">{serialOffset + index + 1}</td>
                 <td className="px-4 py-3">
                   <p className="font-semibold text-[#0F172A]">{row.bidNo}</p>
-                  <Link
-                    href={getGemBidPlusUrl(row.bidNo)}
-                    target="_blank"
-                    rel="noreferrer"
+                  <ExternalLaunchButton
+                    url={getGemBidPlusUrl(row.bidNo)}
                     className="mt-1 inline-flex rounded-md border border-blue-200 bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-[#003A8C] hover:bg-blue-100"
+                    title={`Open ${row.bidNo} on GeM BidPlus`}
                   >
                     Open on GeM BidPlus
-                  </Link>
+                  </ExternalLaunchButton>
                 </td>
                 <td className="px-4 py-3">{row.startDate}</td>
                 <td className="px-4 py-3">

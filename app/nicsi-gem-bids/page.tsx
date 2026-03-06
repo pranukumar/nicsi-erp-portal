@@ -1,7 +1,7 @@
-import Link from "next/link";
 import PageTitle from "../../components/layout/PageTitle";
 import GemBidsTabs from "@/components/gem-bids/GemBidsTabs";
 import { getGemBidsContent } from "@/services/gemBids";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 export default async function Page() {
   const { currentBids, archiveBids, fallbackUsed } = await getGemBidsContent();
 
@@ -20,14 +20,13 @@ export default async function Page() {
           <GemBidsTabs currentBids={currentBids} archiveBids={archiveBids} />
 
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link
-              href="https://bidplus.gem.gov.in/advance-search"
-              target="_blank"
-              rel="noreferrer"
+            <ExternalLaunchButton
+              url="https://bidplus.gem.gov.in/advance-search"
               className="inline-flex rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+              title="Open GeM BidPlus"
             >
               GeM BidPlus
-            </Link>
+            </ExternalLaunchButton>
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
-import Link from "next/link";
+import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -174,20 +174,20 @@ export default function Page() {
                 with integrated monitoring, managed operations and a Pay As You Go model.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="https://ngc.gov.in/home"
-                  target="_blank"
-                  rel="noreferrer"
+                <ExternalLaunchButton
+                  url="https://ngc.gov.in/home"
                   className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#0A3B96] transition hover:bg-blue-50"
+                  title="Access NGC Portal"
                 >
                   Access NGC Portal <ArrowRight size={16} />
-                </Link>
-                <Link
-                  href="https://ngc.gov.in/home"
+                </ExternalLaunchButton>
+                <ExternalLaunchButton
+                  url="https://ngc.gov.in/home"
                   className="inline-flex items-center gap-1.5 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20"
+                  title="Jump to FAQs"
                 >
                   Jump to FAQs <ArrowRight size={16} />
-                </Link>
+                </ExternalLaunchButton>
               </div>
             </div>
 
@@ -372,14 +372,13 @@ export default function Page() {
           </div>
 
           <div className="mt-9 flex justify-center">
-            <Link
-              href="https://ngc.gov.in/home"
-              target="_blank"
-              rel="noreferrer"
+            <ExternalLaunchButton
+              url="https://ngc.gov.in/home"
               className="inline-flex items-center gap-1.5 rounded-xl bg-[#0F4BB8] px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_22px_rgba(15,75,184,0.3)] transition hover:bg-[#0B3C93]"
+              title="Open NGC Portal"
             >
               Open NGC Portal <ArrowUpRight size={16} />
-            </Link>
+            </ExternalLaunchButton>
           </div>
         </div>
 
@@ -388,14 +387,13 @@ export default function Page() {
           <p className="mt-3 text-sm leading-7 text-gray-700">
             For comprehensive service descriptions, technical specifications and pricing, refer to the official NGC Cloud Services portal.
           </p>
-          <Link
-            href="https://ngc.gov.in/home"
-            target="_blank"
-            rel="noreferrer"
+          <ExternalLaunchButton
+            url="https://ngc.gov.in/home"
             className="mt-4 inline-flex items-center gap-1.5 rounded-md bg-[#0F4BB8] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0B3C93]"
+            title="Open NGC Cloud Services"
           >
             Open NGC Cloud Services <ArrowRight size={16} />
-          </Link>
+          </ExternalLaunchButton>
         </div>
 
         <div id="cloud-faq" className="mt-6 rounded-2xl border border-blue-100 bg-white p-6 shadow-sm scroll-mt-28 md:p-8">
@@ -425,14 +423,13 @@ export default function Page() {
               <h2 className="text-xl font-bold text-[#0F172A]">Ready to Onboard Your Department?</h2>
               <p className="mt-2 text-sm text-gray-700">Initiate secure, scalable cloud provisioning through NICSI and NGC today.</p>
             </div>
-            <Link
-              href="https://ngc.gov.in/home"
-              target="_blank"
-              rel="noreferrer"
+            <ExternalLaunchButton
+              url="https://ngc.gov.in/home"
               className="inline-flex items-center gap-1.5 rounded-md bg-[#0F4BB8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#0B3C93]"
+              title="Start Cloud Request"
             >
               Start Cloud Request <ArrowRight size={16} />
-            </Link>
+            </ExternalLaunchButton>
           </div>
         </div>
       </section>
