@@ -1,0 +1,5 @@
+
+> nicsi-erp-portal@0.1.0 run
+> node scripts/serve-home-static.mjs
+
+Static site server listening on http://127.0.0.1:3000/

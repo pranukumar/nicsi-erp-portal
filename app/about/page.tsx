@@ -1,5 +1,6 @@
 import PageTitle from "../../components/layout/PageTitle";
 import Image from "next/image";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 export default function AboutPage() {
   const visionPoints = [
@@ -133,7 +134,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-5 overflow-hidden rounded-xl border border-blue-100 bg-[#F8FAFF] p-3 md:p-4">
             <Image
-              src="/images/nicsi-operating-model.png"
+              src={withSiteBasePath("/images/nicsi-operating-model.png")}
               alt="NICSI Operating Model - Demand to Delivery"
               width={2048}
               height={1334}

@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
+import { withSiteBasePath } from "@/lib/staticAudit";
+import DocumentGuidance from "@/components/common/DocumentGuidance";
 
 type ItemType = "all" | "circular" | "notice";
 
@@ -94,9 +96,13 @@ export default function Page() {
               </button>
             </div>
           </div>
+          <div className="mt-5">
+            <DocumentGuidance reviewLabel="Circulars and notices are archived as static PDF records with size labels for low-bandwidth planning." />
+          </div>
 
           <div className="mt-6 overflow-x-auto rounded-xl border border-blue-100">
             <table className="nic-table min-w-full text-left text-sm">
+              <caption className="sr-only">NICSI circulars and notices with downloadable PDF size labels.</caption>
               <thead className="bg-gray-50 text-gray-700">
                 <tr>
                   <th className="px-4 py-3">Sr.No.</th>
@@ -123,7 +129,7 @@ export default function Page() {
                     <td className="px-4 py-3 font-medium text-[#0F172A]">{item.title}</td>
                     <td className="px-4 py-3">
                       <a
-                        href={`/pdfs/press-releases/${item.fileName}`}
+                        href={withSiteBasePath(`/pdfs/press-releases/${item.fileName}`)}
                         download
                         className="inline-flex w-40 justify-center rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
                       >

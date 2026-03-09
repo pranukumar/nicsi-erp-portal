@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
 import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 const featuredProjects = [
   {
@@ -15,6 +16,17 @@ const featuredProjects = [
     ],
   },
   {
+    title: "Government Cloud",
+    logo: "/logos/national-platforms/nic-cloud-logo.svg",
+    description:
+      "India's sovereign cloud initiative enabling secure, scalable, and cost-effective government infrastructure.",
+    highlights: [
+      "Optimizes ICT expenditure",
+      "Accelerates e-Gov application deployment",
+      "Improves infrastructure utilization efficiency",
+    ],
+  },
+  {
     title: "e-Visa",
     logo: "/logos/national-platforms/e-visa-logo.png",
     description:
@@ -24,18 +36,7 @@ const featuredProjects = [
       "Linked with criminal tracking and security agencies",
       "Supports data-driven decision-making at national borders",
     ],
-  },
-  {
-    title: "e-Procurement",
-    logo: "/logos/national-platforms/e-procurement.png",
-    description:
-      "A unified procurement platform for public institutions covering goods, services, tenders, and auctions.",
-    highlights: [
-      "Covers Goods & Services, global tenders, and auctions",
-      "Used by CPSEs, Central Govt, States/UTs, and Defence bodies",
-      "Improves transparency, compliance, and efficiency",
-    ],
-  },
+  }, 
   {
     title: "e-Passport",
     logo: "/logos/national-platforms/passport-seve-logo.png",
@@ -70,19 +71,8 @@ const featuredProjects = [
     ],
   },
   {
-    title: "Government Cloud",
-    logo: "/logos/national-platforms/dm-logo.png",
-    description:
-      "India's sovereign cloud initiative enabling secure, scalable, and cost-effective government infrastructure.",
-    highlights: [
-      "Optimizes ICT expenditure",
-      "Accelerates e-Gov application deployment",
-      "Improves infrastructure utilization efficiency",
-    ],
-  },
-  {
-    title: "Secure eMail & Messaging",
-    logo: "/logos/national-platforms/secure-email-logo.png",
+    title: "Government eMail",
+    logo: "/logos/national-platforms/government_email.png",
     description:
       "High-volume national messaging gateway supporting secure communication across government applications.",
     highlights: [
@@ -100,17 +90,6 @@ const featuredProjects = [
       "Includes Sarthi, Vahan, and eParivahan",
       "Enables online service facilitation",
       "Reduces physical footfall at transport offices",
-    ],
-  },
-  {
-    title: "e-Courts Mission Mode Project",
-    logo: "/logos/national-platforms/e-court-logo.png",
-    description:
-      "PAN-India judicial modernization initiative covering digital systems, infrastructure, and cloud enablement.",
-    highlights: [
-      "Software development and court process modernization",
-      "Infrastructure, connectivity, and cloud services",
-      "Covers Supreme Court, High Courts, District Courts, and Tribunals",
     ],
   },
   {
@@ -138,12 +117,7 @@ const featuredProjects = [
 ] as const;
 
 const otherProjects = [
-  {
-    name: "IVFRT",
-    logo: "/logos/national-projects/ivfrt.png",
-    description: "Immigration and visa lifecycle support system for foreigner registration and tracking.",
-    website: "https://boi.gov.in/",
-  },
+   
   {
     name: "NREGAsoft",
     logo: "/logos/national-projects/nregasoft.png",
@@ -156,24 +130,14 @@ const otherProjects = [
     description: "Electronic way bill system for GST-linked movement of goods across India.",
     website: "https://ewaybillgst.gov.in/",
   },
-  {
-    name: "SMS Messaging",
-    logo: "/logos/national-projects/smsmessaging.png",
-    description: "Government-scale messaging infrastructure for critical notifications and outreach.",
-    website: "https://www.nic.in/",
-  },
+   
   {
     name: "PM Kisan",
     logo: "/logos/national-projects/pmkisan.png",
     description: "Direct income support delivery platform for eligible farmer beneficiaries.",
     website: "https://pmkisan.gov.in/",
   },
-  {
-    name: "PFMS",
-    logo: "/logos/national-projects/pfms.png",
-    description: "Public Financial Management System for fund flow tracking and payment transparency.",
-    website: "https://pfms.nic.in/",
-  },
+   
   {
     name: "Jeevan Pramaan",
     logo: "/logos/national-projects/jeevanpraman.png",
@@ -186,36 +150,10 @@ const otherProjects = [
     description: "Citizen engagement platform for consultations, tasks, polls and participatory governance.",
     website: "https://www.mygov.in/",
   },
-  {
-    name: "ePrison",
-    logo: "/logos/national-projects/eprison.png",
-    description: "Prison management platform for inmate records, workflow and correctional administration.",
-    website: "https://eprisons.nic.in/",
-  },
-  {
-    name: "Secure Email",
-    logo: "/logos/national-projects/email.png",
-    description: "Trusted government email services with secure identity, collaboration and communication.",
-    website: "https://email.gov.in/",
-  },
-  {
-    name: "Targeted PDS",
-    logo: "/logos/national-projects/targeted-pds.png",
-    description: "Digitized distribution and beneficiary validation ecosystem for fair-price delivery.",
-    website: "https://nfsa.gov.in/",
-  },
-  {
-    name: "eTransport",
-    logo: "/logos/national-projects/etransport.png",
-    description: "Integrated transport ecosystem supporting licenses, vehicles, challans and compliance.",
-    website: "https://parivahan.gov.in/",
-  },
-  {
-    name: "GST Prime",
-    logo: "/logos/national-projects/gst-prime.png",
-    description: "GST process support and digital monitoring workflows for tax operations.",
-    website: "https://www.gst.gov.in/",
-  },
+   
+   
+  
+  
   {
     name: "eCounselling",
     logo: "/logos/national-projects/ecounselling.png",
@@ -242,11 +180,14 @@ export default function Page() {
   const combinedProjects = [
     ...featuredProjects.map((project) => ({
       name: project.title,
-      logo: project.logo,
+      logo: withSiteBasePath(project.logo),
       description: project.description,
       website: undefined as string | undefined,
     })),
-    ...otherProjects,
+    ...otherProjects.map((project) => ({
+      ...project,
+      logo: withSiteBasePath(project.logo),
+    })),
   ].filter((project) => {
     const key = normalizedKey(project.name);
     if (seen.has(key)) return false;

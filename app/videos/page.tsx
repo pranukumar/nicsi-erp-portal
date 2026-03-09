@@ -7,12 +7,12 @@ export default function Page() {
       <PageTitle title="Videos" />
       <section className="mx-auto max-w-5xl px-6 py-8 text-gray-700">
         <p>
-          This page is aligned to NICSI menu structure for Videos and can be expanded with department-approved content.
+          Videos are available in the local NICSI media archive.
         </p>
         <p className="mt-3 text-sm">
-          Official reference:{" "}
-          <Link href="https://nicsi.nic.in/media" target="_blank" rel="noreferrer" className="font-semibold text-[#003A8C]">
-            NICSI Media
+          Open the internal archive:{" "}
+          <Link href="/media-gallery?tab=videos" className="font-semibold text-[#003A8C]">
+            Video Gallery
           </Link>
         </p>
       </section>

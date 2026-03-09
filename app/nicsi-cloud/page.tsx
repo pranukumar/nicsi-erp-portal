@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
 import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
+import { withSiteBasePath } from "@/lib/staticAudit";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -229,7 +230,7 @@ export default function Page() {
           <div className="mt-7 rounded-[28px] border border-[#C8D9FF] bg-[#EFF5FF] p-4 shadow-[0_18px_40px_rgba(15,75,184,0.16)] md:p-6">
             <div className="mx-auto max-w-5xl">
               <Image
-                src="/images/map_nicsi_datacenter.jpg"
+                src={withSiteBasePath("/images/map_nicsi_datacenter.jpg")}
                 alt="Attached NDC locations map showing Delhi, Guwahati, Bhubaneswar, Pune, and Hyderabad"
                 width={1280}
                 height={760}

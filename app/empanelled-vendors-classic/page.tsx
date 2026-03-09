@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import PageTitle from "../../components/layout/PageTitle";
+import { getEmpanelledVendorSnapshot } from "@/lib/empanelledVendorSnapshot";
 
 type VendorRow = {
   id: string;
@@ -20,37 +21,11 @@ type VendorRow = {
 };
 
 export default function EmpanelledVendorsClassicPage() {
-  const [rows, setRows] = useState<VendorRow[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const snapshot = useMemo(() => getEmpanelledVendorSnapshot(), []);
+  const [rows] = useState<VendorRow[]>(snapshot.rows);
   const [vendorCategory, setVendorCategory] = useState("");
   const [empanelmentCategory, setEmpanelmentCategory] = useState("");
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const load = async () => {
-      setLoading(true);
-      setError("");
-      try {
-        const response = await fetch("/api/empanelled-vendors", { signal: controller.signal });
-        if (!response.ok) {
-          setError("Unable to load vendor data.");
-          return;
-        }
-        const payload = (await response.json()) as { rows?: VendorRow[] };
-        setRows(payload.rows ?? []);
-      } catch (err) {
-        if ((err as Error).name !== "AbortError") {
-          setError("Unable to load vendor data.");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-    return () => controller.abort();
-  }, []);
 
   const vendorCategories = useMemo(
     () => Array.from(new Set(rows.map((row) => row.vendor_category))).sort((a, b) => a.localeCompare(b)),
@@ -142,19 +117,7 @@ export default function EmpanelledVendorsClassicPage() {
                 </tr>
               </thead>
               <tbody>
-                {loading ? (
-                  <tr>
-                    <td className="px-4 py-8 text-center text-gray-500" colSpan={7}>
-                      Loading vendor records...
-                    </td>
-                  </tr>
-                ) : error ? (
-                  <tr>
-                    <td className="px-4 py-8 text-center text-red-600" colSpan={7}>
-                      {error}
-                    </td>
-                  </tr>
-                ) : filteredRows.length === 0 ? (
+                {filteredRows.length === 0 ? (
                   <tr>
                     <td className="px-4 py-8 text-center text-gray-500" colSpan={7}>
                       No vendor records found for selected filters.

@@ -42,7 +42,7 @@ export default async function RootLayout({
   const faqs = await getNicsiChatbotFaqs();
 
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" data-scroll-behavior="smooth">
       <body className={`${poppins.variable} ${poppins.className} nicsi-theme bg-gray-50 text-gray-800 antialiased`}>
         <a href="#main-content" className="skip-link">
           Skip to main content

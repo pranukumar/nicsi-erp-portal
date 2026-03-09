@@ -21,6 +21,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import PageTitle from "../../components/layout/PageTitle";
+import { getEmpanelledVendorSnapshot, matchesEmpanelledVendorFilters } from "@/lib/empanelledVendorSnapshot";
 
 type VendorRow = {
   id: string;
@@ -424,12 +425,10 @@ function getSuggestedScopeTypes(query: string, allScopeTypes: string[]): string[
 }
 
 export default function EmpanelledvendorsPage() {
-  const [vendorRows, setVendorRows] = useState<VendorRow[]>([]);
-  const [total, setTotal] = useState(0);
+  const snapshot = useMemo(() => getEmpanelledVendorSnapshot(), []);
+  const [vendorRows] = useState<VendorRow[]>(snapshot.rows);
   const [page, setPage] = useState(1);
   const [limit] = useState(100);
-  const [loadingData, setLoadingData] = useState(true);
-  const [dataError, setDataError] = useState("");
   const [vendorCategory, setVendorCategory] = useState("");
   const [empanelmentCategory, setEmpanelmentCategory] = useState("");
   const [agreementType, setAgreementType] = useState("");
@@ -440,86 +439,27 @@ export default function EmpanelledvendorsPage() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [openVendorId, setOpenVendorId] = useState<string | null>(null);
   const [activeShortcutId, setActiveShortcutId] = useState<string>("");
-  const [filterOptions, setFilterOptions] = useState<{
+  const [filterOptions] = useState<{
     vendorCategories: string[];
     empanelmentCategories: string[];
     agreementTypes: string[];
     scopeTypes: string[];
     scopeTypesByEmpanelment: Record<string, string[]>;
   }>({
-    vendorCategories: [],
-    empanelmentCategories: [],
-    agreementTypes: [],
-    scopeTypes: [],
-    scopeTypesByEmpanelment: {},
+    vendorCategories: snapshot.filters.vendorCategories,
+    empanelmentCategories: snapshot.filters.empanelmentCategories,
+    agreementTypes: snapshot.filters.agreementTypes,
+    scopeTypes: snapshot.filters.scopeTypes,
+    scopeTypesByEmpanelment: snapshot.filters.scopeTypesByEmpanelment,
   });
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setDebouncedSearch(search.trim());
+      setPage(1);
     }, 300);
     return () => window.clearTimeout(timer);
   }, [search]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [debouncedSearch, vendorCategory, empanelmentCategory, agreementType, scopeType, validity]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const loadRows = async () => {
-      setLoadingData(true);
-      setDataError("");
-      try {
-        const useSmartDataset = smartMatch && Boolean(debouncedSearch);
-        const params = new URLSearchParams();
-        params.set("page", useSmartDataset ? "1" : String(page));
-        params.set("limit", useSmartDataset ? "500" : String(limit));
-        if (debouncedSearch && !useSmartDataset) params.set("q", debouncedSearch);
-        if (vendorCategory) params.set("vendorCategory", vendorCategory);
-        if (empanelmentCategory) params.set("empanelmentCategory", empanelmentCategory);
-        if (agreementType) params.set("agreementType", agreementType);
-        if (scopeType) params.set("scopeType", scopeType);
-        if (validity) params.set("validity", validity);
-
-        const response = await fetch(`/api/empanelled-vendors?${params.toString()}`, { signal: controller.signal });
-        if (!response.ok) {
-          setDataError("Unable to load vendor data.");
-          return;
-        }
-        const payload = (await response.json()) as {
-          rows?: VendorRow[];
-          total?: number;
-          filters?: {
-            vendorCategories?: string[];
-            empanelmentCategories?: string[];
-            agreementTypes?: string[];
-            scopeTypes?: string[];
-            scopeTypesByEmpanelment?: Record<string, string[]>;
-          };
-        };
-        setVendorRows(payload.rows ?? []);
-        setTotal(payload.total ?? 0);
-        setFilterOptions({
-          vendorCategories: payload.filters?.vendorCategories ?? [],
-          empanelmentCategories: payload.filters?.empanelmentCategories ?? [],
-          agreementTypes: payload.filters?.agreementTypes ?? [],
-          scopeTypes: payload.filters?.scopeTypes ?? [],
-          scopeTypesByEmpanelment: payload.filters?.scopeTypesByEmpanelment ?? {},
-        });
-      } catch (error) {
-        if ((error as Error).name !== "AbortError") {
-          setDataError("Unable to load vendor data.");
-        }
-      } finally {
-        setLoadingData(false);
-      }
-    };
-
-    loadRows();
-    return () => controller.abort();
-  }, [agreementType, debouncedSearch, empanelmentCategory, limit, page, scopeType, smartMatch, validity, vendorCategory]);
 
   const vendorCategories = useMemo(
     () => filterOptions.vendorCategories,
@@ -544,12 +484,7 @@ export default function EmpanelledvendorsPage() {
     return filterOptions.scopeTypesByEmpanelment[empanelmentCategory] ?? [];
   }, [empanelmentCategory, filterOptions.scopeTypesByEmpanelment, scopeTypes]);
 
-  useEffect(() => {
-    if (!scopeType) return;
-    if (!filteredScopeTypes.includes(scopeType)) {
-      setScopeType("");
-    }
-  }, [filteredScopeTypes, scopeType]);
+  const selectedScopeType = filteredScopeTypes.includes(scopeType) ? scopeType : "";
 
   const suggestedScopeTypes = useMemo(
     () => getSuggestedScopeTypes(search, scopeTypes),
@@ -582,8 +517,17 @@ export default function EmpanelledvendorsPage() {
   const filteredRows = useMemo(() => {
     const query = debouncedSearch.toLowerCase();
     const queryTokens = tokenize(query);
-    const normalizedSelectedScope = normalizeText(scopeType);
+    const normalizedSelectedScope = normalizeText(selectedScopeType);
     const normalizedSuggestedScopes = suggestedScopeTypes.map((item) => normalizeText(item));
+    const baseRows = vendorRows.filter((row) =>
+      matchesEmpanelledVendorFilters(row, {
+        vendorCategory,
+        empanelmentCategory,
+        agreementType,
+        scopeType: selectedScopeType,
+        validity,
+      }),
+    );
 
     const getScore = (row: VendorRow) => {
       if (!query) return 1;
@@ -626,7 +570,7 @@ export default function EmpanelledvendorsPage() {
       return score;
     };
 
-    return vendorRows
+    return baseRows
       .filter((row) => getScore(row) > 0)
       .map((row) => ({
         row,
@@ -634,14 +578,32 @@ export default function EmpanelledvendorsPage() {
       }))
       .sort((a, b) => b.score - a.score || a.row.vendor_name.localeCompare(b.row.vendor_name))
       .map((item) => item.row);
-  }, [debouncedSearch, scopeType, smartMatch, suggestedScopeTypes, vendorRows]);
+  }, [
+    agreementType,
+    debouncedSearch,
+    empanelmentCategory,
+    selectedScopeType,
+    smartMatch,
+    suggestedScopeTypes,
+    validity,
+    vendorCategory,
+    vendorRows,
+  ]);
+
+  const displayRows = useMemo(() => {
+    const start = (page - 1) * limit;
+    return filteredRows.slice(start, start + limit);
+  }, [filteredRows, limit, page]);
+
+  const totalResults = filteredRows.length;
 
   const relatedVendors = useMemo(() => {
-    const baseRow = vendorRows.find((row) => row.id === openVendorId) ?? filteredRows[0];
+    const relationshipPool = filteredRows;
+    const baseRow = relationshipPool.find((row) => row.id === openVendorId) ?? filteredRows[0];
     if (!baseRow) return [];
 
     const baseTokens = new Set(tokenize(`${baseRow.vendor_name} ${baseRow.description}`));
-    return vendorRows
+    return relationshipPool
       .filter((row) => row.id !== baseRow.id)
       .map((row) => {
         let score = 0;
@@ -658,7 +620,7 @@ export default function EmpanelledvendorsPage() {
       .sort((a, b) => b.score - a.score)
       .slice(0, 5)
       .map((item) => item.row);
-  }, [filteredRows, openVendorId, vendorRows]);
+  }, [filteredRows, openVendorId]);
 
   return (
     <main className="pb-12">
@@ -767,8 +729,11 @@ export default function EmpanelledvendorsPage() {
               ))}
             </select>
             <select
-              value={scopeType}
-              onChange={(event) => setScopeType(event.target.value)}
+              value={selectedScopeType}
+              onChange={(event) => {
+                setScopeType(event.target.value);
+                setPage(1);
+              }}
               className="rounded-md border border-gray-300 px-3 py-2 text-sm"
             >
               <option value="">Select Scope Type</option>
@@ -892,29 +857,17 @@ export default function EmpanelledvendorsPage() {
                 </tr>
               </thead>
               <tbody>
-                {loadingData ? (
-                  <tr>
-                    <td className="px-4 py-8 text-center text-gray-500" colSpan={8}>
-                      Loading vendor records...
-                    </td>
-                  </tr>
-                ) : dataError ? (
-                  <tr>
-                    <td className="px-4 py-8 text-center text-red-600" colSpan={8}>
-                      {dataError}
-                    </td>
-                  </tr>
-                ) : filteredRows.length === 0 ? (
+                {displayRows.length === 0 ? (
                   <tr>
                     <td className="px-4 py-8 text-center text-gray-500" colSpan={8}>
                       No vendor records found for selected filters.
                     </td>
                   </tr>
                 ) : (
-                  filteredRows.map((row, index) => (
+                  displayRows.map((row, index) => (
                     <Fragment key={row.id}>
                       <tr key={row.id}>
-                        <td className="px-4 py-3">{index + 1}</td>
+                        <td className="px-4 py-3">{(page - 1) * limit + index + 1}</td>
                         <td className="px-4 py-3 font-medium text-[#0F172A]">{row.vendor_name}</td>
                         <td className="px-4 py-3">{row.vendor_category}</td>
                         <td className="px-4 py-3">{row.empanelment_category}</td>
@@ -959,7 +912,7 @@ export default function EmpanelledvendorsPage() {
           </div>
 
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm text-gray-600">Total records: {total}</p>
+            <p className="text-sm text-gray-600">Total records: {totalResults}</p>
             <div className="flex items-center gap-2">
               <button
                 type="button"
@@ -974,10 +927,10 @@ export default function EmpanelledvendorsPage() {
               <span className="text-xs text-gray-600">Page {page}</span>
               <button
                 type="button"
-                onClick={() => setPage((prev) => (prev * limit < total ? prev + 1 : prev))}
-                disabled={page * limit >= total}
+                onClick={() => setPage((prev) => (prev * limit < totalResults ? prev + 1 : prev))}
+                disabled={page * limit >= totalResults}
                 className={`rounded-md border px-3 py-1.5 text-xs font-semibold ${
-                  page * limit >= total ? "cursor-not-allowed text-gray-400" : "border-blue-200 text-[#003A8C] hover:bg-blue-50"
+                  page * limit >= totalResults ? "cursor-not-allowed text-gray-400" : "border-blue-200 text-[#003A8C] hover:bg-blue-50"
                 }`}
               >
                 Next

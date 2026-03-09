@@ -1,9 +1,10 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight, Eye, X } from "lucide-react";
 import type { AwardRecognitionItem } from "@/services/awardsRecognition";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 type AwardsRecognitionCardsProps = {
   items: AwardRecognitionItem[];
@@ -11,6 +12,10 @@ type AwardsRecognitionCardsProps = {
 
 export default function AwardsRecognitionCards({ items }: AwardsRecognitionCardsProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const normalizedItems = items.map((item) => ({
+    ...item,
+    imageUrl: item.imageUrl ? withSiteBasePath(item.imageUrl) : undefined,
+  }));
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -19,9 +24,9 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
       if (event.key === "Escape") {
         setActiveIndex(null);
       } else if (event.key === "ArrowRight") {
-        setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % items.length));
+        setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % normalizedItems.length));
       } else if (event.key === "ArrowLeft") {
-        setActiveIndex((prev) => (prev === null ? 0 : (prev - 1 + items.length) % items.length));
+        setActiveIndex((prev) => (prev === null ? 0 : (prev - 1 + normalizedItems.length) % normalizedItems.length));
       }
     };
 
@@ -32,14 +37,14 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [activeIndex, items.length]);
+  }, [activeIndex, normalizedItems.length]);
 
-  const activeItem = activeIndex !== null ? items[activeIndex] : null;
+  const activeItem = activeIndex !== null ? normalizedItems[activeIndex] : null;
 
   return (
     <>
       <div className="grid gap-5 p-6 md:grid-cols-2 md:p-8 lg:grid-cols-3">
-        {items.map((item, index) => (
+        {normalizedItems.map((item, index) => (
           <article
             key={item.id}
             className="flex h-full flex-col overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-b from-[#FCFDFF] to-white shadow-sm transition hover:shadow-md"
@@ -51,12 +56,11 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
                 className="group relative block aspect-[16/10] w-full bg-[#F3F7FF] text-left outline-none"
                 aria-label={`Open image for ${item.title}`}
               >
-                <Image
+                <img
                   src={item.imageUrl}
                   alt={`${item.title} - ${item.imageRef ?? `Image ${item.id}`}`}
-                  fill
-                  className="object-contain p-3 transition duration-300 group-hover:scale-[1.02]"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="h-full w-full object-contain p-3 transition duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
                 />
                 <span className="absolute right-3 top-3 inline-flex h-7 w-7 items-center justify-center rounded-full border border-blue-200/70 bg-white/85 text-[#0F4BB8] shadow-sm">
                   <Eye size={14} />
@@ -99,7 +103,7 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
           <button
             type="button"
             aria-label="Previous image"
-            onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev - 1 + items.length) % items.length))}
+            onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev - 1 + normalizedItems.length) % normalizedItems.length))}
             className="absolute left-3 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-sm transition hover:bg-white/25 md:left-6"
           >
             <ChevronLeft size={18} />
@@ -108,7 +112,7 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
           <button
             type="button"
             aria-label="Next image"
-            onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % items.length))}
+            onClick={() => setActiveIndex((prev) => (prev === null ? 0 : (prev + 1) % normalizedItems.length))}
             className="absolute right-3 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-sm transition hover:bg-white/25 md:right-6"
           >
             <ChevronRight size={18} />
@@ -116,19 +120,17 @@ export default function AwardsRecognitionCards({ items }: AwardsRecognitionCards
 
           <div className="w-full max-w-5xl">
             <div className="relative h-[60vh] overflow-hidden rounded-2xl border border-white/20 bg-[#0B1D48] shadow-2xl md:h-[72vh]">
-              <Image
+              <img
                 src={activeItem.imageUrl}
                 alt={activeItem.title}
-                fill
-                className="object-contain p-3"
-                sizes="90vw"
-                priority
+                className="h-full w-full object-contain p-3"
+                loading="eager"
               />
             </div>
             <div className="mt-3 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-white backdrop-blur-sm">
               <p className="text-sm font-semibold md:text-base">{activeItem.title}</p>
               <p className="mt-1 text-xs text-blue-100">
-                {activeIndex !== null ? activeIndex + 1 : 1} / {items.length}
+                {activeIndex !== null ? activeIndex + 1 : 1} / {normalizedItems.length}
               </p>
             </div>
           </div>

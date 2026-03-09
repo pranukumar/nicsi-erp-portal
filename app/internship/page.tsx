@@ -2,6 +2,7 @@ import PageTitle from "../../components/layout/PageTitle";
 import { getInternshipContent } from "@/services/internship";
 import OnlineApplicationProcess from "@/components/internship/OnlineApplicationProcess";
 import Link from "next/link";
+import { isHiddenInStaticAudit, withSiteBasePath } from "@/lib/staticAudit";
 
 export default async function InternshipPage() {
   const content = await getInternshipContent();
@@ -24,7 +25,7 @@ export default async function InternshipPage() {
               Last Updated: {content.lastUpdated}
             </span>
             <a
-              href={content.sourceNoticeUrl}
+              href={withSiteBasePath(content.sourceNoticeUrl)}
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
@@ -120,15 +121,17 @@ export default async function InternshipPage() {
           <OnlineApplicationProcess steps={content.process} />
         </div>
 
-        <div className="mt-4 rounded-xl border border-blue-100 bg-white p-5 shadow-sm">
-          <p className="text-sm leading-7 text-gray-700">
-            Applications are accepted online on NICSI website from 1st to 10th of every month.
-            <Link href="/internship/apply" className="ml-1 font-semibold text-[#003A8C] underline hover:text-[#0052CC]">
-              Click here
-            </Link>
-            {" "}to submit the Internship Application Form.
-          </p>
-        </div>
+        {!isHiddenInStaticAudit("/internship/apply") ? (
+          <div className="mt-4 rounded-xl border border-blue-100 bg-white p-5 shadow-sm">
+            <p className="text-sm leading-7 text-gray-700">
+              Applications are accepted online on NICSI website from 1st to 10th of every month.
+              <Link href="/internship/apply" className="ml-1 font-semibold text-[#003A8C] underline hover:text-[#0052CC]">
+                Click here
+              </Link>
+              {" "}to submit the Internship Application Form.
+            </p>
+          </div>
+        ) : null}
 
         <div className="mt-6 rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
           <h3 className="text-xl font-bold text-[#0F172A]">Indicative Internship Domains</h3>

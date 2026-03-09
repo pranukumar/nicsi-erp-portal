@@ -1,4 +1,5 @@
 import PageTitle from "../../components/layout/PageTitle";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 const csrCommittee = [
   {
@@ -56,7 +57,7 @@ export default function Page() {
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h3 className="text-lg font-semibold text-[#0F172A]">CSR Policy</h3>
               <a
-                href="/pdfs/csr/NICSI_CSR_Policy.pdf"
+                href={withSiteBasePath("/pdfs/csr/NICSI_CSR_Policy.pdf")}
                 download
                 className="inline-flex rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
               >

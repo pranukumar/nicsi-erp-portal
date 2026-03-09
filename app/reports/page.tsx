@@ -1,4 +1,6 @@
 import PageTitle from "../../components/layout/PageTitle";
+import { withSiteBasePath } from "@/lib/staticAudit";
+import DocumentGuidance from "@/components/common/DocumentGuidance";
 
 type Report = {
   srNo: number;
@@ -120,9 +122,13 @@ export default function Page() {
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <h2 className="text-xl font-bold text-[#0F172A]">Download Annual Report</h2>
           <div className="mt-3 h-[2px] w-24 bg-[#003A8C]" />
+          <div className="mt-5">
+            <DocumentGuidance reviewLabel="Annual reports are arranged year-wise with publish-date context to support archival traceability." />
+          </div>
 
           <div className="mt-5 overflow-x-auto rounded-lg border border-gray-200">
             <table className="nic-table min-w-full text-left text-sm">
+              <caption className="sr-only">NICSI annual reports with financial year, publish date, and PDF file size details.</caption>
               <thead className="bg-gray-50 text-gray-700">
                 <tr>
                   <th className="px-4 py-3">Sr.No.</th>
@@ -142,7 +148,7 @@ export default function Page() {
                       <td className="px-4 py-3">{report.financialYear}</td>
                       <td className="px-4 py-3">
                         <a
-                          href={`/pdfs/reports/${report.fileName}`}
+                          href={withSiteBasePath(`/pdfs/reports/${report.fileName}`)}
                           download
                           className="inline-flex w-44 justify-center rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
                         >

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getFooterContent } from "@/services/siteContent";
 import { Facebook, Instagram, Linkedin, Mail, MessageCircle, Twitter } from "lucide-react";
+import { filterLinksForStaticAudit } from "@/lib/staticAudit";
 
 export default async function Footer() {
   const footerContent = await getFooterContent();
@@ -23,7 +24,9 @@ export default async function Footer() {
   ] as const;
   const textLinkClass =
     "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-blue-50 transition-all duration-200 hover:translate-x-1 hover:bg-white/12 hover:text-white focus-visible:bg-white/12";
-  const quickLinksBase = footerContent.quickLinks.filter((item) => item.href !== "/services");
+  const quickLinksBase = filterLinksForStaticAudit(
+    footerContent.quickLinks.filter((item) => item.href !== "/services"),
+  );
   const quickLinksWithVendors = quickLinksBase.some((item) => item.href === "/empanelled-vendors")
     ? quickLinksBase
     : [...quickLinksBase, { label: "Empanelled Vendors", href: "/empanelled-vendors" }];
@@ -44,7 +47,7 @@ export default async function Footer() {
     list.splice(targetIndex, 0, vendorItem);
     return list;
   })();
-  const resourcesAndMediaLinks = [
+  const resourcesAndMediaLinks = filterLinksForStaticAudit([
     { label: "NICSI SOP", href: "/nicsi-sop" },
     { label: "Download Form", href: "/forms" },
     { label: "Download Annual Report", href: "/reports" },
@@ -53,7 +56,7 @@ export default async function Footer() {
     { label: "NICSI Events", href: "/events" },
     { label: "Press Releases", href: "/press-releases" },
     { label: "News & Updates", href: "/news-updates" },
-  ] as const;
+  ] as const);
 
   return (
     <footer className="border-t border-blue-200 bg-gradient-to-r from-[#081A3D] via-[#0A2E73] to-[#081A3D] text-white">
@@ -168,7 +171,7 @@ export default async function Footer() {
 
       <div className="border-t border-white/15">
         <div className="mx-auto max-w-6xl px-6 py-5 text-blue-200">
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <div className="rounded-lg border border-cyan-200/25 bg-white/5 p-3">
               <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200">Ownership</p>
               <p className="mt-1 text-xs leading-5">
@@ -179,6 +182,12 @@ export default async function Footer() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200">Development & Hosting</p>
               <p className="mt-1 text-xs leading-5">
                 Website designed, developed and hosted by NICSI in collaboration with National Informatics Centre (NIC).
+              </p>
+            </div>
+            <div className="rounded-lg border border-cyan-200/25 bg-white/5 p-3">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200">Governance Baseline</p>
+              <p className="mt-1 text-xs leading-5">
+                Public pages are maintained with accessibility, security, policy, and document-governance controls aligned to government website quality expectations.
               </p>
             </div>
             <div className="rounded-lg border border-cyan-200/25 bg-white/5 p-3">

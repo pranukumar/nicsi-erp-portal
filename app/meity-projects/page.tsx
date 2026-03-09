@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
 import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 interface Project {
   title: string;
@@ -70,6 +71,10 @@ export default function Page() {
       website: "https://www.meity.gov.in/",
     },
   ];
+  const normalizedProjects = projects.map((project) => ({
+    ...project,
+    logo: withSiteBasePath(project.logo),
+  }));
 
   return (
     <main className="pb-12">
@@ -77,7 +82,7 @@ export default function Page() {
       <section className="mx-auto max-w-6xl px-6 py-8 text-gray-700">
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {normalizedProjects.map((project) => (
               <article key={project.title} className="flex h-full flex-col rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
                 {project.logo.endsWith("default.svg") ? (
                   <div className="flex h-16 w-44 items-center justify-center rounded-md border border-blue-200 bg-gradient-to-r from-[#EEF5FF] to-[#E0EEFF] px-2 text-center">

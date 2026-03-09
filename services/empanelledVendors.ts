@@ -116,6 +116,44 @@ function parseDdMonYy(value: string): Date | null {
   return new Date(2000 + yearShort, month, day);
 }
 
+export function getEmpanelledVendorSnapshot(): {
+  rows: EmpanelledVendor[];
+  total: number;
+  filters: EmpanelledVendorFilterOptions;
+} {
+  return {
+    rows: fallbackRows,
+    total: fallbackRows.length,
+    filters: getFallbackFilterOptions(fallbackRows),
+  };
+}
+
+export function matchesEmpanelledVendorFilters(
+  row: EmpanelledVendor,
+  filters: Pick<
+    EmpanelledVendorQuery,
+    "vendorCategory" | "empanelmentCategory" | "agreementType" | "scopeType" | "validity"
+  >,
+): boolean {
+  const { vendorCategory, empanelmentCategory, agreementType, scopeType, validity } = filters;
+  if (vendorCategory && row.vendor_category !== vendorCategory) return false;
+  if (empanelmentCategory && row.empanelment_category !== empanelmentCategory) return false;
+  if (agreementType && row.agreement_empanelment !== agreementType) return false;
+  if (scopeType && row.empanelment_scope_type !== scopeType) return false;
+
+  if (validity !== "all") {
+    const validTo = parseDdMonYy(row.valid_up_to);
+    if (!validTo) return false;
+    const today = new Date();
+    const days = Math.floor((validTo.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    if (validity === "active" && days < 0) return false;
+    if (validity === "expired" && days >= 0) return false;
+    if (validity === "expiring" && (days < 0 || days > 60)) return false;
+  }
+
+  return true;
+}
+
 export async function getEmpanelledVendorFilterOptions(): Promise<EmpanelledVendorFilterOptions> {
   const pool = getPool();
   if (!pool) {
@@ -170,20 +208,9 @@ export async function getEmpanelledVendors(query: EmpanelledVendorQuery): Promis
   const { page, limit, q, vendorCategory, empanelmentCategory, agreementType, scopeType, validity } = query;
   const pool = getPool();
   if (!pool) {
-    const today = new Date();
     const filtered = fallbackRows.filter((row) => {
-      if (vendorCategory && row.vendor_category !== vendorCategory) return false;
-      if (empanelmentCategory && row.empanelment_category !== empanelmentCategory) return false;
-      if (agreementType && row.agreement_empanelment !== agreementType) return false;
-      if (scopeType && row.empanelment_scope_type !== scopeType) return false;
-
-      if (validity !== "all") {
-        const validTo = parseDdMonYy(row.valid_up_to);
-        if (!validTo) return false;
-        const days = Math.floor((validTo.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-        if (validity === "active" && days < 0) return false;
-        if (validity === "expired" && days >= 0) return false;
-        if (validity === "expiring" && (days < 0 || days > 60)) return false;
+      if (!matchesEmpanelledVendorFilters(row, { vendorCategory, empanelmentCategory, agreementType, scopeType, validity })) {
+        return false;
       }
 
       if (!q.trim()) return true;

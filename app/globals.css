@@ -23,8 +23,8 @@
 body {
   color: var(--nicsi-text);
   font-family: var(--font-primary), "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
-  font-size: 15.5px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.68;
   background:
     radial-gradient(circle at 12% -10%, rgba(18, 184, 255, 0.2), transparent 34%),
     radial-gradient(circle at 82% -18%, rgba(15, 75, 184, 0.24), transparent 36%),
@@ -74,10 +74,6 @@ html {
 }
 
 /* Keep text in standard case across the website even if uppercase utility is present. */
-.uppercase {
-  text-transform: none !important;
-}
-
 @keyframes important-links-rtl-scroll {
   from {
     transform: translateX(0);

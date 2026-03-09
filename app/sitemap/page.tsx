@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PolicyPageLayout from "@/components/policy/PolicyPageLayout";
+import { filterLinksForStaticAudit } from "@/lib/staticAudit";
 
 const links: { label: string; href: string }[] = [
   { label: "Home", href: "/" },
@@ -37,7 +38,6 @@ const links: { label: string; href: string }[] = [
   { label: "Vacancies", href: "/vacancies" },
   { label: "Internship", href: "/internship" },
   { label: "Internship Application", href: "/internship/apply" },
-  { label: "Login", href: "/login" },
   { label: "Contact Us", href: "/contact" },
   { label: "Terms & Conditions", href: "/terms-and-conditions" },
   { label: "Privacy Policy", href: "/privacy-policy" },
@@ -50,12 +50,14 @@ const links: { label: string; href: string }[] = [
 ];
 
 export default function SitemapPage() {
+  const visibleLinks = filterLinksForStaticAudit(links);
+
   return (
     <PolicyPageLayout title="Sitemap">
       <h2>Sitemap</h2>
       <p>Quick access to all major NICSI pages and public information sections.</p>
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {links.map((item) => (
+        {visibleLinks.map((item) => (
           <Link
             key={`${item.href}-${item.label}`}
             href={item.href}

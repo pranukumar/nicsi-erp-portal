@@ -1,5 +1,6 @@
 import PageTitle from "../../components/layout/PageTitle";
 import Image from "next/image";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 export default function Page() {
   const projects = [
@@ -33,6 +34,10 @@ export default function Page() {
         "eOffice is deployed at Ministry of Telecommunication and Digital Infrastructure, Govt. of Sri Lanka.",
     },
   ] as const;
+  const normalizedProjects = projects.map((project) => ({
+    ...project,
+    image: withSiteBasePath(project.image),
+  }));
 
   return (
     <main className="pb-12">
@@ -45,7 +50,7 @@ export default function Page() {
           </p>
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
-            {projects.map((project) => (
+            {normalizedProjects.map((project) => (
               <article
                 key={`${project.country}-card`}
                 className="rounded-xl border border-blue-100 bg-gradient-to-b from-white to-[#F8FBFF] p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"

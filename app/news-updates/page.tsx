@@ -1,5 +1,6 @@
 import PageTitle from "../../components/layout/PageTitle";
 import Link from "next/link";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 type NewsItem = {
   title: string;
@@ -36,6 +37,11 @@ const newsItems: NewsItem[] = [
 ];
 
 export default function Page() {
+  const normalizedNewsItems = newsItems.map((item) => ({
+    ...item,
+    href: item.href.endsWith(".pdf") ? withSiteBasePath(item.href) : item.href,
+  }));
+
   return (
     <main className="pb-12">
       <PageTitle title="News & Updates" />
@@ -55,7 +61,7 @@ export default function Page() {
           </p>
 
           <div className="mt-6 grid gap-4">
-            {newsItems.map((item) => (
+            {normalizedNewsItems.map((item) => (
               <article key={item.title} className="rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   <span

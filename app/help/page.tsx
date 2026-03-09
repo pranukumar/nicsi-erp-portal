@@ -1,4 +1,5 @@
 import PolicyPageLayout from "@/components/policy/PolicyPageLayout";
+import Link from "next/link";
 
 export default function HelpPage() {
   return (
@@ -17,10 +18,16 @@ export default function HelpPage() {
         <li>Word files: MS Word / compatible office viewers</li>
         <li>Audio and video files: Compatible media player software</li>
       </ul>
+      <p className="mt-2 text-sm leading-6">
+        Wherever practical, downloadable records on this portal include file format and size labels before download.
+      </p>
 
       <h3 className="mt-5 text-base font-bold text-[#0F172A]">Screen reader and speech support</h3>
       <p className="mt-2 text-sm leading-6">
         NICSI website supports accessibility features including screen-reader access and speech-recognition support for inclusive usage.
+      </p>
+      <p className="mt-2 text-sm leading-6">
+        Keyboard users can use the skip link at the top of the page to move directly to the main content area.
       </p>
 
       <h3 className="mt-5 text-base font-bold text-[#0F172A]">Using search and sitemap</h3>
@@ -31,7 +38,7 @@ export default function HelpPage() {
 
       <h3 className="mt-5 text-base font-bold text-[#0F172A]">RSS Feed</h3>
       <p className="mt-2 text-sm leading-6">
-        RSS feed is available for users who want to receive regularly updated content through feed readers/news aggregators.
+        A static RSS XML feed is available for users who want a machine-readable summary of key portal updates through feed readers or aggregators.
       </p>
       <ul className="mt-2 space-y-1 text-sm leading-6">
         <li>Users may subscribe using feed-reader software or web-based RSS readers.</li>
@@ -41,8 +48,28 @@ export default function HelpPage() {
 
       <h3 className="mt-5 text-base font-bold text-[#0F172A]">Feedback / Suggestions</h3>
       <p className="mt-2 text-sm leading-6">
-        Users may share comments and improvement suggestions through official NICSI contact/feedback channels.
+        Users may share comments, accessibility issues, and document-viewing problems through official NICSI contact channels.
       </p>
+      <ul className="mt-2 space-y-1 text-sm leading-6">
+        <li>
+          E-mail:{" "}
+          <a href="mailto:info-nicsi@nic.in" className="font-semibold text-[#003A8C] underline underline-offset-2">
+            info-nicsi@nic.in
+          </a>
+        </li>
+        <li>
+          Contact page:{" "}
+          <Link href="/contact" className="font-semibold text-[#003A8C] underline underline-offset-2">
+            Open Contact Us
+          </Link>
+        </li>
+        <li>
+          Accessibility information:{" "}
+          <Link href="/accessibility-statement" className="font-semibold text-[#003A8C] underline underline-offset-2">
+            Open Accessibility Statement
+          </Link>
+        </li>
+      </ul>
     </PolicyPageLayout>
   );
 }

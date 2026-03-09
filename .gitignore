@@ -19,10 +19,16 @@
 
 # production
 /build
+/home
+/nicsi
+home.zip
 
 # misc
 .DS_Store
 *.pem
+tmp_*
+figma-embed.html
+figma-*.png
 
 # debug
 npm-debug.log*
@@ -39,3 +45,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+*.zip

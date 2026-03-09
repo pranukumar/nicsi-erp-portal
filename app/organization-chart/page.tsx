@@ -1,5 +1,7 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
+import HQPersonnelTree from "@/components/organization-chart/HQPersonnelTree";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 type Person = {
   role: string;
@@ -39,24 +41,21 @@ const leadership = {
   },
 };
 
+const normalizedLeadership = {
+  chairperson: {
+    ...leadership.chairperson,
+    photo: leadership.chairperson.photo ? withSiteBasePath(leadership.chairperson.photo) : undefined,
+  },
+  md: {
+    ...leadership.md,
+    photo: leadership.md.photo ? withSiteBasePath(leadership.md.photo) : undefined,
+  },
+};
+
 const imageSizeMap = {
   "Chairperson, NICSI": { frame: "h-24 w-20" },
   "Managing Director, NICSI": { frame: "h-24 w-20" },
 } as const;
-
-const hqHierarchy: Person[] = [
-  { role: "Financial Advisor", name: "Shri Jitender Kumar", designation: "Chief General Manager", phone: "01122900582", email: "kundalji[at]nic[dot]in" },
-  { role: "HoD Admin", name: "Shri Naveen Agrawal", designation: "Chief General Manager", phone: "01122900547", email: "srgm-na[at]nicsi[dot]nic[dot]in" },
-  { role: "HoD HR", name: "Md. Ziya Ur Rehman Badar", designation: "Sr. General Manager", phone: "01122900553", email: "mzr[dot]badar[at]nic[dot]in" },
-   { role: "HoD GeM & Tender", name: "Shri Ramdatt Upadhyay", designation: "General Manager", phone: "01122900512", email: "upadhyay[dot]rd[at]nic[dot]in" },
-  { role: "HoD Performa Invoice (PI)", name: "Shri Lalit Kumar Bhatia", designation: "General Manager", phone: "01122900516", email: "lalit[dot]b[at]nic[dot]in" },
-  { role: "HoD-COE-NICSI and PBD & IT", name: "Shri Prasanna Pandey", designation: "General Manager", phone: "01122900517", email: "kumar[dot]jyoti[at]nic[dot]in" },
-   
-  { role: "HoD Accounts", name: "Shri Bhupendra Kumar Sharma", designation: "General Manager", phone: "01122900510", email: "bks[at]nic[dot]in" },
-   { role: "Public Information Officer (PIO)", name: "Shri Ajay Kumar Gupta", designation: "General Manager", phone: "01122900556", email: "ajayg[at]nic[dot]in"},
-  { role: "Public Grievance Officer", name: "Shri Vikas Dixit", designation: "Manager", phone: "01122900503", email: "vikas[dot]dixit[at]nic[dot]in"},
-  
-   ];
 
 const domainExperts: Person[] = [];
 
@@ -188,7 +187,7 @@ export default function OrganizationChartPage() {
             <div className="grid items-start gap-3 md:grid-cols-[1fr_minmax(0,28rem)_minmax(0,16rem)]">
               <div className="hidden md:block" />
               <div className="mx-auto w-full max-w-md">
-                <TopNode person={leadership.chairperson} />
+                <TopNode person={normalizedLeadership.chairperson} />
               </div>
               <div className="mx-auto hidden w-full max-w-xs md:mx-0 md:block">
                 <div className="relative mt-16 rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3">
@@ -208,17 +207,17 @@ export default function OrganizationChartPage() {
                   <div className="flex w-full flex-col items-center justify-center gap-2 text-center">
                     <div className="h-24 w-20 overflow-hidden rounded-lg border border-blue-100 shadow-sm">
                       <Image
-                        src={leadership.md.photo}
-                        alt={leadership.md.name}
+                        src={normalizedLeadership.md.photo!}
+                        alt={normalizedLeadership.md.name}
                         width={120}
                         height={160}
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
                     <div>
-                      <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{leadership.md.role}</p>
-                      <h4 className="mx-auto text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
-                      <p className="text-sm text-[#003A8C]">Phone: {leadership.md.phone} | Email: {leadership.md.email}</p>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{normalizedLeadership.md.role}</p>
+                      <h4 className="mx-auto text-base font-bold leading-tight text-[#0F172A]">{normalizedLeadership.md.name}</h4>
+                      <p className="text-sm text-[#003A8C]">Phone: {normalizedLeadership.md.phone} | Email: {normalizedLeadership.md.email}</p>
                     </div>
                   </div>
                 </div>
@@ -245,16 +244,16 @@ export default function OrganizationChartPage() {
               <article className="rounded-xl border border-blue-200 bg-white p-4 text-center shadow-sm">
                 <div className="mx-auto h-24 w-20 overflow-hidden rounded-lg border border-blue-100 shadow-sm">
                   <Image
-                    src={leadership.md.photo}
-                    alt={leadership.md.name}
+                    src={normalizedLeadership.md.photo!}
+                    alt={normalizedLeadership.md.name}
                     width={120}
                     height={160}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{leadership.md.role}</p>
-                <h4 className="text-base font-bold leading-tight text-[#0F172A]">{leadership.md.name}</h4>
-                <p className="text-sm text-[#003A8C]">Phone: {leadership.md.phone} | Email: {leadership.md.email}</p>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-[#0052CC]">{normalizedLeadership.md.role}</p>
+                <h4 className="text-base font-bold leading-tight text-[#0F172A]">{normalizedLeadership.md.name}</h4>
+                <p className="text-sm text-[#003A8C]">Phone: {normalizedLeadership.md.phone} | Email: {normalizedLeadership.md.email}</p>
               </article>
               <article className="rounded-lg border border-dashed border-blue-300 bg-white/90 px-4 py-3 text-center">
                 <p className="text-sm font-semibold uppercase tracking-wide text-[#0052CC]">PS to MD NICSI</p>
@@ -276,11 +275,7 @@ export default function OrganizationChartPage() {
                   <span className="mx-auto mb-0 hidden h-4 w-px bg-blue-300 md:block" />
                   <article className="w-full rounded-xl border border-blue-200 bg-white p-4 shadow-sm">
                     <h4 className="rounded-md bg-[#0A2A72] px-3 py-2 text-sm font-semibold text-white">NICSI HQ Personnel</h4>
-                    <div className="mt-3 space-y-2">
-                      {hqHierarchy.map((person) => (
-                        <DetailNode key={person.role} person={person} />
-                      ))}
-                    </div>
+                    <HQPersonnelTree />
                   </article>
                 </div>
 

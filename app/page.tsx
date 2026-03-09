@@ -27,6 +27,7 @@ import {
   Video,
   Wrench,
 } from "lucide-react";
+import { filterLinksForStaticAudit, isHiddenInStaticAudit, withSiteBasePath } from "@/lib/staticAudit";
 
 const projectPortfolioIconMap = {
   national: Globe2,
@@ -205,8 +206,19 @@ const socialConnectLinks = [
 ] as const;
 
 export default function Home() {
+  const visibleProjectSubmenuLinks = filterLinksForStaticAudit(projectSubmenuLinks);
+  const serviceAccessHref = isHiddenInStaticAudit("/empanelled-vendors") ? "/forms" : "/empanelled-vendors";
+  const centreOfExcellenceCards = centreOfExcellencePreviewCards.map((item) => ({
+    ...item,
+    image: withSiteBasePath(item.image),
+  }));
+  const ministryLeaders = ministers.map((minister) => ({
+    ...minister,
+    image: withSiteBasePath(minister.image),
+  }));
+
   return (
-    <div className="relative overflow-hidden bg-[var(--nicsi-bg)] pb-8">
+    <div className="relative overflow-hidden pb-8" style={{ backgroundColor: "var(--nicsi-bg)" }}>
       <NicsiMotionBackdrop />
       <div className="nicsi-page-aura pointer-events-none absolute inset-0 -z-0">
         <div className="nicsi-aura-orb nicsi-aura-orb-left" />
@@ -219,7 +231,7 @@ export default function Home() {
           <div className="nicsi-stagger rounded-2xl border border-blue-100 bg-gradient-to-b from-[#F7FAFF] via-white to-white p-4 shadow-sm md:p-6">
             <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_1fr]">
             <div className="flex h-full flex-col gap-3">
-              {ministers.map((minister) => (
+              {ministryLeaders.map((minister) => (
                 <article
                   key={minister.name}
                   className="nicsi-hover-card flex-1 rounded-lg border border-[#D9E6FF] bg-white p-0 shadow-sm transition hover:border-[#BFD4FF] lg:min-h-[192px]"
@@ -273,7 +285,7 @@ export default function Home() {
           <article className="overflow-hidden rounded-3xl border border-[#D5E7FF] bg-gradient-to-br from-[#F8FBFF] via-white to-[#F3F8FF] p-4 shadow-[0_16px_40px_rgba(15,75,184,0.08)] sm:p-8">
             <h2 className="mt-1 text-2xl font-bold text-[#0F172A] sm:mt-2 sm:text-3xl">Project Portfolio</h2>
             <div className="nicsi-stagger mt-5 grid items-stretch gap-3 sm:mt-7 sm:grid-cols-2 lg:grid-cols-6">
-              {projectSubmenuLinks.map((project, index) => {
+              {visibleProjectSubmenuLinks.map((project, index) => {
                 const Icon = projectPortfolioIconMap[project.iconKey];
                 const centeredRowClass =
                   index === 3
@@ -286,14 +298,16 @@ export default function Home() {
                   <Link
                     key={project.title}
                     href={project.href}
-                    className={`nicsi-hover-card group relative flex min-h-[216px] w-full flex-col items-center rounded-2xl border border-[#D7E5FA] bg-white/95 px-3 py-4 text-center shadow-[0_6px_18px_rgba(15,75,184,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#8FB8F0] hover:shadow-[0_14px_30px_rgba(13,70,173,0.16)] sm:aspect-square sm:min-h-0 sm:px-4 sm:py-5 ${centeredRowClass}`}
+                    className={`nicsi-hover-card group relative flex min-h-[230px] w-full flex-col items-center justify-between rounded-2xl border border-[#D7E5FA] bg-white/95 px-4 py-5 text-center shadow-[0_6px_18px_rgba(15,75,184,0.08)] transition duration-300 hover:-translate-y-1 hover:border-[#8FB8F0] hover:shadow-[0_14px_30px_rgba(13,70,173,0.16)] sm:min-h-[250px] sm:px-5 sm:py-6 lg:min-h-[272px] ${centeredRowClass}`}
                   >
-                    <span className={`mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full ring-1 ring-inset ring-[#D5E5FA] ${project.iconBg}`}>
-                      <Icon size={24} className={project.iconColor} />
-                    </span>
-                    <p className="mt-3 text-[15px] font-semibold leading-snug text-[#102A56] sm:mt-4 sm:text-lg">{project.title}</p>
-                    <p className="mt-1.5 text-[13px] leading-5 text-[#4A5B78] sm:mt-2 sm:text-sm sm:leading-6">{project.description}</p>
-                    <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-[#1E63B5]">Explore</span>
+                    <div className="flex w-full flex-1 flex-col items-center">
+                      <span className={`mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full ring-1 ring-inset ring-[#D5E5FA] ${project.iconBg}`}>
+                        <Icon size={24} className={project.iconColor} />
+                      </span>
+                      <p className="mt-4 text-[15px] font-semibold leading-snug text-[#102A56] sm:text-lg">{project.title}</p>
+                      <p className="mt-2 max-w-[15rem] text-[13px] leading-5 text-[#4A5B78] sm:text-sm sm:leading-6">{project.description}</p>
+                    </div>
+                    <span className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-[#1E63B5]">Explore</span>
                   </Link>
                 );
               })}
@@ -320,7 +334,7 @@ export default function Home() {
           <h2 className="text-center text-2xl font-bold text-[#0F4BB8] sm:text-3xl md:text-4xl">NICSI Centres of Excellence</h2>
           <p className="mt-3 text-center text-base text-[#334155] sm:text-xl md:text-2xl">Pioneering Innovation In Emerging Technologies</p>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {centreOfExcellencePreviewCards.map((item) => (
+            {centreOfExcellenceCards.map((item) => (
               <article
                 key={item.title}
                 className="overflow-hidden rounded-2xl border border-[#D9E3F4] bg-white shadow-[0_4px_14px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(15,23,42,0.16)]"
@@ -378,7 +392,7 @@ export default function Home() {
             </div>
             <div className="mt-8 text-center">
               <Link
-                href="/empanelled-vendors"
+                href={serviceAccessHref}
                 className="inline-flex items-center rounded-md bg-gradient-to-r from-[#0F4BB8] to-[#0A2E73] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_18px_rgba(15,75,184,0.28)] transition hover:from-[#0C3C96] hover:to-[#08245B]"
               >
                 Access Our Services Here

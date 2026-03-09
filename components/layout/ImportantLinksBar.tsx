@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 const importantLinks = [
   { title: "Gov.in", href: "https://www.india.gov.in/", logo: "/logos/india_gov.in_logo.png", width: 174, height: 53 },
@@ -28,7 +29,7 @@ export default function ImportantLinksBar() {
                 title={item.title}
               >
                 <Image
-                  src={item.logo}
+                  src={withSiteBasePath(item.logo)}
                   alt={item.title}
                   width={item.width}
                   height={item.height}

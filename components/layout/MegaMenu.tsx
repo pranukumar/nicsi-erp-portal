@@ -10,15 +10,15 @@ export default function MegaMenu() {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button className="relative group text-gray-700 hover:text-[var(--dsci-primary)]">
+      <button className="group relative text-gray-700 hover:text-[#0A2E73]">
         Solutions
-        <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[var(--dsci-accent)] transition-all group-hover:w-full"></span>
+        <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#12B8FF] transition-all group-hover:w-full"></span>
       </button>
 
       {open && (
         <div className="absolute left-0 top-8 w-[600px] bg-white shadow-xl rounded-lg p-6 grid grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-[var(--dsci-primary)] mb-3">
+            <h4 className="mb-3 font-semibold text-[#0A2E73]">
               ERP Modules
             </h4>
             <ul className="space-y-2 text-sm">
@@ -30,7 +30,7 @@ export default function MegaMenu() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-[var(--dsci-primary)] mb-3">
+            <h4 className="mb-3 font-semibold text-[#0A2E73]">
               Governance Tools
             </h4>
             <ul className="space-y-2 text-sm">

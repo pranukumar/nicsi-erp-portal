@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>NICSI Digital Governance Platform Updates</title>
+    <link>https://nicsi.nic.in</link>
+    <description>Official updates from NICSI portal.</description>
+    <language>en-in</language>
+    <item>
+      <title>Vacancies - NICSI</title>
+      <description>Current vacancies and archived recruitment notifications.</description>
+      <link>https://nicsi.nic.in/vacancies</link>
+      <guid>https://nicsi.nic.in/vacancies</guid>
+      <pubDate>Fri, 27 Feb 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Internship Application Window</title>
+      <description>Online internship application process and window details.</description>
+      <link>https://nicsi.nic.in/internship</link>
+      <guid>https://nicsi.nic.in/internship</guid>
+      <pubDate>Fri, 27 Feb 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>News and Updates</title>
+      <description>Latest notices, announcements and institutional updates.</description>
+      <link>https://nicsi.nic.in/news-updates</link>
+      <guid>https://nicsi.nic.in/news-updates</guid>
+      <pubDate>Fri, 27 Feb 2026 10:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1 @@
+Port 3000 is already in use. Stop the existing process or run with a different port, for example PORT=8080 npm run serve:static

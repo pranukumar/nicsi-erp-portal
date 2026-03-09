@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import TopStripAccessibilityMenu from "@/components/layout/TopStripAccessibilityMenu";
 import ExternalLaunchButton from "@/components/common/ExternalLaunchButton";
+import { filterLinksForStaticAudit, withSiteBasePath } from "@/lib/staticAudit";
 
 const menuGroups = [
   {
@@ -245,12 +246,6 @@ type TopStripMenuItem = {
   external?: boolean;
 };
 
-type TopStripUtilityLink = {
-  label: string;
-  href: string;
-  items?: TopStripMenuItem[];
-};
-
 const topStripOpportunitiesItems: TopStripMenuItem[] = [
   { label: "Vacancies", href: "/vacancies", icon: BriefcaseBusiness, external: false },
   { label: "Internship", href: "/internship", icon: UserCheck2, external: false },
@@ -263,20 +258,6 @@ const topStripQuickLinksItems: TopStripMenuItem[] = [
   { label: "Vendor Search", href: "/vendor-search", icon: Network },
   { label: "FAQ", href: "/faq", icon: FileText },
   { label: "Contact Us", href: "/contact", icon: Users },
-];
-
-const utilityLinks: TopStripUtilityLink[] = [
-  {
-    label: "Offerings",
-    href: "/vacancies",
-    items: topStripOpportunitiesItems,
-  },
-  {
-    label: "Quick Links",
-    href: "/contact",
-    items: topStripQuickLinksItems,
-  },
-  { label: "Contact Us", href: "/contact" },
 ];
 
 type MegaMenuItem = {
@@ -296,6 +277,27 @@ type MegaMenuGroup = {
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const visibleMenuGroups = menuGroups
+    .map((group) => ({
+      ...group,
+      items: filterLinksForStaticAudit(group.items),
+    }))
+    .filter((group) => group.items.length > 0);
+  const visibleTopStripOpportunitiesItems = filterLinksForStaticAudit(topStripOpportunitiesItems);
+  const visibleTopStripQuickLinksItems = filterLinksForStaticAudit(topStripQuickLinksItems);
+  const visibleUtilityLinks = [
+    {
+      label: "Offerings",
+      href: "/vacancies",
+      items: visibleTopStripOpportunitiesItems,
+    },
+    {
+      label: "Quick Links",
+      href: "/contact",
+      items: visibleTopStripQuickLinksItems,
+    },
+    { label: "Contact Us", href: "/contact" },
+  ].filter((item) => !item.items || item.items.length > 0);
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [topSearch, setTopSearch] = useState("");
@@ -358,15 +360,15 @@ export default function Header() {
       }`}
     >
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-3 py-2 text-white sm:px-6">
+      <div className="bg-gradient-to-r from-[#0A2E73] via-[#0F4BB8] to-[#0A2E73] px-3 py-2.5 text-white sm:px-6">
         <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-2 lg:items-center">
-        <span className="flex min-w-0 flex-wrap items-center gap-1 text-[11px] font-medium leading-none tracking-[0.01em] sm:gap-1.5 sm:text-[12.5px]">
+        <span className="flex min-w-0 flex-wrap items-center gap-1.5 text-[12px] font-medium leading-none tracking-[0.01em] sm:gap-2 sm:text-[13.5px]">
           <ExternalLaunchButton
             url="https://www.india.gov.in/"
             className="inline-flex items-center gap-1.5 text-white transition hover:text-cyan-100"
             title="Government of India"
           >
-            <Image src="/icons/india-flag.svg" alt="India Flag" width={20} height={14} className="h-4 w-5 rounded-[1px]" />
+            <Image src={withSiteBasePath("/icons/india-flag.svg")} alt="India Flag" width={20} height={14} className="rounded-[1px]" />
             <span>Government of India</span>
           </ExternalLaunchButton>
           <ExternalLaunchButton
@@ -374,7 +376,7 @@ export default function Header() {
             className="hidden items-center rounded-sm bg-white px-1 py-0.5 transition hover:opacity-90 sm:inline-flex"
             title="Digital India"
           >
-            <Image src="/logos/digital-india.png" alt="Digital India" width={96} height={24} className="h-5 w-auto" />
+            <Image src={withSiteBasePath("/logos/digital-india.png")} alt="Digital India" width={96} height={24} />
           </ExternalLaunchButton>
           <ExternalLaunchButton
             url="https://swachhbharatmission.gov.in/"
@@ -382,16 +384,16 @@ export default function Header() {
             title="Swachh Bharat"
           >
             <Image
-              src="/logos/swachh-bharat.png"
+              src={withSiteBasePath("/logos/swachh-bharat.png")}
               alt="Swachh Bharat"
               width={84}
               height={20}
-              className="h-5 w-auto brightness-0 invert"
+              className="brightness-0 invert"
             />
           </ExternalLaunchButton>
         </span>
-        <div className="hidden items-center gap-4 text-[12.5px] font-medium tracking-[0.01em] lg:flex">
-          {utilityLinks.map((item) =>
+        <div className="hidden items-center gap-5 text-[13px] font-medium tracking-[0.01em] lg:flex">
+          {visibleUtilityLinks.map((item) =>
             item.items?.length ? (
               <div key={item.label} className="group relative">
                 <Link href={item.href} className="inline-flex items-center gap-1 text-white/90 transition hover:text-white">
@@ -585,9 +587,9 @@ export default function Header() {
             </div>
           ) : null}
 
-          {mobileTopStripMenu === "opportunities" ? (
+          {mobileTopStripMenu === "opportunities" && visibleTopStripOpportunitiesItems.length > 0 ? (
             <div className="mt-2 rounded-lg border border-cyan-100 bg-white p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]">
-              {topStripOpportunitiesItems.map((item) => (
+              {visibleTopStripOpportunitiesItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
@@ -599,9 +601,9 @@ export default function Header() {
             </div>
           ) : null}
 
-          {mobileTopStripMenu === "quick-links" ? (
+          {mobileTopStripMenu === "quick-links" && visibleTopStripQuickLinksItems.length > 0 ? (
             <div className="mt-2 rounded-lg border border-cyan-100 bg-white p-1 shadow-[0_18px_35px_rgba(10,46,115,0.22)]">
-              {topStripQuickLinksItems.map((item) => (
+              {visibleTopStripQuickLinksItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
@@ -622,18 +624,18 @@ export default function Header() {
       </div>
 
       {/* Main Header */}
-      <div className="relative flex items-center border-b border-blue-100/80 bg-white/90 px-3 py-3 pr-14 md:px-5 md:pr-5 xl:px-4 2xl:px-6">
+      <div className="relative flex items-center border-b border-blue-100/80 bg-white/90 px-3 py-3.5 pr-14 md:px-5 md:pr-5 xl:px-4 2xl:px-6">
 
         <div className="min-w-0 shrink-0 flex items-center gap-2 md:gap-3 xl:gap-2 2xl:gap-4">
           <Image
-            src="/logos/ashoka.png"
+            src={withSiteBasePath("/logos/ashoka.png")}
             alt="Ashoka"
             width={64}
             height={64}
             className="h-11 w-auto md:h-14 xl:h-12 2xl:h-16"
           />
           <Image
-            src="/logos/NICSI-logo.png"
+            src={withSiteBasePath("/logos/NICSI-logo.png")}
             alt="NICSI"
             width={210}
             height={75}
@@ -641,11 +643,11 @@ export default function Header() {
           />
         </div>
 
-        <nav className="ml-auto hidden items-center justify-end gap-1 text-[13px] font-semibold tracking-[0.005em] text-[#1C2F57] 2xl:gap-1.5 2xl:text-[15px] xl:flex">
+        <nav className="ml-auto hidden items-center justify-end gap-1.5 text-[14px] font-semibold tracking-[0.005em] text-[#1C2F57] 2xl:gap-2 2xl:text-[15px] xl:flex">
           <NavLink href="/" ariaLabel="Home">
             <House size={16} />
           </NavLink>
-          {(menuGroups as MegaMenuGroup[]).map((group, groupIndex) => (
+          {(visibleMenuGroups as MegaMenuGroup[]).map((group, groupIndex) => (
             <MenuGroup
               key={group.label}
               groupIndex={groupIndex}
@@ -666,13 +668,13 @@ export default function Header() {
               onTriggerKeyDown={(event) => {
                 if (event.key === "ArrowRight") {
                   event.preventDefault();
-                  const next = (groupIndex + 1) % menuGroups.length;
+                  const next = (groupIndex + 1) % visibleMenuGroups.length;
                   focusGroupButton(next);
                   setOpenGroupIndex(null);
                 }
                 if (event.key === "ArrowLeft") {
                   event.preventDefault();
-                  const prev = (groupIndex - 1 + menuGroups.length) % menuGroups.length;
+                  const prev = (groupIndex - 1 + visibleMenuGroups.length) % visibleMenuGroups.length;
                   focusGroupButton(prev);
                   setOpenGroupIndex(null);
                 }
@@ -690,8 +692,8 @@ export default function Header() {
                 }
               }}
               onItemKeyDown={(itemIndex, event) => {
-                const totalItems = menuGroups[groupIndex].items.length;
-                if (event.key === "ArrowDown") {
+                  const totalItems = visibleMenuGroups[groupIndex].items.length;
+                  if (event.key === "ArrowDown") {
                   event.preventDefault();
                   const nextItem = (itemIndex + 1) % totalItems;
                   groupItemRefs.current[groupIndex]?.[nextItem]?.focus();
@@ -703,14 +705,14 @@ export default function Header() {
                 }
                 if (event.key === "ArrowRight") {
                   event.preventDefault();
-                  const nextGroup = (groupIndex + 1) % menuGroups.length;
-                  openGroupAndFocusItem(nextGroup, 0);
-                }
-                if (event.key === "ArrowLeft") {
-                  event.preventDefault();
-                  const prevGroup = (groupIndex - 1 + menuGroups.length) % menuGroups.length;
-                  openGroupAndFocusItem(prevGroup, 0);
-                }
+                    const nextGroup = (groupIndex + 1) % visibleMenuGroups.length;
+                    openGroupAndFocusItem(nextGroup, 0);
+                  }
+                  if (event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    const prevGroup = (groupIndex - 1 + visibleMenuGroups.length) % visibleMenuGroups.length;
+                    openGroupAndFocusItem(prevGroup, 0);
+                  }
                 if (event.key === "Escape") {
                   event.preventDefault();
                   setOpenGroupIndex(null);
@@ -727,12 +729,6 @@ export default function Header() {
               }}
             />
           ))}
-          <Link
-            href="/login"
-            className="ml-1 rounded-md bg-gradient-to-r from-[#0A2E73] to-[#0F4BB8] px-3 py-2 text-[13px] font-semibold text-white shadow-[0_6px_16px_rgba(10,46,115,0.28)] transition hover:brightness-110 2xl:px-5 2xl:py-2.5 2xl:text-[14px]"
-          >
-            Login
-          </Link>
         </nav>
 
         <button
@@ -757,7 +753,7 @@ export default function Header() {
             <House size={16} />
             Home
           </Link>
-          {menuGroups.map((group, groupIndex) => (
+          {visibleMenuGroups.map((group, groupIndex) => (
             <div key={group.label} className="mb-2 overflow-hidden rounded-lg border border-blue-100 bg-white">
               <button
                 type="button"
@@ -793,13 +789,6 @@ export default function Header() {
               </div>
             </div>
           ))}
-          <Link
-            href="/login"
-            className="mt-2 block rounded-md bg-[#003A8C] px-3 py-2 text-center text-sm font-semibold text-white"
-            onClick={closeMobileMenu}
-          >
-            Login
-          </Link>
         </div>
       )}
     </header>
@@ -811,7 +800,7 @@ function NavLink({ href, children, ariaLabel }: { href: string; children: ReactN
     <Link
       href={href}
       aria-label={ariaLabel}
-      className="group relative rounded-md border border-transparent px-2 py-1.5 text-[#1C2F57] transition hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8] 2xl:px-2.5 2xl:py-2"
+      className="group relative rounded-md border border-transparent px-2.5 py-2 text-[#1C2F57] transition hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8] 2xl:px-3 2xl:py-2.5"
     >
       {children}
       <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-[#12B8FF] transition-all group-hover:w-full"></span>
@@ -902,7 +891,7 @@ function MenuGroup({
         ref={setGroupButtonRef}
         id={`mega-trigger-${groupIndex}`}
         type="button"
-        className={`relative flex h-9 items-center gap-1 rounded-md px-2 py-1.5 text-[13px] font-semibold tracking-[0.005em] transition 2xl:h-10 2xl:px-3 2xl:py-2 2xl:text-[14px] ${
+        className={`relative flex h-10 items-center gap-1 rounded-md px-2.5 py-2 text-[14px] font-semibold tracking-[0.005em] transition 2xl:h-11 2xl:px-3 2xl:py-2.5 2xl:text-[15px] ${
           isOpen
             ? "border border-cyan-100 bg-gradient-to-r from-[#e8f4ff] to-[#dff0ff] text-[#0F4BB8]"
             : "border border-transparent text-[#1C2F57] hover:border-cyan-100 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff] hover:text-[#0F4BB8]"
@@ -925,9 +914,9 @@ function MenuGroup({
           role="menu"
           aria-labelledby={`mega-trigger-${groupIndex}`}
           style={{ left: `${panelLeft}px` }}
-          className="absolute top-full z-50 w-[min(54rem,calc(100vw-2rem))] rounded-2xl border border-cyan-100 bg-gradient-to-br from-white via-[#f7fbff] to-[#eef6ff] p-4 shadow-[0_22px_50px_rgba(10,46,115,0.22)]"
+          className="absolute top-full z-50 w-[min(56rem,calc(100vw-2rem))] rounded-2xl border border-cyan-100 bg-gradient-to-br from-white via-[#f7fbff] to-[#eef6ff] p-4 shadow-[0_22px_50px_rgba(10,46,115,0.22)]"
         >
-          <div className={`grid gap-3.5 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+          <div className={`grid gap-4 sm:grid-cols-2 ${label === "Profile" ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
             {items.map((item, itemIndex) => {
               const Icon = item.icon;
               return (
@@ -938,7 +927,7 @@ function MenuGroup({
                   role="menuitem"
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  className="rounded-xl border border-blue-100 bg-white/95 p-3.5 transition hover:border-cyan-200 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff]"
+                  className="rounded-xl border border-blue-100 bg-white/95 p-4 transition hover:border-cyan-200 hover:bg-gradient-to-r hover:from-[#edf6ff] hover:to-[#e4f2ff]"
                   onKeyDown={(event) => onItemKeyDown(itemIndex, event)}
                   onClick={onClose}
                 >
@@ -946,7 +935,10 @@ function MenuGroup({
                     <span className="rounded-md bg-gradient-to-br from-[#e9f4ff] to-[#ddedff] p-2 text-[#0F4BB8] ring-1 ring-cyan-100">
                       <Icon size={16} />
                     </span>
-                    <span className="block text-[14px] font-semibold leading-5 text-gray-800">{item.label}</span>
+                    <div className="min-w-0">
+                      <span className="block text-[14px] font-semibold leading-5 text-gray-800">{item.label}</span>
+                      <span className="mt-1 block text-[12px] leading-5 text-[#577096]">{item.description}</span>
+                    </div>
                   </div>
                 </Link>
               );

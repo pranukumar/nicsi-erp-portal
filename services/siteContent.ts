@@ -48,7 +48,6 @@ const fallbackFooterContent: FooterContent = {
   resourceLinks: [
     { label: "Download Form", href: "/forms" },
     { label: "Empanelled Vendors", href: "/empanelled-vendors" },
-    { label: "Portal Login", href: "/login" },
   ],
 };
 

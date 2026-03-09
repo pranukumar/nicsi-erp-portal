@@ -3,9 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node scripts/run-with-env.mjs .env.local next dev -p 3000",
+    "dev:local": "node scripts/run-with-env.mjs .env.local next dev -p 3000",
+    "dev:vm": "node scripts/run-with-env.mjs .env.development next dev -H 0.0.0.0 -p 3000",
+    "local": "node scripts/build-and-serve-static.mjs",
+    "run": "node scripts/serve-home-static.mjs",
+    "site:build": "node scripts/build-static-audit.mjs",
+    "site:run": "node scripts/serve-home-static.mjs",
+    "build": "node scripts/run-with-env.mjs .env.production next build",
+    "build:development": "node scripts/run-with-env.mjs .env.development next build",
+    "build:staging": "node scripts/run-with-env.mjs .env.staging next build",
+    "build:production": "node scripts/run-with-env.mjs .env.production next build",
+    "build:audit": "node scripts/build-static-audit.mjs",
+    "build:static": "node scripts/build-static-audit.mjs",
+    "serve:static": "node scripts/serve-home-static.mjs",
+    "audit:static": "node scripts/audit-static-links.mjs",
+    "start": "node scripts/run-with-env.mjs .env.production next start -H 0.0.0.0 -p 3000",
+    "start:development": "node scripts/run-with-env.mjs .env.development next start -H 0.0.0.0 -p 3000",
+    "start:staging": "node scripts/run-with-env.mjs .env.staging next start -H 0.0.0.0 -p 3000",
+    "start:production": "node scripts/run-with-env.mjs .env.production next start -H 0.0.0.0 -p 3000",
     "lint": "eslint"
   },
   "dependencies": {
@@ -27,5 +43,6 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.2.0",
     "typescript": "^5"
-  }
+  },
+  "homepage": "/nicsi"
 }

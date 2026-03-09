@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PageTitle from "../../components/layout/PageTitle";
+import { withSiteBasePath } from "@/lib/staticAudit";
 
 export default function Page() {
   type Solution = {
@@ -84,6 +85,14 @@ export default function Page() {
       accent: "text-[#0F4BB8]",
     },
   ];
+  const normalizedFeaturedSolutions = featuredSolutions.map((solution) => ({
+    ...solution,
+    logo: solution.logo ? withSiteBasePath(solution.logo) : undefined,
+  }));
+  const normalizedOtherProjects = otherProjects.map((project) => ({
+    ...project,
+    logo: project.logo ? withSiteBasePath(project.logo) : undefined,
+  }));
 
   return (
     <main className="pb-12">
@@ -92,7 +101,7 @@ export default function Page() {
         <div className="rounded-2xl border border-blue-100 bg-white p-6 shadow-sm md:p-8">
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {featuredSolutions.map((solution) => (
+            {normalizedFeaturedSolutions.map((solution) => (
               <article key={solution.name} className="flex h-full flex-col rounded-xl border border-blue-100 bg-[#FCFDFF] p-4 shadow-sm">
                 <div className="mb-3 flex h-14 items-center justify-start">
                   {solution.logo ? (
@@ -113,7 +122,7 @@ export default function Page() {
           </div>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {otherProjects.map((project) => (
+            {normalizedOtherProjects.map((project) => (
               <article key={project.name} className="flex h-full flex-col rounded-xl border border-blue-100 bg-white p-4 shadow-sm">
                 {project.logo ? (
                   <div className="mb-3 flex h-12 w-44 items-center rounded-md border border-gray-100 bg-white p-2">

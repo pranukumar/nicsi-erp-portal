@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 
 type StateOption = {
   code: string;
@@ -36,65 +35,18 @@ const initialEntry: Entry = {
 };
 
 export default function StateProjectDataEntryPanel({ states }: Props) {
-  const router = useRouter();
   const [entry, setEntry] = useState<Entry>(initialEntry);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [submitting, setSubmitting] = useState(false);
 
   const sortedStates = useMemo(
     () => [...states].sort((a, b) => a.name.localeCompare(b.name)),
     [states],
   );
 
-  const onAdd = async () => {
-    if (submitting) return;
-    setSuccess("");
-    if (!entry.stateCode) {
-      setError("State/UT select karein.");
-      return;
-    }
-    if (entry.projectTitle.trim().length < 3) {
-      setError("Project title minimum 3 characters hona chahiye.");
-      return;
-    }
-    if (entry.department.trim().length < 2) {
-      setError("Department required hai.");
-      return;
-    }
-    if (!entry.startDate) {
-      setError("Start date required hai.");
-      return;
-    }
-    if (entry.endDate && entry.endDate < entry.startDate) {
-      setError("End date, start date se pehle nahi ho sakti.");
-      return;
-    }
-    setSubmitting(true);
-    setError("");
-    try {
-      const response = await fetch("/api/state-projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(entry),
-      });
-      const data = (await response.json()) as { error?: string; message?: string; id?: number };
-      if (!response.ok) {
-        setError(data.error ?? "Entry submit failed.");
-        return;
-      }
-      setEntry(initialEntry);
-      setSuccess(`${data.message ?? "Entry submitted."} ID: ${data.id ?? "-"}`);
-      router.refresh();
-    } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : "Unexpected submit error.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <section className="mt-6 rounded-xl border border-blue-100 bg-white p-5 shadow-sm">
+      <div className="mb-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-800">
+        Live state project submission is disabled in the static portal. This panel is retained as a reference layout only.
+      </div>
       <div className="grid items-start gap-3 md:grid-cols-2 lg:grid-cols-4">
         <label className="grid min-w-0 gap-1 text-sm">
           <span className="font-semibold">State / UT</span>
@@ -196,14 +148,11 @@ export default function StateProjectDataEntryPanel({ states }: Props) {
       <div className="mt-4 flex flex-wrap items-center gap-3">
         <button
           type="button"
-          onClick={onAdd}
-          disabled={submitting}
-          className="rounded-md bg-[#003A8C] px-4 py-2 text-sm font-semibold text-white hover:bg-[#0052CC]"
+          disabled
+          className="rounded-md bg-[#003A8C] px-4 py-2 text-sm font-semibold text-white opacity-60"
         >
-          {submitting ? "Submitting..." : "Submit Entry"}
+          Submit Disabled
         </button>
-        {error ? <p className="text-sm font-semibold text-red-600">{error}</p> : null}
-        {success ? <p className="text-sm font-semibold text-green-700">{success}</p> : null}
       </div>
 
     </section>

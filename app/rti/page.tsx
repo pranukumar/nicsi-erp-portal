@@ -7,13 +7,15 @@ import {
   RTI_ARCHIVE_RECORDS,
   RTI_DETAILS_RECORDS,
 } from "./rti-data";
+import { withSiteBasePath } from "@/lib/staticAudit";
+import DocumentGuidance from "@/components/common/DocumentGuidance";
 
 type MainTab = "act" | "manual" | "pio" | "details" | "appeals";
 type RecordView = "current" | "archive";
 
 const PAGE_SIZE = 25;
-const RTI_ACT_FILE = "/pdfs/rti/rti-act-2005.pdf";
-const RTI_MANUAL_FILE = "/pdfs/rti/rti-manual-2025-26-feb-2026.pdf";
+const RTI_ACT_FILE = withSiteBasePath("/pdfs/rti/rti-act-2005.pdf");
+const RTI_MANUAL_FILE = withSiteBasePath("/pdfs/rti/rti-manual-2025-26-feb-2026.pdf");
 
 const mainTabs: { key: MainTab; label: string }[] = [
   { key: "act", label: "RTI Act 2005" },
@@ -146,11 +148,15 @@ export default function RtiPage() {
               </button>
             ))}
           </div>
+          <div className="mt-5">
+            <DocumentGuidance reviewLabel="RTI statutory documents include file-size indicators, and searchable RTI registers remain available in static reference mode." />
+          </div>
 
           <div className="mt-5 rounded-xl border border-blue-100 bg-white p-4 md:p-5">
             {activeTab === "act" ? (
               <div className="overflow-x-auto rounded-lg border border-gray-200">
                 <table className="nic-table min-w-full text-left text-sm">
+                  <caption className="sr-only">Right to Information Act 2005 download table.</caption>
                   <thead className="bg-gray-50 text-gray-700">
                     <tr>
                       <th className="px-4 py-3">Sr. No.</th>
@@ -170,7 +176,7 @@ export default function RtiPage() {
                           download
                           className="inline-flex rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
                         >
-                          Download PDF
+                          Download PDF (389.16 KB)
                         </a>
                       </td>
                     </tr>
@@ -182,6 +188,7 @@ export default function RtiPage() {
             {activeTab === "manual" ? (
               <div className="overflow-x-auto rounded-lg border border-gray-200">
                 <table className="nic-table min-w-full text-left text-sm">
+                  <caption className="sr-only">NICSI RTI manual download table.</caption>
                   <thead className="bg-gray-50 text-gray-700">
                     <tr>
                       <th className="px-4 py-3">Sr. No.</th>
@@ -201,7 +208,7 @@ export default function RtiPage() {
                           download
                           className="inline-flex rounded-md border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-[#003A8C] hover:bg-blue-100"
                         >
-                          Download PDF
+                          Download PDF (491.7 KB)
                         </a>
                       </td>
                     </tr>

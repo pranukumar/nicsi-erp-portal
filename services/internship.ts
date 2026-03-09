@@ -20,7 +20,7 @@ export type InternshipContent = {
 const internshipContent: InternshipContent = {
   lastUpdated: "February 27, 2026",
   sourceFileDate: "January 28, 2026",
-  sourceNoticeUrl: "https://nicsi.nic.in/viewNotice?fileName=NICSI%20DOCS.pdf",
+  sourceNoticeUrl: "/pdfs/internship/NICSI_DOCS.pdf",
   objective: [
     "NICSI Internship Scheme aims to provide practical exposure to design, development, implementation and management of e-Governance solutions and digital public infrastructure.",
     "The programme bridges academic learning with real-world government systems including cybersecurity, cloud computing, software delivery and ICT-enabled public services.",
@@ -132,4 +132,3 @@ const internshipContent: InternshipContent = {
 export async function getInternshipContent(): Promise<InternshipContent> {
   return internshipContent;
 }
-
